@@ -1,0 +1,36 @@
+﻿@inherits RocketCatalog.Components.RocketCatalogTokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI;
+@using Simplisity;
+@using RocketPortal.Components;
+@using RocketCatalog.Components;
+@using DNNrocketAPI.Components;
+@using System.Globalization;
+
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketCatalog/App_LocalResources/")
+
+@{ 
+    var sessionParams = (SessionParams)Model.SessionParamsData;
+    var articleData = (ArticleLimpet)Model.GetDataObject("articledata");
+    var portalCatalog = (PortalCatalogLimpet)Model.GetDataObject("portalcatalog");
+    var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");
+    var portalData = (PortalLimpet)Model.GetDataObject("portaldata");
+    var categoryList = (CategoryLimpetList)Model.GetDataObject("categorylist");
+    var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
+
+    var hbsDict = new Dictionary<string, SimplisityInfo>();
+    hbsDict.Add("sessionparams", sessionParams.Info);
+    hbsDict.Add("resxlist", RenderRazorUtils.GetResxPaths(Processdata));
+    hbsDict.Add("data", articleData.Info);
+
+}
+
+@AddProcessData("resourcepath", "/DesktopModules/RocketThemes/" + appTheme.AppThemeFolder + "/" + appTheme.AppVersionFolder + "/resx/")
+
+@if (portalCatalog.DebugMode)
+{<div class="w3-small">@DateTime.Now.ToString()</div>}
+
+<div class="w3-row">
+    <div onclick="window.history.back()" class="w3-button" style="float:right;" title="@articleData.Name">@ButtonText(ButtonTypes.back, sessionParams.CultureCode)</div>
+    @RenderHandleBarsRC(hbsDict, appTheme, "productdetail.hbs", remoteModule.ModuleRef, "")
+</div>

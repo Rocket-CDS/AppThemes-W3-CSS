@@ -1,0 +1,90 @@
+﻿@inherits RocketContent.Components.RocketContentTokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI;
+@using Simplisity;
+@using RocketContent.Components;
+@using DNNrocketAPI.Components;
+@using RocketPortal.Components;
+
+@{
+    var info = new SimplisityInfo();
+    var sessionParams = Model.SessionParamsData;
+    var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");
+}
+
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketForms/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/RocketThemes/RocketAppThemes-W3-CSS/rocketforms.Contact/1.0/resx/")
+
+<div class="w3-content formdatasection" style="max-width: 1200px;">
+
+    <div class="w3-row w3-padding">
+        <label class="w3-text-grey">@ResourceKey("RocketForms.name")</label>
+        @TextBox(info, "genxml/textbox/name", " name='name' class='w3-input w3-border'")
+    </div>
+    <div class="w3-row w3-padding">
+        <label class="w3-text-grey">@ResourceKey("RocketForms.company")</label>
+        @TextBox(info, "genxml/textbox/company", " name='company' class='w3-input w3-border'")
+    </div>
+    <div class="w3-row w3-padding">
+        <label class="w3-text-grey">@ResourceKey("RocketForms.email")</label>
+        @TextBox(info, "genxml/textbox/email", "  name='email' type='email' class='w3-input w3-border' required")
+    </div>
+    <div class="w3-row w3-padding">
+        <label class="w3-text-grey">@ResourceKey("RocketForms.tel")</label>
+        @TextBox(info, "genxml/textbox/tel", "  name='tel' class='w3-input w3-border'")
+    </div>
+    <div class="w3-row w3-padding">
+        <label class="w3-text-grey">@ResourceKey("RocketForms.message")</label>
+        <div>@TextArea(info, "genxml/textbox/message", "  name='message' rows='4'  class='w3-input w3-border' required")</div>
+    </div>
+
+    <div class="w3-row w3-center formdatareturn">
+        <div class="w3-button w3-green w3-large w3-padding-16 formsendclickbutton simplisity_click" s-cmd="rocketforms_postform" s-before="formsendclick" s-after="formreturn" s-cmdurl="/DesktopModules/CDSviewerDNN/apihandler.ashx" s-post=".formdatasection" s-return=".formdatareturn" s-fields='{"moduleref":"@remoteModule.ModuleRef","systemkey":"rocketforms"}'>@ResourceKey("RocketForms.send")</div>
+    </div>
+
+
+</div>
+
+<div class="formloader" style="padding-top:0px; display:none;">
+    <div class="w3-overlay " style='display:block;z-index:999;'>
+        <span class="w3-display-middle">
+            <img class="w3-spin" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAQAAAD/5HvMAAACmklEQVRo3u3YrU9CURgG8EcHm5sfRebURACLSSsGRtBioN2G06CFIIVKISPFYOUPUItzFpNuWpTOGMHNoBM3UGe4cky691yvcM8H555N3xvd+/DzcO857wX4rz9bJdtAzDYSs43EbCMx20jMNhKzjcRsI7HwSTNwUMUJGrj/wTFMmkYeV76IEEhzqOA1AMYIKYoiuoExQwclcSuEGTIni45NnB24Ph/ZRg2bSCOBCbOcbR/METKIhLMxZn+szgVS4R0dSc+946IQ5uEaxQ3HecZquONH0cNZVBzQ4nBUOPPcNuhiTXGEjaOFB0zJgyrc+uwqDvlxtMDAUJY/Ql8I51LxNeiLw9DBuBwoz61PSulejKBJsnJyIdfcNqhaxyTtXG786pGIjDIoTdI+EBMPcEjAE3dIyNUoN1euiwfskfaalj3tgCRKPGmn6jehp7ZI4pl4e4O0p7WAlkliXbz9kbQvaAHNksQ78fZ30j6pBTRGEt/E299I+5gW0CRJfBdvvyPts1pACyTxUby9TtqXtIDo1tgQbz8j7RtaQDmSeCreXibt+1pANZK4J96+zj2kI8qcCJ5IosTcGMMHCVhRBmVIWg8zMhHnJOJQGXRE0q7Vb8Km4nmf4oa9vFzI+PcbWQtxxQH2knBeMC37f5UDc1jfv+9y61ORX+gpPATk9AOtca/iXcyrfPdOQM7voEU8c+tTHO6bben7g/xr1cO5QdQMxx9U8Pxu0kHSFIf5POgXnh9xXGTNcRh3SGS4bfDr2jbJYZhAAmlsooa2D8bFjllO/6tj9ssadN2avJUHXV0Uh/ugi4BeUcEcDFQQ0hXy8keoLtI9GjhBFY7c+KWbFHqVbAMNOjpCJ8E2EmwjwTYSbCPBNtJ//dX6BHY6L4BgfX6bAAAAAElFTkSuQmCC" />
+        </span>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('.formdatasection').activateSimplisityPanel()
+        jQuery.validator.setDefaults({
+            debug: true,
+            success: "valid",
+            showErrors: function (errorMap, errorList) {
+                $.each(errorMap, function (key, value) {
+                    $('[name="' + key + '"]').addClass("w3-pale-red");
+                });
+            },
+            errorPlacement: function (error, element) { }
+        });
+        simplisity_setSessionField("culturecode", '@sessionParams.CultureCode'); // ensure client API call has correct langauge.
+    });
+
+    function formsendclick() {
+        var form = $('form');
+        form.validate();
+        if (form.valid()) {
+            $('.formloader').show();
+            $('input').removeClass("w3-pale-red");
+            $('textarea').removeClass("w3-pale-red");
+        } else {
+            $('.formsendclickbutton').attr('s-stop', 'stop')
+
+        }
+    }
+    function formreturn() {
+        $('.formloader').hide();
+    }
+</script>
+

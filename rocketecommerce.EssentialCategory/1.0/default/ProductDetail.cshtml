@@ -1,0 +1,53 @@
+﻿@inherits RocketEcommerce.Components.RocketEcommerceTokens<Simplisity.SimplisityRazor>
+@using Simplisity;
+@using RocketEcommerce.Components;
+@using DNNrocketAPI.Components;
+@using RocketPortal.Components;
+
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketECommerce/App_LocalResources/")
+
+@{ 
+    var productData = (ProductLimpet)Model.GetDataObject("productdata");
+    var companyData = (CompanyLimpet)Model.GetDataObject("companydata");
+    var cartData = (CartLimpet)Model.GetDataObject("cartdata");
+    var sessionParams = (SessionParams)Model.SessionParamsData;
+    var portalShop = productData.PortalShop;
+    var portalData = new PortalLimpet(PortalUtils.GetCurrentPortalId());
+    var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");
+    var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
+    var categoryDataList = (CategoryLimpetList)Model.GetDataObject("categorydatalist");
+
+    var hbsDict = new Dictionary<string, SimplisityInfo>();
+    hbsDict.Add("sessionparams", sessionParams.Info);
+    hbsDict.Add("resxlist", RenderRazorUtils.GetResxPaths(Processdata));
+    hbsDict.Add("data", productData.Info);
+}
+
+@if (portalShop.DebugMode)
+{
+    <div class="w3-small">@DateTime.Now.ToString()</div>
+}
+
+@AddProcessData("resourcepath", "/DesktopModules/RocketThemes/" + remoteModule.AppThemeFolder + "/" + remoteModule.AppThemeVersion + "/resx/")
+
+
+<div class="w3-row">
+    <div class="w3-threequarter">
+        <div class="w3-row">
+            @RenderHandleBarsRE(hbsDict, appTheme, "productdetail.hbs", remoteModule.ModuleRef, "")
+        </div>
+    </div>
+    <div class="w3-quarter">
+        <div id="minicartdisplay" class="productlistcart">
+            @RenderTemplate("MiniCart.cshtml", appTheme, Model)
+        </div>
+        <div class="productlistcat">
+            @if (categoryDataList.DataList.Count > 0)
+            {
+                @RenderTemplate("CategorySideMenu.cshtml", appTheme, Model)                
+            }
+        </div>
+    </div>
+</div>
+

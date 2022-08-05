@@ -1,0 +1,52 @@
+﻿@inherits RocketContent.Components.RocketContentTokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI;
+@using Simplisity;
+@using RocketContent.Components;
+@using DNNrocketAPI.Components;
+@using RocketPortal.Components;
+
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/")
+
+@{
+    var appThemeSystem = new AppThemeSystemLimpet("rocketcontent");
+    var sessionParams = Model.SessionParamsData;
+    var articleData = (ArticleLimpet)Model.List.First();
+    var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
+    var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");
+    var portalData = new PortalLimpet(articleData.PortalId);
+    var globalSettings = new SystemGlobalData();
+
+    var hbsDict = new Dictionary<string, SimplisityInfo>();
+    foreach (ArticleLimpet o in Model.List)
+    {
+        hbsDict.Add("data", o.Info);
+    }
+    hbsDict.Add("sessionparams", sessionParams.Info);
+}
+
+@RenderHandleBars(hbsDict, appTheme, "view.hbs", remoteModule.ModuleRef)
+
+<script>
+        function currentDiv@(sessionParams.ModuleRef)(n) {
+            showDivs@(sessionParams.ModuleRef)(slideIndex = n);
+        }
+
+    function showDivs@(sessionParams.ModuleRef)(n) {
+        var i;
+        var x = document.getElementsByClassName("sliderind@(sessionParams.ModuleRef)");
+        var dots = document.getElementsByClassName("demo@(sessionParams.ModuleRef)");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
+        }
+        x[n].style.display = "block";
+        dots[n].className += " w3-opacity-off";
+    }
+</script>
+
+
+
+

@@ -1,0 +1,103 @@
+﻿<div class="w3-half w3-padding">
+    <div class="w3-row">
+
+        {{#each genxml.data.genxml.imagelist.genxml}}
+        {{#if @first}}
+        <img class="sliderind{{moduleref @root}}" src="{{image @root "thumburl" @index 320 320}}" style="width:100%;">
+        {{else}}
+        <img class="sliderind{{moduleref @root}}" src="{{image @root "thumburl" @index 320 320}}" style="width: 100%; display: none;">
+        {{/if}}
+        {{/each}}
+
+    </div>
+
+    <div class="w3-row" style="margin: 8px -8px;">
+
+        {{#each genxml.data.genxml.imagelist.genxml}}
+        <div class="w3-col s6 m4 l2 w3-padding-small" style="margin-bottom: 8px">
+            <img class="demo{{moduleref @root}} w3-opacity w3-hover-opacity-off" src="{{image @root "thumburl" @index 150 100}}" style="width:100%;cursor:pointer" onclick="currentDiv{{moduleref @root}}({{@index}})">
+        </div>
+        {{/each}}
+    </div>
+
+    <a href="{{listurl @root}}" class="w3-button" title="@productData.Name">{{resourcekey @root "DNNrocket.back" "" "Text"}}</a>
+</div>
+<div id="productdatasection{{product @root "productid"}}" class="w3-half w3-padding">
+    <h1>{{product @root "name"}}</h1>
+    <div>{{product @root "ref"}}</div>
+
+    {{#producttest @root "hasmodels"}}
+    <div class="w3-hide-small "><b>{{resourcekey @root "RE.from" genxml.sessionparams.r.culturecode "Text"}}</b></div>
+    {{/producttest}}
+
+    {{#producttest @root "hassaleprice"}}
+    <div class="w3-xxlarge">
+        <span>&nbsp;{{product @root "salepriceminimum"}}</span>
+        <span style="text-decoration:line-through;" class="w3-small">{{product @root "priceminimum"}}</span>
+    </div>
+    {{else}}
+    <div class="w3-xxlarge">
+        {{product @root "priceminimum"}}
+    </div>
+    {{/producttest}}
+
+    <div class="">
+        {{product @root "summary"}}
+    </div>
+    <div class="">
+        {{{product @root "html"}}}
+    </div>
+
+    <div class="w3-white w3-margin-bottom">
+        {{product @root "modeldropdown"}}
+    </div>
+    <div class="w3-white w3-margin-bottom">
+        {{product @root "optionsinput"}}
+    </div>
+
+    <div id="qtyinput{{product @root "productid"}}" class="quickviewactions">
+        <div class="quickviewqty">
+            <div class="w3-bar">
+                <div class="w3-bar-item w3-border w3-col w3-center w3-button product-subtract" productid="{{product @root "productid"}}">&minus;</div>
+                <input type="number" min="0" class="w3-bar-item w3-col w3-input w3-border-top w3-border-bottom w3-center qtyvalue" id="qty{{product @root "productid"}}" s-xpath="genxml/textbox/qty" value="1" style="width:60px;" />
+                <div class="w3-bar-item w3-border w3-col w3-center w3-button product-plus" productid="{{product @root "productid"}}">&plus;</div>
+            </div>
+        </div>
+        <div class="quickviewbuy">
+            <div class="w3-button buybutton simplisity_click" s-cmdurl="{{genxml.sessionparams.r.apiurl}}" s-cmd="rocketecommerce_addtocart" s-fields='{"productid":"{{product @root "productid"}}","moduleref":"{{moduleref @root}}"}' s-post="#productdatasection{{product @root "productid"}}" s-return="#minicartdisplay" title="{{resourcekey @root "RE.addtobasket" genxml.sessionparams.r.culturecode "Text"}}" style="width:60px;">
+                <span class="material-icons">
+                    shopping_cart
+                </span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+        $('.product-subtract').unbind("click");
+        $('.product-subtract').click(function () {
+            updateQty($(this).attr("productid"), -1)
+            return false; // prevent the button click from happening
+        });
+        $('.product-plus').unbind("click");
+        $('.product-plus').click(function () {
+            updateQty($(this).attr("productid"), 1)
+            return false; // prevent the button click from happening
+        });
+
+        $('.imgrollover').unbind("mouseover");
+        $(".imgrollover").mouseover(function () {
+            $('.imgrollovertarget').attr('src', $(this).attr('src'));
+            $('.imgrollovertarget').attr('popupsrc', $(this).attr('popupsrc'));
+        });
+
+    });
+
+</script>
+
+{{! displayData this}}
+

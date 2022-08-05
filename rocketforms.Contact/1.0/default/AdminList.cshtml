@@ -1,0 +1,76 @@
+@inherits RocketContent.Components.RocketContentTokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI;
+@using Simplisity;
+@using RocketContent.Components;
+@using DNNrocketAPI.Components;
+@using RocketPortal.Components;
+
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketForms/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/RocketThemes/RocketAppThemes-W3-CSS/rocketforms.Contact/1.0/resx/")
+
+@{
+    var info = new SimplisityInfo();
+    var sessionParams = Model.SessionParamsData;
+    var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");
+    var formlist = (List<SimplisityRecord>)Model.GetDataObject("formlist");
+    var lp = 1;
+}
+<input class="w3-input w3-border w3-padding w3-margin-top" type="text" placeholder="Search..." id="searchinput" onkeydown="if (event.keyCode == 13) { event.preventDefault(); }" onkeyup="myFunction()">
+
+<table class="w3-table w3-margin-top" id="searchtable">
+
+
+    @foreach (SimplisityRecord f in formlist)
+    {
+        <tr>
+            <td>
+                <div class="w3-row w3-card">
+                    <div class="w3-row w3-padding w3-hover-light-grey" onclick="$('.formmessage@(lp)').toggle()">
+                        <b>@f.GetXmlPropertyDate("genxml/createddate").ToShortDateString() @f.GetXmlPropertyDate("genxml/createddate").ToShortTimeString() &nbsp;:&nbsp; @f.GetXmlProperty("genxml/email")</b> &nbsp; @f.GetXmlProperty("genxml/company"), @f.GetXmlProperty("genxml/name"), @ResourceKey("Theme.tel"): @f.GetXmlProperty("genxml/tel")
+                    </div>
+                    <div class="w3-row w3-padding w3-pale-yellow formmessage@(lp)" style="display:none;">
+                        <div>
+                            @HtmlOf(f.GetXmlProperty("genxml/message"))
+                        </div>
+                        <div class="w3-button w3-right simplisity_click" s-cmd="remote_delete" s-fields='{"formref":"@(f.GUIDKey)","moduleref":"@remoteModule.ModuleRef"}'>
+                            <span class="material-icons">
+                                delete
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </td>
+        </tr>
+
+        lp += 1;
+    }
+
+</table>
+
+
+<script>
+
+    function myFunction() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("searchinput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("searchtable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+

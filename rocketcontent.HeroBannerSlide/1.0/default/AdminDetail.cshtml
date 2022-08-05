@@ -1,0 +1,49 @@
+@inherits RocketContent.Components.RocketContentTokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI;
+@using Simplisity;
+@using RocketContent.Components;
+@using DNNrocketAPI.Components;
+@using RocketPortal.Components;
+
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/")
+
+@{
+    var info = new SimplisityInfo();
+    var appThemeSystem = new AppThemeSystemLimpet("rocketcontent");
+    var sessionParams = Model.SessionParamsData;
+    var articleData = (ArticleLimpet)Model.List.First();
+    var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
+    var articleRowData = (ArticleRowLimpet)Model.GetDataObject("articlerow");
+    var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");
+    var portalData = new PortalLimpet(articleData.PortalId);
+
+    if (articleRowData.Info != null)
+    {
+        info = articleRowData.Info;
+    }
+
+}
+
+@AddProcessData("resourcepath", "/DesktopModules/RocketThemes/" + articleData.Organisation + "/" + articleData.AdminAppThemeFolder + "/" + articleData.AdminAppThemeFolderVersion + "/resx/")
+
+<!-- require Key for saving -->
+@HiddenField(info, "genxml/config/rowkey")
+@HiddenField(info, "genxml/lang/genxml/config/rowkeylang", "", articleRowData.RowKey)
+
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+
+<div class="w3-content" style="max-width:1200px">
+    @RenderTemplate("ArticleImages.cshtml", appTheme, Model, true)
+    @{
+        Model.SetSetting("imageresize", "1200");
+    }
+    @RenderTemplate("ArticleImageSelect.cshtml", appThemeSystem, Model, true)
+</div>
+
+<script>
+    $(document).ready(function () {
+    });
+</script>
+

@@ -1,0 +1,30 @@
+﻿@inherits RocketContent.Components.RocketContentTokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI;
+@using Simplisity;
+@using RocketContent.Components;
+@using DNNrocketAPI.Components;
+@using RocketPortal.Components;
+
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/")
+
+@{
+    var appThemeSystem = new AppThemeSystemLimpet("rocketcontent");
+    var sessionParams = Model.SessionParamsData;
+    var articleData = (ArticleLimpet)Model.List.First();
+    var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
+    var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");
+    var portalData = new PortalLimpet(articleData.PortalId);
+    var globalSettings = new SystemGlobalData();
+
+    var hbsDict = new Dictionary<string, SimplisityInfo>();
+    foreach (ArticleLimpet o in Model.List)
+    {
+        hbsDict.Add("data", o.Info);
+    }
+    hbsDict.Add("sessionparams", sessionParams.Info);
+    hbsDict.Add("remotemodule", new SimplisityInfo(remoteModule.Record));
+}
+
+@RenderHandleBarsRC(hbsDict, appTheme, "view.hbs", remoteModule.ModuleRef)
+

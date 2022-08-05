@@ -1,0 +1,74 @@
+﻿@inherits RocketEcommerce.Components.RocketEcommerceTokens<Simplisity.SimplisityRazor>
+@using Simplisity;
+@using RocketEcommerce.Components;
+@using DNNrocketAPI.Components;
+@using RocketPortal.Components;
+
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketECommerce/App_LocalResources/")
+
+@{ var productDataList = (ProductLimpetList)Model.GetDataObject("productlist");
+    var companyData = (CompanyLimpet)Model.GetDataObject("companydata"); ;
+    var cartData = (CartLimpet)Model.GetDataObject("cartdata");
+    var sessionParams = (SessionParams)Model.SessionParamsData;
+    var portalShop = productDataList.PortalShop;
+    var portalData = new PortalLimpet(PortalUtils.GetCurrentPortalId());
+    var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");
+    var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
+    var appThemeDefault = (AppThemeLimpet)Model.GetDataObject("appthemedefault");
+    var categoryDataList = (CategoryLimpetList)Model.GetDataObject("categorydatalist");
+    var categoryData = new CategoryLimpet(portalShop.PortalId, productDataList.CategoryId, sessionParams.CultureCode);
+
+    var hbsDict = new Dictionary<string, SimplisityInfo>();
+    hbsDict.Add("sessionparams", sessionParams.Info);
+    hbsDict.Add("resxlist", RenderRazorUtils.GetResxPaths(Processdata)); }
+
+@AddProcessData("resourcepath", "/DesktopModules/RocketThemes/" + remoteModule.AppThemeViewFolder + "/" + remoteModule.AppThemeViewVersion + "/resx/")
+
+@if (portalShop.DebugMode)
+{<div class="w3-small">@DateTime.Now.ToString()</div>}
+
+
+<h1>
+    @if (!categoryData.Exists)
+    {
+<span>@companyData.CompanyName</span> }
+            else
+            {
+<span>@categoryData.Name</span>}
+</h1>
+
+<div class="w3-row">
+    <div class="w3-threequarter">
+        <div class="w3-row">
+            @RenderTemplate("SearchBanner.cshtml", appThemeDefault, Model, true)
+            @foreach (ProductLimpet productData in productDataList.GetArticleList())
+            {
+                hbsDict.Remove("data");
+                hbsDict.Add("data", productData.Info);
+                @RenderHandleBarsRE(hbsDict, appTheme, "productlistrow.hbs", remoteModule.ModuleRef, "")
+            }
+        </div>
+        @RenderTemplate("ProductPaging.cshtml", appThemeDefault, Model, true)
+    </div>
+    <div class="w3-quarter">
+        <!-- Cart (Include design to stop flicker on the page) -->
+        <div id="minicartdisplay" class="productlistcart">
+            @{ Model.SetSetting("zerototal", "True"); }
+            @RenderTemplate("MiniCart.cshtml", appTheme, Model)
+        </div>
+        <div class="productlistcat">
+            @if (categoryDataList.DataList.Count > 0)
+            {
+                @RenderTemplate("CategorySideMenu.cshtml", appTheme, Model)                
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // get minicart to avoid cache problem with wrong amount.
+        //$('#minicartdisplay').getSimplisity('@(sessionParams.ApiUrl)', 'remote_minicart', '{"template":"MiniCart.cshtml","moduleref":"@(sessionParams.ModuleRef)"}', '', '')
+    });
+</script>

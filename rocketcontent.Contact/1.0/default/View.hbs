@@ -1,0 +1,64 @@
+﻿
+<div class="w3-display-container" style="">
+
+    {{#each genxml.data.genxml.rows.genxml}}
+
+    <h1>{{textbox.company}}</h1>
+
+
+    <p>
+        {{#when textbox.address1 'noteq' ''}}
+        {{textbox.address1}}
+        {{/when}}
+        {{#when textbox.address2 'noteq' ''}}
+        <br />{{textbox.address2}}
+        {{/when}}
+        {{#when textbox.address3 'noteq' ''}}
+        <br />{{textbox.address3}}
+        {{/when}}
+        {{#when textbox.address4 'noteq' ''}}
+        <br />{{textbox.address4}}
+        {{/when}}
+    </p>
+
+    <p>
+        {{#when textbox.tel 'noteq' ''}}
+        {{resourcekey @root "Theme.tel" "" "Text"}}&nbsp;:&nbsp;{{textbox.tel}}
+        {{/when}}
+        {{#when textbox.tel2 'noteq' ''}}
+        <br />{{resourcekey @root "Theme.tel2" "" "Text"}}&nbsp;:&nbsp;{{textbox.tel2}}
+        {{/when}}
+        {{#when textbox.fax 'noteq' ''}}
+        <br />{{resourcekey @root "Theme.fax" "" "Text"}}&nbsp;:&nbsp;{{textbox.fax}}
+        {{/when}}
+        {{#when textbox.email 'noteq' ''}}
+        <br />{{resourcekey @root "Theme.email" "" "Text"}}&nbsp;:&nbsp;{{textbox.email}}
+        {{/when}}
+
+    </p>
+
+
+    {{#when contactlist.genxml.0.index 'noteq' ''}}
+    <h3>{{resourcekey @root "Theme.contacts" "" "Text"}}</h3>
+    {{#each contactlist.genxml}}
+
+    {{#when textbox.contact 'noteq' ''}}
+    <b>{{textbox.contact}}</b><br />
+    {{/when}}
+    {{#when textbox.contactport 'noteq' ''}}
+    {{resourcekey @root "Theme.tel" "" "Text"}}&nbsp;:&nbsp;{{textbox.contactport}}<br />
+    {{/when}}
+    {{#when textbox.contactemail 'noteq' ''}}
+    {{resourcekey @root "Theme.email" "" "Text"}}&nbsp;:&nbsp;{{textbox.contactemail}}<br />
+    {{/when}}
+
+    {{/each}}
+    {{/when}}
+
+
+    {{/each}}
+
+</div>
+
+{{! displayData this}}
+

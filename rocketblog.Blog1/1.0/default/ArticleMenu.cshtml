@@ -1,0 +1,39 @@
+﻿@inherits RocketCatalog.Components.RocketCatalogTokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI;
+@using Simplisity;
+@using RocketPortal.Components;
+@using RocketCatalog.Components;
+@using DNNrocketAPI.Components;
+@using System.Globalization;
+
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketCatalog/App_LocalResources/")
+
+@{ var sessionParams = (SessionParams)Model.SessionParamsData;
+    var articleDataList = (ArticleLimpetList)Model.GetDataObject("articlelist");
+    var portalCatalog = (PortalCatalogLimpet)Model.GetDataObject("portalcatalog");
+    var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");
+    var portalData = (PortalLimpet)Model.GetDataObject("portaldata");
+    var categoryList = (CategoryLimpetList)Model.GetDataObject("categorylist");
+    var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
+    var appThemeDefault = (AppThemeLimpet)Model.GetDataObject("appthemedefault");
+    var systemData = (SystemLimpet)Model.GetDataObject("systemdata");
+    var categoryData = new CategoryLimpet(portalCatalog.PortalId, articleDataList.CategoryId, sessionParams.CultureCode, systemData.SystemKey);
+    var catalogSettings = (CatalogSettingsLimpet)Model.GetDataObject("catalogsettings");
+
+    var hbsDict = new Dictionary<string, SimplisityInfo>();
+    hbsDict.Add("sessionparams", sessionParams.Info);
+    hbsDict.Add("resxlist", RenderRazorUtils.GetResxPaths(Processdata));
+}
+
+@AddProcessData("resourcepath", appTheme.AppThemeVersionFolderRel + "/resx/")
+
+
+<div class="w3-row">
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-right w3-xlarge w3-hide-large" title="Close Menu">×</a>
+    @foreach (var art in articleDataList.GetArticleList())
+    {
+        <a target="_top" class="w3-button w3-block" href="#@art.GUIDKey" style="text-decoration:none;">@art.Name</a>
+    }
+
+</div>

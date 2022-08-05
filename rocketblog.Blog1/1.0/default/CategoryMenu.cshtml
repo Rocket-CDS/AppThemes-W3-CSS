@@ -1,0 +1,33 @@
+﻿@inherits RocketCatalog.Components.RocketCatalogTokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI;
+@using Simplisity;
+@using RocketPortal.Components;
+@using RocketCatalog.Components;
+@using DNNrocketAPI.Components;
+
+@{ 
+    var categoryList = (CategoryLimpetList)Model.GetDataObject("categorylist");
+    var sessionParams = (SessionParams)Model.SessionParamsData;
+    var portalCatalog = (PortalCatalogLimpet)Model.GetDataObject("portalcatalog");
+    var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme"); 
+}
+
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketCatalog/App_LocalResources/")
+@AddProcessData("resourcepath", appTheme.AppThemeVersionFolderRel + "/resx/")
+
+
+<div class="w3-row">
+    <div class="w3-bar">
+
+        @foreach (var c in categoryList.GetCategoryList(0))
+        {
+            if (!c.Hidden && !c.HiddenByCulture)
+            {
+                <a href="@(c.CategoryUrl(sessionParams))" class="w3-bar-item w3-button">@c.Name</a> 
+            }
+        }
+    </div>
+</div>
+
+

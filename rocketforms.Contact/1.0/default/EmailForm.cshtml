@@ -1,0 +1,68 @@
+@inherits RocketContent.Components.RocketContentTokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI;
+@using Simplisity;
+@using RocketContent.Components;
+@using DNNrocketAPI.Components;
+@using RocketPortal.Components;
+
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketForms/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/RocketThemes/RocketAppThemes-W3-CSS/rocketforms.Contact/1.0/resx/")
+
+@{
+    var info = (SimplisityInfo)Model.List.First();
+    var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");
+}
+
+
+<style>
+    body {
+        margin: 20px;
+        color: #595959;
+        font-size: 14px;
+        font-family: Arial, Helvetica;
+        line-height: 18px;
+    }
+
+    h2 {
+        font-size: 30px;
+        color: #242a31;
+        line-height: 30px;
+        font-family: Arial, Helvetica;
+    }
+
+    .datatable {
+        margin: 20px 0;
+        border-collapse: collapse;
+    }
+
+        .datatable td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+</style>
+
+<h2>@remoteModule.Record.GetXmlProperty("genxml/textbox/subject")</h2>
+<table class="datatable" border="0" cellspacing="2" cellpadding="0">
+    <tr>
+        <td align="right"><label>@ResourceKey("RocketForms.name")</label></td>
+        <td>@info.GetXmlProperty("genxml/data/name")</td>
+    </tr>
+    <tr>
+        <td align="right"><label>@ResourceKey("RocketForms.company")</label></td>
+        <td>@info.GetXmlProperty("genxml/data/company")</td>
+    </tr>
+    <tr>
+        <td align="right"><label>@ResourceKey("RocketForms.email")</label></td>
+        <td>@info.GetXmlProperty("genxml/data/email")</td>
+    </tr>
+    <tr>
+        <td align="right"><label>@ResourceKey("RocketForms.tel")</label></td>
+        <td>@info.GetXmlProperty("genxml/data/tel")</td>
+    </tr>
+    <tr>
+        <td align="right"><label>@ResourceKey("RocketForms.message")</label></td>
+        <td>@BreakOf(info.GetXmlProperty("genxml/data/message"))</td>
+    </tr>
+</table>

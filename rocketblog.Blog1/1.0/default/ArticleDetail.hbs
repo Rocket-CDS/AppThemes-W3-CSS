@@ -1,0 +1,197 @@
+﻿
+
+<div class="w3-row w3-animate-opacity">
+
+    <h1>{{article this "name"}}</h1>
+
+    <div class="w3-row w3-padding w3-margin-top w3-margin-bottom">{{article this "summary"}}</div>
+
+    <div class="w3-row w3-padding">
+        <div class="w3-col m1" style="width:90px">
+            <span class="material-icons w3-jumbo">
+                schedule
+            </span>
+        </div>
+        <div class="w3-col m10">
+
+            <div class="w3-row w3-small w3-padding-small">
+                <div class="w3-col m2 w3-right-align" style="width:100px;">{{formatDateTime "2022-02-06" "dddd"}}:&nbsp;</div>
+                <div class="w3-col m10">{{genxml.data.genxml.textbox.open1-0}} - {{genxml.data.genxml.textbox.close1-0}} - {{genxml.data.genxml.textbox.open2-0}} - {{genxml.data.genxml.textbox.close2-0}}</div>
+                <div class="w3-col m2 w3-right-align" style="width:100px;">{{formatDateTime "2022-02-07" "dddd"}}:&nbsp;</div>
+                <div class="w3-col m10">{{genxml.data.genxml.textbox.open1-1}} - {{genxml.data.genxml.textbox.close1-1}} - {{genxml.data.genxml.textbox.open2-1}} - {{genxml.data.genxml.textbox.close2-1}}</div>
+                <div class="w3-col m2 w3-right-align" style="width:100px;">{{formatDateTime "2022-02-08" "dddd"}}:&nbsp;</div>
+                <div class="w3-col m10">{{genxml.data.genxml.textbox.open1-2}} - {{genxml.data.genxml.textbox.close1-2}} - {{genxml.data.genxml.textbox.open2-2}} - {{genxml.data.genxml.textbox.close2-2}}</div>
+                <div class="w3-col m2 w3-right-align" style="width:100px;">{{formatDateTime "2022-02-09" "dddd"}}:&nbsp;</div>
+                <div class="w3-col m10">{{genxml.data.genxml.textbox.open1-3}} - {{genxml.data.genxml.textbox.close1-3}} - {{genxml.data.genxml.textbox.open2-3}} - {{genxml.data.genxml.textbox.close2-3}}</div>
+                <div class="w3-col m2 w3-right-align" style="width:100px;">{{formatDateTime "2022-02-10" "dddd"}}:&nbsp;</div>
+                <div class="w3-col m10">{{genxml.data.genxml.textbox.open1-4}} - {{genxml.data.genxml.textbox.close1-4}} - {{genxml.data.genxml.textbox.open2-4}} - {{genxml.data.genxml.textbox.close2-4}}</div>
+                <div class="w3-col m2 w3-right-align" style="width:100px;">{{formatDateTime "2022-02-11" "dddd"}}:&nbsp;</div>
+                <div class="w3-col m10">{{genxml.data.genxml.textbox.open1-5}} - {{genxml.data.genxml.textbox.close1-5}} - {{genxml.data.genxml.textbox.open2-5}} - {{genxml.data.genxml.textbox.close2-5}}</div>
+                <div class="w3-col m2 w3-right-align" style="width:100px;">{{formatDateTime "2022-02-12" "dddd"}}:&nbsp;</div>
+                <div class="w3-col m10">{{genxml.data.genxml.textbox.open1-6}} - {{genxml.data.genxml.textbox.close1-6}} - {{genxml.data.genxml.textbox.open2-6}} - {{genxml.data.genxml.textbox.close2-6}}</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="w3-row w3-padding">
+        <h3>Contact / Accès</h3>
+        <div class="w3-row">
+            <div class="w3-col m3">
+                <img class="imgrollovertarget" alt="{{article this "name"}}" src="{{article this "imageurl" 0 180 180}}" style="width:180px;">
+            </div>
+
+            <div class="w3-col m9">
+                <div>
+                    <strong>{{article this "name"}}</strong><br />
+                    {{genxml.data.genxml.textbox.address1}}<br />
+                    {{genxml.data.genxml.textbox.address2}}<br />
+                    {{genxml.data.genxml.textbox.address3}}<br />
+                    {{genxml.data.genxml.textbox.address4}}<br />
+                </div>
+                <div>
+                    {{resourcekey this "Theme.phone"}}: {{genxml.data.genxml.textbox.phone}}
+                </div>
+                <div>
+                    {{resourcekey this "Theme.email"}}: {{protectemail genxml.data.genxml.textbox.email genxml.catalogsettings.genxml.textbox.catalogname genxml.data.genxml.textbox.email}}
+                </div>
+                <div>
+                    <b>
+                        {{resourcekey this "Theme.website"}}:
+                        <a href="{{genxml.data.genxml.textbox.website}}" target="_blank">
+                            {{genxml.data.genxml.textbox.website}}
+                        </a>
+                    </b>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w3-row">
+        <div class="w3-row">
+            <h5>Social Networks</h5>
+        </div>
+        {{#when genxml.data.genxml.checkbox.youtubehide "eq" "true"}}
+        <div class="w3-col m2 w3-padding">
+            <a href="{{genxml.data.genxml.checkbox.youtubelink}}" target="_blank">
+                <img style="width: 40px;" class="w3-circle w3-grey w3-grayscale-max" src="{{genxml.sessionparams.r.engineurl}}/DesktopModules/RocketThemes/RocketAppThemes-W3-CSS/rocketcatalog.BusinessDirectory/1.0/img/youtube.png" />
+                <span>YouTube</span>
+            </a>
+        </div>
+        {{/when}}
+
+        {{#when genxml.data.genxml.checkbox.linkedinhide "eq" "true"}}
+        <div class="w3-col m2 w3-padding">
+            <a href="{{genxml.data.genxml.checkbox.linkedinlink}}" target="_blank">
+                <img style="width:40px;" class="w3-circle w3-grey w3-grayscale-max" src="{{genxml.sessionparams.r.engineurl}}/DesktopModules/RocketThemes/RocketAppThemes-W3-CSS/rocketcatalog.BusinessDirectory/1.0/img/linkedin.png" />
+                <span>LinkedIn</span>
+            </a>
+        </div>
+        {{/when}}
+
+        {{#when genxml.data.genxml.checkbox.instagramhide "eq" "true"}}
+        <div class="w3-col m2 w3-padding">
+            <a href="{{genxml.data.genxml.checkbox.instagramlink}}" target="_blank">
+                <img style="width:40px;" class="w3-circle w3-grey w3-grayscale-max" src="{{genxml.sessionparams.r.engineurl}}/DesktopModules/RocketThemes/RocketAppThemes-W3-CSS/rocketcatalog.BusinessDirectory/1.0/img/instagram.png" />
+                <span>Instagram</span>
+            </a>
+        </div>
+        {{/when}}
+
+        {{#when genxml.data.genxml.checkbox.twitterhide "eq" "true"}}
+        <div class="w3-col m2 w3-padding">
+            <a href="{{genxml.data.genxml.checkbox.twitterlink}}" target="_blank">
+                <img style="width:40px;" class="w3-circle w3-grey w3-grayscale-max" src="{{genxml.sessionparams.r.engineurl}}/DesktopModules/RocketThemes/RocketAppThemes-W3-CSS/rocketcatalog.BusinessDirectory/1.0/img/twitter.png" />
+                <span>Twitter</span>
+            </a>
+        </div>
+        {{/when}}
+
+        {{#when genxml.data.genxml.checkbox.facebookhide "eq" "true"}}
+        <div class="w3-col m2 w3-padding">
+            <a href="{{genxml.data.genxml.checkbox.facebooklink}}" target="_blank">
+                <img style="width:40px;" class="w3-circle w3-grey w3-grayscale-max" src="{{genxml.sessionparams.r.engineurl}}/DesktopModules/RocketThemes/RocketAppThemes-W3-CSS/rocketcatalog.BusinessDirectory/1.0/img/facebook.png" />
+                <span>Facebook</span>
+            </a>
+        </div>
+        {{/when}}
+
+    </div>
+
+    <div class="w3-row">
+        <div class="w3-half w3-padding">
+            <h3>{{resourcekey this "Theme.links"}}</h3>
+            <div id="linklistcontainer w3-padding">
+                {{#each genxml.data.genxml.linklist.genxml}}
+                <div class="w3-row">
+                    {{#when checkbox.hidearticlelink "noteq" "true"}}
+                    {{#when checkbox.blankarticlelink "eq" "true"}}
+                    <a target="_blank" href="{{article @root "linkurl" @index}}" class="w3-bar-item w3-button">{{article @root "linkname" @index}}</a>
+                    {{/when}}
+                    {{#when checkbox.blankarticlelink "noteq" "true"}}
+                    <a href="{{article @root "linkurl" @index}}" class="w3-bar-item w3-button">{{article @root "linkname" @index}}</a>
+                    {{/when}}
+                    {{/when}}
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="w3-half">
+            <h3>{{resourcekey this "Theme.documents"}}</h3>
+            <div id="linklistcontainer w3-padding">
+                {{#each genxml.data.genxml.lang.genxml.documentlist.genxml}}
+                {{#when checkbox.documenthiddenarticledoc "noteq" "true"}}
+                <div class="w3-row">
+                    <a target="_blank" href="{{article @root "docurl" @index}}" class="w3-bar-item w3-button">{{article @root "docname" @index}}</a>
+                </div>
+                {{/when}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="w3-row">
+        <div id="leafletmap" style="height:300px" class="w3-light-grey"></div>
+    </div>
+
+</div>
+
+    <script>
+
+        $(document).ready(function () {
+
+            setTimeout(() => { initmap(); }, 500);
+
+        });
+
+
+    function initmap() {
+
+        var x = '{{genxml.data.genxml.textbox.lat}}';
+        var y = '{{genxml.data.genxml.textbox.long}}';
+        var defaultLat = '{{genxml.remotemodule.genxml.settings.lat}}';
+        var defaultLong = '{{genxml.remotemodule.genxml.settings.long}}';
+        var companyname = '{{genxml.data.genxml.textbox.companyname}}';
+        var marker = "";
+        var map = "";
+        if (x != '' && y != '') {
+            map = L.map('leafletmap', { minZoom: 3 }).setView([x, y], 13);
+            marker = L.marker([x, y], { title: companyname });
+            map.addLayer(marker);
+        }
+        else {
+            map = L.map('leafletmap', { minZoom: 3 }).setView([defaultLat, defaultLong], 13);
+        }
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+    }
+
+
+    </script>
+
+    {{! displayData this}}
+

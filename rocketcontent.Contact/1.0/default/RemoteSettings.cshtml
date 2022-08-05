@@ -1,0 +1,22 @@
+﻿@inherits RocketCatalog.Components.RocketCatalogTokens<Simplisity.SimplisityRazor>
+@using RocketCatalog.Components;
+@using DNNrocketAPI.Components;
+@using Simplisity;
+
+@{
+    var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
+    var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");
+    var info = new SimplisityInfo(remoteModule.Record);
+}
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketCatalog/App_LocalResources/")
+@AddProcessData("resourcepath", appTheme.AppThemeVersionFolderRel + "/resx/")
+
+
+
+<script>
+
+    $(document).ready(function () {
+    });
+
+</script>

@@ -1,0 +1,36 @@
+﻿
+<div class="w3-content" style="max-width:1200px">
+
+    <div class="w3-display-row">
+
+        {{#each genxml.data.genxml.rows.genxml}}
+        {{#each imagelist.genxml}}
+        {{#if @first}}
+        <img class="sliderind{{@root.genxml.sessionparams.r.moduleref}}" src="{{thumbnailimageurl @root.genxml.sessionparams.r.engineurl hidden.imagepatharticleimage 640 200  }}" style="width:100%">
+        <span>{{lookuplang @root "imagelist" "textbox.imagealt" @index}}</span>
+        {{else}}
+        <img class="sliderind{{@root.genxml.sessionparams.r.moduleref}}" src="{{thumbnailimageurl @root.genxml.sessionparams.r.engineurl hidden.imagepatharticleimage 640 200  }}" style="width:100%;display:none;">
+        <span>{{lookuplang @root "imagelist" "textbox.imagealt" @index}}</span>
+        {{/if}}
+        {{/each}}
+        {{/each}}
+
+    </div>
+
+    <div class="w3-row" style="margin: 8px -8px;">
+
+        {{#each genxml.data.genxml.rows.genxml}}
+        {{#each imagelist.genxml}}
+        <div class="w3-col s6 m4 l2 w3-padding-small" style="margin-bottom: 8px">
+            <img class="demo{{@root.genxml.sessionparams.r.moduleref}} w3-opacity w3-hover-opacity-off" src="{{thumbnailimageurl @root.genxml.sessionparams.r.engineurl hidden.imagepatharticleimage 300 200  }}" style="width:100%;cursor:pointer" onclick="currentDiv{{@root.genxml.sessionparams.r.moduleref}}({{@index}})">
+        </div>
+        {{/each}}
+        {{/each}}
+
+
+    </div>
+
+</div>
+
+{{! displayData this}}
+

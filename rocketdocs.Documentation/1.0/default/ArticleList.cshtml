@@ -1,0 +1,56 @@
+﻿@inherits RocketCatalog.Components.RocketCatalogTokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI;
+@using Simplisity;
+@using RocketPortal.Components;
+@using RocketCatalog.Components;
+@using DNNrocketAPI.Components;
+@using System.Globalization;
+
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketCatalog/App_LocalResources/")
+
+@{ var sessionParams = (SessionParams)Model.SessionParamsData;
+    var articleDataList = (ArticleLimpetList)Model.GetDataObject("articlelist");
+    var portalCatalog = (PortalCatalogLimpet)Model.GetDataObject("portalcatalog");
+    var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");
+    var portalData = (PortalLimpet)Model.GetDataObject("portaldata");
+    var categoryList = (CategoryLimpetList)Model.GetDataObject("categorylist");
+    var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
+    var appThemeDefault = (AppThemeLimpet)Model.GetDataObject("appthemedefault");
+    var systemData = (SystemLimpet)Model.GetDataObject("systemdata");
+    var categoryData = new CategoryLimpet(portalCatalog.PortalId, articleDataList.CategoryId, sessionParams.CultureCode, systemData.SystemKey);
+    var catalogSettings = (CatalogSettingsLimpet)Model.GetDataObject("catalogsettings");
+
+    var hbsDict = new Dictionary<string, SimplisityInfo>();
+    hbsDict.Add("sessionparams", sessionParams.Info);
+    hbsDict.Add("resxlist", RenderRazorUtils.GetResxPaths(Processdata));
+}
+
+@AddProcessData("resourcepath", appTheme.AppThemeVersionFolderRel + "/resx/")
+
+
+<div class="w3-main w3-light-grey" style="margin-left: 220px; padding-top: 0px;">
+    <div class="w3-row w3-white">
+        <div class="w3-col l10 m12" id="main">
+
+            @if (sessionParams.GetInt("catid") == 0)
+            {
+                <h1>@catalogSettings.CatalogName &nbsp;</h1>
+            }
+            else
+            {
+                <h1>@categoryData.Name&nbsp;</h1>
+            }
+
+            @foreach (var art in articleDataList.GetArticleList())
+            {
+                <h2 id="@art.GUIDKey">@art.Name</h2>
+                <div>
+                    @HtmlOf(art.RichText)
+                </div>
+            }
+
+        </div>
+        <hr>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+﻿
+<div class="w3-container">
+    <div class="w3-bar-block w3-light-grey ">
+        {{#each genxml.data.genxml.documentlist.genxml}}
+            <a href="{{@root.genxml.sessionparams.r.engineurl}}{{hidden.documentpatharticledoc}}" class="w3-bar-item w3-button w3-center w3-margin-bottom" download>{{textbox.documentnamearticledoc}}</a>
+        {{/each}}
+    </div>
+</div>
+
+{{!displayData this}}

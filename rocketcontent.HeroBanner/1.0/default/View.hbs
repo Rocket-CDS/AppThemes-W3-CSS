@@ -1,0 +1,28 @@
+﻿
+<div class="w3-display-container" style="">
+
+    {{#each genxml.data.genxml.rows.genxml}}
+    {{#each imagelist.genxml}}
+    {{#if @first}}
+
+    <div id="sliderind{{moduleref @root}}-{{@index}}" onclick="changebanner{{moduleref @root}}({{@index}});" class="w3-row">
+
+        <img class="sliderind{{@root.genxml.sessionparams.r.moduleref}}" src="{{thumbnailimageurl @root.genxml.sessionparams.r.engineurl hidden.imagepatharticleimage @root.genxml.remotemodule.genxml.settings.width @root.genxml.remotemodule.genxml.settings.height  }}" style="width:100%;height:200px;">
+
+        <div class="w3-display-middle w3-center">
+            <h2 class="">{{image @root "alt" @../index @index}}</h2>
+            <h3 class="">{{image @root "summary" @../index @index}}</h3>
+            <div class="w3-button">
+                <a href="{{image @root "url" @../index @index}}" class="w3-text-light-grey" style="text-decoration:none;">{{image @root "urltext" @../index @index}}</a>
+            </div>
+        </div>
+    </div>
+
+    {{/if}}
+    {{/each}}
+    {{/each}}
+
+</div>
+
+{{! displayData this}}
+

@@ -1,0 +1,21 @@
+﻿@inherits RocketEcommerce.Components.RocketEcommerceTokens<Simplisity.SimplisityRazor>
+@using RocketEcommerce.Components;
+@using DNNrocketAPI.Components;
+@using RocketPortal.Components;
+
+<!-- !PAGE CONTENT! -->
+<div id="ecommerce-tag" class="ecommerce-container">
+    @{ 
+        var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
+        var productData = (ProductLimpet)Model.GetDataObject("productdata");
+        if (productData != null)
+        {
+        @RenderTemplate("ProductDetail.cshtml", appTheme, Model, true) 
+        }
+        else
+        {
+        @RenderTemplate("ProductList.cshtml", appTheme, Model, true) 
+        } 
+     }
+</div>
+<div class="w3-overlay simplisity_loader" style="z-index:999;"></div>

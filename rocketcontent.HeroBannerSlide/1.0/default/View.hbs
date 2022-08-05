@@ -1,0 +1,66 @@
+﻿
+<div class="w3-display-container" style="">
+
+    {{#each genxml.data.genxml.rows.genxml}}
+    {{#each imagelist.genxml}}
+    {{#if @first}}
+
+    <div id="sliderind{{moduleref @root}}-{{@index}}" onclick="changebanner{{moduleref @root}}({{@index}});" class="w3-row">
+        <img class="sliderind{{moduleref @root}}" src="{{image @root "thumburl" @../index @index @root.genxml.remotemodule.genxml.settings.width @root.genxml.remotemodule.genxml.settings.height}}" style="width: 100%;">
+        <div class="w3-display-middle w3-center">
+            <h2 class="">{{image @root "alt" @../index @index}}</h2>
+            <h3 class="">{{image @root "summary" @../index @index}}</h3>
+            <div class="w3-button">
+                <a href="{{image @root "url" @../index @index}}" class="w3-text-light-grey" style="text-decoration:none;">{{image @root "urltext" @../index @index}}</a>
+            </div>
+        </div>
+    </div>
+
+    {{else}}
+
+    <div id="sliderind{{moduleref @root}}-{{@index}}" onclick="changebanner{{moduleref @root}}({{@index}});" class="w3-row" style="display:none;">
+        <img class="sliderind{{moduleref @root}}" src="{{image @root "thumburl" @../index @index @root.genxml.remotemodule.genxml.settings.width @root.genxml.remotemodule.genxml.settings.height}}" style="width: 100%;">
+        <div class="w3-display-middle w3-center">
+            <h2 class="">{{image @root "alt" @../index @index}}</h2>
+            <h3 class="">{{image @root "summary" @../index @index}}</h3>
+            <div class="w3-button">
+                <a href="{{image @root "url" @../index @index}}" class="w3-text-light-grey" style="text-decoration:none;">{{image @root "urltext" @../index @index}}</a>
+            </div>
+        </div>
+    </div>
+
+    {{/if}}
+
+    {{/each}}
+    {{/each}}
+
+</div>
+
+<script>
+
+    var nextidx = 0;
+
+    $(document).ready(function () {
+
+        setInterval(function () {
+            changebanner{{moduleref @root}}(nextidx);
+        }, 5000)
+
+    });
+
+
+    function changebanner{{moduleref @root}}(idx)
+    {
+        nextidx = idx + 1;
+        if (nextidx == {{image @root "count"}}) {
+            nextidx = 0
+        }
+        $('#sliderind{{moduleref @root}}-' + idx).hide();
+        $('#sliderind{{moduleref @root}}-' + nextidx).show();
+
+    }
+
+</script>
+
+{{! displayData this}}
+

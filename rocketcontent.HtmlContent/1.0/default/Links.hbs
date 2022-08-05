@@ -1,0 +1,17 @@
+﻿
+<div class="w3-container">
+    <div class="w3-bar-block ">
+        {{#each genxml.data.genxml.linklist.genxml}}
+            {{#when checkbox.hidearticlelink "noteq" "true"}}
+                {{#when checkbox.blankarticlelink "eq" "true"}}
+                    <a target="_blank" href="{{lookuplang @root "linklist" "textbox.externallinkarticlelink" @index}}#{{lookuplang @root "linklist" "textbox.anchorarticlelink" @index}}" class="w3-bar-item w3-button" download>{{lookuplang @root "linklist" "textbox.namearticlelink" @index}}</a>
+                {{/when}}
+                {{#when checkbox.blankarticlelink "noteq" "true"}}
+                    <a href="{{lookuplang @root "linklist" "textbox.externallinkarticlelink" @index}}#{{lookuplang @root "linklist" "textbox.anchorarticlelink" @index}}" class="w3-bar-item w3-button" download>{{lookuplang @root "linklist" "textbox.namearticlelink" @index}}</a>
+                {{/when}}
+            {{/when}}
+        {{/each}}
+    </div>
+</div>
+
+{{!displayData this}}

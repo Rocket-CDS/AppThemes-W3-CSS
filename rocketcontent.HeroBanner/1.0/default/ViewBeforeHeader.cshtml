@@ -1,0 +1,25 @@
+﻿@inherits RocketEcommerce.Components.RocketEcommerceTokens<Simplisity.SimplisityRazor>
+@using Simplisity;
+@using DNNrocketAPI.Components;
+@using RocketContent.Components;
+@using RocketPortal.Components;
+
+@{
+    var appThemeSystem = new AppThemeSystemLimpet("rocketcontent");
+    var sessionParams = Model.SessionParamsData;
+    var articleData = (ArticleLimpet)Model.List.First();
+    var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
+    var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");
+    var portalData = new PortalLimpet(articleData.PortalId);
+    var globalSettings = new SystemGlobalData();
+
+    var hbsDict = new Dictionary<string, SimplisityInfo>();
+    foreach (ArticleLimpet o in Model.List)
+    {
+        hbsDict.Add("data", o.Info);
+    }
+    hbsDict.Add("sessionparams", sessionParams.Info);
+}
+
+@RenderHandleBars(hbsDict, appTheme, "ViewBeforeHeader.hbs", remoteModule.ModuleRef)
+

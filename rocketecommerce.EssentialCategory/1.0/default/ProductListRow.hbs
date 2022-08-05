@@ -1,0 +1,17 @@
+﻿
+<div class="w3-col s12 m6 l3 w3-padding w3-center">
+    <a href="{{product this "detailurl"}}">
+        <img class="sliderind{{@root.genxml.sessionparams.r.moduleref}}" src="{{image this "thumburl" 0 360 360}}" style="width:100%">
+    </a>
+    <div class="w3-row w3-padding w3-center">
+        <div class="">{{product this "bestprice"}}</div>
+    </div>
+    <div class="w3-padding" style="height:80px;overflow:hidden;">
+        <a href="{{product this "detailurl"}}" class="ajaxproduct" s-cmd="remote_productdetail" s-return='#ecommerce-tag' s-fields='{"systemkey":"rocketecommerce","template":"ProductDetail.cshtml","productid":"@productData.ProductId","remotelanguage":"@sessionParams.CultureCode","remotecall":"True","dataref":"@(remoteModule.DataRef)"}' productid='@productData.ProductId' title="@productData.Name">
+            {{product this "name"}}
+        </a>
+    </div>
+</div>
+
+{{! displayData this}}
+

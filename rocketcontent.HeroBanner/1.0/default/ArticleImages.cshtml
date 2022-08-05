@@ -1,0 +1,96 @@
+﻿@inherits RocketContent.Components.RocketContentTokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using Simplisity;
+@using RocketContent.Components;
+@using RocketPortal.Components;
+
+@{
+    var appThemeSystem = new AppThemeSystemLimpet("rocketcontent");
+    var sessionParams = Model.SessionParamsData;
+    var articleData = (ArticleLimpet)Model.List.First();
+    var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
+    var articleRowData = (ArticleRowLimpet)Model.GetDataObject("articlerow");
+    var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");
+    var portalData = new PortalLimpet(articleData.PortalId);
+    var datalist = articleRowData.GetImageList();
+    var globalSettings = new SystemGlobalData();
+    var imgLP = 0;
+}
+
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/Images/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/RocketThemes/" + articleData.Organisation + "/" + articleData.AdminAppThemeFolder + "/" + articleData.AdminAppThemeFolderVersion + "/resx/")
+
+<div class="w3-row imagelistdatasection">
+
+    <div class="w3-bar">
+        @if (datalist.Count < 1)
+        {
+            <div class="w3-button w3-bar-item w3-theme-action w3-padding" onclick="$('#articleimageselect').show();">@ButtonIcon(ButtonTypes.add)</div>
+        }
+        <div class="w3-button w3-bar-item w3-pale-yellow w3-padding simplisity_itemundo" s-recylebin="imagelistbin" s-return="#imagelistdata" s-removelist=".@articleData.ImageListName" style="display: none;">@ButtonIcon(ButtonTypes.undo)</div>
+    </div>
+
+    <ul id="imagelistdata" class="w3-ul">
+
+        @foreach (var imgInfo in datalist)
+        {
+            imgLP += 1;
+            var articleImage = new ArticleImage(imgInfo, "articleimage");
+
+            <li class="@articleData.ImageListName w3-row w3-display-container w3-padding w3-border-0" style="list-style-type: none;">
+
+                @SortableListIndex(imgInfo, imgLP)
+
+                <div class="w3-display-container w3-padding w3-card">
+                    <div class="w3-row">
+                        <div class="w3-col m2 w3-padding" style="width:100px;">
+                            @if (articleImage.RelPath != "")
+                            {
+                                <img src="@ThumbnailImageUrl(portalData.EngineUrlWithProtocol, articleImage.RelPath, 80, 80)" style="height:80px;width:80px;" class="w3-round" />
+                            }
+                            else
+                            {
+                                <img src="@ThumbnailImageUrl(portalData.EngineUrlWithProtocol, "/DesktopModules/DNNrocket/api/images/noimage2.png", 80, 80)" style="height:80px;width:80px;" class="w3-round" />
+                            }
+                        </div>
+                        <div class="w3-col m10">
+                            <div class="w3-col m9 w3-padding">
+                                <label>@ResourceKey("Theme.heading")&nbsp;@EditFlag(sessionParams)</label>
+                                @TextBox(imgInfo, "genxml/lang/genxml/textbox/imagealt" + articleImage.FieldId, "class='w3-input w3-border' MaxLength='200'", "", true, imgLP)
+                                @HiddenField(imgInfo, "genxml/hidden/imagepath" + articleImage.FieldId, "", "", false, imgLP)
+                            </div>
+                            <div class="w3-col m12 w3-padding">
+                                <label>@ResourceKey("Theme.summary")&nbsp;@EditFlag(sessionParams)</label>
+                                @TextArea(imgInfo, "genxml/lang/genxml/textbox/imagesummary" + articleImage.FieldId, "class='w3-input w3-border' ", "", true, imgLP)
+                            </div>
+                            <div class="w3-col m12 w3-padding">
+                                <label>@ResourceKey("Theme.linktext")&nbsp;@EditFlag(sessionParams)</label>
+                                @TextBox(imgInfo, "genxml/lang/genxml/textbox/urltext" + articleImage.FieldId, "class='w3-input w3-border' MaxLength='200'", "", true, imgLP)
+                            </div>
+                            <div class="w3-col m12 w3-padding">
+                                <label>@ResourceKey("Theme.url")&nbsp;@EditFlag(sessionParams)</label>
+                                @TextBox(imgInfo, "genxml/lang/genxml/textbox/url" + articleImage.FieldId, "class='w3-input w3-border' MaxLength='1200'", "", true, imgLP)
+                            </div>
+                            <span id="deletebutton@(imgLP)" onclick="" class="w3-button w3-display-topright simplisity_removelistitem" s-removelist=".imagelist" s-recylebin="imagelistbin">
+                                @ButtonIcon(ButtonTypes.remove)
+                            </span>
+
+                        </div>
+
+                    </div>
+                </div>
+            </li>
+
+        }
+    </ul>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#imagelistdata").sortable();
+        $("#imagelistdata").disableSelection();
+    });
+</script>

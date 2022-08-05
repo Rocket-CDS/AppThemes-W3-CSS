@@ -1,0 +1,136 @@
+@inherits RocketContent.Components.RocketContentTokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI;
+@using Simplisity;
+@using RocketContent.Components;
+@using DNNrocketAPI.Components;
+@using RocketPortal.Components;
+
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/")
+
+@{
+    var info = new SimplisityInfo();
+    var appThemeSystem = new AppThemeSystemLimpet("rocketcontent");
+    var sessionParams = Model.SessionParamsData;
+    var articleData = (ArticleLimpet)Model.List.First();
+    var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
+    var articleRowData = (ArticleRowLimpet)Model.GetDataObject("articlerow");
+    var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");
+    var portalData = new PortalLimpet(articleData.PortalId);
+
+    if (articleRowData.Info != null)
+    {
+        info = articleRowData.Info;
+    }
+
+    var contactLP = 0;
+    var datalist = articleRowData.Info.GetList("contactlist");
+
+}
+
+@AddProcessData("resourcepath", "/DesktopModules/RocketThemes/" + articleData.Organisation + "/" + articleData.AdminAppThemeFolder + "/" + articleData.AdminAppThemeFolderVersion + "/resx/")
+
+<!-- require Key for saving -->
+@HiddenField(info, "genxml/config/rowkey")
+@HiddenField(info, "genxml/lang/genxml/config/rowkeylang", "", articleRowData.RowKey)
+
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+
+<div class="w3-content" style="max-width:1200px">
+
+    <div class="w3-row">
+        <div class="w3-half">
+            <div class="w3-row w3-padding">
+                <label class="w3-text-grey">@ResourceKey("Theme.company")</label>
+                @TextBox(info, "genxml/textbox/company", " class='w3-input w3-border'")
+            </div>
+            <div class="w3-row w3-padding">
+                <label class="w3-text-grey">@ResourceKey("Theme.address")</label>
+                @TextBox(info, "genxml/textbox/address1", " class='w3-input w3-border'")
+                @TextBox(info, "genxml/textbox/address2", " class='w3-input w3-border'")
+                @TextBox(info, "genxml/textbox/address3", " class='w3-input w3-border'")
+                @TextBox(info, "genxml/textbox/address4", " class='w3-input w3-border'")
+            </div>
+        </div>
+        <div class="w3-half">
+            <div class="w3-row w3-padding">
+                <label class="w3-text-grey">@ResourceKey("Theme.email")</label>
+                @TextBox(info, "genxml/textbox/email", " class='w3-input w3-border'")
+            </div>
+            <div class="w3-row w3-padding">
+                <label class="w3-text-grey">@ResourceKey("Theme.tel")</label>
+                @TextBox(info, "genxml/textbox/tel", " class='w3-input w3-border'")
+            </div>
+            <div class="w3-row w3-padding">
+                <label class="w3-text-grey">@ResourceKey("Theme.tel2")</label>
+                @TextBox(info, "genxml/textbox/tel2", " class='w3-input w3-border'")
+            </div>
+            <div class="w3-row w3-padding">
+                <label class="w3-text-grey">@ResourceKey("Theme.fax")</label>
+                @TextBox(info, "genxml/textbox/fax", " class='w3-input w3-border'")
+            </div>
+        </div>
+    </div>
+    <div class="w3-row w3-padding">
+        <label class="w3-text-grey">@ResourceKey("Theme.extrainfos")</label>
+        <div>@TextArea(info, "genxml/lang/genxml/textbox/extrainfos", "rows='4'  class='w3-input w3-border'")</div>
+    </div>
+
+    <h2>@ResourceKey("Theme.contacts")</h2>
+    <div class="w3-row contactlistdatasection">
+
+        <div class="w3-bar">
+            <div class="w3-button w3-bar-item w3-theme-action w3-padding simplisity_click" s-post="#a-articledata" s-list=".contactlist" s-cmd="remote_addlistitem" s-fields='{"listname":"contactlist","moduleref":"@(remoteModule.ModuleRef)"}'>@ButtonIcon(ButtonTypes.add)</div>
+            <div class="w3-button w3-bar-item w3-pale-yellow w3-padding simplisity_itemundo" s-recylebin="contactlistbin" s-return="#contactlistdata" s-removelist=".contactlist" style="display: none;">@ButtonIcon(ButtonTypes.undo)</div>
+        </div>
+
+        <ul id="contactlistdata" class="w3-ul">
+
+            @foreach (var contactInfo in datalist)
+            {
+                <li class="contactlist w3-display-container w3-padding w3-border-0" style="list-style-type: none;">
+                    @SortableListIndex(contactInfo, contactLP)
+
+                    <div class="w3-display-container w3-padding w3-card">
+                        <div class="w3-row">
+
+                            <div class="w3-third w3-padding">
+                                <label class="w3-text-grey">@ResourceKey("Theme.contact")</label>
+                                @TextBox(contactInfo, "genxml/textbox/contact", " class='w3-input w3-border'", "", false, contactLP)
+                            </div>
+                            <div class="w3-third w3-padding">
+                                <label class="w3-text-grey">@ResourceKey("Theme.contactport")</label>
+                                @TextBox(contactInfo, "genxml/textbox/contactport", " class='w3-input w3-border'", "", false, contactLP)
+                            </div>
+                            <div class="w3-third w3-padding">
+                                <label class="w3-text-grey">@ResourceKey("Theme.contactemail")</label>
+                                @TextBox(contactInfo, "genxml/textbox/contactemail", " class='w3-input w3-border'", "", false, contactLP)
+                            </div>
+
+                        </div>
+                        <div class="simplisity_removelistitem w3-display-topright" s-removelist=".contactlist" s-recylebin="contactlistbin" style="cursor: pointer;">
+                            @ButtonIcon(ButtonTypes.remove)
+                        </div>
+                    </div>
+                </li>
+                contactLP += 1;
+            }
+        </ul>
+
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#contactlistdata").sortable();
+        $("#contactlistdata").disableSelection();
+
+        // We have a bespoke list "contactlist", this needs to be added to the s-list attr.
+        $('.a-savebutton').attr('s-list', '.contactlist,' + $('.a-savebutton').attr('s-list'));
+
+    });
+
+</script>
+
