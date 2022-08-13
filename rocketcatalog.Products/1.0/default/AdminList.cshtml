@@ -10,7 +10,7 @@
 @{
     var articleDataList = (ArticleLimpetList)Model.List.First();
     var passModel = new SimplisityRazor(articleDataList.PortalCatalog, new Dictionary<string, string>());
-    var appThemeSystem = new AppThemeSystemLimpet("rocketcatalog");
+    var appThemeSystem = new AppThemeSystemLimpet(articleDataList.PortalCatalog.PortalId, "rocketcatalog");
     var sessionParams = Model.SessionParamsData;
 }
 
@@ -53,6 +53,6 @@
 
 <script>
     $(document).ready(function () {
-
+        selectMenu('articleadmin');
     });
 </script>

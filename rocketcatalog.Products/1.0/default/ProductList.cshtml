@@ -17,7 +17,7 @@
     var categoryList = (CategoryLimpetList)Model.GetDataObject("categorylist");
     var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
     var appThemeDefault = (AppThemeLimpet)Model.GetDataObject("appthemedefault");
-    var categoryData = new CategoryLimpet(portalCatalog.PortalId, articleDataList.CategoryId, sessionParams.CultureCode);
+    var categoryData = new CategoryLimpet(portalCatalog.PortalId, articleDataList.CategoryId, sessionParams.CultureCode, portalCatalog.SystemKey);
 
     var hbsDict = new Dictionary<string, SimplisityInfo>();
     hbsDict.Add("sessionparams", sessionParams.Info);
@@ -32,7 +32,7 @@
 <h1>
     @if (sessionParams.GetInt("catid") == 0)
     {
-        <span>@articleDataList.Dashboard.Title&nbsp;</span> }
+        <span>@portalData.Name</span> }
     else
     {
         <span>@categoryData.Name&nbsp;</span>}

@@ -5,11 +5,11 @@
     <h1>{{article this "name"}}</h1>
     <div class="w3-animate-opacity">
         <div class="w3-row w3-center">
-            <img class="imgrollovertarget" alt="{{article this "name"}}" src="{{article this "imageurl" 0 450 450}}" style="width:60%">
+            <img class="imgrollovertarget" alt="{{article this "name"}}" src="{{image @root "thumburl" 0 450 450}}" style="width:60%">
             <div class="w3-container">
                 {{#each genxml.data.genxml.imagelist.genxml}}
                 <div class="w3-col s6 m4 l2 w3-padding-small" style="margin-bottom: 8px">
-                    <img class="imgrollover" src="{{article @root "imageurl" @index 450 450}}" style="width:100%">
+                    <img class="imgrollover" src="{{image @root "thumburl" @index 450 450}}" style="width:100%">
                 </div>
                 {{/each}}
             </div>

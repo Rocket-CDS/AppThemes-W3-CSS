@@ -25,7 +25,7 @@
 
 }
 
-@AddProcessData("resourcepath", "/DesktopModules/RocketThemes/" + appTheme.AppThemeFolder + "/" + appTheme.AppVersionFolder + "/resx/")
+@AddProcessData("resourcepath", appTheme.AppThemeVersionFolderRel + "/resx/")
 
 @if (portalCatalog.DebugMode)
 {<div class="w3-small">@DateTime.Now.ToString()</div>}

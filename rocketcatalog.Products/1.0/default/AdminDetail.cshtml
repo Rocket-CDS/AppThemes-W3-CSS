@@ -12,8 +12,8 @@
     {
         info = articleData.Info;
     }
-    var portalCatalog = new PortalCatalogLimpet(articleData.PortalId, DNNrocketUtils.GetEditCulture());
-    var appThemeSystem = new AppThemeSystemLimpet(portalCatalog.SystemKey);
+    var portalCatalog = new PortalCatalogLimpet(articleData.PortalId, DNNrocketUtils.GetEditCulture(), articleData.SystemKey);
+    var appThemeSystem = new AppThemeSystemLimpet(portalCatalog.PortalId, portalCatalog.SystemKey);
     var sessionParams = Model.SessionParamsData;
     var portalData = new PortalLimpet(portalCatalog.PortalId);
     var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme"); 
@@ -22,7 +22,7 @@
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocket/Images/App_LocalResources/")
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketCatalog/App_LocalResources/")
-@AddProcessData("resourcepath", "/DesktopModules/RocketThemes/" + appTheme.AppThemeFolder + "/" + appTheme.AppVersionFolder + "/resx/")
+@AddProcessData("resourcepath", "/DesktopModules/RocketThemes/" + portalCatalog.ProjectName + "/" + portalCatalog.AppThemeAdminFolder + "/" + portalCatalog.AppThemeAdminVersion + "/resx/")
 
 @RenderLanguageSelector("articleadmin_editarticle", "{\"articleid\":\"" + articleData.ArticleId + "\"}", appThemeSystem, Model)
 
@@ -142,6 +142,8 @@
 
 
         openSection(sectionName);
+        selectMenu('articleadmin');
+
     });
 
     function openSection(sectionName) {
