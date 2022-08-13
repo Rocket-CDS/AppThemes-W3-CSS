@@ -10,7 +10,7 @@
 
 @{
     var info = new SimplisityInfo();
-    var appThemeSystem = new AppThemeSystemLimpet("rocketcontent");
+    var appThemeSystem = new AppThemeSystemLimpet(PortalUtils.GetPortalId(), "rocketcontent");
     var sessionParams = Model.SessionParamsData;
     var articleData = (ArticleLimpet)Model.List.First();
     var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
@@ -25,7 +25,7 @@
 
 }
 
-@AddProcessData("resourcepath", "/DesktopModules/RocketThemes/" + articleData.Organisation + "/" + articleData.AdminAppThemeFolder + "/resx")
+@AddProcessData("resourcepath", "/DesktopModules/RocketThemes/" + articleData.ProjectName + "/" + articleData.AdminAppThemeFolder + "/resx")
 
 <div class="w3-theme-action w3-margin-bottom w3-row w3-padding simplisity_click" s-cmd="remote_addrow" s-fields='{"dataref":"@articleData.DataRef","moduleref":"@remoteModule.ModuleRef"}' style="cursor:pointer;">
     @ButtonText(ButtonTypes.add)

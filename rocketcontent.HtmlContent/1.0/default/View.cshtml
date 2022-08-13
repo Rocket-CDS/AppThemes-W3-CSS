@@ -10,9 +10,9 @@
     var articleData = (ArticleLimpet)Model.List.First();
     AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/");
     AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/");
-    AddProcessData("resourcepath", "/DesktopModules/RocketThemes/" + articleData.Organisation + "/" + articleData.AdminAppThemeFolder + "/" + articleData.AdminAppThemeFolderVersion + "/resx");
+    AddProcessData("resourcepath", "/DesktopModules/RocketThemes/" + articleData.ProjectName + "/" + articleData.AdminAppThemeFolder + "/" + articleData.AdminAppThemeFolderVersion + "/resx");
 
-    var appThemeSystem = new AppThemeSystemLimpet("rocketcontent");
+    var appThemeSystem = new AppThemeSystemLimpet(PortalUtils.GetPortalId(), "rocketcontent");
     var sessionParams = Model.SessionParamsData;
     var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
     var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");

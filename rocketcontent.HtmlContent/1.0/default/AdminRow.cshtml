@@ -10,7 +10,7 @@
 
 @{
     var info = new SimplisityInfo();
-    var appThemeSystem = new AppThemeSystemLimpet("rocketcontent");
+    var appThemeSystem = new AppThemeSystemLimpet(PortalUtils.GetPortalId(), "rocketcontent");
     var sessionParams = Model.SessionParamsData;
     var articleData = (ArticleLimpet)Model.List.First();
     var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
@@ -25,7 +25,7 @@
 
 }
 
-@AddProcessData("resourcepath", "/DesktopModules/RocketThemes/" + articleData.Organisation + "/" + articleData.AdminAppThemeFolder + "/resx/")
+@AddProcessData("resourcepath", "/DesktopModules/RocketThemes/" + articleData.ProjectName + "/" + articleData.AdminAppThemeFolder + "/resx/")
 
 <!-- require Key for saving -->
 @HiddenField(info, "genxml/config/rowkey")
@@ -55,7 +55,7 @@
                 var imgLayoutList = "";
                 for (int i = 0; i < 9; i++)
                 {
-                    imgLayoutList += "<img src='" + portalData.EngineUrlWithProtocol + "/DesktopModules/RocketThemes/" + articleData.Organisation + "/" + articleData.AdminAppThemeFolder + "/img/Newspaper" + i + ".png' />,";
+                    imgLayoutList += "<img src='" + portalData.EngineUrlWithProtocol + "/DesktopModules/RocketThemes/" + articleData.ProjectName + "/" + articleData.AdminAppThemeFolder + "/img/Newspaper" + i + ".png' />,";
                 }
                 imgLayoutList = imgLayoutList.TrimEnd(',');
             }
