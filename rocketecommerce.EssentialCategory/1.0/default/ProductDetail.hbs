@@ -64,7 +64,7 @@
             </div>
         </div>
         <div class="quickviewbuy">
-            <div class="w3-button buybutton simplisity_click" s-cmdurl="{{genxml.sessionparams.r.apiurl}}" s-cmd="rocketecommerce_addtocart" s-fields='{"productid":"{{product @root "productid"}}","moduleref":"{{moduleref @root}}"}' s-post="#productdatasection{{product @root "productid"}}" s-return="#minicartdisplay" title="{{resourcekey @root "RE.addtobasket" genxml.sessionparams.r.culturecode "Text"}}" style="width:60px;">
+            <div class="w3-button buybutton simplisity_click" s-cmdurl="{{genxml.sessionparams.r.apiurl}}" s-cmd="rocketecommerce_addtocartjson" s-fields='{"productid":"{{product @root "productid"}}","moduleref":"{{moduleref @root}}"}' s-post="#productdatasection{{product @root "productid"}}" s-return="MiniCartTotals" s-returntype="json" s-after="afterMiniCartJson" title="{{resourcekey @root "RE.addtobasket" genxml.sessionparams.r.culturecode "Text"}}" style="width:60px;">
                 <span class="material-icons">
                     shopping_cart
                 </span>

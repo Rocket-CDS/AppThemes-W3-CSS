@@ -40,7 +40,16 @@
     </div>
     <div class="w3-quarter">
         <div id="minicartdisplay" class="productlistcart">
-            @RenderTemplate("MiniCart.cshtml", appTheme, Model)
+            <div class="minicartdisplay">
+                <h3>@ResourceKey("RE.cart", sessionParams.CultureCode)</h3>
+                <div class="w3-border-bottom w3-margin-bottom ">
+                    <div>@ResourceKey("RE.items", sessionParams.CultureCode)&nbsp;:&nbsp;
+                        <span id="a-cartqty">&nbsp;</span>    
+                        <span class="w3-right"><strong><span id="a-carttotal">&nbsp;</span></strong></span>
+                    </div>
+                </div>
+                <a id="cartdisplay" class="w3-button w3-light-grey simplisity_click " s-cmdurl="@(sessionParams.ApiUrl)" s-before="clearMiniCartJson" s-return="#ecommerce-tag" s-cmd="rocketecommerce_cartlist" s-fields='{"template":"cartlist.cshtml","moduleref":"@(remoteModule.ModuleRef)"}'>@MaterialIcon("shopping_cart")&nbsp;@(ResourceKey("RE.viewcart", sessionParams.CultureCode))</a>
+            </div>
         </div>
         <div class="productlistcat">
             @if (categoryDataList.DataList.Count > 0)
@@ -50,4 +59,3 @@
         </div>
     </div>
 </div>
-
