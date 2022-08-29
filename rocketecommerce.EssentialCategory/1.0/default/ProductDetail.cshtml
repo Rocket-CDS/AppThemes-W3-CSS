@@ -12,8 +12,8 @@
     var companyData = (CompanyLimpet)Model.GetDataObject("companydata");
     var cartData = (CartLimpet)Model.GetDataObject("cartdata");
     var sessionParams = (SessionParams)Model.SessionParamsData;
-    var portalShop = productData.PortalShop;
-    var portalData = new PortalLimpet(PortalUtils.GetCurrentPortalId());
+    var portalShop = (PortalShopLimpet)Model.GetDataObject("portalshop");
+    var portalData = (PortalLimpet)Model.GetDataObject("portaldata");
     var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");
     var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
     var categoryDataList = (CategoryLimpetList)Model.GetDataObject("categorydatalist");
@@ -24,13 +24,7 @@
     hbsDict.Add("data", productData.Info);
 }
 
-@if (portalShop.DebugMode)
-{
-    <div class="w3-small">@DateTime.Now.ToString()</div>
-}
-
 @AddProcessData("resourcepath", "/DesktopModules/RocketThemes/" + remoteModule.AppThemeFolder + "/" + remoteModule.AppThemeVersion + "/resx/")
-
 
 <div class="w3-row">
     <div class="w3-threequarter">

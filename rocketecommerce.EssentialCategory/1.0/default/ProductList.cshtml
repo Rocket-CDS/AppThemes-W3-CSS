@@ -11,8 +11,8 @@
     var companyData = (CompanyLimpet)Model.GetDataObject("companydata"); ;
     var cartData = (CartLimpet)Model.GetDataObject("cartdata");
     var sessionParams = (SessionParams)Model.SessionParamsData;
-    var portalShop = productDataList.PortalShop;
-    var portalData = new PortalLimpet(PortalUtils.GetCurrentPortalId());
+    var portalShop = (PortalShopLimpet)Model.GetDataObject("portalshop");
+    var portalData = (PortalLimpet)Model.GetDataObject("portaldata");
     var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");
     var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
     var appThemeDefault = (AppThemeLimpet)Model.GetDataObject("appthemedefault");
@@ -24,10 +24,6 @@
     hbsDict.Add("resxlist", RenderRazorUtils.GetResxPaths(Processdata)); }
 
 @AddProcessData("resourcepath", "/DesktopModules/RocketThemes/" + remoteModule.AppThemeViewFolder + "/" + remoteModule.AppThemeViewVersion + "/resx/")
-
-@if (portalShop.DebugMode)
-{<div class="w3-small">@DateTime.Now.ToString()</div>}
-
 
 <h1>
     @if (!categoryData.Exists)

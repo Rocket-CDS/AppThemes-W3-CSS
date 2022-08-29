@@ -7,10 +7,16 @@
     var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
     var productData = (ProductLimpet)Model.GetDataObject("productdata");
     var sessionParams = (SessionParams)Model.SessionParamsData;
+    var portalShop = (PortalShopLimpet)Model.GetDataObject("portalshop");
+    var portalData = (PortalLimpet)Model.GetDataObject("portaldata");
 }
 
 <!-- !PAGE CONTENT! -->
 <div id="ecommerce-tag" class="ecommerce-container">
+    @if (portalShop.DebugMode)
+    {
+        <div class="w3-tiny">DEBUG MODE: @DateTime.Now.ToString()</div>
+    }
     @{ 
         if (productData != null)
         {
