@@ -6,17 +6,16 @@
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketEcommerce/App_LocalResources/")
 
-@{
-    var categoryDataList = (CategoryLimpetList)Model.GetDataObject("categorydatalist");
-    var sessionParams = (SessionParams)Model.SessionParamsData;
+@{ var categoryDataList = (CategoryLimpetList)Model.GetDataObject("categorylist");
+                var sessionParams = (SessionParams)Model.SessionParamsData;
+                var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");
 
-    var selectedcolor = "";
-    if (sessionParams.GetInt("searchcategoryid") == 0)
-    {
-        selectedcolor = "w3-grey";
-    }
-    var portalShop = new PortalShopLimpet(categoryDataList.PortalId, categoryDataList.CultureCode);
-}
+                var selectedcolor = "";
+                if (sessionParams.GetInt("searchcategoryid") == 0)
+                {
+                    selectedcolor = "w3-grey";
+                }
+                var portalShop = new PortalShopLimpet(categoryDataList.PortalId, categoryDataList.CultureCode); }
 
 <h3 style="margin-top:30px;">@ResourceKey("RE.categories", sessionParams.CultureCode)</h3>
 
@@ -39,19 +38,17 @@
                 toplevelclass = "catlevel1";
             }
         }
-        var productListUrl = categoryData.CategoryUrl(sessionParams);
-        <div class="@selectedcolor @toplevelclass">
-            <a href="@productListUrl" class="categoryitem" onclick="$('.simplisity_loader').show();" catid="@categoryData.CategoryId">
-                @if (categoryData.Level > 0)
-                {
-                    <span class="material-icons">
-                        chevron_right
-                    </span>
-                }
-                <span>@categoryData.Name</span>
-            </a>
-        </div>
-    }
+        var productListUrl = categoryData.CategoryUrl(sessionParams, remoteModule);
+<div class="@selectedcolor @toplevelclass">
+    <a href="@productListUrl" class="categoryitem" onclick="$('.simplisity_loader').show();" catid="@categoryData.CategoryId">
+        @if (categoryData.Level > 0)
+        {
+<span class="material-icons">
+    chevron_right
+</span>                }
+        <span>@categoryData.Name</span>
+    </a>
+</div>}
 </div>
 
 <script>
