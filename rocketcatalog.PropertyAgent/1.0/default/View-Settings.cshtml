@@ -1,0 +1,96 @@
+﻿@inherits RocketCatalog.Components.RocketCatalogTokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using RocketCatalog.Components;
+@using Simplisity;
+@using RazorEngine.Text;
+@using Rocket.AppThemes.Components;
+@using System.IO;
+
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketCatalog/App_LocalResources/")
+
+@{
+    var sessionParams = Model.SessionParamsData;
+    var appThemeList = (AppThemeDataList)Model.List.First();
+    var moduleRef = Model.SessionParamsData.Get("moduleref");
+    var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");
+    var appThemeData = (AppThemeLimpet)Model.GetDataObject("apptheme");
+    var systemData = (SystemLimpet)Model.GetDataObject("systemdata");
+    var info = new SimplisityInfo(remoteModule.Record);
+    var orgData = new AppThemeProjectLimpet();
+    var appThemeSystem = (AppThemeSystemLimpet)Model.GetDataObject("appthemesystem");
+    var appThemeCatalog = (AppThemeSystemLimpet)Model.GetDataObject("appthemecatalog");
+    var categorySettings = (CatalogSettingsLimpet)Model.GetDataObject("catalogsettings");
+    var groupDict = categorySettings.GetPropertyGroups();
+}
+
+<div class="w3-row  w3-padding">
+
+    <div class="w3-row  w3-padding optiondata remote_publicviewoption">
+        @{
+            var catName = "";
+            if (info.GetXmlPropertyInt("genxml/remote/categoryid") > 0)
+            {
+                var catData = new CategoryLimpet(remoteModule.PortalId, info.GetXmlPropertyInt("genxml/remote/categoryid"), sessionParams.CultureCode);
+                catName = catData.Ref + " - " + catData.Name;
+            }
+        }
+        <div class="w3-row">
+            <div class="w3-col m10">
+                <div class="w3-large">@ResourceKey("RE.defaultcategory")</div>
+                <span class="w3-col m5 w3-border w3-light-grey w3-padding a-catname" style="height:40px;">@catName</span>
+                <span class="w3-col m2 w3-button w3-theme " onclick="$('#categoryselect').show();" style="cursor: pointer; width: 64px;">@ButtonIcon(ButtonTypes.tree)</span>
+                <span>
+                    &nbsp;@CheckBox(info, "genxml/remote/staticlist", "&nbsp;" + ResourceKey("RE.staticlist").ToString(), " class='w3-check' ")
+                </span>
+            </div>
+            <div class="w3-col m2">
+                <div class="w3-large">@ResourceKey("DNNrocket.pagesize")</div>
+                @TextBox(new SimplisityInfo(remoteModule.Record), "genxml/remote/pagesize", " class='w3-input w3-border ' ", "0")
+            </div>
+            @HiddenField(info, "genxml/remote/categoryid")
+        </div>
+
+        <div class="w3-row w3-margin-top  w3-margin-bottom">
+            <div class="w3-large">@ResourceKey("RE.propertygroups")</div>
+            @CheckBoxList(info, "genxml/checkboxlist/group", groupDict," class='' ")
+        </div>
+
+
+    </div>
+
+    <div class="w3-row w3-padding optiondata remote_publicviewoption">
+        <div class="w3-large">@ResourceKey("RE.listpageurl")</div>
+        @foreach (var l in DNNrocketUtils.GetCultureCodeList())
+        {
+            <div class="w3-row">
+                <span class="w3-col m10">
+                    @TextBox(new SimplisityInfo(remoteModule.Record), "genxml/remote/listpageurl" + l, " class='w3-input w3-border ' ", "")
+                </span>
+                <span class="w3-col m2">&nbsp;@DisplayEngineFlag(sessionParams.EngineURL, l)</span>
+            </div>
+        }
+
+    </div>
+
+
+    <div class="w3-row w3-padding optiondata remote_publicviewoption">
+        <div class="w3-large">@ResourceKey("RE.detailpageurl")</div>
+        @foreach (var l in DNNrocketUtils.GetCultureCodeList())
+        {
+            <div class="w3-row">
+                <span class="w3-col m10">
+                    @TextBox(new SimplisityInfo(remoteModule.Record), "genxml/remote/detailpageurl" + l, " class='w3-input w3-border ' ", "")
+                </span>
+                <span class="w3-col m2">&nbsp;@DisplayEngineFlag(sessionParams.EngineURL, l)</span>
+            </div>
+        }
+
+    </div>
+
+
+
+</div>
+
+
+
