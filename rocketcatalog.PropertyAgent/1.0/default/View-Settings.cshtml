@@ -24,24 +24,24 @@
     var groupDict = categorySettings.GetPropertyGroups();
 }
 
-<div class="w3-row  w3-padding">
+<div class="w3-row">
 
     <div class="w3-row  w3-padding optiondata remote_publicviewoption">
         @{
             var catName = "";
             if (info.GetXmlPropertyInt("genxml/remote/categoryid") > 0)
             {
-                var catData = new CategoryLimpet(remoteModule.PortalId, info.GetXmlPropertyInt("genxml/remote/categoryid"), sessionParams.CultureCode);
+                var catData = new CategoryLimpet(remoteModule.PortalId, info.GetXmlPropertyInt("genxml/remote/categoryid"), sessionParams.CultureCode, systemData.SystemKey);
                 catName = catData.Ref + " - " + catData.Name;
             }
         }
         <div class="w3-row">
             <div class="w3-col m10">
-                <div class="w3-large">@ResourceKey("RE.defaultcategory")</div>
+                <div class="w3-large">@ResourceKey("RC.defaultcategory")</div>
                 <span class="w3-col m5 w3-border w3-light-grey w3-padding a-catname" style="height:40px;">@catName</span>
                 <span class="w3-col m2 w3-button w3-theme " onclick="$('#categoryselect').show();" style="cursor: pointer; width: 64px;">@ButtonIcon(ButtonTypes.tree)</span>
                 <span>
-                    &nbsp;@CheckBox(info, "genxml/remote/staticlist", "&nbsp;" + ResourceKey("RE.staticlist").ToString(), " class='w3-check' ")
+                    &nbsp;@CheckBox(info, "genxml/remote/staticlist", "&nbsp;" + ResourceKey("RC.staticlist").ToString(), " class='w3-check' ")
                 </span>
             </div>
             <div class="w3-col m2">
@@ -52,7 +52,7 @@
         </div>
 
         <div class="w3-row w3-margin-top  w3-margin-bottom">
-            <div class="w3-large">@ResourceKey("RE.propertygroups")</div>
+            <div class="w3-large">@ResourceKey("RC.propertygroups")</div>
             @CheckBoxList(info, "genxml/checkboxlist/group", groupDict," class='' ")
         </div>
 
@@ -60,7 +60,7 @@
     </div>
 
     <div class="w3-row w3-padding optiondata remote_publicviewoption">
-        <div class="w3-large">@ResourceKey("RE.listpageurl")</div>
+        <div class="w3-large">@ResourceKey("RC.listpageurl")</div>
         @foreach (var l in DNNrocketUtils.GetCultureCodeList())
         {
             <div class="w3-row">
@@ -75,7 +75,7 @@
 
 
     <div class="w3-row w3-padding optiondata remote_publicviewoption">
-        <div class="w3-large">@ResourceKey("RE.detailpageurl")</div>
+        <div class="w3-large">@ResourceKey("RC.detailpageurl")</div>
         @foreach (var l in DNNrocketUtils.GetCultureCodeList())
         {
             <div class="w3-row">
@@ -92,5 +92,8 @@
 
 </div>
 
+<div class="w3-row">
+    @RenderTemplate("RemoteCategories.cshtml", appThemeSystem, Model, true)
+</div>
 
 
