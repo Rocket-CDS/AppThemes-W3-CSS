@@ -22,35 +22,24 @@
 
     var hbsDict = new Dictionary<string, SimplisityInfo>();
     hbsDict.Add("sessionparams", sessionParams.Info);
+    hbsDict.Add("remotemodule", new SimplisityInfo(remoteModule.Record));
     hbsDict.Add("resxlist", RenderRazorUtils.GetResxPaths(Processdata));
 }
 
 @AddProcessData("resourcepath", appTheme.AppThemeVersionFolderRel + "/resx/")
 
-@if (portalCatalog.DebugMode)
-{<div class="w3-small">@DateTime.Now.ToString()</div>}
-
-<h1>
-    @if (sessionParams.GetInt("catid") == 0)
+@if (articleDataList != null)
+{
+    if (portalCatalog.DebugMode)
     {
-        <span>@catalogSettings.CatalogName&nbsp;</span> }
-    else
-    {
-        <span>@categoryData.Name&nbsp;</span>}
-</h1>
-
-<div class="w3-row">
-    @RenderTemplate("SearchBanner.cshtml", appThemeDefault, Model, true)
-</div>
-
-<div class="w3-row w3-padding-16 w3-center">
-    @foreach (ArticleLimpet articleData in articleDataList.GetArticleList())
-    {
-        hbsDict.Remove("data");
-        hbsDict.Add("data", articleData.Info);
-        @RenderHandleBarsRC(hbsDict, appTheme, "productlistrow.hbs", remoteModule.ModuleRef, "")
+        <div class="w3-small">@DateTime.Now.ToString()</div>
     }
-</div>
-<div class="w3-row w3-padding-16 w3-center">
-    @RenderTemplate("ProductPaging.cshtml", appThemeDefault, Model, true)
-</div>
+    <div class="w3-row w3-padding-16 w3-center">
+        @foreach (ArticleLimpet articleData in articleDataList.GetArticleList())
+        {
+            hbsDict.Remove("data");
+            hbsDict.Add("data", articleData.Info);
+            @RenderHandleBarsRC(hbsDict, appTheme, "productlistrow.hbs", remoteModule.ModuleRef, "")
+        }
+    </div>
+}
