@@ -21,7 +21,9 @@
 
     var hbsDict = new Dictionary<string, SimplisityInfo>();
     hbsDict.Add("sessionparams", sessionParams.Info);
-    hbsDict.Add("resxlist", RenderRazorUtils.GetResxPaths(Processdata)); }
+    hbsDict.Add("remotemodule", new SimplisityInfo(remoteModule.Record));
+    hbsDict.Add("resxlist", RenderRazorUtils.GetResxPaths(Processdata));
+}
 
 @AddProcessData("resourcepath", "/DesktopModules/RocketThemes/" + remoteModule.AppThemeViewFolder + "/" + remoteModule.AppThemeViewVersion + "/resx/")
 

@@ -23,6 +23,7 @@
 
     var hbsDict = new Dictionary<string, SimplisityInfo>();
     hbsDict.Add("sessionparams", sessionParams.Info);
+    hbsDict.Add("remotemodule", new SimplisityInfo(remoteModule.Record));
     hbsDict.Add("resxlist", RenderRazorUtils.GetResxPaths(Processdata));
 }
 
