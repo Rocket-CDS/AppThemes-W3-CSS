@@ -1,0 +1,16 @@
+@inherits RocketEcommerce.Components.RocketEcommerceTokens<Simplisity.SimplisityRazor>
+@using RocketEcommerce.Components;
+@using DNNrocketAPI.Components;
+@using RocketPortal.Components;
+
+@{
+    var portalData = (PortalLimpet)Model.GetDataObject("portaldata");
+}
+
+<script type="text/javascript" src="@(portalData.EngineUrlWithProtocol.TrimEnd('/'))/DesktopModules/DNNrocket/Simplisity/js/simplisity.js"></script>
+<script type="text/javascript" src="@(portalData.EngineUrlWithProtocol.TrimEnd('/'))/DesktopModules/DNNrocket/js/jquery.validate.min.js"></script>
+
+@if (DNNrocketUtils.GetCurrentLanguageCode() != "en")
+{
+    <script type="text/javascript" src="@(portalData.EngineUrlWithProtocol.TrimEnd('/'))/DesktopModules/DNNrocket/js/localization/messages_@(DNNrocketUtils.GetCurrentLanguageCode()).js"></script>
+}

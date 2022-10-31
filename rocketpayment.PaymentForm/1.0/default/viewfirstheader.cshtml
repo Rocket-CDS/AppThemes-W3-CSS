@@ -1,0 +1,10 @@
+@inherits RocketEcommerce.Components.RocketEcommerceTokens<Simplisity.SimplisityRazor>
+@using RocketEcommerce.Components;
+@using DNNrocketAPI.Components;
+@using RocketPortal.Components;
+
+@{
+    var portalData = (PortalLimpet)Model.GetDataObject("portaldata");
+}
+<link rel="stylesheet" href="@(portalData.EngineUrlWithProtocol.TrimEnd('/'))/DesktopModules/DNNrocket/css/w3.css">
+<link rel="stylesheet" href="@(portalData.EngineUrlWithProtocol.TrimEnd('/'))/DesktopModules/DNNrocketModules/RocketEcommerce/Themes/config-w3/1.0/css/Theme.css">

@@ -1,0 +1,176 @@
+@inherits RocketEcommerce.Componants.RocketEcommerceTokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI;
+@using Simplisity;
+@using RocketEcommerce.Componants;
+@using DNNrocketAPI.Componants;
+
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketECommerce/App_LocalResources/")
+
+@{
+    var paymentData = (PaymentLimpet)Model.List.First();
+    var info = new SimplisityInfo(paymentData.Record);
+    info.Lang = DNNrocketUtils.GetCurrentCulture();
+    var portalShop = new PortalShopLimpet(PortalUtils.GetPortalId(), DNNrocketUtils.GetCurrentCulture());
+    var notification = new NotificationLimpet(portalShop.PortalId, DNNrocketUtils.GetCurrentCulture());
+    var systemData = new SystemLimpet("rocketecommerce");
+    var adminlink = portalShop.EngineUrlWithProtocol.TrimEnd('/') + "/DesktopModules/DNNrocketModules/RocketEcommerce/admin.html";
+    var companyData = new CompanyLimpet(PortalUtils.GetPortalId(), DNNrocketUtils.GetCurrentCulture());
+    var apiurl = portalShop.EngineUrlWithProtocol.TrimEnd('/') + "/Desktopmodules/dnnrocket/api/rocket/action";
+}
+
+<div id="datasection" class="rocketecommerce_paymentform">
+    <div class="w3-container">
+
+        <div class="w3-col s1 m3  l4 ">
+            <div class="w3-row w3-small w3-hide-small">
+                <div>
+                    @companyData.CompanyName
+                </div>
+                <div>
+                    @BreakOf(companyData.DisplayAddress)
+                </div>
+                <br />
+                <div>
+                    @companyData.WebsiteUrl
+                </div>
+                @if (companyData.ContactEmail != "")
+                {
+                    <div>
+                        @ResourceKey("RE.email"):&nbsp;@companyData.ContactEmail
+                    </div>
+                }
+                @if (companyData.Phone != "")
+                {
+                    <div>
+                        @ResourceKey("RE.tel"):&nbsp;@companyData.Phone
+                    </div>
+                }
+
+            </div>
+        </div>
+        <div class="w3-col s10 m6 l4 w3-center">
+
+            <div class="w3-row w3-padding ">
+                @if (companyData.LogoRelPath != "")
+                {
+                    <img src="@ThumbnailImageUrl(companyData.LogoRelPath, 0, 120)" style="" class="" />
+                }
+            </div>
+            <div class="w3-row w3-padding w3-large">
+                <b>
+                    @companyData.CompanyName
+                </b>
+            </div>
+
+            <div class="w3-row w3-padding">
+                <p>
+                    @BreakOf(notification.Message_PaymentForm)
+                </p>
+            </div>
+
+            <div class="w3-row w3-padding w3-left-align">
+                <label>@ResourceKey("RE.amount")</label>
+                @TextBoxMoney(info.PortalId, info.Lang, info, "genxml/textbox/amountpay", "  name='amount' onKeyUp='numericFilter(this,100000);' class='w3-input w3-border w3-right-align '  placeholder='' required  style='font-weight: bold;' autocomplete='off' ", paymentData.AmountDueCents.ToString(), false, 0, "", "")
+            </div>
+
+            <div class="w3-row w3-padding">
+                @TextBox(info, "genxml/textbox/email", " class='w3-input w3-border' name='email' required email autocomplete='off' placeholder='" + ResourceKey("RE.email") + "...' ")
+            </div>
+
+            <div class="w3-row w3-padding ">
+                @TextBox(info, "genxml/textbox/company", " class='w3-input w3-border'  name='company' autocomplete='off' placeholder='" + ResourceKey("RE.company") + "...' ")
+            </div>
+            <div class="w3-row w3-padding ">
+                @TextBox(info, "genxml/textbox/firstname", " class='w3-input w3-border' name='firstname' autocomplete='off' placeholder='" + ResourceKey("RE.firstname") + "...' ")
+            </div>
+            <div class="w3-row w3-padding ">
+                @TextBox(info, "genxml/textbox/lastname", " class='w3-input w3-border' name='lastname' autocomplete='off' placeholder='" + ResourceKey("RE.lastname") + "...' ")
+            </div>
+            <div class="w3-row w3-padding ">
+                @TextBox(info, "genxml/textbox/invoiceref", " class='w3-input w3-border' name='ref' autocomplete='off' placeholder='" + ResourceKey("RE.ref") + "...' ")
+            </div>
+
+            @foreach (var p in portalShop.GetPaymentMethods())
+            {
+                <div class="w3-col m12 w3-button w3-margin-top  w3-xlarge  w3-round w3-blue dovalidatepayment simplisity_click" s-before="validatePayment" s-cmd="rocketecommerce_pay" s-return="document" s-post="#datasection" s-fields='{"paymentid":"@(paymentData.PaymentId.ToString())","providerkey":"@(p.InterfaceKey)","systemkey":"rocketecommerce"}'>
+                    @ResourceKey("RE.pay")
+                </div>
+            }
+
+        </div>
+        <div class="w3-col s1 m3 l4 w3-right-align">
+			<a href="@(adminlink)" target="_blank" class="w3-right w3-tiny">Admin</a>
+        </div>
+    </div>
+
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+
+        // Take ALL params passed to the page and pass them to the server as hidden fields in paramInfo.
+        var urlParams = new URLSearchParams(window.location.search);
+        urlParams.forEach(function (value, key) {
+            simplisity_setParamField(key, value);
+        });
+
+        $(document).simplisityStartUp('@apiurl', { systemkey: 'rocketecommerce', debug: false });
+
+        if (urlParams.get('amount') != null && typeof urlParams.get('amount') != 'undefined' && urlParams.get('amount') != '') {
+            $('#amount').val(urlParams.get('amount'));
+        }
+        if (urlParams.get('ref') != null && typeof urlParams.get('ref') != 'undefined' && urlParams.get('ref') != '') {
+            $('#invoiceref').val(urlParams.get('ref'));
+        }
+
+    });
+
+    function validatePayment() {
+
+        var form = $("#Form");
+        form.validate({
+            rules: {
+                email: {
+                    required: true,
+                    email: true
+                },
+            },
+            errorPlacement: function () {
+                return false;  // suppresses error message text
+            },
+            invalidHandler: function (e, validator) {
+                $('input').removeClass('w3-pale-red');
+                $('input').removeClass('w3-border-red');
+                for (var i in validator.errorMap) {
+                    $('#' + i).addClass('w3-pale-red');
+                    $('#' + i).addClass('w3-border-red')
+                }
+            },
+            amount: {
+                required: true,
+                digits: true
+            },
+        });
+        if (!form.valid()) {
+            $('.dovalidatepayment').attr('s-stop', 'stop')
+        }
+    }
+
+
+    function numericFilter(txb, max) {
+        var valid = /^\d{0,6}([\.\,]\d{0,2})?$/.test(txb.value),
+            val = txb.value;
+        if (!valid) {
+            txb.value = val.substring(0, val.length - 1);
+        }
+        if (parseFloat(txb.value) > max) {
+            txb.value = max;
+        }
+    }
+
+
+</script>
+
