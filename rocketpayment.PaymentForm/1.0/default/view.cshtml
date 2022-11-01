@@ -23,7 +23,7 @@
 <div id="datasection" class="rocketecommerce_paymentform simplisity_panel">
     <div class="w3-container">
 
-        <div class="w3-col s1 m3  l4 ">
+        <div class="w3-col s1 m3  l4  w3-hide-small">
             <div class="w3-row w3-small w3-hide-small">
                 <div>
                     @companyData.CompanyName
@@ -97,7 +97,19 @@
             var payList = portalShop.GetActivePaymentMethods();
         }
 
-    <div class="w3-row-padding" style="margin:0 -16px">
+
+        </div>
+        <div class="w3-col s1 m3 l4 w3-right-align  w3-hide-small">
+            &nbsp;
+        </div>
+    </div>
+
+    <div class="w3-row">
+        <div class="w3-col s1 m1 l2 w3-hide-small">
+            &nbsp;
+        </div>
+
+        <div class="w3-row w3-padding w3-col s10 m10 l8 w3-center">
         @{
             var showpayment = false;
             var buttoncolor = "w3-green";
@@ -129,8 +141,7 @@
     </div>
 
 
-        </div>
-        <div class="w3-col s1 m3 l4 w3-right-align">
+        <div class="w3-col s1 m1 l2 w3-hide-small">
             &nbsp;
         </div>
     </div>
