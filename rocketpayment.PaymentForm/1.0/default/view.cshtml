@@ -173,12 +173,18 @@
     function validatePayment() {
 
         var form = $("#Form");
+
+        jQuery.validator.addMethod("greaterThanZero", function(value, element) {
+            return this.optional(element) || (parseFloat(value) > 0);
+        }, "");
+
         form.validate({
             rules: {
                 email: {
                     required: true,
                     email: true
                 },
+                amount : { greaterThanZero : true }
             },
             errorPlacement: function () {
                 return false;  // suppresses error message text
@@ -194,11 +200,13 @@
             amount: {
                 required: true,
                 digits: true
-            },
+            }
         });
+        
         if (!form.valid()) {
             $('.dovalidatepayment').attr('s-stop', 'stop')
         }
+
     }
 
 
