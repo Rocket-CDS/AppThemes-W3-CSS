@@ -21,7 +21,7 @@
 }
 
 <div id="datasection" class="rocketecommerce_paymentform simplisity_panel">
-    <div class="w3-container">
+    <div class="w3-container w3-margin">
 
         <div class="w3-col s1 m3  l4  w3-hide-small">
             <div class="w3-row w3-small w3-hide-small">
@@ -76,74 +76,39 @@
             </div>
 
             <div class="w3-row w3-padding">
-                @TextBox(info, "genxml/textbox/email", " class='w3-input w3-border' name='email' required email autocomplete='off' placeholder='" + ResourceKey("RE.email") + "...' ")
+                @TextBox(info, "genxml/textbox/email", " class='w3-input w3-border w3-pale-yellow' name='email' required email autocomplete='off' placeholder='" + ResourceKey("RE.email") + "...' ")
+            </div>
+            <div class="w3-row w3-padding ">
+                @TextBox(info, "genxml/textbox/company", " class='w3-input w3-border w3-pale-yellow'  name='company' autocomplete='off' placeholder='" + ResourceKey("RE.company") + "...' ")
+            </div>
+            <div class="w3-row w3-padding ">
+                @TextBox(info, "genxml/textbox/firstname", " class='w3-input w3-border w3-pale-yellow' name='firstname' autocomplete='off' placeholder='" + ResourceKey("RE.firstname") + "...' ")
+            </div>
+            <div class="w3-row w3-padding ">
+                @TextBox(info, "genxml/textbox/lastname", " class='w3-input w3-border w3-pale-yellow' name='lastname' autocomplete='off' placeholder='" + ResourceKey("RE.lastname") + "...' ")
+            </div>
+            <div class="w3-row w3-padding ">
+                @TextBox(info, "genxml/textbox/invoiceref", " class='w3-input w3-border w3-pale-yellow' name='ref' autocomplete='off' placeholder='" + ResourceKey("RE.ref") + "...' ")
             </div>
 
-            <div class="w3-row w3-padding ">
-                @TextBox(info, "genxml/textbox/company", " class='w3-input w3-border'  name='company' autocomplete='off' placeholder='" + ResourceKey("RE.company") + "...' ")
-            </div>
-            <div class="w3-row w3-padding ">
-                @TextBox(info, "genxml/textbox/firstname", " class='w3-input w3-border' name='firstname' autocomplete='off' placeholder='" + ResourceKey("RE.firstname") + "...' ")
-            </div>
-            <div class="w3-row w3-padding ">
-                @TextBox(info, "genxml/textbox/lastname", " class='w3-input w3-border' name='lastname' autocomplete='off' placeholder='" + ResourceKey("RE.lastname") + "...' ")
-            </div>
-            <div class="w3-row w3-padding ">
-                @TextBox(info, "genxml/textbox/invoiceref", " class='w3-input w3-border' name='ref' autocomplete='off' placeholder='" + ResourceKey("RE.ref") + "...' ")
-            </div>
+            @{
+                var payList = portalShop.GetActivePaymentMethods();
+                var buttoncolor = "w3-green";
 
-            
-        @{
-            var payList = portalShop.GetActivePaymentMethods();
-        }
-
+                foreach (var p in payList)
+                {
+                        <div class="w3-row w3-padding">
+                                <div class="w3-button w3-large @(buttoncolor)" style="width:100%;">@ResourceKey("RE.pay")</div>
+                        </div>
+                    buttoncolor = "w3-pale-green";
+                }
+            }
 
         </div>
         <div class="w3-col s1 m3 l4 w3-right-align  w3-hide-small">
             &nbsp;
         </div>
-    </div>
 
-    <div class="w3-row">
-        <div class="w3-col s1 m1 l2 w3-hide-small">
-            &nbsp;
-        </div>
-
-        <div class="w3-row w3-padding w3-col s10 m10 l8 w3-center">
-        @{
-            var showpayment = false;
-            var buttoncolor = "w3-green";
-        }
-        @foreach (var p in payList)
-        {
-            <div class="w3-row w3-padding">
-                <div style="min-height:100px; cursor:pointer;" class="w3-card-2 w3-margin-bottom w3-hover-light-grey dovalidatepayment simplisity_click " s-before="validatePayment" s-cmd="remote_pay" s-return="document" s-post="#datasection" s-fields='{"providerkey":"@(p.PaymentProvKey())","systemkey":"rocketecommerce"}'>
-                    <div class="w3-row">
-                        <div class="w3-col m2 w3-padding w3-hide-small" style="width:80px;">
-                            @HtmlOf(p.PayButtonText())
-                        </div>
-                        <div class="w3-col m9 w3-padding">
-                            @HtmlOf(p.PayMsg())
-                        </div>
-                        <div class="w3-right w3-button @(buttoncolor)">@ResourceKey("RE.pay")</div>
-                    </div>
-                </div>
-            </div>
-            showpayment = true;
-            buttoncolor = "w3-pale-green";
-        }
-        @if (showpayment)
-        {
-            <p>
-                @notification.Message_BankPaymentButton
-            </p>
-        }
-    </div>
-
-
-        <div class="w3-col s1 m1 l2 w3-hide-small">
-            &nbsp;
-        </div>
     </div>
 
 </div>
