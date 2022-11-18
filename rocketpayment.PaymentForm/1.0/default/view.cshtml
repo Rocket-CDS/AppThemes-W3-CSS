@@ -50,6 +50,11 @@
 
             </div>
         </div>
+        <div class="w3-col s10 m6 l4 w3-center formdataprocess" style="display:none;">
+            <div class="w3-light-grey">
+              <div id="myBar" class="w3-container w3-green" style="height:24px;width:1%"></div>
+            </div>
+        </div>
         <div class="w3-col s10 m6 l4 w3-center formdata">
 
             <div class="w3-row w3-padding ">
@@ -97,11 +102,11 @@
 
                 foreach (var p in payList)
                 {
-                                <div class="w3-row w3-padding">
-                                    <div style="cursor:pointer;" class="w3-card-2 w3-margin-bottom w3-hover-light-grey dovalidatepayment simplisity_click " s-before="validatePayment" s-cmd="remote_pay" s-return="document" s-post="#datasection" s-fields='{"providerkey":"@(p.PaymentProvKey())","systemkey":"rocketecommerce"}'>
-                                         <div class="w3-button w3-large @(buttoncolor)" style="width:100%;">@ResourceKey("RE.pay")</div>
-                                    </div>
-                                </div>
+                                        <div class="w3-row w3-padding">
+                                            <div style="cursor:pointer;" class="w3-card-2 w3-margin-bottom w3-hover-light-grey dovalidatepayment simplisity_click " s-before="validatePayment" s-cmd="remote_pay" s-return="document" s-post="#datasection" s-fields='{"providerkey":"@(p.PaymentProvKey())","systemkey":"rocketecommerce"}'>
+                                                 <div class="w3-button w3-large @(buttoncolor)" style="width:100%;">@ResourceKey("RE.pay")</div>
+                                            </div>
+                                        </div>
                     buttoncolor = "w3-pale-green";
                 }
             }
@@ -175,7 +180,9 @@
         }
         else {
             $('.formdata').hide();
+            $('.formdataprocess').show();            
             $('.simplisity_loader').show();
+            move();
         }
 
     }
@@ -192,6 +199,19 @@
         }
     }
 
+    function move() {
+  var elem = document.getElementById("myBar");
+  var width = 1;
+  var id = setInterval(frame, 200);
+  function frame() {
+    if (width >= 100) {
+      clearInterval(id);
+    } else {
+      width++;
+      elem.style.width = width + '%';
+    }
+  }
+}
 
 </script>
 
