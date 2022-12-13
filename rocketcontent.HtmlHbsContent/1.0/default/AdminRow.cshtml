@@ -17,6 +17,7 @@
     var moduleData = (ModuleContentLimpet)Model.GetDataObject("modulesettings");
     var portalData = (PortalLimpet)Model.GetDataObject("portaldata");
     var globalSettings = new SystemGlobalData();
+    var sessionParams = Model.SessionParamsData;
 
     var info = new SimplisityInfo();
     if (articleRowData != null && articleRowData.Info != null)
@@ -65,7 +66,7 @@
         </div>
         <div class='w3-row'>
             <div class='w3-col m5 w3-padding'>
-                <label>@ResourceKey("HtmlContent.heading")</label>		&nbsp;@EditFlag(DNNrocketUtils.GetEditCulture())
+                <label>@ResourceKey("HtmlContent.heading")</label>		&nbsp;@EditFlag(sessionParams)
                 @TextBox(info, "genxml/lang/genxml/textbox/title", " class='w3-input w3-border' autocomplete='off' ", "", true, 0)
             </div>
             <div class='w3-col m1 w3-padding' style='min-width: 64px;'>
@@ -86,14 +87,13 @@
             </div>
         </div>
         <div class='w3-col m12 w3-padding'>
-            @EditFlag(DNNrocketUtils.GetEditCulture())
+            @EditFlag(sessionParams)
             <div class='w3-col m12'>
                 @CKEditor4(info, "genxml/lang/genxml/textbox/richtext", true)
             </div>
             <div class='w3-col' style='width:0px;height:300px;'></div>
         </div>
     </div>
-
     <div id="imgs" class='w3-row sectionname' style="display:none">
         <div class='w3-col m12 w3-padding '>
             @RenderTemplate("ArticleImages.cshtml", appThemeSystem, Model, true)
@@ -116,13 +116,13 @@
 
     <div id="htmltext" class='w3-row sectionname' style="display:none">
         <div class='w3-col m12 w3-padding'>
-            @EditFlag(DNNrocketUtils.GetEditCulture())
+            @EditFlag(sessionParams)
             @TextArea(info, "genxml/lang/genxml/textbox/htmltext", " class='w3-input w3-border' rows='8' ", "", true, 0)
         </div>
     </div>
     <div id="htmlvideo" class='w3-row sectionname' style="display:none">
         <div class='w3-col m12 w3-padding'>
-            @EditFlag(DNNrocketUtils.GetEditCulture())
+            @EditFlag(sessionParams)
             @TextArea(info, "genxml/lang/genxml/textbox/htmlvideo", " class='w3-input w3-border' rows='8' ", "", true, 0)
         </div>
     </div>
