@@ -48,7 +48,6 @@
         <div class="w3-bar-item w3-bottombar w3-hover-grey w3-padding tablink docstablink" onclick="openSection('docs')">@ResourceKey("DNNrocket.docs")</div>
         <div class="w3-bar-item w3-bottombar w3-hover-grey w3-padding tablink linkstablink" onclick="openSection('links')">@ResourceKey("DNNrocket.links")</div>
         <div class="w3-bar-item w3-bottombar w3-hover-grey w3-padding tablink htmltexttablink" onclick="openSection('htmltext')">@ResourceKey("HtmlHbsContent.htmltext")</div>
-        <div class="w3-bar-item w3-bottombar w3-hover-grey w3-padding tablink htmlvideotablink" onclick="openSection('htmlvideo')">@ResourceKey("HtmlHbsContent.htmlvideo")</div>
         <div class="w3-bar-item w3-bottombar w3-hover-grey w3-padding tablink othertablink" onclick="openSection('other')">@ResourceKey("HtmlHbsContent.extra")</div>
     </div>
 
@@ -62,29 +61,31 @@
                 }
                 imgLayoutList = imgLayoutList.TrimEnd(',');
             }
-            <label>@ResourceKey("HtmlContent.layout")</label>
+            <label>@ResourceKey("HtmlHbsContent.layout")</label>
             @RadioButtonList(info, "genxml/select/layout", "0,1,2,3,4,5,6,7,8", imgLayoutList, "class='w3-input w3-border' ", "0", "", false, 0)
         </div>
         <div class='w3-row'>
-            <div class='w3-col m5 w3-padding'>
-                <label>@ResourceKey("HtmlContent.heading")</label>		&nbsp;@EditFlag(sessionParams)
+            <div class='w3-col m10 w3-padding' style='min-width: 100px;'>
+                <label>@ResourceKey("HtmlHbsContent.heading")</label>		&nbsp;@EditFlag(sessionParams)
                 @TextBox(info, "genxml/lang/genxml/textbox/title", " class='w3-input w3-border' autocomplete='off' ", "", true, 0)
             </div>
-            <div class='w3-col m1 w3-padding' style='min-width: 64px;'>
-                <label>@ResourceKey("HtmlContent.headingstyle")</label>
+            <div class='w3-col m2 w3-padding' style='min-width: 100px;'>
+                <label>@ResourceKey("HtmlHbsContent.headingstyle")</label>
                 @DropDownList(info, "genxml/select/headingstyle", "h1,h2,h3,h4", "H1,H2,H3,H4", "class='w3-select w3-border ' ", "", false, 0)
             </div>
-            <div class='w3-col m2 w3-padding w3-center' style='min-width: 160px;'>
+        </div>
+        <div class='w3-row'>
+            <div class='w3-half w3-padding' style='min-width: 160px;'>
                 <label>&nbsp;</label>
                 @RadioButtonList(info, "genxml/select/headingalign", "0,1,2", "<span class='material-icons'>format_align_left</span>,<span class='material-icons'>format_align_center</span>,<span class='material-icons'>format_align_right</span>", "", "1", "", false, 0, "")
             </div>
-            <div class='w3-col m2 w3-padding'>
-                <label>@ResourceKey("HtmlContent.hideheading")</label><br />
-                @CheckBox(info, "genxml/checkbox/hideheading", "", "class='w3-check' ", false, false, 0)
-            </div>
-            <div class='w3-col m2 w3-padding'>
-                <label>@ResourceKey("HtmlContent.hide")</label><br />
+            <div class='w3-quarter w3-padding'>
+                <label>@ResourceKey("HtmlHbsContent.hide")</label><br />
                 @CheckBox(info, "genxml/checkbox/hiderow", "", "class='w3-check' ", false, false, 0)
+            </div>
+            <div class='w3-quarter w3-padding'>
+                <label>@ResourceKey("HtmlHbsContent.hideheading")</label><br />
+                @CheckBox(info, "genxml/checkbox/hideheading", "", "class='w3-check' ", false, false, 0)
             </div>
         </div>
         <div class='w3-col m12 w3-padding'>
@@ -114,33 +115,14 @@
             @RenderTemplate("ArticleLinks.cshtml", appThemeSystem, Model, true)
         </div>
     </div>
-
     <div id="htmltext" class='w3-row sectionname' style="display:none">
         <div class='w3-col m12 w3-padding'>
             @EditFlag(sessionParams)
             @TextArea(info, "genxml/lang/genxml/textbox/htmltext", " class='w3-input w3-border' rows='8' ", "", true, 0)
         </div>
     </div>
-    <div id="htmlvideo" class='w3-row sectionname' style="display:none">
-        <div class='w3-col m12 w3-padding'>
-            @EditFlag(sessionParams)
-            @TextArea(info, "genxml/lang/genxml/textbox/htmlvideo", " class='w3-input w3-border' rows='8' ", "", true, 0)
-        </div>
-    </div>
-
     <div id="other" class='w3-row sectionname' style="display:none">
-
-            <div class="w3-row w3-margin">
-            <div class="w3-quarter w3-padding">
-                <label>@ResourceKey("HtmlContent.backgroundcolor")</label><br/>
-                @CheckBox(info, "genxml/checkbox/backgroundcolor","&nbsp;" + ResourceKey("HtmlContent.on").ToString(),"class='w3-check'")
-            </div>
-            <div class="w3-third w3-padding ">
-                <label>@ResourceKey("HtmlContent.rowwidth")</label>
-                @TextBox(info, "genxml/textbox/rowwidth", " class='w3-input w3-border' min='0' max='4' step='1'", "4",false,0,"","range")
-            </div>
-            </div>    
-
+        @RenderTemplate("AdminRowExtra.cshtml", appThemeAdmin, Model, true)
     </div>
 
 </div>
