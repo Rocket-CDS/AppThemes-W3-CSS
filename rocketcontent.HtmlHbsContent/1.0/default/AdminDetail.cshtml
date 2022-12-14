@@ -5,9 +5,6 @@
 @using DNNrocketAPI.Components;
 @using RocketPortal.Components;
 
-@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
-@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/")
-
 @{
     var articleData = (ArticleLimpet)Model.GetDataObject("articledata");
     var articleRowData = (ArticleRowLimpet)Model.GetDataObject("articlerow");
@@ -23,7 +20,9 @@
     {
         info = articleRowData.Info;
     }
-    AddProcessData("resourcepath", appThemeView.AppThemeVersionFolderRel + "/resx");
+    AddProcessData("resourcepath", appThemeView.AppThemeFolderRel + "/resx/");
+    AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/");
+    AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/");
 }
 
 <div class="w3-row">

@@ -5,9 +5,6 @@
 @using DNNrocketAPI.Components;
 @using RocketPortal.Components;
 
-@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
-@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/")
-
 @{
     var articleData = (ArticleLimpet)Model.GetDataObject("articledata");
     var articleRowData = (ArticleRowLimpet)Model.GetDataObject("articlerow");
@@ -18,14 +15,20 @@
     var portalData = (PortalLimpet)Model.GetDataObject("portaldata");
     var globalSettings = new SystemGlobalData();
     var sessionParams = Model.SessionParamsData;
-
+    if (sessionParams == null)
+    {
+        sessionParams = new SessionParams(new SimplisityInfo());
+    }
     var info = new SimplisityInfo();
     if (articleRowData != null && articleRowData.Info != null)
     {
         info = articleRowData.Info;
     }
 
-    AddProcessData("resourcepath", appThemeView.AppThemeVersionFolderRel + "/resx");
+    AddProcessData("resourcepath", appThemeView.AppThemeFolderRel + "/resx/");
+    AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/");
+    AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/");
+
 }
 
 
@@ -46,9 +49,9 @@
         <div class="w3-bar-item w3-bottombar w3-hover-grey w3-padding tablink imgstablink" onclick="openSection('imgs')">@ResourceKey("DNNrocket.images")</div>
         <div class="w3-bar-item w3-bottombar w3-hover-grey w3-padding tablink docstablink" onclick="openSection('docs')">@ResourceKey("DNNrocket.docs")</div>
         <div class="w3-bar-item w3-bottombar w3-hover-grey w3-padding tablink linkstablink" onclick="openSection('links')">@ResourceKey("DNNrocket.links")</div>
-        <div class="w3-bar-item w3-bottombar w3-hover-grey w3-padding tablink htmltexttablink" onclick="openSection('htmltext')">@ResourceKey("HtmlContent.htmltext")</div>
-        <div class="w3-bar-item w3-bottombar w3-hover-grey w3-padding tablink htmlvideotablink" onclick="openSection('htmlvideo')">@ResourceKey("HtmlContent.htmlvideo")</div>
-        <div class="w3-bar-item w3-bottombar w3-hover-grey w3-padding tablink othertablink" onclick="openSection('other')">@ResourceKey("HtmlContent.extra")</div>
+        <div class="w3-bar-item w3-bottombar w3-hover-grey w3-padding tablink htmltexttablink" onclick="openSection('htmltext')">@ResourceKey("HtmlHbsContent.htmltext")</div>
+        <div class="w3-bar-item w3-bottombar w3-hover-grey w3-padding tablink htmlvideotablink" onclick="openSection('htmlvideo')">@ResourceKey("HtmlHbsContent.htmlvideo")</div>
+        <div class="w3-bar-item w3-bottombar w3-hover-grey w3-padding tablink othertablink" onclick="openSection('other')">@ResourceKey("HtmlHbsContent.extra")</div>
     </div>
 
     <div id="html" class='w3-row sectionname' style="display:none">

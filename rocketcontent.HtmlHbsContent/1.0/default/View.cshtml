@@ -18,9 +18,9 @@
     var hbsDict = new Dictionary<string, SimplisityInfo>();
     hbsDict.Add("resxlist", RenderRazorUtils.GetResxPaths(Processdata));
 
+    AddProcessData("resourcepath", appThemeView.AppThemeFolderRel + "/resx/");
     AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/");
     AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/");
-    AddProcessData("resourcepath", appThemeView.AppThemeVersionFolderRel + "/resx");
 }
 
 @foreach (var articleRowData in articleData.GetRows())
