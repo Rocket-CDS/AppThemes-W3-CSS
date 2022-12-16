@@ -7,24 +7,24 @@
 
 
 @{
-    var articleData = (ArticleLimpet)Model.List.First();
+    var articleData = (ArticleLimpet)Model.GetDataObject("articledata");
+    var appThemeView = (AppThemeLimpet)Model.GetDataObject("appthemeview");
+    var appThemeAdmin = (AppThemeLimpet)Model.GetDataObject("appthemeadmin");
+    var moduleData = (ModuleContentLimpet)Model.GetDataObject("modulesettings");
+    var portalData = (PortalLimpet)Model.GetDataObject("portaldata");
+    var globalSettings = new SystemGlobalData();
+
+    var hbsDict = new Dictionary<string, SimplisityInfo>();
+    hbsDict.Add("resxlist", RenderRazorUtils.GetResxPaths(Processdata));
+
+    AddProcessData("resourcepath", appThemeView.AppThemeFolderRel + "/resx/");
     AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/");
     AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/");
-    AddProcessData("resourcepath", "/DesktopModules/RocketThemes/" + articleData.ProjectName + "/" + articleData.AdminAppThemeFolder + "/" + articleData.AdminAppThemeFolderVersion + "/resx");
-
-    var appThemeSystem = new AppThemeSystemLimpet(PortalUtils.GetPortalId(), "rocketcontent");
-    var sessionParams = Model.SessionParamsData;
-    var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
-    var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");
-    var portalData = new PortalLimpet(articleData.PortalId);
-    var globalSettings = new SystemGlobalData();
-    var hbsDict = new Dictionary<string, SimplisityInfo>();
-    hbsDict.Add("sessionparams", sessionParams.Info);
-    hbsDict.Add("resxlist", RenderRazorUtils.GetResxPaths(Processdata));
 }
 
 @foreach (var articleRowData in articleData.GetRows())
 {
+    Model.SetDataObject("articlerow",articleRowData)
     var info = articleRowData.Info;
     var layout = info.GetXmlPropertyInt("genxml/select/layout");
     var hStyle = info.GetXmlProperty("genxml/select/headingstyle");
@@ -39,15 +39,35 @@
         wclass = "w3-col m" + info.GetXmlPropertyInt("genxml/textbox/rowwidth");
     }
 
-    hbsDict.Remove("data");
-    hbsDict.Add("data", info);
-
     var bg = "";
     if (info.GetXmlPropertyBool("genxml/checkbox/backgroundcolor"))
     {
         bg = "w3-light-grey";
     }
    
+    var documentalignvalue = info.GetXmlPropertyInt("genxml/select/documentalign");
+    var documentalign = "";
+    if (documentalignvalue == 1)
+    {
+        documentalign = "w3-center";
+    }
+    if (documentalignvalue == 2)
+    {
+        documentalign = "w3-right-align";
+    }
+
+    var linkalignvalue = info.GetXmlPropertyInt("genxml/select/linkalign");
+    var linkalign = "";
+    if (linkalignvalue == 1)
+    {
+        linkalign = "w3-center";
+    }
+    if (linkalignvalue == 2)
+    {
+        linkalign = "w3-right";
+    }
+
+
 <div class="w3-row @bg " rowkey="@articleRowData.RowKey">
 
     @if (!hideRow)
@@ -71,6 +91,7 @@
             {
                 headingalign = "w3-right";
             }
+
             if (hStyle == "")
             {
                 hStyle = "h1";
@@ -88,56 +109,52 @@
 
         @if (layout == 0)
         {
-            @RenderHandleBarsRC(hbsDict, appTheme, "layout0.hbs", remoteModule.ModuleRef)
+            @RenderTemplate("layout0.cshtml", appThemeView, Model)
         }
         @if (layout == 1)
         {
-            @RenderHandleBarsRC(hbsDict, appTheme, "layout1.hbs", remoteModule.ModuleRef)
+            @RenderTemplate("layout1.cshtml", appThemeView, Model)
         }
         @if (layout == 2)
         {
-            @RenderHandleBarsRC(hbsDict, appTheme, "layout2.hbs", remoteModule.ModuleRef)
+            @RenderTemplate("layout2.cshtml", appThemeView, Model)
         }
         @if (layout == 3)
         {
-            @RenderHandleBarsRC(hbsDict, appTheme, "layout3.hbs", remoteModule.ModuleRef)
+            @RenderTemplate("layout3.cshtml", appThemeView, Model)
         }
         @if (layout == 4)
         {
-            @RenderHandleBarsRC(hbsDict, appTheme, "layout4.hbs", remoteModule.ModuleRef)
+            @RenderTemplate("layout4.cshtml", appThemeView, Model)
         }
         @if (layout == 5)
         {
-            @RenderHandleBarsRC(hbsDict, appTheme, "layout5.hbs", remoteModule.ModuleRef)
+            @RenderTemplate("layout5.cshtml", appThemeView, Model)
         }
         @if (layout == 6)
         {
-            @RenderHandleBarsRC(hbsDict, appTheme, "layout6.hbs", remoteModule.ModuleRef)
+            @RenderTemplate("layout6.cshtml", appThemeView, Model)
         }
         @if (layout == 7)
         {
-            @RenderHandleBarsRC(hbsDict, appTheme, "layout7.hbs", remoteModule.ModuleRef)
+            @RenderTemplate("layout7.cshtml", appThemeView, Model)
         }
         @if (layout == 8)
         {
-            @RenderHandleBarsRC(hbsDict, appTheme, "layout8.hbs", remoteModule.ModuleRef)
+            @RenderTemplate("layout8.cshtml", appThemeView, Model)
         }
 
         @if (info.GetXmlProperty("genxml/lang/genxml/textbox/htmltext") != "")
         {
-            @RenderHandleBarsRC(hbsDict, appTheme, "htmltext.hbs", remoteModule.ModuleRef)
+            @RenderTemplate("htmltext.cshtml", appThemeView, Model)
         }
         @if (articleRowData.GetDocList().Count > 0)
         {
-            @RenderHandleBarsRC(hbsDict, appTheme, "documents.hbs", remoteModule.ModuleRef)
-        }
-        @if (info.GetXmlProperty("genxml/lang/genxml/textbox/htmlvideo") != "")
-        {
-            @RenderHandleBarsRC(hbsDict, appTheme, "htmlvideo.hbs", remoteModule.ModuleRef)
+            @RenderTemplate("documents.cshtml", appThemeView, Model)
         }
         @if (articleRowData.Getlinks().Count > 0)
         {
-            @RenderHandleBarsRC(hbsDict, appTheme, "links.hbs", remoteModule.ModuleRef)
+            @RenderTemplate("links.cshtml", appThemeView, Model)
         }
 
         </div>

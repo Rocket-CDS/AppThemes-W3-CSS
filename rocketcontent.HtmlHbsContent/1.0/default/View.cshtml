@@ -162,10 +162,6 @@
         {
             @RenderHandleBarsRC(hbsDict, appThemeView, "documents.hbs", moduleData.ModuleRef)
         }
-        @if (info.GetXmlProperty("genxml/lang/genxml/textbox/htmlvideo") != "")
-        {
-            @RenderHandleBarsRC(hbsDict, appThemeView, "htmlvideo.hbs", moduleData.ModuleRef)
-        }
         @if (articleRowData.Getlinks().Count > 0)
         {
             @RenderHandleBarsRC(hbsDict, appThemeView, "links.hbs", moduleData.ModuleRef)
