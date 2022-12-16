@@ -12,7 +12,6 @@
     var appThemeAdmin = (AppThemeLimpet)Model.GetDataObject("appthemeadmin");
     var moduleData = (ModuleContentLimpet)Model.GetDataObject("modulesettings");
     var portalData = (PortalLimpet)Model.GetDataObject("portaldata");
-    var cmdappendix = Model.GetSetting("cmdappendix");
     var globalSettings = new SystemGlobalData();
 
     var hbsDict = new Dictionary<string, SimplisityInfo>();
@@ -45,8 +44,38 @@
         bg = "w3-light-grey";
     }
    
+    var documentalignvalue = info.GetXmlPropertyInt("genxml/select/documentalign");
+    var documentalign = "";
+    if (documentalignvalue == 1)
+    {
+        documentalign = "w3-center";
+    }
+    if (documentalignvalue == 2)
+    {
+        documentalign = "w3-right-align";
+    }
+
+    var linkalignvalue = info.GetXmlPropertyInt("genxml/select/linkalign");
+    var linkalign = "";
+    if (linkalignvalue == 1)
+    {
+        linkalign = "w3-center";
+    }
+    if (linkalignvalue == 2)
+    {
+        linkalign = "w3-right";
+    }
+
+    var settingsInfo = new SimplisityInfo();
+    settingsInfo.SetXmlProperty("genxml/linkalign", linkalign);
+    settingsInfo.SetXmlProperty("genxml/documentalign", documentalign);
+
+    hbsDict.Remove("settings");
+    hbsDict.Add("settings", settingsInfo);
+
     hbsDict.Remove("data");
     hbsDict.Add("data", info);
+
 
 <div class="w3-row @bg " rowkey="@articleRowData.RowKey">
 
@@ -71,6 +100,7 @@
             {
                 headingalign = "w3-right";
             }
+
             if (hStyle == "")
             {
                 hStyle = "h1";
