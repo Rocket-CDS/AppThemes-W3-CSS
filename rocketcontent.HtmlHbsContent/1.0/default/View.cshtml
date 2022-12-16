@@ -69,7 +69,8 @@
     var settingsInfo = new SimplisityInfo();
     settingsInfo.SetXmlProperty("genxml/linkalign", linkalign);
     settingsInfo.SetXmlProperty("genxml/documentalign", documentalign);
-
+    settingsInfo.SetXmlProperty("genxml/engineurl", portalData.EngineUrlWithProtocol);    
+    
     hbsDict.Remove("settings");
     hbsDict.Add("settings", settingsInfo);
 
