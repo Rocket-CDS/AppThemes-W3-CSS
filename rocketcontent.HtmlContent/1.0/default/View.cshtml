@@ -14,9 +14,6 @@
     var portalData = (PortalLimpet)Model.GetDataObject("portaldata");
     var globalSettings = new SystemGlobalData();
 
-    var hbsDict = new Dictionary<string, SimplisityInfo>();
-    hbsDict.Add("resxlist", RenderRazorUtils.GetResxPaths(Processdata));
-
     AddProcessData("resourcepath", appThemeView.AppThemeFolderRel + "/resx/");
     AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/");
     AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/");
@@ -24,7 +21,7 @@
 
 @foreach (var articleRowData in articleData.GetRows())
 {
-    Model.SetDataObject("articlerow",articleRowData)
+    Model.SetDataObject("articlerow", articleRowData);
     var info = articleRowData.Info;
     var layout = info.GetXmlPropertyInt("genxml/select/layout");
     var hStyle = info.GetXmlProperty("genxml/select/headingstyle");
@@ -43,30 +40,7 @@
     if (info.GetXmlPropertyBool("genxml/checkbox/backgroundcolor"))
     {
         bg = "w3-light-grey";
-    }
-   
-    var documentalignvalue = info.GetXmlPropertyInt("genxml/select/documentalign");
-    var documentalign = "";
-    if (documentalignvalue == 1)
-    {
-        documentalign = "w3-center";
-    }
-    if (documentalignvalue == 2)
-    {
-        documentalign = "w3-right-align";
-    }
-
-    var linkalignvalue = info.GetXmlPropertyInt("genxml/select/linkalign");
-    var linkalign = "";
-    if (linkalignvalue == 1)
-    {
-        linkalign = "w3-center";
-    }
-    if (linkalignvalue == 2)
-    {
-        linkalign = "w3-right";
-    }
-
+    }  
 
 <div class="w3-row @bg " rowkey="@articleRowData.RowKey">
 

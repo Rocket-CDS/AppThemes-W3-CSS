@@ -1,0 +1,13 @@
+﻿@inherits RocketContent.Components.RocketContentTokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI;
+@using Simplisity;
+@using RocketContent.Components;
+@using DNNrocketAPI.Components;
+@using RocketPortal.Components;
+
+@{
+var articleRow = (ArticleRowLimpet)Model.GetDataObject("articlerow");
+var info = articleRow.Info;
+}
+
+@HtmlOf(info.GetXmlProperty("genxml/lang/genxml/textbox/htmltext"))
