@@ -83,52 +83,52 @@
 
         @if (layout == 0)
         {
-            @RenderTemplate("layout0.cshtml", appThemeView, Model)
+                    @RenderTemplate("layout0.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
         }
         @if (layout == 1)
         {
-            @RenderTemplate("layout1.cshtml", appThemeView, Model)
+                    @RenderTemplate("layout1.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
         }
         @if (layout == 2)
         {
-            @RenderTemplate("layout2.cshtml", appThemeView, Model)
+                    @RenderTemplate("layout2.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
         }
         @if (layout == 3)
         {
-            @RenderTemplate("layout3.cshtml", appThemeView, Model)
+                    @RenderTemplate("layout3.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
         }
         @if (layout == 4)
         {
-            @RenderTemplate("layout4.cshtml", appThemeView, Model)
+                    @RenderTemplate("layout4.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
         }
         @if (layout == 5)
         {
-            @RenderTemplate("layout5.cshtml", appThemeView, Model)
+                    @RenderTemplate("layout5.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
         }
         @if (layout == 6)
         {
-            @RenderTemplate("layout6.cshtml", appThemeView, Model)
+                    @RenderTemplate("layout6.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
         }
         @if (layout == 7)
         {
-            @RenderTemplate("layout7.cshtml", appThemeView, Model)
+                    @RenderTemplate("layout7.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
         }
         @if (layout == 8)
         {
-            @RenderTemplate("layout8.cshtml", appThemeView, Model)
+                    @RenderTemplate("layout8.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
         }
 
         @if (info.GetXmlProperty("genxml/lang/genxml/textbox/htmltext") != "")
         {
-            @RenderTemplate("htmltext.cshtml", appThemeView, Model)
+                    @RenderTemplate("htmltext.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
         }
         @if (articleRowData.GetDocList().Count > 0)
         {
-            @RenderTemplate("documents.cshtml", appThemeView, Model)
+                    @RenderTemplate("documents.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
         }
         @if (articleRowData.Getlinks().Count > 0)
         {
-            @RenderTemplate("links.cshtml", appThemeView, Model)
+                    @RenderTemplate("links.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
         }
 
         </div>
