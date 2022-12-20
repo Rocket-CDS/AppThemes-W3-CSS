@@ -5,7 +5,10 @@
 @using RocketPortal.Components;
 
 @{
+    var appThemeView = (AppThemeLimpet)Model.GetDataObject("appthemeview");
     var portalData = (PortalLimpet)Model.GetDataObject("portaldata");
 }
 
 <link rel="stylesheet" href="@(portalData.EngineUrlWithProtocol)/DesktopModules/DNNrocket/css/w3.css" )">
+<link rel="stylesheet" href="@(portalData.EngineUrlWithProtocol)@(appThemeView.AppThemeFolderRel)/css/HtmlContent.css" )">
+

@@ -25,7 +25,7 @@
         info = articleRowData.Info;
     }
 
-    AddProcessData("resourcepath", appThemeView.AppThemeFolderRel + "/resx/");
+    AddProcessData("resourcepath", appThemeAdmin.AppThemeFolderRel + "/resx/");
     AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/");
     AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/");
 
@@ -101,7 +101,7 @@
             </div>
             <div class="w3-half w3-padding ">
                 <label>@ResourceKey("HtmlContent.rowwidth")</label>
-                @TextBox(info, "genxml/textbox/rowwidth", " class='' min='0' max='12' step='2'", "12", false, 0, "", "range")
+                @TextBox(info, "genxml/textbox/rowwidth", " class='w3-input' min='0' max='12' step='2'", "12", false, 0, "", "range")
             </div>
         </div>
 

@@ -165,4 +165,10 @@
   <data name="on.Text" xml:space="preserve">
     <value>On</value>
   </data>
+  <data name="spacing.Text" xml:space="preserve">
+    <value>Spacing</value>
+  </data>
+  <data name="backgroundcolorclass.Text" xml:space="preserve">
+    <value>Background Color Class</value>
+  </data>
 </root>

@@ -35,14 +35,13 @@
         swclass = "w3-col m" + (info.GetXmlPropertyInt("genxml/textbox/rowwidth") / 2).ToString();
         wclass = "w3-col m" + info.GetXmlPropertyInt("genxml/textbox/rowwidth");
     }
-
-    var bg = "";
+    var bgclass = "";
     if (info.GetXmlPropertyBool("genxml/checkbox/backgroundcolor"))
     {
-        bg = "w3-light-grey";
-    }  
+        bgclass = moduleData.Record.GetXmlProperty("genxml/settings/backgroundcolorclass");
+    }
 
-<div class="w3-row @bg " rowkey="@articleRowData.RowKey">
+    <div class="w3-row @(bgclass) " rowkey="@articleRowData.RowKey">
 
     @if (!hideRow)
     {
