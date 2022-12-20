@@ -32,8 +32,4 @@
     </Reference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="rocketcontent.HtmlContent\1.0\img\" />
-  </ItemGroup>
-
 </Project>
