@@ -5,26 +5,64 @@
 @using DNNrocketAPI.Components;
 @using RocketPortal.Components;
 
-@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
-@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/")
-
 @{
-    var appThemeSystem = new AppThemeSystemLimpet("rocketcontent");
-    var sessionParams = Model.SessionParamsData;
-    var articleData = (ArticleLimpet)Model.List.First();
-    var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
-    var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");
-    var portalData = new PortalLimpet(articleData.PortalId);
+    var articleData = (ArticleLimpet)Model.GetDataObject("articledata");
+    var appThemeView = (AppThemeLimpet)Model.GetDataObject("appthemeview");
+    var appThemeAdmin = (AppThemeLimpet)Model.GetDataObject("appthemeadmin");
+    var moduleData = (ModuleContentLimpet)Model.GetDataObject("modulesettings");
+    var portalData = (PortalLimpet)Model.GetDataObject("portaldata");
     var globalSettings = new SystemGlobalData();
+    var articleRowData = (ArticleRowLimpet)Model.GetDataObject("articlerow");
 
-    var hbsDict = new Dictionary<string, SimplisityInfo>();
-    foreach (ArticleLimpet o in Model.List)
-    {
-        hbsDict.Add("data", o.Info);
-    }
-    hbsDict.Add("sessionparams", sessionParams.Info);
-    hbsDict.Add("remotemodule", new SimplisityInfo(remoteModule.Record));
+    var title = articleRowData.Info.GetXmlProperty("genxml/lang/genxml/textbox/title");
+    var summary = articleRowData.Info.GetXmlProperty("genxml/lang/genxml/textbox/summary");
+    var buttontext = articleRowData.Info.GetXmlProperty("genxml/lang/genxml/textbox/text");
+    var buttonurl = articleRowData.Info.GetXmlProperty("genxml/lang/genxml/textbox/url");
+    var imgData = articleRowData.GetImage(0);
+
+    AddProcessDataResx(appThemeView);
+    AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/");
+}
+@if (imgData.RelPath == "")
+{
+    <div class="w3-container w3-red w3-center" style="padding:128px 8px">
+        @if (title != "")
+        {
+            <h1 class="w3-margin w3-jumbo">@title</h1>
+        }
+        @if (summary != "")
+        {
+            <p class="w3-xlarge">@summary</p>
+        }
+        @if (buttonurl != "" && buttontext != "")
+        {
+            <a href="@buttonurl" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">@buttontext</a>
+        }
+    </div>
+}
+else
+{
+    <div class="w3-display-container w3-animate-opacity">
+        <img src="@ThumbnailImageUrl(imgData.RelPath,2000,400,"",false)" alt="boat" style="width:100%;min-height:100px;max-height:400px;">
+        <div class="w3-container w3-display-middle w3-center">
+            @if (title != "")
+            {
+                <h1 class="w3-margin w3-jumbo">@title</h1>
+            }
+            @if (summary != "")
+            {
+                <p class="w3-xlarge">@summary</p>
+            }
+            @if (buttonurl != "" && buttontext != "")
+            {
+                <a href="@buttonurl" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">@buttontext</a>
+            }
+        </div>
+    </div>
+
 }
 
-@RenderHandleBarsRC(hbsDict, appTheme, "view.hbs", remoteModule.ModuleRef)
+
+
+
 

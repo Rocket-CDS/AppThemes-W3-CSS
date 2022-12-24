@@ -40,14 +40,14 @@
         bgclass = moduleData.Record.GetXmlProperty("genxml/settings/backgroundcolorclass");
     }
 
-    <div class="w3-row @(bgclass) " rowkey="@articleRowData.RowKey" style="margin-top: @(info.GetXmlProperty("genxml/textbox/spacingtop"))px; margin-bottom: @(info.GetXmlProperty("genxml/textbox/spacingbottom"))px;">
+    <div class="w3-row @(bgclass) " rowkey="@articleRowData.RowKey" style="padding-top: @(info.GetXmlProperty("genxml/textbox/spacingtop"))px; padding-bottom: @(info.GetXmlProperty("genxml/textbox/spacingbottom"))px;">
 
     @if (!hideRow)
     {
         if (swclass != "")
         {
-            <div class="@swclass">&nbsp;</div>            
-        }
+                <div class="@swclass">&nbsp;</div>
+            }
 
         <div class="@wclass">
 
@@ -133,7 +133,7 @@
 
         if (swclass != "")
         {
-            <div class="@swclass">&nbsp;</div>            
+                <div class="@swclass">&nbsp;</div>
         }
 
     }

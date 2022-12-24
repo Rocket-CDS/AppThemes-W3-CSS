@@ -4,13 +4,15 @@
 @using Simplisity;
 
 @{
-    var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
-    var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");
-    var info = new SimplisityInfo(remoteModule.Record);
+    var appThemeAdmin = (AppThemeLimpet)Model.GetDataObject("appthemeadmin");
+    var moduleData = (ModuleContentLimpet)Model.GetDataObject("modulesettings");
+    var info = new SimplisityInfo(moduleData.Record);
+
+    AddProcessDataResx(appThemeAdmin);
+    AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/");
+
+    //NOTE: xPath for module settings must use "genxml/settings/*"
 }
-@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
-@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketCatalog/App_LocalResources/")
-@AddProcessData("resourcepath", appTheme.AppThemeVersionFolderRel + "/resx/")
 
 <div class="w3-third w3-padding">
     <label>@ResourceKey("DNNrocket.imageresize") (px)</label>

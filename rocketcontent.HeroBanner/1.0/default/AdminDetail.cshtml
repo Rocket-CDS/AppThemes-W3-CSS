@@ -9,37 +9,59 @@
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/")
 
 @{
-    var info = new SimplisityInfo();
-    var appThemeSystem = new AppThemeSystemLimpet("rocketcontent");
-    var sessionParams = Model.SessionParamsData;
-    var articleData = (ArticleLimpet)Model.List.First();
-    var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
+    var articleData = (ArticleLimpet)Model.GetDataObject("articledata");
     var articleRowData = (ArticleRowLimpet)Model.GetDataObject("articlerow");
-    var remoteModule = (RemoteModule)Model.GetDataObject("remotemodule");
-    var portalData = new PortalLimpet(articleData.PortalId);
-
-    if (articleRowData.Info != null)
+    var appThemeView = (AppThemeLimpet)Model.GetDataObject("appthemeview");
+    var appThemeAdmin = (AppThemeLimpet)Model.GetDataObject("appthemeadmin");
+    var appThemeSystem = (AppThemeSystemLimpet)Model.GetDataObject("appthemesystem");
+    var moduleData = (ModuleContentLimpet)Model.GetDataObject("modulesettings");
+    var portalData = (PortalLimpet)Model.GetDataObject("portaldata");
+    var globalSettings = new SystemGlobalData();
+    var sessionParams = Model.SessionParamsData;
+    var info = new SimplisityInfo();
+    if (articleRowData != null && articleRowData.Info != null)
     {
         info = articleRowData.Info;
     }
 
+    AddProcessDataResx(appThemeView, true);
+    AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/");
 }
-
-@AddProcessData("resourcepath", "/DesktopModules/RocketThemes/" + articleData.Organisation + "/" + articleData.AdminAppThemeFolder + "/" + articleData.AdminAppThemeFolderVersion + "/resx/")
 
 <!-- require Key for saving -->
 @HiddenField(info, "genxml/config/rowkey")
 @HiddenField(info, "genxml/lang/genxml/config/rowkeylang", "", articleRowData.RowKey)
-
 <!-------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
-
 <div class="w3-content" style="max-width:1200px">
-    @RenderTemplate("ArticleImages.cshtml", appTheme, Model, true)
-    @{
-        Model.SetSetting("imageresize", "1200");
-    }
-    @RenderTemplate("ArticleImageSelect.cshtml", appThemeSystem, Model, true)
+
+    <div class="w3-col m10 ">
+        <div class="w3-col m12 w3-padding">
+            <label>@ResourceKey("DNNrocket.title")&nbsp;@EditFlag(sessionParams)</label>
+            @TextBox(info, "genxml/lang/genxml/textbox/title", "class='w3-input w3-border'  MaxLength='250' ", "", true)
+        </div>
+        <div class="w3-col m12 w3-padding">
+            <label>@ResourceKey("DNNrocket.summary")&nbsp;@EditFlag(sessionParams)</label>
+            @TextArea(info, "genxml/lang/genxml/textbox/summary", "class='w3-input w3-border' ", "", true)
+        </div>
+        <div class="w3-col m12 w3-padding">
+            <label>@ResourceKey("DNNrocket.text")&nbsp;@EditFlag(sessionParams)</label>
+            @TextBox(info, "genxml/lang/genxml/textbox/text", "class='w3-input w3-border' MaxLength='200'", "", true)
+        </div>
+        <div class="w3-col m12 w3-padding">
+            <label>@ResourceKey("DNNrocket.url")&nbsp;@EditFlag(sessionParams)</label>
+            @TextBox(info, "genxml/lang/genxml/textbox/url", "class='w3-input w3-border' MaxLength='1200'", "", true)
+        </div>
+
+    </div>
+    <div class="w3-col m10 ">
+        <div class="w3-xlarge">@ResourceKey("DNNrocket.images")</div>
+        @RenderTemplate("ArticleImages.cshtml", appThemeSystem, Model, true)
+        @RenderTemplate("ArticleImageSelect.cshtml", appThemeSystem, Model, true)
+    </div>
+
+
+
 </div>
 
 <script>
