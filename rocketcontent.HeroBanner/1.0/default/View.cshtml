@@ -25,7 +25,7 @@
 }
 @if (imgData.RelPath == "")
 {
-    <div class="w3-container w3-red w3-center" style="padding:128px 8px">
+    <div class="w3-container w3-red w3-center" style="padding:64px 8px">
         @if (title != "")
         {
             <h1 class="w3-margin w3-jumbo">@title</h1>
@@ -42,7 +42,7 @@
 }
 else
 {
-    <div class="w3-display-container w3-animate-opacity">
+    <div class="w3-display-container w3-black w3-animate-opacity">
         <img src="@ThumbnailImageUrl(imgData.RelPath,2000,400,"",false)" alt="boat" style="width:100%;min-height:100px;max-height:400px;">
         <div class="w3-container w3-display-middle w3-center">
             @if (title != "")
