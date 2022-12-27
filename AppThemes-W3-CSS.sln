@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppThemes-W3-CSS", "AppThemes-W3-CSS.csproj", "{48A0E13C-0AA5-4C1C-981F-9EEAB05F6AD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppThemes-W3-CSS", "AppThemes-W3-CSS.csproj", "{48A0E13C-0AA5-4C1C-981F-9EEAB05F6AD6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7397D856-8C4F-4CF8-84BA-DDAABC7A2D9C}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Portals\1\RocketThemes\RocketEcommerce\Default\1.0\default\CartList.cshtml = ..\..\..\Portals\1\RocketThemes\RocketEcommerce\Default\1.0\default\CartList.cshtml
+		..\..\..\Portals\1\RocketThemes\RocketEcommerce\Default\1.0\default\CartListBody.cshtml = ..\..\..\Portals\1\RocketThemes\RocketEcommerce\Default\1.0\default\CartListBody.cshtml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
