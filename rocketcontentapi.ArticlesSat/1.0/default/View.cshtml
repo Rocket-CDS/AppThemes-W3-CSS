@@ -1,0 +1,52 @@
+﻿@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@AssigDataModel(Model)
+@AddProcessDataResx(appThemeView, true)
+@AddProcessData("resourcepath", "/DesktopModules/RocketThemes/AppTheme-AgenceSesame/rocketcontentapi.Articles/1.0/resx")
+<!--inject-->
+@{
+    var limit = moduleData.GetSettingInt("limit");
+    var width = moduleData.GetSettingInt("width");
+    var height = moduleData.GetSettingInt("height");
+    var allNewsUrl = PagesUtils.NavigateURL(moduleData.GetSettingInt("listpage"));
+}
+
+
+@{
+    var lp = 1;
+}
+
+
+<div class="w3-container">
+    <h3>@ResourceKey("Articles.latestnews")</h3>
+    @foreach (var articleRowData in articleData.GetRows())
+    {
+        if (!articleRowData.GetBool("genxml/checkbox/hiderow"))
+        {
+            var rowData = articleRowData.Info;
+            var title = rowData.GetXmlProperty("genxml/lang/genxml/textbox/title");
+            var articleImage = articleRowData.GetImage(0);
+
+            <div class="w3-row">
+                @if (moduleData.GetSettingBool("ecomode"))
+                {
+                    <div class="w3-padding">
+                        <img src="@ImageUrl(articleImage.RelPathWebp, width, height)" alt="@(articleImage.Alt)" />
+                    </div>
+                }
+                <div class="w3-xlarge"><a href="@(DetailUrl(moduleData.GetSettingInt("listpage"), title, articleRowData.RowKey))">@title</a></div>
+                <div class="w3-small">@DateOf(rowData,"genxml/textbox/newsdate", sessionParams.CultureCode,"d MMM yyyy")</div>
+            </div>
+
+            if (lp == limit)
+            {
+                break;
+            }
+        }
+        lp++;
+    }
+
+    <div class="w3-row">
+        <a class="w3-button w3-xlarge w3-theme-action" href="@(allNewsUrl)">@ResourceKey("Articles.allnews")</a>
+    </div>
+</div>

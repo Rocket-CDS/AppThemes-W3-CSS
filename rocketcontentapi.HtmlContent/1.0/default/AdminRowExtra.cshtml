@@ -1,0 +1,17 @@
+@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@AssigDataModel(Model)
+@AddProcessDataResx(appThemeView, true)
+<!--inject-->
+<div class="w3-row w3-padding ">
+    <label>@ResourceKey("HtmlContent.spacingtop")</label>
+    @TextBox(info, "genxml/textbox/spacingtop", " class='w3-input' min='0' max='300' step='10'", "0", false, 0, "", "range")
+</div>    
+
+<div class="w3-row w3-padding ">
+    <label>@ResourceKey("HtmlContent.spacingbottom")</label>
+    @TextBox(info, "genxml/textbox/spacingbottom", " class='w3-input' min='0' max='300' step='10'", "0", false, 0, "", "range")
+</div>    
+
+
+
+

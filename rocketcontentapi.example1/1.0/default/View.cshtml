@@ -1,0 +1,12 @@
+﻿@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@AssigDataModel(Model)
+@AddProcessDataResx(appThemeView, true)
+<!--inject-->
+@{
+    var articleImage = articleRowData.GetImage(0);
+}
+<h1>@headerData.GetXmlProperty("genxml/header/headingtitle")</h1>
+
+<h2>@rowData.GetXmlProperty("genxml/lang/genxml/textbox/title")</h2>
+
+<img src="@ImageUrl(articleImage.RelPathWebp,200,200,"","webp")" />

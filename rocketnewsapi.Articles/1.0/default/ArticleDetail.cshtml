@@ -1,0 +1,44 @@
+﻿@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using RocketDirectoryAPI.Components;
+@AssigDataModel(Model)
+@AddProcessDataResx(appTheme, true)
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
+<!--inject-->
+<div class="w3-container">
+
+    <div class="w3-container">
+        <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)" class="w3-button w3-green">@ButtonIconText(ButtonTypes.back)</a>
+    </div>
+
+    <div class="w3-container">
+
+        <div class="w3-center">
+            <h1>@articleData.Name</h1>
+        </div>
+        <div class="w3-large w3-text-blue">
+            @DateOf(articleData.Info, "genxml/textbox/newsdate", false, sessionParams.CultureCode)
+        </div>
+        <div class="w3-row ">
+            <div class="w3-quarter w3-padding">
+                <div class="w3-row w3-padding">
+                    <img id="mainimage@(articleData.ArticleId)" src="@ImageUrl(articleData.GetImage(0).RelPathWebp,300,300)" alt="@articleData.GetImage(0).Alt" class="w3-round" />
+                </div>
+                <div class="w3-row">
+                @foreach (var i in articleData.GetImages())
+                {
+                    <div class="w3-col l4 m6 w3-padding w3-hide-small">
+                        <img src="@ImageUrl(i.RelPathWebp,300,300)" alt="@i.Name" onMouseOver="$('#mainimage@(articleData.ArticleId)').prop('src','@ImageUrl(i.RelPathWebp,300,300)');"  style="width: 100%" />
+                    </div>
+                }
+                </div>
+            </div>
+            <div class="w3-threequarter w3-padding">
+                <div>@BreakOf(articleData.Summary)</div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

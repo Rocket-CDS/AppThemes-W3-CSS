@@ -1,0 +1,11 @@
+﻿@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@AssigDataModel(Model)
+@AddProcessDataResx(appThemeView, true)
+<!--inject-->
+
+<div class="w3-row w3-padding">
+    <label>@ResourceKey("DNNrocket.heading")</label>
+    @TextBox(headerData, "genxml/header/headingtitle", " class='w3-input w3-border' autocomplete='off' ", "", false, 0)
+</div>
+
+[INJECT:appthemeadmin,AdminRow.cshtml]

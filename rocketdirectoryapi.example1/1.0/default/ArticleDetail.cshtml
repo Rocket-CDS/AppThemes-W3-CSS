@@ -1,0 +1,26 @@
+﻿@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using RocketDirectoryAPI.Components;
+@AssigDataModel(Model)
+@AddProcessDataResx(appTheme, true)
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
+<!--inject-->
+<div class="w3-container">
+
+    <div class="w3-container">
+        <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)" class="w3-button w3-green">@ButtonIconText(ButtonTypes.back)</a>
+    </div>
+
+    <div class="articledetail-left">
+
+        <h1>@articleData.Name</h1>
+
+        <div>@BreakOf(articleData.Summary)</div>
+
+        <div>
+            <img src="@ImageUrl(articleData.GetImage(0).RelPathWebp,300,300)" alt="@articleData.GetImage(0).Alt" />
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,36 @@
+﻿@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using RocketDirectoryAPI.Components;
+@AssigDataModel(Model)
+@AddProcessDataResx(appTheme, true)
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
+<!--inject-->
+@{
+    var articleList = articleDataList.GetArticleList();
+}
+<div class="articlewrapper">
+
+[INJECT:appthemedirectorydefault,SearchBanner.cshtml]
+
+<h1>Name: @categoryData.Name</h1>
+    <div class="w3-row w3-padding">
+
+        @foreach (ArticleLimpet articleData in articleList)
+        {
+            <div class="w3-col m3 w3-center">
+                <a href="@DetailUrl(moduleData.DetailPageTabId(), articleData, categoryData)" title="@articleData.Name" onclick="$('#simplisity_loader').show();">
+                    <img src="@ImageUrl(articleData.GetImage(0).RelPathWebp,120,120)" alt="@articleData.GetImage(0).Alt" />
+                    <div class="w3-container">
+                    <b>@articleData.Name</b>
+                    </div>
+                </a>
+            </div>
+        }
+
+    </div>
+
+    <div class="w3-row w3-padding-16 w3-center">
+            @RenderTemplate("articlePaging.cshtml", appThemeDirectoryDefault, Model, false)
+    </div>
+
+</div>

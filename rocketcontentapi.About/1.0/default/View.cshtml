@@ -1,0 +1,27 @@
+﻿@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using RocketContentAPI.Components;
+@AssigDataModel(Model)
+@AddProcessDataResx(appThemeView, true)
+<!--inject-->
+@{
+    var articleImage = articleRowData.GetImage(0);
+    var linkData = articleRowData.Getlink(0);
+}
+<div class="@(moduleData.GetSetting("cssclass"))">
+    <div class="w3-container">
+        <img src="@ImageUrl(articleImage.RelPathWebp, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+        @if (info.GetXmlProperty("genxml/lang/genxml/textbox/content") != "")
+        {
+            <p>
+                @info.GetXmlProperty("genxml/lang/genxml/textbox/content")
+            </p>
+        }
+        @if (!linkData.Hidden && !linkData.IsDisabled)
+        {
+            <a href="@(linkData.Url)" target="@(linkData.Target)">@linkData.Name</a>
+        }
+    </div>
+</div>
+
+

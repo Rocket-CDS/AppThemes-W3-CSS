@@ -1,0 +1,122 @@
+﻿@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using RocketDirectoryAPI.Components;
+@AssigDataModel(Model)
+@AddProcessDataResx(appTheme, true)
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
+<!--inject-->
+@{
+    var articleList = articleDataList.GetArticleList();
+}
+<div class="articlewrapper">
+
+    @if (sessionParams.GetInt("catid") == 0)
+    {
+        <h1>@portalData.Name</h1>
+    }
+    else
+    {
+        <h1>@categoryData.Name</h1>
+    }
+
+[INJECT:appthemedirectorydefault,SearchBanner.cshtml]
+
+    @if (articleList.Count > 0)
+    {
+    <div class="articlelist">
+
+            @foreach (ArticleLimpet articleData in articleList)
+            {
+                var urlparams = new Dictionary<string, string>();
+                urlparams.Add("articleid", articleData.ArticleId.ToString());
+                var hreflink = DNNrocketUtils.NavigateURL(sessionParams.TabId, urlparams, articleData.Name);
+                var date = articleData.Info.GetXmlPropertyDate("genxml/textbox/publisheddate");
+                var dateFormat = date.ToString("dd/MM/yyyy");
+
+                <div class="article">
+                    <div class="article-image">
+                        <a href="@(hreflink)" title="@articleData.Name" onclick="$('#simplisity_loader').show();">
+                            <img src="@ImageUrl(articleData.GetImage(0).RelPathWebp,120,0)" alt="@articleData.GetImage(0).Alt" />
+                        </a>
+                    </div>
+                    <div class="article-content">
+                        <h2><a href="@(hreflink)" title="@articleData.Name" onclick="$('#simplisity_loader').show();">@articleData.Name</a></h2>
+                        <div class="article-tags">
+                            @foreach (var c in articleData.GetCategories())
+                            {
+                                    <span>@c.Name</span>
+                            }
+                        </div>
+                        <div class="article-summary truncate">@BreakOf(articleData.Summary)</div>
+                        <div class="article-infos">
+                            <div>
+                                <span>Auteur(s) :</span>
+                                @foreach (var p in articleData.GetProperties())
+                                {
+                                    if (p.IsInGroup("Auteur"))
+                                    {
+                                            <span class="commalist">@p.Name</span>
+                                    }
+                                }
+                            </div>
+                            <div class="sep">|</div>
+                            <div>@ResourceKey("Theme.publicationdate", sessionParams.CultureCode) : @dateFormat</div>
+                            <div class="sep">|</div>
+                            <div>
+                                <span>Type(s) de document :</span>
+                                @foreach (var p in articleData.GetProperties())
+                                {
+                                    if (p.IsInGroup("Type"))
+                                    {
+                                            <span class="commalist">@p.Name</span>
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <div class="article-markers">
+                            @foreach (var p in articleData.GetProperties())
+                            {
+                                if (p.IsInGroup("Territoire"))
+                                {
+                                        <span class="commalist">@p.Name</span>
+                                }
+                            }
+                        </div>
+                        <div>
+                            @if (articleData.Info.GetXmlProperty("genxml/textbox/phone") != "")
+                            {
+                                var clictel = articleData.Info.GetXmlProperty("genxml/textbox/mobile");
+                                    <a href="tel:@clictel">@articleData.Info.GetXmlProperty("genxml/textbox/phone")</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+
+    </div>
+
+    <div class="w3-row w3-padding-16 w3-center">
+            @RenderTemplate("articlePaging.cshtml", appThemeDirectoryDefault, Model, false)
+    </div>
+
+    }
+    else
+    {
+            <div class="h2-headline">@ResourceKey("DNNrocket.notfound")</div>
+    }
+
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+        $(function(){
+            $('.truncate').succinct({
+                size: 200
+            });
+        });
+
+    });
+
+</script>

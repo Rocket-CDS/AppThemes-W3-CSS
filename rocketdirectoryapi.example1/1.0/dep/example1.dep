@@ -1,0 +1,40 @@
+﻿<genxml>
+	<deps list="true">
+		<genxml>
+			<ctrltype><![CDATA[css]]></ctrltype>
+			<url><![CDATA[/DesktopModules/DNNrocket/css/w3.css]]></url>
+		</genxml>
+		<genxml>
+			<ctrltype><![CDATA[css]]></ctrltype>
+			<url><![CDATA[https://fonts.googleapis.com/icon?family=Material+Icons]]></url>
+		</genxml>
+	</deps>
+	<moduletemplates list="true">
+		<genxml>
+			<file><![CDATA[view.cshtml]]></file>
+			<name><![CDATA[List View]]></name>
+		</genxml>
+	</moduletemplates>
+	<adminpanelinterfacekeys list="true">
+		<genxml>
+			<interfacekey>articleadmin</interfacekey>
+			<show>true</show>
+		</genxml>
+		<genxml>
+			<interfacekey>categoryadmin</interfacekey>
+			<show>false</show>
+		</genxml>
+		<genxml>
+			<interfacekey>propertyadmin</interfacekey>
+			<show>false</show>
+		</genxml>
+		<genxml>
+			<interfacekey>settingsadmin</interfacekey>
+			<show>false</show>
+		</genxml>
+		<genxml>
+			<interfacekey>rocketdirectoryadmin</interfacekey>
+			<show>false</show>
+		</genxml>
+	</adminpanelinterfacekeys>
+</genxml>
