@@ -17,7 +17,7 @@
             <h1>@articleData.Name</h1>
         </div>
         <div class="w3-large w3-text-blue">
-            @DateOf(articleData.Info, "genxml/textbox/newsdate", false, sessionParams.CultureCode)
+            @DateOf(articleData.Info, articleData.PublishedDateXPath, false, sessionParams.CultureCode)
         </div>
         <div class="w3-row ">
             <div class="w3-quarter w3-padding">
