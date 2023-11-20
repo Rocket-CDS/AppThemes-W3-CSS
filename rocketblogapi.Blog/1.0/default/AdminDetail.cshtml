@@ -59,12 +59,12 @@
                             @TextBox(info, articleData.NameXPath, " class='w3-input w3-border' autocomplete='off' ", "", true, 0)
                         </div>
                         <div class=" w3-row w3-padding">
-                            <label>Résumé</label>&nbsp;@EditFlag(sessionParams)
+                            <label>@ResourceKey("DNNrocket.summary")</label>&nbsp;@EditFlag(sessionParams)
                             @TextArea(info, articleData.SummaryXPath, " class='w3-input w3-border' rows='8' autocomplete='off' ", "", true, 0)
                         </div>
                         <div class=" w3-row w3-padding">
-                            <label>Description</label>&nbsp;@EditFlag(sessionParams)
-                            @CKEditor4(info, "genxml/lang/genxml/textbox/richtext", true)
+                            <label>@ResourceKey("DNNrocket.description")</label>&nbsp;@EditFlag(sessionParams)
+                            @CKEditor4(info, articleData.RichTextXPath, true)
                         </div>
                         <div class=" w3-row w3-padding">
                             @RenderTemplate("AdminExtra.cshtml", appTheme, Model, true)
@@ -81,56 +81,16 @@
 
                     [INJECT:appthemedirectory,ArticleSEO.cshtml]
 
+                    [INJECT:appthemedirectory,ArticleReviewsBlock.cshtml]
+
                 </div>
                 <div class="w3-third w3-padding-small">
 
-                    <div onclick="$('#categoriestab').toggle();$('#categoriestabexpand').toggle();" class="w3-button w3-block w3-theme-l3 w3-left-align ">
-                        @ResourceKey("RC.categories")
-                        <span id="categoriestabexpand" class="material-icons w3-right" style="display:none;">
-                            unfold_more
-                        </span>
-                    </div>
-                    <div id="categoriestab" class='w3-row sectionname a-articlecategorylist w3-border w3-padding' style="">
-                        [INJECT:appthemedirectory,ArticleCategoryList.cshtml]
-                    </div>
-
-                    <div onclick="$('#propertiestab').toggle();$('#propertiestabexpand').toggle();" class="w3-button w3-block w3-theme-l3 w3-left-align  w3-margin-top">
-                        @ResourceKey("RC.properties")
-                        <span id="propertiestabexpand" class="material-icons w3-right" style="display:none;">
-                            unfold_more
-                        </span>
-                    </div>
-                    <div id="propertiestab" class='w3-row sectionname a-articlepropertylist w3-border w3-padding' style="">
-                        [INJECT:appthemedirectory,ArticlePropertyList.cshtml]
-                    </div>
-
-                    <div onclick="$('#imgs').toggle();$('#imgsexpand').toggle();" class="w3-button w3-block w3-theme-l3 w3-left-align w3-margin-top">
-                        @ResourceKey("DNNrocket.images")
-                        <span id="imgsexpand" class="material-icons w3-right" style="display:none;">
-                            unfold_more
-                        </span>
-                    </div>
-                    <div id="imgs" class='w3-row sectionname w3-border w3-padding' style="">
-                        [INJECT:appthemedirectory,Articleimages.cshtml]
-                    </div>
-                    <div onclick="$('#docs').toggle();$('#docsexpand').toggle();" class="w3-button w3-block w3-theme-l3 w3-left-align w3-margin-top">
-                        @ResourceKey("DNNrocket.docs")
-                        <span id="docsexpand" class="material-icons w3-right" style="display:none;">
-                            unfold_more
-                        </span>
-                    </div>
-                    <div id="docs" class='w3-row sectionname w3-border w3-padding' style="">
-                        [INJECT:appthemedirectory,ArticleDocuments.cshtml]
-                    </div>
-                    <div onclick="$('#links').toggle();$('#linksexpand').toggle();" class="w3-button w3-block w3-theme-l3 w3-left-align w3-margin-top">
-                        @ResourceKey("DNNrocket.links")
-                        <span id="linksexpand" class="material-icons w3-right" style="display:none;">
-                            unfold_more
-                        </span>
-                    </div>
-                    <div id="links" class='w3-row sectionname w3-border w3-padding' style="">
-                        [INJECT:appthemedirectory,ArticleLinks.cshtml]
-                    </div>
+                    [INJECT:appthemedirectory,ArticleCategoryListBlock.cshtml]
+                    [INJECT:appthemedirectory,ArticlePropertyListBlock.cshtml]
+                    [INJECT:appthemedirectory,ArticleimagesBlock.cshtml]
+                    [INJECT:appthemedirectory,ArticleDocumentsBlock.cshtml]
+                    [INJECT:appthemedirectory,ArticleLinksBlock.cshtml]
 
                 </div>
             </div>

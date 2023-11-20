@@ -5,195 +5,130 @@
 @AddProcessDataResx(appTheme, true)
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
-<div class="articledetail">
+<div class="w3-container blogarticledetail">
 
-    <div class="articledetail-back">
-        @{
-            var returnUrl = "";
-            if (sessionParams.GetInt("catid") > 0)
-            {
-                var categoryData = new CategoryLimpet(portalData.PortalId, sessionParams.GetInt("catid"), sessionParams.CultureCode, "");
-                var urlparams = new Dictionary<string, string>();
-                urlparams.Add("catid", categoryData.CategoryId.ToString());
-                returnUrl = DNNrocketUtils.NavigateURL(sessionParams.TabId, urlparams, categoryData.Name); ;
-            }
-            else
-            {
-                returnUrl = DNNrocketUtils.NavigateURL(sessionParams.TabId); ;
-            }
-        }
-        <a href="@returnUrl" class="bigbutton"><i class="fas fa-angle-up"></i>@ResourceKey("DNNrocket.back", sessionParams.CultureCode)</a>
+    <div>
+        <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)" class="w3-button w3-theme-action">@ButtonIconText(ButtonTypes.back)</a>
     </div>
 
-    <div class="articledetailflex">
 
-        <div class="articledetail-left">
-
-            <h1 class="title">@articleData.Name</h1>
-
-            <div class="article-infos">
-                <div>
-                    <span>Auteur(s) :</span>
-                    @foreach (var p in articleData.GetProperties())
-                    {
-                        if (p.IsInGroup("Auteur"))
-                        {
-                            <span class="commalist">@p.Name</span>
-                        }
-                    }
-                </div>
-                <div class="sep">|</div>
-                <div>
-                    <span>Type(s) de document :</span>
-                    @foreach (var p in articleData.GetProperties())
-                    {
-                        if (p.IsInGroup("Type"))
-                        {
-                            <span class="commalist">@p.Name</span>
-                        }
-                    }
-                </div>
-                <div class="sep">|</div>
-                <div>
-                    <span>Territoire(s) :</span>
-                    @foreach (var p in articleData.GetProperties())
-                    {
-                        if (p.IsInGroup("Territoire"))
-                        {
-                            <span class="commalist">@p.Name</span>
-                        }
-                    }
-                </div>
-            </div>
-
-            <div class="articledetail-section article-infos">
-                <div>@ResourceKey("Theme.publicationdate", sessionParams.CultureCode) : @DateOf(articleData.Info, "genxml/textbox/publisheddate", sessionParams.CultureCode)</div>
-            </div>
-
-            <div class="articledetail-section summary">@BreakOf(articleData.Summary)</div>
-
-            @if (articleData.Info.GetXmlProperty("genxml/lang/genxml/textbox/richtext") != "")
-            {
-                <div class="articledetail-section">
-                    <div><strong>En savoir plus :</strong></div>
-                    @HtmlOf(articleData.Info.GetXmlProperty("genxml/lang/genxml/textbox/richtext"))
-                </div>
-            }
-
-            <div class="articledetail-section article-tags">
-                <div>
-                    @foreach (var c in articleData.GetCategories())
-                    {
-                        <span>@c.Name</span>
-                    }
-                </div>
-            </div>
-
-            @if (articleData.GetImages().Count > 1)
-            {
-                <div class="articledetail-section articlegallery">
-                    @{
-                        var imgLp = 1;
-                    }
-                    @foreach (var i in articleData.GetImages())
-                    {
-                        <a data-fancybox="gallery" data-caption="" href="@ImageUrl(i.RelPathWebp,640,0)">
-                            <img src="@ImageUrl(i.RelPathWebp,120,0)" alt="" />
-                        </a>
-
-                    }
-                </div>
-            }
-
+    <div class="w3-container w3-margin w3-padding-large w3-border">
+        <div class="w3-center">
+            <h3>@articleData.Name</h3>
+            <h5><span class="w3-opacity">@DateOf(articleData.Info, articleData.PublishedDateXPath,sessionParams.CultureCode, "dd MMM yyyy")</span></h5>
         </div>
 
-        <div class="articledetail-right">
-
-            <div class="articledetail-section image">
-                <img alt="@articleData.Name" src="@ImageUrl(articleData.GetImage(0).RelPathWebp,300,0)" />
-            </div>
-
-            <div class="articledetail-section">
-                <div class="ads-icon"><i class="far fa-user-circle fa-lg"></i></div>
-                <div class="h4-headline">Référent</div>
-                @foreach (var p in articleData.GetProperties())
+        <div class="w3-justify">
+            <img id="mainimage@(articleData.ArticleId)" src="@ImageUrl(articleData.GetImage(0).RelPathWebp,640,400)" alt="@articleData.GetImage(0).Alt" style="width:100%" />
+            <div class="w3-row w3-hide-small">
+                @if (articleData.GetImages().Count > 1)
                 {
-                    if (p.IsInGroup("Referent"))
+                    foreach (var i in articleData.GetImages().Take(6))
                     {
-                        <strong>@p.Name</strong>
-
-                        <br />
-                        @p.Summary
+                        <div class="w3-col m2 w3-padding">
+                            <img src="@ImageUrl(i.RelPathWebp,120,120)" onMouseOver="$('#mainimage@(articleData.ArticleId)').prop('src','@ImageUrl(i.RelPathWebp,640,400)');" alt="" style="width:100%" />
+                        </div>
+                    }
+                }
+            </div>
+            <i>@BreakOf(articleData.Summary)</i>
+            <p>
+                @HtmlOf(articleData.RichText)
+            </p>
+            <div class="w3-row">
+                @if (articleData.GetLinkList().Count > 0)
+                {
+                    <div class="w3-xlarge w3-margin-top">@ResourceKey("DNNrocket.links")</div>
+                }
+                @foreach (var lk in articleData.Getlinks())
+                {
+                    if (!lk.Hidden)
+                    {
+                        <div>
+                            <a target="_blank" href="@lk.Url" target="@lk.Target">
+                                @ButtonIcon(ButtonTypes.link)&nbsp;@lk.Name
+                            </a>
+                        </div>
+                    }
+                }
+                @if (articleData.GetDocList().Count > 0)
+                {
+                    <div class="w3-xlarge w3-margin-top">@ResourceKey("DNNrocket.documents")</div>
+                }
+                @foreach (var doc in articleData.GetDocs())
+                {
+                    if (!doc.Hidden)
+                    {
+                        <div>
+                            <a target="_blank" href="/@doc.RelPath">
+                                @ButtonIcon(ButtonTypes.download)&nbsp;@doc.Name
+                            </a>
+                        </div>
                     }
                 }
             </div>
 
-            @foreach (var lk in articleData.Getlinks())
+            @if (UserUtils.IsValidUser(PortalUtils.GetCurrentPortalId(), UserUtils.GetCurrentUserId()))
             {
-                if (!lk.Hidden)
-                {
-                    <a target="_blank" href="@lk.Url" target="@lk.Target">
-                        @ButtonIcon(ButtonTypes.link)&nbsp;@lk.Name
-                    </a>
-                }
+                var reviewfieldId = "articlereview";
+                var userData = UserUtils.GetUserData(PortalUtils.GetCurrentPortalId(), UserUtils.GetCurrentUserId());
+                <p class="w3-clear"></p>
+                <div class="simplisity_panel">
+                    <div id="blogreviewinput" class="w3-margin-top">
+                       <div class="w3-row">
+                            <div class="w3-half">
+                                <label>@ResourceKey("DNNrocket.name")</label>
+                                @TextBox(infoempty, "genxml/textbox/name" + reviewfieldId, "  maxlength='30' class='w3-input w3-border' autocomplete='off'", userData.DisplayName, false)
+                            </div>
+                            <div class="w3-quarter">
+                                <label>@ResourceKey("Blog.rating")</label><br/>
+                                @RadioButtonList(infoempty, "genxml/select/stars" + reviewfieldId,"1,2,3,4,5","1,2,3,4,5"," class='w3-right'","", ResourceKey("Blog.stars").ToString(),false)
+                            </div>
+                            <div class="w3-col m12">
+                                <label>@ResourceKey("Blog.comment")</label>
+                                @TextArea(infoempty, "genxml/textbox/comment" + reviewfieldId, " maxlength='300' class='w3-input w3-border' autocomplete='off'", "", false)
+                            </div>
+                       </div>
+                    </div>
+                    <div id="blogpostinoput" class="w3-center w3-margin-top">
+                        <div class="w3-button w3-white w3-border simplisity_confirmclick" 
+                        s-confirm="@ResourceKey("Blog.postcomments")?" 
+                        s-cmd="remote_publicadduserreview"
+                         s-post="#blogreviewinput"
+                         s-return="#blogreviewinput"
+                         s-reload="true"
+                        s-fields='{"articleid":"@articleData.ArticleId"}'>
+                            <b>@ResourceKey("Blog.addcomment")&nbsp;</b>
+                        </div>
+                    </div>
+                    <script>
+                        $(document).ready(function () {
+                            $(document).simplisityStartUp('/Desktopmodules/dnnrocket/api/rocket/action', { systemkey: 'rocketblogapi' });
+                        });
+                    </script>
+                </div>
             }
 
-            @foreach (var doc in articleData.GetDocs())
-            {
-                if (!doc.Hidden)
-                {
-                    <a target="_blank" href="/@doc.RelPath">
-                        @ButtonIcon(ButtonTypes.download)&nbsp;@doc.Name
-                    </a>                    
-                }
-            }
+            <div class="w3-right w3-margin-top">
+                <div class="w3-button w3-black" onclick="$('#blogreviews').toggle();">
+                    <b>@ResourceKey("Blog.replies")&nbsp;</b>
+                    <span class="w3-tag w3-white">@articleData.ReviewCount</span>
+                </div>
+            </div>
+            <p class="w3-clear"></p>
 
+            <div id="blogreviews" class="w3-margin-top" style="display:none;">
+                @foreach (var r in articleData.GetReviews())
+                {
+                    if (!r.Hidden)
+                    {
+                        <div class="w3-row w3-border-top w3-padding">
+                            <div class="w3-large">@r.Name<span class="w3-opacity w3-medium">&nbsp;@DateOf(r.Info, "genxml/textbox/reviewdate",sessionParams.CultureCode,"dd MMM yyy")</span></div>
+                            <div class="w3-small w3-margin-left">@BreakOf(r.Comment)</div>
+                        </div>                       
+                    }
+                }
+            </div>
         </div>
-
     </div>
-
-    <script>
-
-        $(document).ready(function () {
-
-            $('.returnlink').unbind('click');
-            $('.returnlink').on('click', function (e) {
-                $('#simplisity_loader').show();
-                simplisity_setSessionField('searchtext', '');
-            });
-            $('.navgocolink').unbind('click');
-            $('.navgocolink').on('click', function (e) {
-                $('#simplisity_loader').show();
-                simplisity_setSessionField('searchtext', '');
-            });
-
-        });
-
-        $("[data-fancybox]").fancybox({
-            lang: 'fr',
-            i18n: {
-                'fr': {
-                    CLOSE: 'Fermer',
-                    NEXT: 'Suivant',
-                    PREV: 'Précédent',
-                    ERROR: 'Le contenu demandé ne peut pas être chargé.<br />Veuillez réessayer plus tard.',
-                    PLAY_START: 'Démarrer le diaporama',
-                    PLAY_STOP: 'Mettre en pause le diaporama',
-                    FULL_SCREEN: 'Plein écran',
-                    THUMBS: 'Vignettes',
-                    DOWNLOAD: 'Télécharger',
-                    SHARE: 'Partager',
-                    ZOOM: 'Zoomer'
-                }
-            }
-        });
-
-        function setSessionParams() {
-            simplisity_setSessionField('searchtext', $('#searchtext').val());
-            $('#simplisity_loader').show();
-            window.location.href = '';
-        }
-
-    </script>
-
 </div>
