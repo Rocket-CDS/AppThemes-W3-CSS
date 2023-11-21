@@ -31,41 +31,47 @@
                     }
                 }
             </div>
+            <div class="w3-row w3-margin w3-small">
+                @ResourceKey("Blog.rating"):&nbsp;@articleData.ReviewScore
+            </div>
             <i>@BreakOf(articleData.Summary)</i>
             <p>
                 @HtmlOf(articleData.RichText)
             </p>
+
             <div class="w3-row">
-                @if (articleData.GetLinkList().Count > 0)
-                {
-                    <div class="w3-xlarge w3-margin-top">@ResourceKey("DNNrocket.links")</div>
-                }
-                @foreach (var lk in articleData.Getlinks())
-                {
-                    if (!lk.Hidden)
+                <div class="w3-half">
+                    @if (articleData.GetLinkList().Count > 0)
                     {
-                        <div>
-                            <a target="_blank" href="@lk.Url" target="@lk.Target">
-                                @ButtonIcon(ButtonTypes.link)&nbsp;@lk.Name
-                            </a>
-                        </div>
+                        <div class="w3-xlarge w3-margin-top">@ButtonIcon(ButtonTypes.link)&nbsp;@ResourceKey("DNNrocket.links")</div>
                     }
-                }
-                @if (articleData.GetDocList().Count > 0)
-                {
-                    <div class="w3-xlarge w3-margin-top">@ResourceKey("DNNrocket.documents")</div>
-                }
-                @foreach (var doc in articleData.GetDocs())
-                {
-                    if (!doc.Hidden)
+                    @foreach (var lk in articleData.Getlinks())
                     {
-                        <div>
-                            <a target="_blank" href="/@doc.RelPath">
-                                @ButtonIcon(ButtonTypes.download)&nbsp;@doc.Name
-                            </a>
-                        </div>
+                        if (!lk.Hidden)
+                        {
+                            <div class="w3-padding">
+                                <a target="_blank" href="@lk.Url" target="@lk.Target">@lk.Name</a>
+                            </div>
+                        }
                     }
-                }
+                </div>
+                <div class="w3-half">
+                    @if (articleData.GetDocList().Count > 0)
+                    {
+                        <div class="w3-xlarge w3-margin-top">@ButtonIcon(ButtonTypes.download)&nbsp;@ResourceKey("DNNrocket.documents")</div>
+                    }
+                    @foreach (var doc in articleData.GetDocs())
+                    {
+                        if (!doc.Hidden)
+                        {
+                            <div class="w3-padding">
+                                <a target="_blank" href="/@doc.RelPath">
+                                    @doc.Name
+                                </a>
+                            </div>
+                        }
+                    }
+                </div>
             </div>
 
             @if (UserUtils.IsValidUser(PortalUtils.GetCurrentPortalId(), UserUtils.GetCurrentUserId()))

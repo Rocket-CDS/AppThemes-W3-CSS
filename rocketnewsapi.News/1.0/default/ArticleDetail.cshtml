@@ -1,0 +1,79 @@
+﻿@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using RocketDirectoryAPI.Components;
+@AssigDataModel(Model)
+@AddProcessDataResx(appTheme, true)
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
+<!--inject-->
+<div class="w3-container blogarticledetail">
+
+    <div>
+        <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)" class="w3-button w3-theme-action">@ButtonIconText(ButtonTypes.back)</a>
+    </div>
+
+
+    <div class="w3-container w3-margin w3-padding-large w3-border">
+        <div class="w3-center">
+            <h3>@articleData.Name</h3>
+            <h5><span class="w3-opacity">@DateOf(articleData.Info, articleData.PublishedDateXPath,sessionParams.CultureCode, "dd MMM yyyy")</span></h5>
+        </div>
+
+        <div class="w3-justify">
+            <img id="mainimage@(articleData.ArticleId)" src="@ImageUrl(articleData.GetImage(0).RelPathWebp,640,400)" alt="@articleData.GetImage(0).Alt" style="width:100%" />
+            <div class="w3-row w3-hide-small">
+                @if (articleData.GetImages().Count > 1)
+                {
+                    foreach (var i in articleData.GetImages().Take(6))
+                    {
+                        <div class="w3-col m2 w3-padding">
+                            <img src="@ImageUrl(i.RelPathWebp,120,120)" onMouseOver="$('#mainimage@(articleData.ArticleId)').prop('src','@ImageUrl(i.RelPathWebp,640,400)');" alt="" style="width:100%" />
+                        </div>
+                    }
+                }
+            </div>
+            <div class="w3-row w3-margin w3-small">
+                @ResourceKey("Blog.rating"):&nbsp;@articleData.ReviewScore
+            </div>
+            <i>@BreakOf(articleData.Summary)</i>
+            <p>
+                @HtmlOf(articleData.RichText)
+            </p>
+
+            <div class="w3-row">
+                <div class="w3-half">
+                    @if (articleData.GetLinkList().Count > 0)
+                    {
+                        <div class="w3-xlarge w3-margin-top">@ButtonIcon(ButtonTypes.link)&nbsp;@ResourceKey("DNNrocket.links")</div>
+                    }
+                    @foreach (var lk in articleData.Getlinks())
+                    {
+                        if (!lk.Hidden)
+                        {
+                            <div class="w3-padding">
+                                <a target="_blank" href="@lk.Url" target="@lk.Target">@lk.Name</a>
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="w3-half">
+                    @if (articleData.GetDocList().Count > 0)
+                    {
+                        <div class="w3-xlarge w3-margin-top">@ButtonIcon(ButtonTypes.download)&nbsp;@ResourceKey("DNNrocket.documents")</div>
+                    }
+                    @foreach (var doc in articleData.GetDocs())
+                    {
+                        if (!doc.Hidden)
+                        {
+                            <div class="w3-padding">
+                                <a target="_blank" href="/@doc.RelPath">
+                                    @doc.Name
+                                </a>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

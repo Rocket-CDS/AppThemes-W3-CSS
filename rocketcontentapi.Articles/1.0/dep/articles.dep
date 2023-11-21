@@ -1,9 +1,0 @@
-﻿<genxml>
-	<deps list="true">
-		<genxml>
-			<ctrltype>css</ctrltype>
-			<url>/DesktopModules/DNNrocket/css/w3.css</url>
-			<ecofriendly>true</ecofriendly>
-		</genxml>
-	</deps>
-</genxml>

@@ -72,6 +72,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="rocketblogapi.Blog\1.0\js\" />
     <Folder Include="rocketcontentapi.HtmlContent\1.0\img\" />
     <Folder Include="rocketcontentapi.HtmlContent\1.0\js\" />
     <Folder Include="rocketdirectoryapi.Products\1.0\css\" />
@@ -81,6 +82,7 @@
     <Folder Include="rocketdirectoryapi.Products\1.0\js\" />
     <Folder Include="rocketdirectoryapi.Products\1.0\modt\" />
     <Folder Include="rocketdirectoryapi.Products\1.0\resx\" />
+    <Folder Include="rocketnewsapi.News\1.0\js\" />
   </ItemGroup>
 
 </Project>
