@@ -1,0 +1,56 @@
+﻿@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@AssigDataModel(Model)
+@AddProcessDataResx(appThemeView, true)
+
+@{
+    var info = articleRowData.Info;
+}
+<div class="@moduleData.GetSetting("cssclass")">
+    <div class="contactsat-infos">
+        <div class="h4-headline">@ResourceKey("DNNrocket.contactus")</div>
+        <p>
+            @if (moduleData.Record.GetXmlPropertyBool("genxml/settings/companyname"))
+            {
+                <div><strong>@info.GetXmlProperty("genxml/lang/genxml/textbox/company")</strong></div>
+            }
+            @if (moduleData.Record.GetXmlPropertyBool("genxml/settings/adress"))
+            {
+                <div>@BreakOf(info, "genxml/textbox/adress")</div>
+            }
+            @if (moduleData.Record.GetXmlPropertyBool("genxml/settings/tel1"))
+            {
+                if (info.GetXmlProperty("genxml/textbox/clicktel1") != "")
+                {
+                <div>@ResourceKey("DNNrocket.tel1") : <a href="tel:@info.GetXmlProperty("genxml/textbox/clicktel1")">@info.GetXmlProperty("genxml/textbox/tel1")</a></div>
+                }
+                else
+                {
+                <div>@ResourceKey("DNNrocket.tel1") : @info.GetXmlProperty("genxml/textbox/tel1")</div>
+                }
+            }
+            @if (moduleData.Record.GetXmlPropertyBool("genxml/settings/tel2"))
+            {
+                if (info.GetXmlProperty("genxml/textbox/clicktel2") != "")
+                {
+                <div>@ResourceKey("DNNrocket.tel2") : <a href="tel:@info.GetXmlProperty("genxml/textbox/clicktel2")">@info.GetXmlProperty("genxml/textbox/tel2")</a></div>
+                }
+                else
+                {
+                <div>@ResourceKey("DNNrocket.tel2") : @info.GetXmlProperty("genxml/textbox/tel2")</div>
+                }
+            }
+            @if (moduleData.Record.GetXmlPropertyBool("genxml/settings/fax"))
+            {
+                <div>@ResourceKey("DNNrocket.fax") : @info.GetXmlProperty("genxml/textbox/fax")</div>
+            }
+            @if (moduleData.Record.GetXmlPropertyBool("genxml/settings/email"))
+            {
+                <div>@ResourceKey("DNNrocket.email") : <a href="mailto:@info.GetXmlProperty("genxml/textbox/email")">@info.GetXmlProperty("genxml/textbox/email")</a></div>
+            }
+            @if (moduleData.Record.GetXmlPropertyBool("genxml/settings/extrainfo"))
+            {
+                <div>@info.GetXmlProperty("genxml/textbox/extrainfo")</div>
+            }
+        </p>
+    </div>
+</div>

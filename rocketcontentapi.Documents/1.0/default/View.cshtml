@@ -1,0 +1,30 @@
+﻿@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using RocketContentAPI.Components;
+@AssigDataModel(Model)
+@AddProcessDataResx(appThemeView, true)
+<!--inject-->
+
+<div class="@moduleData.GetSetting("cssclass")">
+
+    <div class="docswrapper">
+        [INJECT:appthemesystem,ArticleHeaderView.cshtml]       
+        @foreach (var articleRowData in articleData.GetRows())
+        {
+            <ul class="docs">
+                @if (!articleRowData.GetBool("genxml/checkbox/hiderow"))
+                {
+                    <li>
+                        @foreach (ArticleDoc documentData in articleRowData.GetDocs())
+                        {
+                            if (!documentData.Hidden)
+                            {
+                                <a href="@(documentData.RelPath)" target="_blank" >@documentData.Name</a>
+                            }
+                        }
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+</div>

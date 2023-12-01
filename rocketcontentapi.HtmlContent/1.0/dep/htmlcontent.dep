@@ -3,10 +3,12 @@
 		<genxml>
 			<ctrltype><![CDATA[css]]></ctrltype>
 			<url><![CDATA[/DesktopModules/DNNrocket/css/w3.css]]></url>
+			<ecofriendly>true</ecofriendly>
 		</genxml>
 		<genxml>
 			<ctrltype><![CDATA[css]]></ctrltype>
 			<url><![CDATA[{appthemefolder}/css/HtmlContent.css]]></url>
+			<ecofriendly>true</ecofriendly>
 		</genxml>
 	</deps>
 </genxml>

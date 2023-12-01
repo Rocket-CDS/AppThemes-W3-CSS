@@ -1,0 +1,56 @@
+@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@AssigDataModel(Model)
+@AddProcessDataResx(appThemeView, true)
+<!--inject-->
+<!-- require Key for saving -->
+@RowKey(rowData)
+
+<a href="http://manager.rocket-cds.org/Aides-aux-modules/SocialIcons" title="@ResourceKey("DNNrocket.help")" target="_blank" class="w3-button w3-circle w3-blue">?</a>
+
+<div class='w3-row w3-padding'>
+    <div class="w3-col m12 w3-padding">
+
+        <!-- display title -->
+        <div class="w3-half w3-padding">
+            <label>@ResourceKey("DNNrocket.moduletitle")</label><span>@EditFlag(sessionParams)</span>
+            @TextBox(info, "genxml/lang/genxml/textbox/title", " class='w3-input w3-border' ", "", true)
+        </div>
+
+        <div class="w3-half w3-padding">
+            <label>Twitter</label>
+            @TextBox(info, "genxml/textbox/twitter", " class='w3-input w3-border' ", "", false)
+        </div>
+
+        <div class="w3-half w3-padding">
+            <label>Linkedin</label>
+            @TextBox(info, "genxml/textbox/linkedin", " class='w3-input w3-border' ", "", false)
+        </div>
+        <div class="w3-half w3-padding">
+            <label>Facebook</label>
+            @TextBox(info, "genxml/textbox/facebook", " class='w3-input w3-border' ", "", false)
+        </div>
+        <div class="w3-half w3-padding">
+            <label>Youtube</label>
+            @TextBox(info, "genxml/textbox/youtube", " class='w3-input w3-border' ", "", false)
+        </div>
+        <div class="w3-half w3-padding">
+            <label>Pinterest</label>
+            @TextBox(info, "genxml/textbox/pinterest", " class='w3-input w3-border' ", "", false)
+        </div>
+        <div class="w3-half w3-padding">
+            <label>Instagram</label>
+            @TextBox(info, "genxml/textbox/instagram", " class='w3-input w3-border' ", "", false)
+        </div>
+        <div class="w3-half w3-padding">
+            <label>Tripadvisor</label>
+            @TextBox(info, "genxml/textbox/tripadvisor", " class='w3-input w3-border' ", "", false)
+        </div>
+        <div class="w3-half w3-padding">
+            <label>Rss</label>
+            @TextBox(info, "genxml/textbox/rss", " class='w3-input w3-border' ", "", false)
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,57 @@
+﻿@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@AssigDataModel(Model)
+@AddProcessDataResx(appThemeView, true)
+<!--inject-->
+
+@{
+    var contactLP = 0;
+    var contactId = 1;
+    var fieldId = "multi";
+}
+<div class="w3-row linklistdatasection">
+    <div class="w3-bar">
+        <div class="w3-button w3-bar-item w3-theme-action w3-padding simplisity_click" s-post="#a-articledata" s-list=".@articleData.ImageListName,.@articleData.DocumentListName,.@articleData.LinkListName" s-cmd="article_addlink" s-fields='{"moduleref":"@(moduleData.ModuleRef)","moduleid":"@moduleData.ModuleId","tabid":"@moduleData.TabId"}'>@ButtonIcon(ButtonTypes.add)</div>
+        <div class="w3-button w3-bar-item w3-pale-yellow w3-padding simplisity_itemundo" s-recylebin="linklistbin" s-return="#linklistdata" s-removelist=".linklist" style="display: none;">@ButtonIcon(ButtonTypes.undo)</div>
+    </div>
+
+    <ul id="linklistdata" class="w3-ul">
+        @foreach (var contactInfo in articleRowData.GetLinkList())
+        {
+            <li class="linklist w3-display-container w3-border-0" style="list-style-type:none;">
+                @SortableListIndex(contactInfo, contactLP)
+
+                <label class="w3-center w3-large">@ResourceKey("DNNrocket.contact") N°@(contactId)</label>
+                <div class="w3-container w3-padding w3-card">
+                    <div class="w3-col m6 w3-padding">
+                        <label>@ResourceKey("DNNrocket.contact")</label>
+                        @TextBox(contactInfo, "genxml/textbox/contact" + fieldId, " class='w3-input w3-border' ", "", false, contactLP)
+                    </div>
+                    <div class="w3-col m6 w3-padding">
+                        <label>@ResourceKey("DNNrocket.name")</label>
+                        @TextBox(contactInfo, "genxml/textbox/name" + fieldId, " class='w3-input w3-border' ", "", false, contactLP)
+                    </div>
+                    <div class="w3-col m6 w3-padding">
+                        <label>@ResourceKey("DNNrocket.mobile")</label>
+                        @TextBox(contactInfo, "genxml/textbox/mobile" + fieldId, " class='w3-input w3-border' ", "", false, contactLP)
+                    </div>
+                    <div class="w3-col m6 w3-padding">
+                        <label>@ResourceKey("DNNrocket.email")</label>
+                        @TextBox(contactInfo, "genxml/textbox/email" + fieldId, " class='w3-input w3-border' ", "", false, contactLP)
+                    </div>
+                    <div class="simplisity_removelistitem w3-display-topright" s-removelist=".linklist" s-recylebin="linklistbin" style="cursor: pointer;">
+                        @ButtonIcon(ButtonTypes.remove)
+                    </div>
+                </div>
+            </li>
+            contactLP++;
+            contactId++;
+        }
+    </ul>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#linklistdata").sortable();
+        $("#linklistdata").disableSelection();
+    });
+</script>

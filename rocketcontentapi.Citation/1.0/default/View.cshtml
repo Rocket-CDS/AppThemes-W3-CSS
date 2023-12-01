@@ -1,0 +1,29 @@
+﻿@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@AssigDataModel(Model)
+@AddProcessDataResx(appThemeView, true)
+<!--inject-->
+
+<div class="@(moduleData.GetSetting("cssclass"))">
+    <div class="citation-window">   
+        <div class="citation-content">
+        @foreach (var articleRowData in articleData.GetRows())
+        {
+            if (!articleRowData.GetBool("genxml/checkbox/hiderow"))
+            {
+                <h2>@rowData.GetXmlProperty("genxml/lang/genxml/textbox/title")</h2>
+                <hr />
+                <div class="citation-text">@BreakOf(rowData, "genxml/lang/genxml/textbox/content")</div>
+                <div class="citation-link">
+                @foreach (var linkData in articleRowData.Getlinks())
+                {    
+                    if (!linkData.Hidden)
+                    {
+                        <a class="bigbutton" href="@(linkData.Url)" target="@(linkData.Target)">@linkData.Name</a>
+                    }
+                }
+                </div>
+            }
+        }
+        </div>
+    </div>
+</div>
