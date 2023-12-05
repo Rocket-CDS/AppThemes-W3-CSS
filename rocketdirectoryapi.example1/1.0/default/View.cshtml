@@ -11,11 +11,11 @@
         Model.SetSetting("searchview", "false");
         if (articleData != null)
         {
-            @RenderTemplate("ArticleDetail.cshtml", appTheme, Model, false)
+            @RenderTemplate("ArticleDetail.cshtml", moduleData.ModuleRef, appTheme, Model, true)
         }
         else
         {
-            @RenderTemplate("ArticleList.cshtml", appTheme, Model, false)
+            @RenderTemplate("ArticleList.cshtml", moduleData.ModuleRef, appTheme, Model, true)
         }
     }
 </div>
