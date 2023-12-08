@@ -47,4 +47,10 @@
 			<show>false</show>
 		</genxml>
 	</adminpanelinterfacekeys>
+	<queryparams list="true">
+		<genxml>
+			<queryparam>articleid</queryparam>
+			<tablename>rocketdirectoryapi</tablename>
+		</genxml>
+	</queryparams>
 </genxml>

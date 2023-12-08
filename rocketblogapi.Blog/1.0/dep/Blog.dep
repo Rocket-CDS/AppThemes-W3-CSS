@@ -35,6 +35,18 @@
 			<file><![CDATA[Categories.cshtml]]></file>
 			<name><![CDATA[Category Menu]]></name>
 		</genxml>
+		<genxml>
+			<file><![CDATA[Filters.cshtml]]></file>
+			<name><![CDATA[Filters]]></name>
+		</genxml>
+		<genxml>
+			<file><![CDATA[Tags.cshtml]]></file>
+			<name><![CDATA[Tags]]></name>
+		</genxml>
+		<genxml>
+			<file><![CDATA[Months.cshtml]]></file>
+			<name><![CDATA[Months]]></name>
+		</genxml>
 	</moduletemplates>
 	<adminpanelinterfacekeys list="true">
 		<genxml>
