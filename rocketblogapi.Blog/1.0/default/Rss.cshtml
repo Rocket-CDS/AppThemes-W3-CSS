@@ -37,9 +37,10 @@
             <pubDate><![CDATA[@articleData.Info.GetXmlPropertyDate("genxml/textbox/publisheddate").ToString("r")]]></pubDate>
             @if (catalogSettings.Info.GetXmlPropertyBool("genxml/checkbox/rssimage"))
             {
-            <media:thumbnail width="@(catalogSettings.Info.GetXmlPropertyInt("genxml/textbox/imagewidthrss"))" height="@(catalogSettings.Info.GetXmlPropertyInt("genxml/textbox/imageheightrss"))" url="@(portalData.EngineUrlWithProtocol)@ImageUrl(articleData.GetImage(0).RelPath, catalogSettings.Info.GetXmlPropertyInt("genxml/textbox/imagewidthrss"), catalogSettings.Info.GetXmlPropertyInt("genxml/textbox/imageheightrss"))" />
-            }
- 
+                var imagewidthrss = catalogSettings.Info.GetXmlPropertyInt("genxml/textbox/imagewidthrss");
+                var imageheightrss = catalogSettings.Info.GetXmlPropertyInt("genxml/textbox/imageheightrss");
+                <media:thumbnail width="@(imagewidthrss)" height="@(imageheightrss)" url="@(portalData.EngineUrlWithProtocol)@ImageUrl(articleData.GetImage(0).RelPath, imagewidthrss, imageheightrss)" />
+            } 
             <blog:publishedon><![CDATA[@articleData.Info.GetXmlPropertyDate("genxml/textbox/publisheddate").ToString("r")]]></blog:publishedon>
         </item>
 }
