@@ -11,4 +11,11 @@
 			<ecofriendly>true</ecofriendly>
 		</genxml>
 	</deps>
+	<searchindex list="true">
+		<genxml>
+			<searchtitle>genxml/lang/genxml/textbox/title</searchtitle>
+			<searchdescription>genxml/lang/genxml/textbox/richtext</searchdescription>
+			<searchbody>genxml/lang/genxml/textbox/richtext</searchbody>
+		</genxml>
+	</searchindex>
 </genxml>

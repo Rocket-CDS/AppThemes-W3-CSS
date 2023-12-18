@@ -1,0 +1,76 @@
+﻿@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using RocketDirectoryAPI.Components;
+@using Simplisity;
+@AssigDataModel(Model)
+@AddProcessDataResx(appTheme, true)
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
+<!--inject-->
+
+@{
+    var firstModay = DateTime.MinValue.Date;
+    var monthDate = DateTime.Now;
+    var monthDays = DateTime.DaysInMonth(monthDate.Year, monthDate.Month);
+}
+<div class=" ">
+
+    <div class="month">
+        <ul class="monthheader">
+            <li class="prev">&#10094;</li>
+            <li class="next">&#10095;</li>
+            <li>@monthDate.ToString("MMMM")<br><span style="font-size:18px">@DateTime.Now.ToString("yyyy")</span></li>
+        </ul>
+    </div>
+
+    <ul class="weekdays">
+        <li>@firstModay.ToString("ddd")</li>
+        <li>@firstModay.AddDays(1).ToString("ddd")</li>
+        <li>@firstModay.AddDays(2).ToString("ddd")</li>
+        <li>@firstModay.AddDays(3).ToString("ddd")</li>
+        <li>@firstModay.AddDays(4).ToString("ddd")</li>
+        <li>@firstModay.AddDays(5).ToString("ddd")</li>
+        <li>@firstModay.AddDays(6).ToString("ddd")</li>
+    </ul>
+
+    <ul class="days">
+        @{
+            int day = 1;
+        } 
+        @while (day <= monthDays) 
+        {
+            if (day == 10)
+            {   
+                <li><span class="active">@day</span></li>                
+            }
+            else
+            {
+                <li>@day</li>
+            }
+            day++;
+        }
+    </ul>
+</div>
+
+<div class=" ">
+    @{
+        var monthidx = 1;
+    }
+    @foreach (var a in RocketDirectoryAPIUtils.GetArticlesByMonth(systemData.SystemKey, DateTime.Now, 12, "publisheddate", sessionParams.GetInt("catid")))
+    {
+        <div class="w3-button w3-block w3-left-align rocket-monthdates rocket-monthdates@(monthidx) " monthidx="@(monthidx)" onclick="setSelected($(this).attr('monthidx'));doDateSearchReload('@a.Key.ToString("yyyy-MM-dd")','@a.Key.AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd")')">
+            <span>
+                @a.Key.ToString("MMMM yyyy")
+            </span>
+            <span class="w3-right">
+                @a.Value.Count
+            </span>
+        </div>
+        monthidx += 1;
+    }
+
+</div>
+
+<script>
+    $(document).ready(function () {
+    });
+</script>
