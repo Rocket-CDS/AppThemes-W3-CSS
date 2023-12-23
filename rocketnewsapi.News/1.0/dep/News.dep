@@ -29,11 +29,28 @@
 	<moduletemplates list="true">
 		<genxml>
 			<file><![CDATA[view.cshtml]]></file>
-			<name><![CDATA[List View]]></name>
+			<name><![CDATA[List and Detail]]></name>
+			<cmd>listdetail</cmd>
+		</genxml>
+		<genxml>
+			<file><![CDATA[ArticleList.cshtml]]></file>
+			<name><![CDATA[List]]></name>
+			<cmd>listonly</cmd>
+		</genxml>
+		<genxml>
+			<file><![CDATA[ArticleDetail.cshtml]]></file>
+			<name><![CDATA[Detail]]></name>
+			<cmd>detailonly</cmd>
 		</genxml>
 		<genxml>
 			<file><![CDATA[Categories.cshtml]]></file>
 			<name><![CDATA[Category Menu]]></name>
+			<cmd>catmenu</cmd>
+		</genxml>
+		<genxml>
+			<file><![CDATA[ArticleSat.cshtml]]></file>
+			<name><![CDATA[Article Satelite]]></name>
+			<cmd>satellite</cmd>
 		</genxml>
 	</moduletemplates>
 	<adminpanelinterfacekeys list="true">
@@ -58,4 +75,11 @@
 			<show>true</show>
 		</genxml>
 	</adminpanelinterfacekeys>
+	<queryparams list="true">
+		<genxml>
+			<queryparam>newsid</queryparam>
+			<tablename>rocketdirectoryapi</tablename>
+			<systemkey>rocketnewsapi</systemkey>
+		</genxml>
+	</queryparams>
 </genxml>

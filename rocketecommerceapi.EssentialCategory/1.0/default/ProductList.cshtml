@@ -45,7 +45,19 @@
                         <img class="sliderind@(moduleSettings.ModuleRef)" src="@ImageUrl(productData.DefaultImageUrl(),200,200)" style="width:100%;">
                     </a>
                     <div class="w3-row w3-padding w3-center">
-                        <div class="">@productData.PriceMinimumDisplay()</div>
+
+                        @if (productData.SalePriceMinimumCents > 0)
+                        {
+                            <div class="">
+                                <span class="">@productData.SalePriceMinimumDisplay()</span>
+                                <span style="text-decoration:line-through;" class="w3-small">@productData.PriceMinimumDisplay()</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="">@productData.PriceMinimumDisplay()</div>
+                        }
+
                     </div>
                     <div class="w3-padding" style="height:80px;overflow:hidden;">
                         <a href="@(productDetailUrl)" class="" title="@productData.Name" onclick="$('.simplisity_loader').show();">

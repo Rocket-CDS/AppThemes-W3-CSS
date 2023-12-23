@@ -30,7 +30,6 @@
             {
                 var urlparams = new Dictionary<string, string>();
                 urlparams.Add("articleid", articleData.ArticleId.ToString());
-                var hreflink = DNNrocketUtils.NavigateURL(sessionParams.TabId, urlparams, articleData.Name);
                 var date = articleData.Info.GetXmlPropertyDate("genxml/textbox/publisheddate");
                 var dateFormat = date.ToString("dd/MM/yyyy");
 
@@ -48,7 +47,7 @@
                         <div class="w3-row">
                             <div class="w3-col m8 s12">
                                 <p>
-                                    <a href="@(hreflink)" class="w3-button w3-padding-large w3-white w3-border" title="@articleData.Name" onclick="$('#simplisity_loader').show();">
+                                    <a href="@DetailUrl(moduleData.DetailPageTabId(), articleData, categoryData)" class="w3-button w3-padding-large w3-white w3-border" title="@articleData.Name" onclick="$('#simplisity_loader').show();">
                                         <b>@ResourceKey("News.readmore")&nbsp;&gt;&nbsp;</b>
                                     </a>
                                 </p>

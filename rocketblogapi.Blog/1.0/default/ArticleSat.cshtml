@@ -1,0 +1,44 @@
+﻿@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using RocketDirectoryAPI.Components;
+@AssigDataModel(Model)
+@AddProcessDataResx(appTheme, true)
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
+<!--inject-->
+@{
+    var articleList = articleDataList.GetArticleList(moduleData);
+}
+
+<div class="w3-container blogarticlelist">
+
+    @foreach (ArticleLimpet articleData in articleList)
+    {
+        var urlparams = new Dictionary<string, string>();
+        urlparams.Add("articleid", articleData.ArticleId.ToString());
+        var date = articleData.Info.GetXmlPropertyDate("genxml/textbox/publisheddate");
+        var dateFormat = date.ToString("dd/MM/yyyy");
+
+        <div class="w3-card-4 w3-margin w3-white" style="overflow:hidden;">
+            <img src="@ImageUrl(articleData.GetImage(0).RelPathWebp,640,200)" alt="@articleData.GetImage(0).Alt"  style="width:100%"/>
+            <div class="w3-container">
+                <h3><b>@articleData.Name</b></h3>
+                <h5><span class="w3-opacity">@DateOf(articleData.Info, articleData.PublishedDateXPath,sessionParams.CultureCode, "dd MMM yyy")</span></h5>
+            </div>
+
+            <div class="w3-container">
+                <div class="w3-row">
+                    <div class="w3-col m8 s12">
+                        <p>
+                            <a href="@DetailUrl(moduleData.DetailPageTabId(), articleData, categoryData)" class="w3-button w3-padding-large w3-white w3-border" title="@articleData.Name" onclick="$('#simplisity_loader').show();">
+                                <b>@ResourceKey("Blog.readmore")&nbsp;&gt;&nbsp;</b>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr/>
+    }
+
+</div>
