@@ -9,10 +9,14 @@
     Model.SetSetting("searchview", "false");
     if (articleData != null)
     {
-        @RenderTemplate("ArticleDetail.cshtml", appTheme, Model, false)
+        <text>
+            [INJECT: apptheme, ArticleDetail.cshtml]
+        </text>
     }
     else
     {
-        @RenderTemplate("ArticleList.cshtml", appTheme, Model, false)
+        <text>
+            [INJECT: apptheme, ArticleList.cshtml]
+        </text>
     }
 }
