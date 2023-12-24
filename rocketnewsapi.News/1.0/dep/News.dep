@@ -49,7 +49,7 @@
 		</genxml>
 		<genxml>
 			<file><![CDATA[ArticleSat.cshtml]]></file>
-			<name><![CDATA[Article Satelite]]></name>
+			<name><![CDATA[Satelite]]></name>
 			<cmd>satellite</cmd>
 		</genxml>
 	</moduletemplates>
