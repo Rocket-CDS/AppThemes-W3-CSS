@@ -22,7 +22,7 @@
 
 <!-- !PAGE CONTENT! -->
 <div id="ecommerce-tag" class="ecommerce-container">
-    @{
+    @{ 
         if (productData != null)
         {
             [INJECT: appthemeview, ProductDetail.cshtml]
@@ -30,8 +30,8 @@
         else
         {
             [INJECT: appthemeview, ProductList.cshtml]
-        }
-    }
+        } 
+     }
 </div>
 <div class="simplisity_loader" style="display:none;">
     <span class=" simplisity_loader_inner">
@@ -39,29 +39,8 @@
 </div>
 <script>
     $(document).ready(function () {
-        // get minicart to avoid cache problem with wrong amount.
-        var jsonText = window.sessionStorage.getItem('MiniCartTotals');
-        if ((typeof jsonText == 'undefined') || jsonText == '' || jsonText == null)
-            simplisity_requestjson('@(portalShop.ApiUrl)', 'rocketecommerceapi_minicartjson', '', 'MiniCartTotals', '{"moduleref":"@(sessionParams.ModuleRef)","browserid":"@(sessionParams.BrowserId)"}', 'afterMiniCartJson');
-        else
-            afterMiniCartJson();
-
         $('#ecommerce-tag').activateSimplisityPanel();
         $('#simplisity_loader').hide();
     });
-    function afterMiniCartJson() {
-        try {
-            var jsonText = window.sessionStorage.getItem('MiniCartTotals');
-            var jsonstr = simplisity_parsejson(jsonText);
-            $('#a-cartqty').text(jsonstr.qty);
-            $('#a-carttotal').text(jsonstr.subtotal);        
-        }
-        catch (e) {
-        }
-    }
-    function clearMiniCartJson()
-    {
-        window.sessionStorage.setItem('MiniCartTotals', '');
-    }
 </script>
 

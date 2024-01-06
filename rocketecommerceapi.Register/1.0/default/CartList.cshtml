@@ -1,0 +1,42 @@
+﻿@inherits RocketEcommerceAPI.Components.RocketEcommerceAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI;
+@using Simplisity;
+@using RocketEcommerceAPI.Components;
+@using DNNrocketAPI.Components;
+@using RocketPortal.Components;
+
+
+
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketEcommerceAPI/App_LocalResources/")
+
+@{
+    var cartData = (CartLimpet)Model.List.First();
+    var companyData = (CompanyLimpet)Model.GetDataObject("companydata");
+    var sessionParams = (SessionParams)Model.SessionParamsData;
+    var portalShop = (PortalShopLimpet)Model.GetDataObject("portalshop");
+    var cartitemList = cartData.CartItemList;
+    var portalData = new PortalLimpet(PortalUtils.GetCurrentPortalId());
+    var appThemeDefault = (AppThemeLimpet)Model.GetDataObject("appthemedefault");
+    var appTheme = (AppThemeLimpet)Model.GetDataObject("appthemeview");
+}
+
+@AddProcessDataResx(appTheme, true)
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketECommerceAPI/App_LocalResources/")
+
+<div id="datasection" class="w3-row">
+
+    [INJECT:appthemeview,CartListBody.cshtml]
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#ecommerce-tag').activateSimplisityPanel('@(portalShop.ApiUrl)')
+        $('html, body').stop().animate({
+            'scrollTop': $("#ecommerce-tag").offset().top
+        }, 400, 'swing', function () {
+            window.location.hash = "#ecommerce-tag";
+        });
+    });
+</script>

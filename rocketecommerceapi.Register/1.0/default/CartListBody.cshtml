@@ -1,0 +1,134 @@
+﻿@inherits RocketEcommerceAPI.Components.RocketEcommerceAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI;
+@using Simplisity;
+@using RocketEcommerceAPI.Components;
+@using DNNrocketAPI.Components;
+@using RocketPortal.Components;
+
+
+
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketEcommerceAPI/App_LocalResources/")
+
+@{
+    var cartData = (CartLimpet)Model.List.First();
+    var companyData = new CompanyLimpet(cartData.PortalId, DNNrocketUtils.GetCurrentCulture());
+    var sessionParams = (SessionParams)Model.SessionParamsData;
+    var portalShop = (PortalShopLimpet)Model.GetDataObject("portalshop");
+    var cartitemList = cartData.CartItemList;
+    var portalData = new PortalLimpet(PortalUtils.GetCurrentPortalId());
+    var appTheme = (AppThemeLimpet)Model.GetDataObject("appthemeview");
+
+}
+
+@AddProcessDataResx(appTheme, true)
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketECommerceAPI/App_LocalResources/")
+
+<!--inject-->
+
+    @if (cartitemList.Count > 0)
+    {
+        <div class="w3-border w3-padding">
+            <div class="w3-border-bottom"><h3>@ResourceKey("RE.cart", sessionParams.CultureCode): @cartData.QtyCount @ResourceKey("RE.items", sessionParams.CultureCode) @ResourceKey("essential1.inyourcart", sessionParams.CultureCode)</h3></div>
+            <ul class="w3-ul">
+                @{
+                    var lp1 = 0;
+                    decimal carttotal = 0;
+                }
+                @foreach (var cItem in cartitemList)
+                {
+                    var selectedModel = cItem.ProductData.GetModel(cItem.ModelId);
+                    var cartitemtotal = cItem.PriceWithOptions;
+                    carttotal += cartitemtotal;
+                    if (selectedModel != null)
+                    {
+                        <li class="w3-bar products">
+                            @HiddenField(new SimplisityInfo(cItem.Record), "genxml/key", "", "", false, lp1)
+
+                        <div class="w3-bar-item w3-row w3-left">
+                            <div id="removecartitem_@(lp1)" class="w3-button w3-light-grey w3-center w3-large simplisity_click" s-return='#ecommerce-tag' s-cmd="rocketecommerceapi_removecartitem" s-fields='{"cartitemindex":"@(lp1)","systemkey":"rocketecommerceapi","template":"cartlist.cshtml","moduleref":"@(sessionParams.ModuleRef)"}'>
+                                @ButtonIconText(ButtonTypes.delete)
+                            </div> 
+                        </div>
+
+                            <div class="w3-bar-item">
+                                <div class="w3-row">
+                                    <div class="w3-large">
+                                        <input id="modelprice_@(lp1)" class="cartitemprice" idxrow="@(lp1)" value="@cItem.PriceWithOptions.ToString().Replace(",",".")" type="hidden" />
+                                    </div>
+                                </div>
+                                <div class="w3-bar w3-small">@selectedModel.Name</div>
+                                @{
+                                    var oLp = 1;
+                                }
+                                @foreach (var cartItemOption in cItem.GetSelectedOptions())
+                                {
+                                    if (cartItemOption.SelectedText != "")
+                                    {
+                                        <span class="w3-small">
+                                            @cartItemOption.OptionName
+                                            &nbsp;:&nbsp;
+                                            @if (cartItemOption.SelectedText == "true")
+                                            {
+                                                <span>&#8226;</span>
+                                            }
+                                            else
+                                            {
+                                                <span>
+                                                    @if (@cartItemOption.SelectedText.Length > 40)
+                                                    {
+                                                        @cartItemOption.SelectedText.Substring(0, 40)
+                                                    }
+                                                    else
+                                                    {
+                                                        @cartItemOption.SelectedText
+                                                    }
+                                                </span>
+                                            }
+                                        </span>
+                                        oLp += 1;
+                                        <br />
+                                    }
+                                }
+
+                            </div>
+                            <div class="w3-bar-item w3-right w3-hide-small w3-hide-medium" style="width:140px;">
+                                <div class="w3-right-align" id="cartitemtotal@(lp1)">@(portalShop.CurrencyDisplay(cartitemtotal))</div>
+                            </div>
+
+                        </li>
+
+                    }
+                    lp1 += 1;
+                }
+            </ul>
+        </div>
+
+        <div class="w3-row w3-margin-top">
+            <div class="w3-left">
+                <div class="w3-bar">
+                    <div class="w3-bar-item w3-button w3-border w3-light-grey w3-center w3-margin-right w3-margin-bottom w3-hide-small simplisity_click " s-cmd="rocketecommerceapi_cartlist" s-return='#ecommerce-tag' s-fields='{"systemkey":"rocketecommerceapi","template":"cartlist.cshtml","moduleref":"@(sessionParams.ModuleRef)"}'>@ButtonIcon(ButtonTypes.refresh, sessionParams.CultureCode)</div>
+                    <div class="w3-bar-item w3-button w3-border w3-light-grey w3-center w3-margin-bottom simplisity_confirmclick " s-confirm="@ResourceKey("DNNRocket.delete") ?" s-cmd="rocketecommerceapi_cartdelete" s-return='#ecommerce-tag' s-fields='{"systemkey":"rocketecommerceapi","template":"cartlist.cshtml","moduleref":"@(sessionParams.ModuleRef)"}'>@ButtonText(ButtonTypes.delete, sessionParams.CultureCode)</div>
+                </div>
+            </div>
+            <div class="w3-right">
+                <div class="w3-bar">
+                    <div class="w3-bar-item"><b>@ResourceKey("RE.total", sessionParams.CultureCode) : </b></div>
+                    <div class="w3-bar-item"><b id="carttotal">@(portalShop.CurrencyDisplay(Convert.ToDecimal(carttotal)))</b></div>
+                </div>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <div class="w3-row w3-xxlarge w3-center">@ResourceKey("RE.emptybasket", sessionParams.CultureCode)</div>
+    }
+
+<div class="w3-row w3-margin-top">
+    <div class="w3-button w3-border w3-left w3-margin-bottom" onclick="location.reload();return false;">@ButtonIconText(ButtonTypes.previous)</div>
+    @if (cartitemList.Count > 0)
+    {
+        <div class="w3-button w3-border w3-right w3-margin-left w3-margin-bottom simplisity_click" s-cmd="rocketecommerceapi_savecartlist" s-post='#datasection' s-return='.ecommerce-container' s-list=".products" s-fields='{"systemkey":"rocketecommerceapi","template":"@(portalShop.Record.GetXmlProperty("genxml/checkouttemplate"))","moduleref":"@(sessionParams.ModuleRef)"}'>@ButtonTextIcon(ButtonTypes.next)</div>
+    }
+</div>

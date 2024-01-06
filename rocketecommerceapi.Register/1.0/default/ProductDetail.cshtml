@@ -1,0 +1,62 @@
+﻿@inherits RocketEcommerceAPI.Components.RocketEcommerceAPITokens<Simplisity.SimplisityRazor>
+@using Simplisity;
+@using RocketEcommerceAPI.Components;
+@using DNNrocketAPI.Components;
+@using RocketPortal.Components;
+
+@{
+    var productData = (ProductLimpet)Model.GetDataObject("productdata");
+    var productDataList = (ProductLimpetList)Model.GetDataObject("productlist");
+    var companyData = (CompanyLimpet)Model.GetDataObject("companydata"); ;
+    var cartData = (CartLimpet)Model.GetDataObject("cartdata");
+    var sessionParams = (SessionParams)Model.SessionParamsData;
+    var portalShop = (PortalShopLimpet)Model.GetDataObject("portalshop");
+    var portalData = (PortalLimpet)Model.GetDataObject("portaldata");
+    var appTheme = (AppThemeLimpet)Model.GetDataObject("appthemeview");
+    var appThemeDefault = (AppThemeLimpet)Model.GetDataObject("appthemedefault");
+    var categoryDataList = (CategoryLimpetList)Model.GetDataObject("categorylist");
+    var moduleSettings = (ModuleContentLimpet)Model.GetDataObject("modulesettings");
+    var categoryData = (CategoryLimpet)Model.GetDataObject("categorydata");
+}
+
+@AddProcessDataResx(appTheme, true)
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketECommerceAPI/App_LocalResources/")
+
+<!--inject-->
+
+<div class="w3-row">
+
+    <div id="productdatasection@(productData.ProductId)" class="w3-padding">
+        <h1>@(productData.Name)</h1>
+        <div>@(productData.Ref)</div>
+
+        <div class="w3-xxlarge w3-padding">
+            @productData.PriceMinimumDisplay()
+        </div>
+
+        <div class="w3-padding">
+            @BreakOf(productData.Summary)
+        </div>
+        <div class="">
+            @HtmlOf(productData.RichText)
+        </div>
+
+        <div class="w3-white w3-margin-bottom">
+            @OptionsInput(productData)
+        </div>
+
+        <div class="w3-row w3-center ">
+            <div class="w3-button w3-light-grey simplisity_click" s-cmdurl="@(portalShop.ApiUrl)" s-cmd="rocketecommerceapi_addtocart" s-fields='{"productid":"@(productData.ProductId)","moduleref":"@(moduleSettings.ModuleRef)"}' s-post="#productdatasection@(productData.ProductId)" s-reload="true" title="@ResourceKey("RE.addtobasket")">
+                @MaterialIcon("add")&nbsp;@ResourceKey("Register.addnewattendee")
+            </div>
+        </div>
+        <div class="w3-row">
+            <a class="w3-button w3-border w3-left" href="@DNNrocketUtils.NavigateURL(moduleSettings.ListPageTabId())">@ButtonIconText(ButtonTypes.previous)</a>
+            <a id="cartdisplay" class="w3-button w3-right w3-border  simplisity_click " s-cmdurl="@(portalShop.ApiUrl)" s-return="#ecommerce-tag" s-cmd="rocketecommerceapi_cartlist" s-fields='{"template":"cartlist.cshtml","moduleref":"@(moduleSettings.ModuleRef)"}'>@ButtonTextIcon(ButtonTypes.next)</a>
+        </div>
+
+    </div>
+
+</div>
+
+

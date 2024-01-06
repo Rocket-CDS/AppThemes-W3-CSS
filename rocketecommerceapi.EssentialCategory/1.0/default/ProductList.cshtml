@@ -21,6 +21,8 @@
 @AddProcessDataResx(appTheme, true)
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketECommerceAPI/App_LocalResources/")
 
+<!--inject-->
+
 <h1>
     @if (!categoryData.Exists)
     {
@@ -34,34 +36,34 @@
     <div class="w3-threequarter">
         <div class="w3-row">
             @RenderTemplate("SearchBanner.cshtml", appThemeDefault, Model, true)
-            @foreach (ProductLimpet productData in productDataList.GetArticleList())
+            @foreach (ProductLimpet productData2 in productDataList.GetArticleList())
             {
                 var urlparams = new Dictionary<string, string>();
-                urlparams.Add("pid", productData.ProductId.ToString());
-                var productDetailUrl = DNNrocketUtils.NavigateURL(moduleSettings.DetailPageTabId(), urlparams, productData.Name);
+                urlparams.Add("pid", productData2.ProductId.ToString());
+                var productDetailUrl = DNNrocketUtils.NavigateURL(moduleSettings.DetailPageTabId(), urlparams, productData2.Name);
 
                 <div class="w3-col s12 m6 l3 w3-padding w3-center">
-                    <a href="@(productDetailUrl)" class="" title="@productData.Name" onclick="$('.simplisity_loader').show();">
-                        <img class="sliderind@(moduleSettings.ModuleRef)" src="@ImageUrl(productData.DefaultImageUrl(),200,200)" style="width:100%;">
+                    <a href="@(productDetailUrl)" class="" title="@productData2.Name" onclick="$('.simplisity_loader').show();">                       
+                        <img class="sliderind@(moduleSettings.ModuleRef)" src="@ImageUrl(productData2.DefaultImageUrl(),200,200)" style="width:100%;">
                     </a>
                     <div class="w3-row w3-padding w3-center">
 
-                        @if (productData.SalePriceMinimumCents > 0)
+                        @if (productData2.SalePriceMinimumCents > 0)
                         {
                             <div class="">
-                                <span class="">@productData.SalePriceMinimumDisplay()</span>
-                                <span style="text-decoration:line-through;" class="w3-small">@productData.PriceMinimumDisplay()</span>
+                                <span class="">@productData2.SalePriceMinimumDisplay()</span>
+                                <span style="text-decoration:line-through;" class="w3-small">@productData2.PriceMinimumDisplay()</span>
                             </div>
                         }
                         else
                         {
-                            <div class="">@productData.PriceMinimumDisplay()</div>
+                            <div class="">@productData2.PriceMinimumDisplay()</div>
                         }
 
                     </div>
                     <div class="w3-padding" style="height:80px;overflow:hidden;">
-                        <a href="@(productDetailUrl)" class="" title="@productData.Name" onclick="$('.simplisity_loader').show();">
-                            @productData.Name
+                        <a href="@(productDetailUrl)" class="" title="@productData2.Name" onclick="$('.simplisity_loader').show();">
+                            @productData2.Name
                         </a>
                     </div>
                 </div>
