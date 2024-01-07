@@ -52,11 +52,9 @@
                         </div>
 
                             <div class="w3-bar-item">
-                                <div class="w3-row">
-                                    <div class="w3-large">
-                                        <input id="modelprice_@(lp1)" class="cartitemprice" idxrow="@(lp1)" value="@cItem.PriceWithOptions.ToString().Replace(",",".")" type="hidden" />
-                                    </div>
-                                </div>
+                            <input id="modelprice_@(lp1)" class="cartitemprice" idxrow="@(lp1)" value="@cItem.PriceWithOptions.ToString().Replace(",",".")" type="hidden" />
+                            <input id="qty_@(lp1)" s-xpath="genxml/qty" class="qtyvalue" value="@(cItem.Qty.ToString())" type="hidden" />
+    
                                 <div class="w3-bar w3-small">@selectedModel.Name</div>
                                 @{
                                     var oLp = 1;
@@ -108,7 +106,7 @@
             <div class="w3-left">
                 <div class="w3-bar">
                     <div class="w3-bar-item w3-button w3-border w3-light-grey w3-center w3-margin-right w3-margin-bottom w3-hide-small simplisity_click " s-cmd="rocketecommerceapi_cartlist" s-return='#ecommerce-tag' s-fields='{"systemkey":"rocketecommerceapi","template":"cartlist.cshtml","moduleref":"@(sessionParams.ModuleRef)"}'>@ButtonIcon(ButtonTypes.refresh, sessionParams.CultureCode)</div>
-                    <div class="w3-bar-item w3-button w3-border w3-light-grey w3-center w3-margin-bottom simplisity_confirmclick " s-confirm="@ResourceKey("DNNRocket.delete") ?" s-cmd="rocketecommerceapi_cartdelete" s-return='#ecommerce-tag' s-fields='{"systemkey":"rocketecommerceapi","template":"cartlist.cshtml","moduleref":"@(sessionParams.ModuleRef)"}'>@ButtonText(ButtonTypes.delete, sessionParams.CultureCode)</div>
+                    <div class="w3-bar-item w3-button w3-border w3-light-grey w3-center w3-margin-bottom simplisity_confirmclick " s-reload="true" s-confirm="@ResourceKey("DNNRocket.delete") ?" s-cmd="rocketecommerceapi_cartdelete" s-return='#ecommerce-tag' s-fields='{"systemkey":"rocketecommerceapi","template":"cartlist.cshtml","moduleref":"@(sessionParams.ModuleRef)"}'>@ButtonText(ButtonTypes.delete, sessionParams.CultureCode)</div>
                 </div>
             </div>
             <div class="w3-right">

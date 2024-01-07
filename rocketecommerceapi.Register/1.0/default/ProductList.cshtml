@@ -26,6 +26,7 @@
 <h1>@companyData.CompanyName</h1>
 
 <div class="w3-row">
+    <div class="w3-threequarter w3-padding">
     @foreach (ProductLimpet productData2 in productDataList.GetArticleList())
     {
         var urlparams = new Dictionary<string, string>();
@@ -46,42 +47,43 @@
             </a>
         </div>
     }
-
-    <div class="w3-row w3-margin-top w3-border-top">
-        @foreach (var cItem in cartData.CartItemList)
-        {
-            var o1 = cItem.GetOption(1);
-            var o2 = cItem.GetOption(2);
-            var o3 = cItem.GetOption(3);
-
-            <span>
-            @MaterialIcon("account_circle")
-            </span>
-
-            <span class="w3-small">
-                @if (o1 != null)
-                {
-                    <span>&nbsp; &nbsp;@o1.OptionName:&nbsp;@Succinct(o1.SelectedText, 30)</span>
-                }
-                @if (o2 != null)
-                {
-                    <span>&nbsp; &nbsp;@o2.OptionName:&nbsp;@Succinct(o2.SelectedText, 30)</span>
-                }
-                @if (o3 != null)
-                {
-                    <span>&nbsp; &nbsp;@o3.OptionName:&nbsp;@Succinct(o3.SelectedText, 30)</span>
-                }
-            </span>
-            <br/>
-        }
     </div>
+    <div class="w3-quarter w3-padding">
+        <div class="w3-row w3-margin-top w3-border-top w3-hide-small">
+            <h2>@ResourceKey("Register.attendees")</h2>
+            <div class="w3-row">
+                @foreach (var cItem in cartData.CartItemList)
+                {
+                    var o1 = cItem.GetOption(1);
+                    var o2 = cItem.GetOption(2);
+
+                    <div>
+                        @MaterialIcon("account_circle")
+                    </div>
+
+                    <div class="w3-row w3-small">
+                        @if (o1 != null)
+                        {
+                            <div>@o1.OptionName:&nbsp;@Succinct(o1.SelectedText, 30)</div>
+                        }
+                        @if (o2 != null)
+                        {
+                            <div>@o2.OptionName:&nbsp;@Succinct(o2.SelectedText, 30)</div>
+                        }
+                    </div>
+                    <br />
+                }
+            </div>
+        </div>
+    </div>
+
 
 </div>
 
 if (cartData.CartItemList.Count > 0)
 {
     <div class="w3-row w3-padding">
-        <a id="cartdisplay" class="w3-button w3-right w3-border  simplisity_click " s-cmdurl="@(portalShop.ApiUrl)" s-return="#ecommerce-tag" s-cmd="rocketecommerceapi_cartlist" s-fields='{"template":"cartlist.cshtml","moduleref":"@(moduleSettings.ModuleRef)"}'>@ButtonTextIcon(ButtonTypes.next)</a>
+    <div id="cartdisplay" class="w3-button w3-right w3-border  simplisity_click " s-cmdurl="@(portalShop.ApiUrl)" s-return="#ecommerce-tag" s-cmd="rocketecommerceapi_cartlist" s-fields='{"template":"cartlist.cshtml","moduleref":"@(moduleSettings.ModuleRef)"}'>@MaterialIcon("shopping_cart_checkout")&nbsp;@ResourceKey("RE.checkout")</div>
     </div>
 }
 
