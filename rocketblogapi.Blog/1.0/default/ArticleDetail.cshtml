@@ -38,6 +38,14 @@
             <p>
                 @HtmlOf(articleData.RichText)
             </p>
+            <div class="w3-row">
+                @foreach (var tag in articleData.GetProperties("tags"))
+                {
+                    <span class="w3-light-grey w3-round-xlarge w3-padding w3-margin-right">
+                        @tag.Name
+                    </span>
+                }
+            </div>
 
             <div class="w3-row">
                 <div class="w3-half">

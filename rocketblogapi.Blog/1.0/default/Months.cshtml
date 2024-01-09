@@ -12,14 +12,17 @@
     }
     @foreach (var a in RocketDirectoryAPIUtils.GetArticlesByMonth(systemData.SystemKey, DateTime.Now, 12, "publisheddate", sessionParams.GetInt("catid")))
     {
-        <div class="w3-button w3-block w3-left-align rocket-monthdates rocket-monthdates@(monthidx) " monthidx="@(monthidx)" onclick="setSelected($(this).attr('monthidx'));doDateSearchReload('@a.Key.ToString("yyyy-MM-dd")','@a.Key.AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd")')">
-            <span>
-                @a.Key.ToString("MMMM yyyy")
-            </span>
-            <span class="w3-right">
-                @a.Value.Count
-            </span>
-        </div>
+        if (a.Value.Count > 0)
+        {
+            <div class="w3-button w3-block w3-left-align rocket-monthdates rocket-monthdates@(monthidx) " monthidx="@(monthidx)" onclick="setSelected($(this).attr('monthidx'));doDateSearchReload('@a.Key.ToString("yyyy-MM-dd")','@a.Key.AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd")')">
+                <span>
+                    @a.Key.ToString("MMMM yyyy")
+                </span>
+                <span class="w3-right">
+                    @a.Value.Count
+                </span>
+            </div>
+        }
         monthidx += 1;
     }
 

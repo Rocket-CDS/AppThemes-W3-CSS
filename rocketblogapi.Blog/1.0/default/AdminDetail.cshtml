@@ -47,7 +47,7 @@
                                 <label>@ResourceKey("DNNrocket.date")</label>
                                 @{
                                     DateTime today = DateTime.Today;
-                                    var todayString = today.ToString("MM/dd/yyyy");
+                                    var todayString = today.ToString("O");
                                 }
                                 @TextBoxDate(info, "genxml/textbox/publisheddate", " class='w3-input w3-border' autocomplete='off'", todayString, false, 0)
                             </div>
