@@ -22,7 +22,7 @@
         @foreach (ArticleLimpet articleData in rowList)
         {
             <div class="w3-quarter w3-padding" style="overflow:hidden;">
-                <a href="@DetailUrl(moduleData.DetailPageTabId(), articleData, categoryData)" title="@articleData.Name" onclick="$('#simplisity_loader').show();">
+                <a href="@DetailUrl(moduleData.DetailPageTabId(), articleData, null)" title="@articleData.Name" onclick="$('#simplisity_loader').show();">
                     <img src="@ImageUrl(articleData.GetImage(0).RelPathWebp,420,420)" alt="@articleData.Name" style="width:100%" class="w3-hover-opacity w3-round">
                     <b>@articleData.Name</b><span class="w3-padding w3-small">@DateOf(articleData.Info, "genxml/textbox/newsdate", false, sessionParams.CultureCode)</span>
                 </a>
