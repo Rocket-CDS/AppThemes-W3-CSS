@@ -1,28 +1,21 @@
 ﻿@inherits RocketForms.Components.RocketFormsTokens<Simplisity.SimplisityRazor>
 @using DNNrocketAPI.Components;
-@using RocketContentAPI.Components;
+@using RocketForms.Components;
 @using Simplisity;
 @using RazorEngine.Text;
 @using Rocket.AppThemes.Components;
 @using RocketPortal.Components;
 
+@AssigDataModel(Model)
+<!--inject-->
 @{
-    var sessionParams = Model.SessionParamsData;
-    var moduleData = (ModuleContentLimpet)Model.GetDataObject("modulesettings");
-    var portalData = (PortalLimpet)Model.GetDataObject("portaldata");
-    var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
     var info = new SimplisityInfo();
-
-    AddProcessDataResx(appTheme, true);
-    AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketForms/App_LocalResources/");
-
     var cssClass = "";
     if (moduleData.Record.GetXmlProperty("genxml/setting/cssclass") != "")
     {
         cssClass = "class='" + moduleData.Record.GetXmlProperty("genxml/settings/cssclass") + "' ";
     }
 }
-
 
 <div @(cssClass)>
     <h2 class="title">@ResourceKey("RocketForms.title")</h2>
@@ -41,7 +34,7 @@
             <div class="w3-row">
                 <div class="w3-half  w3-padding">
                     <label>@ResourceKey("RocketForms.email")</label>
-                    @TextBox(info, "genxml/textbox/email", "class='w3-input w3-border' required","",false,0,"","email")
+                    @TextBox(info, "genxml/textbox/email", "class='w3-input w3-border' name='email' required email", "", false, 0, "", "email")
                 </div>
                 <div class="w3-half  w3-padding">
                     <label>@ResourceKey("RocketForms.tel")</label>
@@ -59,51 +52,9 @@
         </div>
         <div class="w3-row"><i>@ResourceKey("RocketForms.compulsory")</i></div>
 
-        <div id="buttondiv@(moduleData.ModuleId)" class="w3-center w3-margin simplisity_panel" style="min-height:40px;">
-
-            <div class="w3-button w3-green">@ResourceKey("RocketForms.send")</div>
-
+        <div class="w3-row w3-center w3-large">
+        @DelayFormButton(Model, "#contactform" + moduleData.ModuleId)
         </div>
-        <div id="myBarWrapper@(moduleData.ModuleId)" class="w3-light-grey w3-margin" style="display:none;">
-          <div id="myBar@(moduleData.ModuleId)" class="w3-container w3-green" style="height:24px;width:1%"></div>
-        </div>
-        <!-- we must pass moduleid to server -->
-        @HiddenField(info, "genxml/hidden/moduleid","",moduleData.ModuleId.ToString())
+
     </div>
 </div>
-
-<script>
-    $( document ).ready(function() {
-
-        setTimeout(function(){
-            var buttontext = '<button id="sendemail@(moduleData.ModuleId)" type="button" class="w3-button w3-green simplisity_click" s-before="move" s-return="#buttondiv@(moduleData.ModuleId)"  s-cmdurl="/Desktopmodules/dnnrocket/api/rocket/action" s-cmd="rocketforms_publicpostform"  s-post="#contactform@(moduleData.ModuleId)" >@ResourceKey("RocketForms.send")</button>'
-            $('#buttondiv@(moduleData.ModuleId)').html(buttontext);
-
-            $('#contactform@(moduleData.ModuleId)').activateSimplisityPanel();
-
-        }, 1200);
-
-    });
-
-    function move() {
-
-      $('#buttondiv@(moduleData.ModuleId)').html('');
-      $('#myBarWrapper@(moduleData.ModuleId)').appendTo('#buttondiv@(moduleData.ModuleId)')
-      $('#myBarWrapper@(moduleData.ModuleId)').show();
-
-      var elem = document.getElementById("myBar@(moduleData.ModuleId)");
-      var width = 1;
-      var id = setInterval(frame, 30);
-      function frame() {
-        if (width >= 100) {
-          clearInterval(id);
-        } else {
-          width++;
-          elem.style.width = width + '%';
-        }
-      }
-    }
-</script>
-
-
-
