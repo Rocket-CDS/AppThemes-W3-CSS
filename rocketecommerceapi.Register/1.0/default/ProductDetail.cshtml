@@ -46,7 +46,7 @@
         </div>
 
         <div class="w3-row w3-center ">
-            <div class="w3-button w3-light-grey simplisity_click" s-cmdurl="@(portalShop.ApiUrl)" s-cmd="rocketecommerceapi_addtocart" s-fields='{"productid":"@(productData.ProductId)","moduleref":"@(moduleSettings.ModuleRef)"}' s-post="#productdatasection@(productData.ProductId)" s-reload="true" title="@ResourceKey("RE.addtobasket")">
+            <div class="w3-button w3-light-grey a-dovalidate simplisity_click" s-cmdurl="@(portalShop.ApiUrl)" s-before="validateFom@(moduleSettings.ModuleId)" s-cmd="rocketecommerceapi_addtocart" s-fields='{"productid":"@(productData.ProductId)","moduleref":"@(moduleSettings.ModuleRef)"}' s-post="#productdatasection@(productData.ProductId)" s-reload="true" title="@ResourceKey("RE.addtobasket")">
                 @MaterialIcon("add")&nbsp;@ResourceKey("Register.addnewattendee")
             </div>
         </div>
@@ -87,4 +87,41 @@
 
 </div>
 
+<script>
+    $(document).ready(function () {
+    });
+
+    function validateFom@(moduleSettings.ModuleId)() {
+    alert('validate');
+        $('.simplisity_loader').show();
+        var form = $("#Form");
+        form.validate({
+            rules: {
+                email: {
+                    required: true,
+                    email: true
+                },
+            },
+            errorPlacement: function () {
+                return false;  // suppresses error message text
+            },
+            invalidHandler: function (e, validator) {
+                $('input').removeClass('w3-pale-red');
+                $('input').removeClass('w3-border-red');
+                for (var i in validator.errorMap) {
+                    $('#' + i).addClass('w3-pale-red');
+                    $('#' + i).addClass('w3-border-red')
+                }
+            },
+            amount: {
+                required: true,
+                digits: true
+            },
+        });
+        if (!form.valid()) {
+            $('.a-dovalidate').attr('s-stop', 'stop')
+        }
+    }
+
+</script>
 
