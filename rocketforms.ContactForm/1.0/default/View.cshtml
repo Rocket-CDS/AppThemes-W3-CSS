@@ -18,7 +18,7 @@
 }
 
 <div @(cssClass)>
-    <h2 class="title">@ResourceKey("RocketForms.title")</h2>
+    <h2 class="title">@moduleData.GetSetting("heading" + sessionParams.CultureCode)</h2>
     <div id="contactform@(moduleData.ModuleId)" class=" w3-row">
         <div class="w3-container">
             <div class="w3-row">
