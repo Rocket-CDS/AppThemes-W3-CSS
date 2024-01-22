@@ -74,16 +74,15 @@
                     <br />
                 }
             </div>
+            @if (cartData.CartItemList.Count > 0)
+            {
+                <div class="w3-row w3-padding">
+                    <div id="cartdisplay" class="w3-button w3-right w3-border  simplisity_click " s-cmdurl="@(portalShop.ApiUrl)" s-return="#ecommerce-tag" s-cmd="rocketecommerceapi_cartlist" s-fields='{"template":"cartlist.cshtml","moduleref":"@(moduleSettings.ModuleRef)"}'>@MaterialIcon("shopping_cart_checkout")&nbsp;@ResourceKey("RE.checkout")</div>
+                </div>
+            }
         </div>
     </div>
 
 
 </div>
-
-if (cartData.CartItemList.Count > 0)
-{
-    <div class="w3-row w3-padding">
-    <div id="cartdisplay" class="w3-button w3-right w3-border  simplisity_click " s-cmdurl="@(portalShop.ApiUrl)" s-return="#ecommerce-tag" s-cmd="rocketecommerceapi_cartlist" s-fields='{"template":"cartlist.cshtml","moduleref":"@(moduleSettings.ModuleRef)"}'>@MaterialIcon("shopping_cart_checkout")&nbsp;@ResourceKey("RE.checkout")</div>
-    </div>
-}
 

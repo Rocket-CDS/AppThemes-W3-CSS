@@ -28,11 +28,13 @@
 
     <div id="productdatasection@(productData.ProductId)" class="w3-padding w3-threequarter">
         <h1>@(productData.Name)</h1>
-        <div>@(productData.Ref)</div>
 
+        @if (productData.PriceMinimumCents > 0)
+        {
         <div class="w3-xxlarge w3-padding">
             @productData.PriceMinimumDisplay()
-        </div>
+        </div>            
+        }
 
         <div class="w3-padding">
             @BreakOf(productData.Summary)
@@ -52,7 +54,6 @@
         </div>
         <div class="w3-row w3-margin-top">
             <a class="w3-button w3-border w3-left" href="@DNNrocketUtils.NavigateURL(moduleSettings.ListPageTabId())">@ButtonIconText(ButtonTypes.previous)</a>
-            <div id="cartdisplay" class="w3-button w3-right w3-border  simplisity_click " s-cmdurl="@(portalShop.ApiUrl)" s-return="#ecommerce-tag" s-cmd="rocketecommerceapi_cartlist" s-fields='{"template":"cartlist.cshtml","moduleref":"@(moduleSettings.ModuleRef)"}'>@MaterialIcon("shopping_cart_checkout")&nbsp;@ResourceKey("RE.checkout")</div>
         </div>
 
     </div>
@@ -82,6 +83,12 @@
                     <br />
                 }
             </div>
+            @if (cartData.CartItemList.Count > 0)
+            {
+                <div class="w3-row w3-padding">
+                    <div id="cartdisplay" class="w3-button w3-right w3-border  simplisity_click " s-cmdurl="@(portalShop.ApiUrl)" s-return="#ecommerce-tag" s-cmd="rocketecommerceapi_cartlist" s-fields='{"template":"cartlist.cshtml","moduleref":"@(moduleSettings.ModuleRef)"}'>@MaterialIcon("shopping_cart_checkout")&nbsp;@ResourceKey("RE.checkout")</div>
+                </div>
+            }
         </div>
     </div>
 
@@ -92,7 +99,6 @@
     });
 
     function validateFom@(moduleSettings.ModuleId)() {
-    alert('validate');
         $('.simplisity_loader').show();
         var form = $("#Form");
         form.validate({
