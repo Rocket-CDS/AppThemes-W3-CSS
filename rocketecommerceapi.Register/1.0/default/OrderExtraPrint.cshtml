@@ -1,0 +1,32 @@
+@inherits RocketEcommerceAPI.Components.RocketEcommerceAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI;
+@using Simplisity;
+@using RocketEcommerceAPI.Components;
+@using DNNrocketAPI.Components;
+@using System.Globalization;
+
+@{
+    var info = new SimplisityInfo();
+    var orderData = (OrderLimpet)Model.List.First();
+    if (orderData.Record != null)
+    {
+        info = new SimplisityInfo(orderData.Record);
+    }
+    var sessionParams = (SessionParams)Model.SessionParamsData;
+    var appTheme = (AppThemeLimpet)Model.GetDataObject("appthemeview");
+}
+@AddProcessDataResx(appTheme, true)
+
+<div style="height:8px">&nbsp;</div><!-- spacer -->
+<table width="800" border="0" cellpadding="20" cellspacing="0" align="center" bgcolor="#ffffff">
+    <tr>
+        <td width="50%" align="left" valign="top" style="line-height:100%">
+            <div>
+                <b>@ResourceKey("Register.arrivaldate", sessionParams.CultureCode): </b>@info.GetXmlProperty("genxml/textbox/arrivaldate")
+            </div>
+            <div>
+                <b>@ResourceKey("Register.departuredate", sessionParams.CultureCode): </b>@info.GetXmlProperty("genxml/textbox/departuredate")
+            </div>
+        </td>
+    </tr>
+</table>

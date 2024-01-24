@@ -120,11 +120,20 @@
   <data name="addnewattendee.Text" xml:space="preserve">
     <value>Add New Attendee</value>
   </data>
+  <data name="arrivaldate.Text" xml:space="preserve">
+    <value>Arrival Date</value>
+  </data>
   <data name="attendee.Text" xml:space="preserve">
     <value>Attendee</value>
   </data>
   <data name="attendees.Text" xml:space="preserve">
     <value>Attendees</value>
+  </data>
+  <data name="departuredate.Text" xml:space="preserve">
+    <value>Departure Date</value>
+  </data>
+  <data name="discountcode.Text" xml:space="preserve">
+    <value>Discount Code</value>
   </data>
   <data name="invoicedetails.Text" xml:space="preserve">
     <value>Invoice Details</value>

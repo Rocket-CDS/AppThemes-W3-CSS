@@ -1,0 +1,33 @@
+@inherits RocketEcommerceAPI.Components.RocketEcommerceAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI;
+@using Simplisity;
+@using RocketEcommerceAPI.Components;
+@using DNNrocketAPI.Components;
+@using System.Globalization;
+
+@{
+    var info = new SimplisityInfo();
+    var orderData = (OrderLimpet)Model.List.First();
+    if (orderData.Record != null)
+    {
+        info = new SimplisityInfo(orderData.Record);
+    }
+    var sessionParams = (SessionParams)Model.SessionParamsData;
+    var appTheme = (AppThemeLimpet)Model.GetDataObject("appthemeview");
+}
+@AddProcessDataResx(appTheme, true)
+
+<div class="w3-container w3-padding">
+
+    <div class="w3-row w3-margin-bottom ">
+        <div class="w3-third w3-padding-small ">
+            <label>@ResourceKey("Register.arrivaldate", sessionParams.CultureCode)</label>
+            @TextBoxDate(info, "genxml/textbox/arrivaldate", " class='w3-input w3-border'  disabled", DateTime.Now.Date.ToString("O"))
+        </div>
+        <div class="w3-third w3-padding-small ">
+            <label>@ResourceKey("Register.departuredate", sessionParams.CultureCode)</label>
+            @TextBoxDate(info, "genxml/textbox/departuredate", " class='w3-input w3-border' disabled ", DateTime.Now.Date.AddDays(1).ToString("O"))
+        </div>
+    </div>
+</div>
+

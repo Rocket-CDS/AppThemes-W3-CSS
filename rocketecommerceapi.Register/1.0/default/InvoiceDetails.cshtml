@@ -99,6 +99,20 @@
             <label>@ResourceKey("RE.specialinstructions", sessionParams.CultureCode)</label>
             @TextArea(info, "genxml/textbox/clientnotes", " class='w3-input w3-border' rows='4' ")
         </div>
+        <div class="w3-row w3-margin-bottom ">
+            <div class="w3-third w3-padding-small ">
+                <label>@ResourceKey("Register.arrivaldate", sessionParams.CultureCode)Arrival Date</label>
+                @TextBoxDate(info, "genxml/textbox/arrivaldate", " class='w3-input w3-border' ", DateTime.Now.Date.ToString("O"))
+            </div>
+            <div class="w3-third w3-padding-small ">
+                <label>@ResourceKey("Register.departuredate", sessionParams.CultureCode)Departure Date</label>
+                @TextBoxDate(info, "genxml/textbox/departuredate", " class='w3-input w3-border' ", DateTime.Now.Date.AddDays(1).ToString("O"))
+            </div>
+            <div class="w3-third w3-padding-small ">
+                <label>@ResourceKey("Register.discountcode", sessionParams.CultureCode)</label>
+                @TextBox(info, "genxml/textbox/discountcode", " class='w3-input w3-border' ")
+            </div>
+        </div>
 
     </div>
 
