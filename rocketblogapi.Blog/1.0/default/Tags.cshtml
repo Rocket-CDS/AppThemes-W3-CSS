@@ -10,7 +10,7 @@
 }
 <div class="rocket-tags w3-padding">
     <span style="">
-        @TagButton(0, "X", "rocket-tagbuttonOff", "rocket-tagbuttonOff",sessionParams)
+        @TagButtonClear("X", sessionParams)
     </span>
     @foreach (var g in moduleData.GetPropertyModuleGroups(catalogSettings))
     {
@@ -18,11 +18,11 @@
         {
             if (!displayList.Contains(p.Key))
             {
-                @TagButton(p.Key, p.Value, "rocket-tagbuttonOff", "rocket-tagbuttonOn",sessionParams)
+                @TagButton(p.Key, p.Value ,sessionParams)
                 displayList.Add(p.Key);
             }
         }
     }
 </div>
 
-@TagJsApiCall(moduleData.SystemKey,"#rocket-blog", "rocket-tagbuttonOff", "rocket-tagbuttonOn", sessionParams)
+@TagJsApiCall(moduleData.SystemKey,"#rocket-blog", sessionParams)
