@@ -16,7 +16,6 @@
     {
         info = new SimplisityInfo(orderData.Record);
     }
-    var sessionParams = (SessionParams)Model.SessionParamsData;
 }
 
 <div style="height:8px">&nbsp;</div><!-- spacer -->
@@ -24,10 +23,10 @@
     <tr>
         <td width="50%" align="left" valign="top" style="line-height:100%">
             <div>
-                <b>@ResourceKey("Register.arrivaldate", sessionParams.CultureCode): </b>@info.GetXmlProperty("genxml/textbox/arrivaldate")
+                <b>@ResourceKey("Register.arrivaldate", orderData.CultureCode): </b>@info.GetXmlProperty("genxml/textbox/arrivaldate")
             </div>
             <div>
-                <b>@ResourceKey("Register.departuredate", sessionParams.CultureCode): </b>@info.GetXmlProperty("genxml/textbox/departuredate")
+                <b>@ResourceKey("Register.departuredate", orderData.CultureCode): </b>@info.GetXmlProperty("genxml/textbox/departuredate")
             </div>
         </td>
     </tr>
