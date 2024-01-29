@@ -82,9 +82,21 @@
 	</adminpanelinterfacekeys>
 	<queryparams list="true">
 		<genxml>
+			<queryparam>blogcatid</queryparam>
+			<tablename>rocketdirectoryapi</tablename>
+			<systemkey>rocketblogapi</systemkey>
+		</genxml>
+		<genxml>
 			<queryparam>blogid</queryparam>
 			<tablename>rocketdirectoryapi</tablename>
 			<systemkey>rocketblogapi</systemkey>
 		</genxml>
-	</queryparams>	
+	</queryparams>
+	<menuprovider>
+		<genxml>
+			<assembly>RocketDirectoryAPI</assembly>
+			<namespaceclass>RocketDirectoryAPI.Components.MenuDirectory</namespaceclass>
+			<systemkey>rocketblogapi</systemkey>
+		</genxml>
+	</menuprovider>
 </genxml>

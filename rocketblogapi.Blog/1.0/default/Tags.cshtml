@@ -9,9 +9,7 @@
     var displayList = new List<int>();
 }
 <div class="rocket-tags w3-padding">
-    <span style="">
-        @TagButtonClear("X", sessionParams)
-    </span>
+    @TagButtonClear("X", sessionParams)
     @foreach (var g in moduleData.GetPropertyModuleGroups(catalogSettings))
     {
         foreach (var p in propertyDataList.GetPropertyTagList(g.Key))
