@@ -5,6 +5,10 @@
 @using DNNrocketAPI.Components;
 @using System.Globalization;
 
+@AddProcessData("resourcepath", "/DesktopModules/RocketThemes/AppThemes-W3-CSS/rocketecommerceapi.Register/1.0/resx/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketEcommerceAPI/App_LocalResources/")
+
 @{
     var info = new SimplisityInfo();
     var orderData = (OrderLimpet)Model.List.First();
@@ -13,9 +17,7 @@
         info = new SimplisityInfo(orderData.Record);
     }
     var sessionParams = (SessionParams)Model.SessionParamsData;
-    var appTheme = (AppThemeLimpet)Model.GetDataObject("appthemeview");
 }
-@AddProcessDataResx(appTheme, true)
 
 <div style="height:8px">&nbsp;</div><!-- spacer -->
 <table width="800" border="0" cellpadding="20" cellspacing="0" align="center" bgcolor="#ffffff">
