@@ -52,6 +52,13 @@
                 @MaterialIcon("add")&nbsp;@ResourceKey("Register.addnewattendee")
             </div>
         </div>
+        @if (cartData.CartItemList.Count > 0)
+        {
+            <div class="w3-row w3-margin-top w3-hide-medium w3-hide-large">
+                <div id="cartdisplay" class="w3-button w3-right w3-border  simplisity_click " s-cmdurl="@(portalShop.ApiUrl)" s-return="#ecommerce-tag" s-cmd="rocketecommerceapi_cartlist" s-fields='{"template":"cartlist.cshtml","moduleref":"@(moduleSettings.ModuleRef)"}' style="width:100%">@MaterialIcon("shopping_cart_checkout")&nbsp;@ResourceKey("RE.checkout")</div>
+            </div>
+        }
+
         <div class="w3-row w3-margin-top">
             <a class="w3-button w3-border w3-left" href="@DNNrocketUtils.NavigateURL(moduleSettings.ListPageTabId())">@ButtonIconText(ButtonTypes.previous)</a>
         </div>
