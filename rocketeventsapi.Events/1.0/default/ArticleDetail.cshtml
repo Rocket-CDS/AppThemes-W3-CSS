@@ -32,12 +32,20 @@
                 }
             </div>
             <div class="w3-row w3-margin w3-small">
-                @ResourceKey("Blog.rating"):&nbsp;@articleData.ReviewScore
+                @ResourceKey("Events.rating"):&nbsp;@articleData.ReviewScore
             </div>
             <i>@BreakOf(articleData.Summary)</i>
             <p>
                 @HtmlOf(articleData.RichText)
             </p>
+            <div class="w3-row">
+                @foreach (var tag in articleData.GetProperties("tags"))
+                {
+                    <span class="w3-light-grey w3-round-xlarge w3-padding w3-margin-right">
+                        @tag.Name
+                    </span>
+                }
+            </div>
 
             <div class="w3-row">
                 <div class="w3-half">
@@ -73,6 +81,65 @@
                     }
                 </div>
             </div>
+
+            @if (!moduleData.GetSettingBool("turnoffcomments") && UserUtils.IsValidUser(PortalUtils.GetCurrentPortalId(), UserUtils.GetCurrentUserId()))
+            {
+                var reviewfieldId = "articlereview";
+                var userData = UserUtils.GetUserData(PortalUtils.GetCurrentPortalId(), UserUtils.GetCurrentUserId());
+                <p class="w3-clear"></p>
+                <div class="simplisity_panel">
+                    <div id="blogreviewinput" class="w3-margin-top">
+                       <div class="w3-row">
+                            <div class="w3-half">
+                                <label>@ResourceKey("DNNrocket.name")</label>
+                                @TextBox(infoempty, "genxml/textbox/name" + reviewfieldId, "  maxlength='30' class='w3-input w3-border' autocomplete='off'", userData.DisplayName, false)
+                            </div>
+                            <div class="w3-quarter">
+                                <label>@ResourceKey("Events.rating")</label><br/>
+                                @RadioButtonList(infoempty, "genxml/select/stars" + reviewfieldId,"1,2,3,4,5","1,2,3,4,5"," class='w3-right'","", ResourceKey("Events.stars").ToString(),false)
+                            </div>
+                            <div class="w3-col m12">
+                                <label>@ResourceKey("Events.comment")</label>
+                                @TextArea(infoempty, "genxml/textbox/comment" + reviewfieldId, " maxlength='300' class='w3-input w3-border' autocomplete='off'", "", false)
+                            </div>
+                       </div>
+                    </div>
+                    <div id="blogpostinoput" class="w3-center w3-margin-top">
+                        <div class="w3-button w3-white w3-border simplisity_confirmclick" s-confirm="@ResourceKey("Events.postcomments")?" s-cmd="remote_publicadduserreview" s-post="#blogreviewinput" s-return="#blogreviewinput" s-reload="true" s-fields='{"articleid":"@articleData.ArticleId"}'>
+                            <b>@ResourceKey("Events.addcomment")&nbsp;</b>
+                        </div>
+                    </div>
+                    <script>
+                        $(document).ready(function () {
+                            $(document).simplisityStartUp('/Desktopmodules/dnnrocket/api/rocket/action', { systemkey: 'rocketeventapi' });
+                        });
+                    </script>
+                </div>
+            }
+            @if (!moduleData.GetSettingBool("turnoffcomments"))
+            {
+
+                <div class="w3-right w3-margin-top">
+                    <div class="w3-button w3-black" onclick="$('#blogreviews').toggle();">
+                        <b>@ResourceKey("Events.replies")&nbsp;</b>
+                        <span class="w3-tag w3-white">@articleData.ReviewCount</span>
+                    </div>
+                </div>
+                <p class="w3-clear"></p>
+
+                <div id="blogreviews" class="w3-margin-top" style="display:none;">
+                    @foreach (var r in articleData.GetReviews())
+                    {
+                        if (!r.Hidden)
+                        {
+                            <div class="w3-row w3-border-top w3-padding">
+                                <div class="w3-large">@r.Name<span class="w3-opacity w3-medium">&nbsp;@DateOf(r.Info, "genxml/textbox/reviewdate",sessionParams.CultureCode,"dd MMM yyy")</span></div>
+                                <div class="w3-small w3-margin-left">@BreakOf(r.Comment)</div>
+                            </div>                       
+                        }
+                    }
+                </div>
+            }
         </div>
     </div>
 </div>

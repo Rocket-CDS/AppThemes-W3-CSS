@@ -24,34 +24,51 @@
 
     @if (articleList.Count > 0)
     {
-    <div class="w3-container blogarticlelist">
+        <div class="w3-row w3-tiny">
+            <a href="@RssUrl(portalData.PortalId,"rocketeventapi_rss",1,"publisheddate",sessionParams.GetInt("catid"))" target="_blank">
+                <span class="material-icons">
+                rss_feed
+                </span>
+            </a>
+        </div>
 
-            @foreach (ArticleLimpet articleData in articleList)
+        <div class="w3-container blogarticlelist">
+
+            @foreach (ArticleLimpet article in articleList)
             {
                 var urlparams = new Dictionary<string, string>();
-                urlparams.Add("articleid", articleData.ArticleId.ToString());
-                var date = articleData.Info.GetXmlPropertyDate("genxml/textbox/publisheddate");
+                urlparams.Add("articleid", article.ArticleId.ToString());
+                var date = article.Info.GetXmlPropertyDate("genxml/textbox/publisheddate");
                 var dateFormat = date.ToShortDateString();
 
                 <div class="w3-card-4 w3-margin w3-white" style="overflow:hidden;">
-                    <img src="@ImageUrl(articleData.GetImage(0).RelPathWebp,640,200)" alt="@articleData.GetImage(0).Alt"  style="width:100%"/>
+                    @if (article.GetImage(0).RelPathWebp != "")
+                    {
+                        <img src="@ImageUrl(article.GetImage(0).RelPathWebp,800,300)" alt="@article.GetImage(0).Alt" style="width:100%;height:284px;" />                        
+                    }
                     <div class="w3-container">
-                        <h3><b>@articleData.Name</b></h3>
-                        <h5><span class="w3-opacity">@DateOf(articleData.Info, articleData.PublishedDateXPath,sessionParams.CultureCode, "dd MMM yyy")</span></h5>
+                        <h3><b>@article.Name</b></h3>
+                        <h5><span class="w3-opacity">@DateOf(article.Info, article.PublishedDateXPath,sessionParams.CultureCode, "dd MMM yyy")</span></h5>
                     </div>
 
                     <div class="w3-container">
                         <p>
-                            @Succinct(articleData.Summary,100)
+                            @Succinct(article.Summary,100)
                         </p>
                         <div class="w3-row">
                             <div class="w3-col m8 s12">
                                 <p>
-                                    <a href="@DetailUrl(moduleData.DetailPageTabId(), articleData, categoryData)" class="w3-button w3-padding-large w3-white w3-border" title="@articleData.Name" onclick="$('#simplisity_loader').show();">
-                                        <b>@ResourceKey("Blog.readmore")&nbsp;&gt;&nbsp;</b>
+                                    <a href="@DetailUrl(moduleData.DetailPageTabId(), article, categoryData)" class="w3-button w3-padding-large w3-white w3-border" title="@article.Name" onclick="$('#simplisity_loader').show();">
+                                        <b>@ResourceKey("Events.readmore")&nbsp;&gt;&nbsp;</b>
                                     </a>
                                 </p>
                             </div>
+                            @if (!moduleData.GetSettingBool("turnoffcomments"))
+                            {
+                                <div class="w3-col m4 w3-hide-small">
+                                    <p><span class="w3-padding-large w3-right"><b>@ResourceKey("Events.comments")&nbsp;  </b> <span class="w3-tag">@article.ReviewCount</span></span></p>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -62,7 +79,7 @@
     </div>
 
     <div class="w3-row w3-padding-16 w3-center">
-            @RenderTemplate("articlePaging.cshtml", appThemeDirectoryDefault, Model, false)
+        [INJECT:appthemedirectorydefault,articlePaging.cshtml]
     </div>
 
     }

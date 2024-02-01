@@ -30,26 +30,32 @@
 		<genxml>
 			<file><![CDATA[view.cshtml]]></file>
 			<name><![CDATA[List View]]></name>
+			<cmd>listdetail</cmd>
 		</genxml>
 		<genxml>
 			<file><![CDATA[Categories.cshtml]]></file>
 			<name><![CDATA[Category Menu]]></name>
+			<cmd>catmenu</cmd>
 		</genxml>
 		<genxml>
 			<file><![CDATA[Filters.cshtml]]></file>
 			<name><![CDATA[Filters]]></name>
+			<cmd>satellite</cmd>
 		</genxml>
 		<genxml>
 			<file><![CDATA[Tags.cshtml]]></file>
 			<name><![CDATA[Tags]]></name>
+			<cmd>satellite</cmd>
 		</genxml>
 		<genxml>
 			<file><![CDATA[Months.cshtml]]></file>
 			<name><![CDATA[Months]]></name>
+			<cmd>satellite</cmd>
 		</genxml>
 		<genxml>
 			<file><![CDATA[Calendar.cshtml]]></file>
 			<name><![CDATA[Calendar]]></name>
+			<cmd>satellite</cmd>
 		</genxml>
 	</moduletemplates>
 	<adminpanelinterfacekeys list="true">
@@ -74,4 +80,12 @@
 			<show>true</show>
 		</genxml>
 	</adminpanelinterfacekeys>
+	<queryparams list="true">
+		<genxml>
+			<queryparam>eventid</queryparam>
+			<tablename>rocketdirectoryapi</tablename>
+			<systemkey>rocketeventsapi</systemkey>
+		</genxml>
+	</queryparams>
 </genxml>
+

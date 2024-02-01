@@ -47,7 +47,7 @@
                                 <label>@ResourceKey("DNNrocket.date")</label>
                                 @{
                                     DateTime today = DateTime.Today;
-                                    var todayString = today.ToString("MM/dd/yyyy");
+                                    var todayString = today.ToString("O");
                                 }
                                 @TextBoxDate(info, "genxml/textbox/publisheddate", " class='w3-input w3-border' autocomplete='off'", todayString, false, 0)
                             </div>
@@ -59,7 +59,7 @@
                                 <div class="w3-row">
                                     <div class="w3-half w3-padding @(disableauto)">
                                         <br/>
-                                        @CheckBox(info, "genxml/checkbox/autopublish", "&nbsp;" + ResourceKey("RocketBlogApi.autopublish"), " class='w3-check' ", true)
+                                        @CheckBox(info, "genxml/checkbox/autopublish", "&nbsp;" + ResourceKey("RocketEventApi.autopublish"), " class='w3-check' ", true)
                                     </div>
                                     <div class="w3-half w3-padding">
                                         <br/>
