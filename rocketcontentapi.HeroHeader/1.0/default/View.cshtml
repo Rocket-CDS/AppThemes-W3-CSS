@@ -22,14 +22,20 @@
     {
         crop = "center";
     }
+    var heightDisplay = "";
+    var cssclass = moduleData.GetSetting("cssclass");
+    if (cssclass == "")
+    {
+        heightDisplay = "height:" + height + "px;";
+    }
 }
 
-<div class="@(moduleData.GetSetting("cssclass"))">
+<div class="@(cssclass)" style="@(heightDisplay)">
     <div class="topimageheader @(mask)" style="background:url('@ImageUrl(articleImage.RelPathWebp, width, height, "", "webp")') center @(crop) no-repeat;
                                             -webkit-background-size: cover;
                                             -moz-background-size: cover;
                                             -o-background-size: cover;
-                                            background-size: cover;">
+                                            background-size: cover; @(heightDisplay)">
         <div class="caption">
             @if (rowData.GetXmlProperty("genxml/lang/genxml/textbox/title") != "")
             {
