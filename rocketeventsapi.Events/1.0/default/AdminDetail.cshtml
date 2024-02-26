@@ -44,13 +44,25 @@
                     <div id="generaltab" class='w3-row sectionname w3-border'>
                         <div class='w3-row'>
                             <div class="w3-third w3-padding">
-                                <label>@ResourceKey("DNNrocket.date")</label>
+                                <label>@ResourceKey("Events.publisheddate")</label>
                                 @{
                                     DateTime today = DateTime.Today;
                                     var todayString = today.ToString("O");
                                 }
                                 @TextBoxDate(info, "genxml/textbox/publisheddate", " class='w3-input w3-border' autocomplete='off'", todayString, false, 0)
                             </div>
+                            <div class="w3-third w3-padding">
+                                <label>@ResourceKey("Events.eventstartdate")</label>
+                                @TextBoxDate(info, "genxml/textbox/eventstartdate", " class='w3-input w3-border' autocomplete='off'", todayString, false, 0)
+                            </div>
+                            <div class="w3-third w3-padding">
+                                <label>@ResourceKey("Events.eventenddate")</label>
+                                @TextBoxDate(info, "genxml/textbox/eventenddate", " class='w3-input w3-border' autocomplete='off'", todayString, false, 0)
+                            </div>
+                            <div class="w3-third w3-padding">
+                            </div>
+                        </div>
+                        <div class='w3-row'>
                             <div class="w3-third w3-padding">
                                 <label>@ResourceKey("RC.ref")</label>
                                 @TextBox(info, articleData.RefXPath, " class='w3-input w3-border' autocomplete='off' ", "", false, 0)
@@ -66,6 +78,8 @@
                                         @CheckBox(info, articleData.HiddenXPath, "&nbsp;" + ResourceKey("DNNrocket.hidden"), " class='w3-check' " + disablehide)
                                     </div>
                                 </div>
+                            </div>
+                            <div class="w3-third w3-padding">
                             </div>
                         </div>
                         <div class=" w3-row w3-padding">
@@ -84,8 +98,6 @@
                             @RenderTemplate("AdminExtra.cshtml", appTheme, Model, true)
                         </div>
                     </div>
-
-                    [INJECT:appthemedirectory,ArticleReviewsBlock.cshtml]
 
                 </div>
                 <div class="w3-third w3-padding-small">

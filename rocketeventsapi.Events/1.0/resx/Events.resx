@@ -126,11 +126,20 @@
   <data name="comments.Text" xml:space="preserve">
     <value>Comments</value>
   </data>
+  <data name="eventenddate.Text" xml:space="preserve">
+    <value>Event End Date</value>
+  </data>
+  <data name="eventstartdate.Text" xml:space="preserve">
+    <value>Event Start Date</value>
+  </data>
   <data name="like.Text" xml:space="preserve">
     <value>Like</value>
   </data>
   <data name="postcomments.Text" xml:space="preserve">
     <value>Post Comments</value>
+  </data>
+  <data name="publisheddate.Text" xml:space="preserve">
+    <value>Published Date</value>
   </data>
   <data name="rating.Text" xml:space="preserve">
     <value>Rating</value>
