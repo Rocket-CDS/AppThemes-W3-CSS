@@ -25,7 +25,7 @@
     @if (articleList.Count > 0)
     {
         <div class="w3-row w3-tiny">
-            <a href="@RssUrl(portalData.PortalId,"rocketeventsapi_rss",1,"publisheddate",sessionParams.GetInt("catid"))" target="_blank">
+            <a href="@RssUrl(portalData.PortalId,"rocketeventsapi_rss",1,"eventstartdate",sessionParams.GetInt("catid"))" target="_blank">
                 <span class="material-icons">
                 rss_feed
                 </span>
@@ -38,7 +38,7 @@
             {
                 var urlparams = new Dictionary<string, string>();
                 urlparams.Add("articleid", article.ArticleId.ToString());
-                var date = article.Info.GetXmlPropertyDate("genxml/textbox/publisheddate");
+                var date = article.Info.GetXmlPropertyDate("genxml/textbox/eventstartdate");
                 var dateFormat = date.ToShortDateString();
 
                 <div class="w3-card-4 w3-margin w3-white" style="overflow:hidden;">
@@ -48,7 +48,7 @@
                     }
                     <div class="w3-container">
                         <h3><b>@article.Name</b></h3>
-                        <h5><span class="w3-opacity">@DateOf(article.Info, article.PublishedDateXPath,sessionParams.CultureCode, "dd MMM yyy")</span></h5>
+                        <h5><span class="w3-opacity">@DateOf(article.Info, "genxml/textbox/eventstartdate", sessionParams.CultureCode, "dd MMM yyy")</span></h5>
                     </div>
 
                     <div class="w3-container">

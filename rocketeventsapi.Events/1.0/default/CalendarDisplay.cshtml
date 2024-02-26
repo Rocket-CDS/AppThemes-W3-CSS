@@ -15,11 +15,11 @@
         monthDate = sessionParams.GetDate("monthdate");
     }
     var monthDays = DateTime.DaysInMonth(monthDate.Year, monthDate.Month);
-    var articleList = articleDataList.GetArticlesInMonth(monthDate,"publisheddate");
+    var articleList = articleDataList.GetArticlesInMonth(monthDate, "eventstartdate");
     var articleDay = new Dictionary<int, List<ArticleLimpet>>();
     foreach (var a in articleList)
     {
-        var d = a.PublishedDate.Day;
+        var d = a.Info.GetXmlPropertyDate("genxml/textbox/eventstartdate").Day;
         if (articleDay.ContainsKey(d))
         {
             var l = articleDay[d];

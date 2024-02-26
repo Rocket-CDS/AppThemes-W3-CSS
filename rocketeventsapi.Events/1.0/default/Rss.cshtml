@@ -35,13 +35,15 @@
             }
             <guid isPermaLink="true"><![CDATA[@DetailUrl(moduleData.DetailPageTabId(), articleData, categoryData)]]></guid>
             <pubDate><![CDATA[@articleData.Info.GetXmlPropertyDate("genxml/textbox/publisheddate").ToString("r")]]></pubDate>
-            @if (catalogSettings.Info.GetXmlPropertyBool("genxml/checkbox/rssimage"))
+            <startDate><![CDATA[@articleData.Info.GetXmlPropertyDate("genxml/textbox/eventstartdate").ToString("r")]]></startDate>
+            <endDate><![CDATA[@articleData.Info.GetXmlPropertyDate("genxml/textbox/eventenddate").ToString("r")]]></endDate>
+                @if (catalogSettings.Info.GetXmlPropertyBool("genxml/checkbox/rssimage"))
             {
                 var imagewidthrss = catalogSettings.Info.GetXmlPropertyInt("genxml/textbox/imagewidthrss");
                 var imageheightrss = catalogSettings.Info.GetXmlPropertyInt("genxml/textbox/imageheightrss");
                 <media:thumbnail width="@(imagewidthrss)" height="@(imageheightrss)" url="@(portalData.EngineUrlWithProtocol)@ImageUrl(articleData.GetImage(0).RelPath, imagewidthrss, imageheightrss)" />
             } 
-            <blog:publishedon><![CDATA[@articleData.Info.GetXmlPropertyDate("genxml/textbox/publisheddate").ToString("r")]]></blog:publishedon>
+            <event:publishedon><![CDATA[@articleData.Info.GetXmlPropertyDate("genxml/textbox/publisheddate").ToString("r")]]></event:publishedon>
         </item>
 }
 

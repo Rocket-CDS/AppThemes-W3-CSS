@@ -129,8 +129,14 @@
   <data name="eventenddate.Text" xml:space="preserve">
     <value>Event End Date</value>
   </data>
+  <data name="eventendtime.Text" xml:space="preserve">
+    <value>Event End Time</value>
+  </data>
   <data name="eventstartdate.Text" xml:space="preserve">
     <value>Event Start Date</value>
+  </data>
+  <data name="eventstarttime.Text" xml:space="preserve">
+    <value>Event Start Time</value>
   </data>
   <data name="like.Text" xml:space="preserve">
     <value>Like</value>

@@ -14,7 +14,7 @@
     {
         monthDate = new DateTime(sessionParams.GetInt("year"), sessionParams.GetInt("month"), sessionParams.GetInt("day"));
     }
-    var articleList = articleDataList.GetArticlesInDay(monthDate, "publisheddate");
+    var articleList = articleDataList.GetArticlesInDay(monthDate, "eventstartdate");
 }
 <h1>@monthDate.ToString("D", new CultureInfo(sessionParams.CultureCode))</h1>
 <table class="w3-table w3-bordered w3-margin-bottom w3-border-top">

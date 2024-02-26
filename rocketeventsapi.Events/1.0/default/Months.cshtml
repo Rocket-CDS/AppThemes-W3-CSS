@@ -10,7 +10,7 @@
     @{
         var monthidx = 1;
     }
-    @foreach (var a in RocketDirectoryAPIUtils.GetArticlesByMonth(systemData.SystemKey, DateTime.Now, 12, "publisheddate", sessionParams.GetInt("catid")))
+    @foreach (var a in RocketDirectoryAPIUtils.GetArticlesByMonth(systemData.SystemKey, DateTime.Now, 12, "starteventdate", sessionParams.GetInt("catid")))
     {
         if (a.Value.Count > 0)
         {
@@ -18,7 +18,7 @@
                 <span>
                     @a.Key.ToString("MMMM yyyy")
                 </span>
-                <span class="w3-right">
+                <span class="w3-right">     
                     @a.Value.Count
                 </span>
             </div>
@@ -28,7 +28,7 @@
 
 </div>
 
-@DateJsApiCall(moduleData.SystemKey, "#rocket-blog", sessionParams)
+@DateJsApiCall(moduleData.SystemKey, "#rocket-events", sessionParams)
 
 <script>
     $(document).ready(function () {
