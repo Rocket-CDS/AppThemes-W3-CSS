@@ -32,7 +32,7 @@
                 }
             </div>
             <div class="w3-row w3-margin w3-small">
-                @ResourceKey("Events.rating"):&nbsp;@articleData.ReviewScore
+                @ResourceKey("RocketEventsApi.rating"):&nbsp;@articleData.ReviewScore
             </div>
             <i>@BreakOf(articleData.Summary)</i>
             <p>
@@ -95,18 +95,18 @@
                                 @TextBox(infoempty, "genxml/textbox/name" + reviewfieldId, "  maxlength='30' class='w3-input w3-border' autocomplete='off'", userData.DisplayName, false)
                             </div>
                             <div class="w3-quarter">
-                                <label>@ResourceKey("Events.rating")</label><br/>
+                                <label>@ResourceKey("RocketEventsApi.rating")</label><br />
                                 @RadioButtonList(infoempty, "genxml/select/stars" + reviewfieldId,"1,2,3,4,5","1,2,3,4,5"," class='w3-right'","", ResourceKey("Events.stars").ToString(),false)
                             </div>
                             <div class="w3-col m12">
-                                <label>@ResourceKey("Events.comment")</label>
+                                <label>@ResourceKey("RocketEventsApi.comment")</label>
                                 @TextArea(infoempty, "genxml/textbox/comment" + reviewfieldId, " maxlength='300' class='w3-input w3-border' autocomplete='off'", "", false)
                             </div>
                        </div>
                     </div>
                     <div id="blogpostinoput" class="w3-center w3-margin-top">
                         <div class="w3-button w3-white w3-border simplisity_confirmclick" s-confirm="@ResourceKey("Events.postcomments")?" s-cmd="remote_publicadduserreview" s-post="#blogreviewinput" s-return="#blogreviewinput" s-reload="true" s-fields='{"articleid":"@articleData.ArticleId"}'>
-                            <b>@ResourceKey("Events.addcomment")&nbsp;</b>
+                            <b>@ResourceKey("RocketEventsApi.addcomment")&nbsp;</b>
                         </div>
                     </div>
                     <script>
@@ -121,7 +121,7 @@
 
                 <div class="w3-right w3-margin-top">
                     <div class="w3-button w3-black" onclick="$('#blogreviews').toggle();">
-                        <b>@ResourceKey("Events.replies")&nbsp;</b>
+                        <b>@ResourceKey("RocketEventsApi.replies")&nbsp;</b>
                         <span class="w3-tag w3-white">@articleData.ReviewCount</span>
                     </div>
                 </div>

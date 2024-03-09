@@ -1,12 +1,13 @@
-﻿@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+﻿@inherits RocketEventsAPI.Components.RocketEventsAPITokens<Simplisity.SimplisityRazor>
 @using DNNrocketAPI.Components;
 @using RocketDirectoryAPI.Components;
+@using RocketEventsAPI.Components;
 @AssigDataModel(Model)
 @AddProcessDataResx(appTheme, true)
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
 @{
-    var articleList = articleDataList.GetArticleList();
+    var articleList = RocketEventsAPI.Components.RocketEventsUtils.GetEvents(portalData.PortalId, sessionParams.CultureCode, DateTime.Now.AddMonths(2), DateTime.Now.AddMonths(-2), 0, 0, true, 100);
 }
 
 <div class="blogarticlewrapper">
@@ -59,14 +60,14 @@
                             <div class="w3-col m8 s12">
                                 <p>
                                     <a href="@DetailUrl(moduleData.DetailPageTabId(), article, categoryData)" class="w3-button w3-padding-large w3-white w3-border" title="@article.Name" onclick="$('#simplisity_loader').show();">
-                                        <b>@ResourceKey("Events.readmore")&nbsp;&gt;&nbsp;</b>
+                                        <b>@ResourceKey("RocketEventsApi.readmore")&nbsp;&gt;&nbsp;</b>
                                     </a>
                                 </p>
                             </div>
                             @if (!moduleData.GetSettingBool("turnoffcomments"))
                             {
                                 <div class="w3-col m4 w3-hide-small">
-                                    <p><span class="w3-padding-large w3-right"><b>@ResourceKey("Events.comments")&nbsp;  </b> <span class="w3-tag">@article.ReviewCount</span></span></p>
+                                    <p><span class="w3-padding-large w3-right"><b>@ResourceKey("RocketEventsApi.comments")&nbsp;  </b> <span class="w3-tag">@article.ReviewCount</span></span></p>
                                 </div>
                             }
                         </div>
