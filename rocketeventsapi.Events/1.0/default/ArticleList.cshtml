@@ -7,7 +7,8 @@
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
 @{
-    var articleList = RocketEventsAPI.Components.RocketEventsUtils.GetEvents(portalData.PortalId, sessionParams.CultureCode, DateTime.Now.AddMonths(2), DateTime.Now.AddMonths(-2), sessionParams.Page, sessionParams.PageSize, true, 100);
+    var eventListData = (EventListData)Model.GetDataObject("eventlistdata");
+    var eventList = eventListData.GetEvents(sessionParams.Page, sessionParams.PageSize);
 }
 
 <div class="blogarticlewrapper">
@@ -23,7 +24,7 @@
 
 [INJECT:appthemedirectorydefault,SearchBanner.cshtml]
 
-    @if (articleList.Count > 0)
+    @if (eventList.Count > 0)
     {
         <div class="w3-row w3-tiny">
             <a href="@RssUrl(portalData.PortalId,"rocketeventsapi_rss",1,"eventstartdate",sessionParams.GetInt("catid"))" target="_blank">
@@ -35,7 +36,7 @@
 
         <div class="w3-container blogarticlelist">
 
-            @foreach (ArticleLimpet article in articleList)
+            @foreach (ArticleLimpet article in eventList)
             {
                 var urlparams = new Dictionary<string, string>();
                 urlparams.Add("articleid", article.ArticleId.ToString());
@@ -79,7 +80,7 @@
 
     </div>
 
-    <div class="w3-row w3-padding-16 w3-center">
+    <div class="w3-row w3-padding-16 w3-center">        
         [INJECT:appthemedirectorydefault,articlePaging.cshtml]
     </div>
 
