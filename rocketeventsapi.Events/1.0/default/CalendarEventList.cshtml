@@ -1,52 +1,56 @@
-﻿@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+﻿@inherits RocketEventsAPI.Components.RocketEventsAPITokens<Simplisity.SimplisityRazor>
 @using DNNrocketAPI.Components;
 @using RocketDirectoryAPI.Components;
 @using Simplisity;
+@using RocketEventsAPI.Components;
 @using System.Globalization;
 @AssigDataModel(Model)
 @AddProcessDataResx(appTheme, true)
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
-<!--inject-->
 
 @{
-    var monthDate = DateTime.Now;
-    if (sessionParams.Get("year") != "" && sessionParams.Get("month") != "" && sessionParams.Get("day") != "")
-    {
-        monthDate = new DateTime(sessionParams.GetInt("year"), sessionParams.GetInt("month"), sessionParams.GetInt("day"));
-    }
-    var articleList = articleDataList.GetArticlesInDay(monthDate, "eventstartdate");
+    var eventListData = (EventListData)Model.GetDataObject("eventlistdata");
+    var articleDay = eventListData.GetEventsDayListInMonth(monthStartDate.Year, monthStartDate.Month);
 }
-<h1>@monthDate.ToString("D", new CultureInfo(sessionParams.CultureCode))</h1>
-<table class="w3-table w3-bordered w3-margin-bottom w3-border-top">
-    @foreach (ArticleLimpet articleData in articleList)
-    {
-        <tr>
-            <td style="width:54px;">
-                @if (articleData.IsHidden)
-                {
-                    <span class="material-icons">
-                        hide_source
-                    </span>
-                }
-            </td>
-            <td style="width:54px;">
-                <img src="@ImageUrl(articleData.GetImage(0).RelPath, 48, 48)" style="height:48px;width:48px;" class="w3-round" />
-            </td>
-            <td>
-                <div class="w3-tiny">@articleData.Ref</div>
-                <b>@articleData.Name</b>
-                <div>
-                    @Succinct(articleData.Summary, 70)
-                </div>
-            </td>
-            <td>
-                <a href="@DetailUrl(moduleData.DetailPageTabId(), articleData, categoryData)" class="w3-button w3-right w3-padding-large w3-white w3-border" title="@articleData.Name" onclick="$('#simplisity_loader').show();">
-                    <b>@ResourceKey("Events.readmore")&nbsp;&gt;&nbsp;</b>
-                </a>
-            </td>
-        </tr>
-    }
-</table>
+<!--inject-->
+
+@foreach (var articleListDict in articleDay)
+{
+    var keyclass = "a-day" + articleListDict.Key;
+    var articleList2 = articleListDict.Value;
+    <div class="w3-xlarge a-dayselect  @(keyclass)">@monthStartDate.AddDays(articleListDict.Key - 1).ToString("D", new CultureInfo(sessionParams.CultureCode))</div>
+    <table class="w3-table w3-margin-top w3-bordered w3-margin-bottom w3-border-top a-dayselect @(keyclass)">
+        @foreach (var articleData in articleList2)
+        {
+            var eventDate = articleData.Info.GetXmlPropertyDate("genxml/textbox/eventstartdate");
+            <tr>
+                <td style="width:54px;">
+                    @if (articleData.IsHidden)
+                    {
+                        <span class="material-icons">
+                            hide_source
+                        </span>
+                    }
+                </td>
+                <td style="width:54px;">
+                    <img src="@ImageUrl(articleData.GetImage(0).RelPath, 48, 48)" style="height:48px;width:48px;" class="w3-round" />
+                </td>
+                <td>
+                    <div class="w3-tiny">@articleData.Ref</div>
+                    <b>@articleData.Name</b>
+                    <div>
+                        @Succinct(articleData.Summary, 70)
+                    </div>
+                </td>
+                <td>
+                    <a href="@DetailUrl(moduleData.DetailPageTabId(), articleData, categoryData, new string[] {"month",@eventDate.Month.ToString(),"year",@eventDate.Year.ToString(),"eventdate",@eventDate.ToString("yyyy-MM-dd")})" class="w3-button w3-right w3-padding-large w3-white w3-border" title="@articleData.Name" onclick="$('#simplisity_loader').show();">
+                        <b>@ResourceKey("RocketEventsApi.readmore")&nbsp;&gt;&nbsp;</b>
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+}
 
 
 

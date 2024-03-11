@@ -2,21 +2,31 @@
 @using DNNrocketAPI.Components;
 @using RocketDirectoryAPI.Components;
 @using RocketEventsAPI.Components;
+@using Simplisity;
+@using System.Globalization;
 @AssigDataModel(Model)
 @AddProcessDataResx(appTheme, true)
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
-<div class="w3-container blogarticledetail">
+
+<div class="w3-container eventsarticledetail">
 
     <div>
-        <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)" class="w3-button w3-theme-action">@ButtonIconText(ButtonTypes.back)</a>
+        <a href="@ListUrl(moduleData.ListPageTabId(), categoryData, listUrlParams)" class="w3-button w3-theme-action">@ButtonIconText(ButtonTypes.back)</a>
     </div>
 
 
     <div class="w3-container w3-margin w3-padding-large w3-border">
         <div class="w3-center">
             <h3>@articleData.Name</h3>
-            <h5><span class="w3-opacity">@DateOf(articleData.Info, articleData.PublishedDateXPath,sessionParams.CultureCode, "dd MMM yyyy")</span></h5>
+            <h5>
+                <span class="w3-opacity">@articleEventStartDate.ToLongDateString()</span>
+                @if (articleEventStartDate != articleEventEndDate)
+                {
+                    <span class="w3-opacity"> - @articleEventEndDate.ToLongDateString()</span>
+                }
+
+            </h5>
         </div>
 
         <div class="w3-justify">
@@ -89,7 +99,7 @@
                 var userData = UserUtils.GetUserData(PortalUtils.GetCurrentPortalId(), UserUtils.GetCurrentUserId());
                 <p class="w3-clear"></p>
                 <div class="simplisity_panel">
-                    <div id="blogreviewinput" class="w3-margin-top">
+                    <div id="eventsreviewinput" class="w3-margin-top">
                        <div class="w3-row">
                             <div class="w3-half">
                                 <label>@ResourceKey("DNNrocket.name")</label>
@@ -105,8 +115,8 @@
                             </div>
                        </div>
                     </div>
-                    <div id="blogpostinoput" class="w3-center w3-margin-top">
-                        <div class="w3-button w3-white w3-border simplisity_confirmclick" s-confirm="@ResourceKey("Events.postcomments")?" s-cmd="remote_publicadduserreview" s-post="#blogreviewinput" s-return="#blogreviewinput" s-reload="true" s-fields='{"articleid":"@articleData.ArticleId"}'>
+                    <div id="eventspostinoput" class="w3-center w3-margin-top">
+                        <div class="w3-button w3-white w3-border simplisity_confirmclick" s-confirm="@ResourceKey("Events.postcomments")?" s-cmd="remote_publicadduserreview" s-post="#eventsreviewinput" s-return="#eventsreviewinput" s-reload="true" s-fields='{"articleid":"@articleData.ArticleId"}'>
                             <b>@ResourceKey("RocketEventsApi.addcomment")&nbsp;</b>
                         </div>
                     </div>
@@ -121,14 +131,14 @@
             {
 
                 <div class="w3-right w3-margin-top">
-                    <div class="w3-button w3-black" onclick="$('#blogreviews').toggle();">
+                    <div class="w3-button w3-black" onclick="$('#eventsreviews').toggle();">
                         <b>@ResourceKey("RocketEventsApi.replies")&nbsp;</b>
                         <span class="w3-tag w3-white">@articleData.ReviewCount</span>
                     </div>
                 </div>
                 <p class="w3-clear"></p>
 
-                <div id="blogreviews" class="w3-margin-top" style="display:none;">
+                <div id="eventsreviews" class="w3-margin-top" style="display:none;">
                     @foreach (var r in articleData.GetReviews())
                     {
                         if (!r.Hidden)

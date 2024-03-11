@@ -6,7 +6,7 @@
     var rssList = (List<ArticleLimpet>)Model.GetDataObject("rsslist");
 }
 
-<rss xmlns:blog="http://rocket-cds.org" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+<rss xmlns:events="http://rocket-cds.org" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
 
     <channel>
         
@@ -15,7 +15,7 @@
         <description><![CDATA[@catalogSettings.Summary <test>jsd cjhsd>< "!£$%^&*()"]]></description>
         <pubDate><![CDATA[@DateTime.Now.ToString("r")]]></pubDate>
         <lastBuildDate><![CDATA[@DateTime.Now.ToString("r")]]></lastBuildDate>
-        <generator><![CDATA[RocketCDS Blog RSS Generator]]></generator>
+        <generator><![CDATA[RocketCDS Events RSS Generator]]></generator>
         <ttl><![CDATA[30]]></ttl>
         <atom:link href="@RssUrl(portalData.PortalId,sessionParams.Get("cmd"),sessionParams.GetInt("months"),sessionParams.Get("sqlidx"),sessionParams.GetInt("catid"))" rel="self" type="application/rss+xml" />
 

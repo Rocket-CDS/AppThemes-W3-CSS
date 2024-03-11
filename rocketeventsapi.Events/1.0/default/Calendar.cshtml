@@ -1,7 +1,9 @@
-﻿@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+﻿@inherits RocketEventsAPI.Components.RocketEventsAPITokens<Simplisity.SimplisityRazor>
 @using DNNrocketAPI.Components;
 @using RocketDirectoryAPI.Components;
 @using Simplisity;
+@using RocketEventsAPI.Components;
+@using System.Globalization;
 @AssigDataModel(Model)
 @AddProcessDataResx(appTheme, true)
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
@@ -18,7 +20,7 @@
         </header>
         <div class="w3-margin-top" style="">
             <div id="calmonthdetailcontainer@(moduleData.ModuleId)" class="w3-container">
-                
+                [INJECT:apptheme,CalendarEventList.cshtml]
             </div>
         </div>
     </div>
@@ -29,11 +31,12 @@
 <script>
     function getMonthCalendar(monthDate) { 
         $('#calmonth@(moduleData.ModuleId)').css({ 'opacity': 0.5 });
-        $('#calmonthwrapper@(moduleData.ModuleId)').getSimplisity('/Desktopmodules/dnnrocket/api/rocket/action', 'remote_publiclist', '{"disablecache":"true","moduleref":"@(moduleData.ModuleRef)","moduleid":"@(moduleData.ModuleId)","cmdtype":"satellite","basesystemkey":"rocketdirectoryapi","systemkey":"rocketeventsapi","template":"CalendarDisplay.cshtml","monthdate":"' + monthDate + '"}', '')
+        $('#calmonthwrapper@(moduleData.ModuleId)').getSimplisity('/Desktopmodules/dnnrocket/api/rocket/action', 'remote_publiclist', '{"disablecache":"true","moduleref":"@(moduleData.ModuleRef)","moduleid":"@(moduleData.ModuleId)","cmdtype":"none","basesystemkey":"rocketdirectoryapi","systemkey":"rocketeventsapi","template":"CalendarDisplay.cshtml","monthdate":"' + monthStartDate + '"}', '')
     }
-    function getMonthCalendarDetail(y,m,d) {
-        $('#calmonth@(moduleData.ModuleId)').css({ 'opacity': 0.5 });
-        $('#calmonthdetailcontainer@(moduleData.ModuleId)').getSimplisity('/Desktopmodules/dnnrocket/api/rocket/action', 'remote_publiclist', '{"disablecache":"true","moduleref":"@(moduleData.ModuleRef)","moduleid":"@(moduleData.ModuleId)","cmdtype":"satellite","basesystemkey":"rocketdirectoryapi","systemkey":"rocketeventsapi","template":"CalendarEventList.cshtml","year":"' + y + '","month":"' + m + '","day":"' + d + '"}', 'showcalmonthdetailmodel@(moduleData.ModuleId)')
+    function getMonthCalendarDetail(d) {
+        $('.a-dayselect').hide();
+        $('.a-day' + d).show();
+        $('#calmonthdetailmodel@(moduleData.ModuleId)').show();
     }
     function showcalmonthdetailmodel@(moduleData.ModuleId)() {
         $('#calmonthdetailmodel@(moduleData.ModuleId)').show();

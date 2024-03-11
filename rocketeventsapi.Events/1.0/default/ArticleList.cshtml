@@ -11,7 +11,7 @@
     var eventList = eventListData.GetEvents(sessionParams.Page, sessionParams.PageSize);
 }
 
-<div class="blogarticlewrapper">
+<div class="eventsarticlewrapper">
 
     @if (sessionParams.GetInt("catid") == 0)
     {
@@ -34,7 +34,7 @@
             </a>
         </div>
 
-        <div class="w3-container blogarticlelist">
+        <div class="w3-container eventsarticlelist">
 
             @foreach (ArticleLimpet article in eventList)
             {

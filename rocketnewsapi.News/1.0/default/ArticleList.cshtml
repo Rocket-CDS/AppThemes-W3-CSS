@@ -9,7 +9,7 @@
     var articleList = articleDataList.GetArticleList();
 }
 
-<div class="blogarticlewrapper">
+<div class="newsarticlewrapper">
 
     @if (sessionParams.GetInt("catid") == 0)
     {
@@ -24,7 +24,7 @@
 
     @if (articleList.Count > 0)
     {
-    <div class="w3-container blogarticlelist">
+        <div class="w3-container newsarticlelist">
 
             @foreach (ArticleLimpet article in articleList)
             {

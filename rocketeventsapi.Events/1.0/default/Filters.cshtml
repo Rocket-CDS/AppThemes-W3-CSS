@@ -13,7 +13,7 @@
         foreach (var p in propertyDataList.GetPropertyFilterList(g.Key))
         {
             <div class="rocket-filterlist">
-                @FilterCheckBox(p.Key, p.Value, "#rocket-blog", sessionParams.Info.GetXmlPropertyBool("r/" + p.Key))
+                @FilterCheckBox(p.Key, p.Value, "#rocket-events", sessionParams.Info.GetXmlPropertyBool("r/" + p.Key))
             </div>
         }
     }

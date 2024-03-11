@@ -81,3 +81,9 @@ body {
             background: #1abc9c;
             color: white !important
         }
+
+.activeday {
+    padding: 0px;
+    background: #1abc9c;
+    color: white !important
+}
