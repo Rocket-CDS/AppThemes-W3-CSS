@@ -38,10 +38,7 @@
 
             @foreach (ArticleLimpet article in eventList)
             {
-                var urlparams = new Dictionary<string, string>();
-                urlparams.Add("articleid", article.ArticleId.ToString());
-                var date = article.Info.GetXmlPropertyDate("genxml/textbox/eventstartdate");
-                var dateFormat = date.ToShortDateString();
+                var eventDate = article.Info.GetXmlPropertyDate("genxml/textbox/eventstartdate");
 
                 <div class="w3-card-4 w3-margin w3-white" style="overflow:hidden;">
                     @if (article.GetImage(0).RelPathWebp != "")
@@ -60,7 +57,10 @@
                         <div class="w3-row">
                             <div class="w3-col m8 s12">
                                 <p>
-                                    <a href="@DetailUrl(moduleData.DetailPageTabId(), article, categoryData)" class="w3-button w3-padding-large w3-white w3-border" title="@article.Name" onclick="$('#simplisity_loader').show();">
+                                    @{
+                                        var detailUrlParams = listUrlParams.Concat(new string[] { "eventdate", eventDate.ToString("yyyy-MM-dd") }).ToArray();
+                                    }
+                                    <a href="@DetailUrl(moduleData.DetailPageTabId(), article, categoryData, detailUrlParams)" class="w3-button w3-padding-large w3-white w3-border" title="@article.Name" onclick="$('#simplisity_loader').show();">
                                         <b>@ResourceKey("RocketEventsApi.readmore")&nbsp;&gt;&nbsp;</b>
                                     </a>
                                 </p>
@@ -87,7 +87,7 @@
     }
     else
     {
-            <div class="h2-headline">@ResourceKey("DNNrocket.notfound")</div>
+            <div class="w3-center w3-jumbo">@ResourceKey("DNNrocket.notfound")</div>
     }
 
 </div>

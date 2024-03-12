@@ -43,7 +43,7 @@
                     </div>
                 </td>
                 <td>
-                    <a href="@DetailUrl(moduleData.DetailPageTabId(), articleData, categoryData, new string[] {"month",@eventDate.Month.ToString(),"year",@eventDate.Year.ToString(),"eventdate",@eventDate.ToString("yyyy-MM-dd")})" class="w3-button w3-right w3-padding-large w3-white w3-border" title="@articleData.Name" onclick="$('#simplisity_loader').show();">
+                    <a href="@DetailUrl(moduleData.DetailPageTabId(), articleData, categoryData, new string[] {"month", eventDate.Month.ToString(),"year", eventDate.Year.ToString(),"eventdate", eventDate.ToString("yyyy-MM-dd")})" class="w3-button w3-right w3-padding-large w3-white w3-border" title="@articleData.Name" onclick="$('#simplisity_loader').show();">
                         <b>@ResourceKey("RocketEventsApi.readmore")&nbsp;&gt;&nbsp;</b>
                     </a>
                 </td>
