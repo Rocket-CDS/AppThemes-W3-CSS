@@ -82,6 +82,7 @@
     <Folder Include="rocketdirectoryapi.Products\1.0\js\" />
     <Folder Include="rocketdirectoryapi.Products\1.0\modt\" />
     <Folder Include="rocketdirectoryapi.Products\1.0\resx\" />
+    <Folder Include="rocketeventsapi.Events\1.0\resx\" />
     <Folder Include="rocketnewsapi.News\1.0\js\" />
   </ItemGroup>
 

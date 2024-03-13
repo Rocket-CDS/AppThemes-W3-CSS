@@ -38,21 +38,6 @@
 			<cmd>listdetail</cmd>
 		</genxml>
 		<genxml>
-			<file><![CDATA[Categories.cshtml]]></file>
-			<name><![CDATA[Category Menu]]></name>
-			<cmd>catmenu</cmd>
-		</genxml>
-		<genxml>
-			<file><![CDATA[Filters.cshtml]]></file>
-			<name><![CDATA[Filters]]></name>
-			<cmd>satellite</cmd>
-		</genxml>
-		<genxml>
-			<file><![CDATA[Tags.cshtml]]></file>
-			<name><![CDATA[Tags]]></name>
-			<cmd>satellite</cmd>
-		</genxml>
-		<genxml>
 			<file><![CDATA[Months.cshtml]]></file>
 			<name><![CDATA[Months]]></name>
 			<cmd>satellite</cmd>
@@ -60,6 +45,11 @@
 		<genxml>
 			<file><![CDATA[Calendar.cshtml]]></file>
 			<name><![CDATA[Calendar]]></name>
+			<cmd>satellite</cmd>
+		</genxml>
+		<genxml>
+			<file><![CDATA[ArticleSat.cshtml]]></file>
+			<name><![CDATA[Next Events]]></name>
 			<cmd>satellite</cmd>
 		</genxml>
 	</moduletemplates>
@@ -70,7 +60,7 @@
 		</genxml>
 		<genxml>
 			<interfacekey>categoryadmin</interfacekey>
-			<show>true</show>
+			<show>hide</show>
 		</genxml>
 		<genxml>
 			<interfacekey>propertyadmin</interfacekey>
