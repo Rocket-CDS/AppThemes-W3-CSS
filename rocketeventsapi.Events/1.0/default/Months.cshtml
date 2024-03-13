@@ -12,10 +12,6 @@
 
 <div class=" w3-margin-top ">
 
-    <div class="w3-button w3-block w3-left-align" onclick="setSelected('-1');doDateSearchReload('','')">
-        @ResourceKey("DNNrocket.clear")
-    </div>
-
     @{
         var monthidx = 1;
     }
@@ -38,8 +34,6 @@
 </div>
 
 <script>
-    $(document).ready(function () {
-    });
     function setSelected(monthidx, month, year) {
         $('.rocket-monthdates').removeClass('w3-grey');
         $('.rocket-monthdates' + monthidx).addClass('w3-grey');
