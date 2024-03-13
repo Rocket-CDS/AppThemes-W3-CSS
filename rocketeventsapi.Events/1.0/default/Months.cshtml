@@ -1,11 +1,15 @@
-﻿@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+﻿@inherits RocketEventsAPI.Components.RocketEventsAPITokens<Simplisity.SimplisityRazor>
 @using DNNrocketAPI.Components;
 @using RocketDirectoryAPI.Components;
-@using Simplisity;
+@using RocketEventsAPI.Components;
 @AssigDataModel(Model)
 @AddProcessDataResx(appTheme, true)
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
+@{
+    var eventList = (Dictionary<DateTime, List<ArticleLimpet>>)Model.GetDataObject("eventlistbymonth");
+}
+
 <div class=" w3-margin-top ">
 
     <div class="w3-button w3-block w3-left-align" onclick="setSelected('-1');doDateSearchReload('','')">
@@ -15,40 +19,28 @@
     @{
         var monthidx = 1;
     }
-    @foreach (var a in RocketDirectoryAPIUtils.GetArticlesByMonth(systemData.SystemKey, DateTime.Now.AddMonths(11), 12, "eventstartdate", sessionParams.GetInt("catid")))
+    @foreach (var a in eventList)
     {
         if (a.Value.Count > 0)
         {
-            <div class="w3-button w3-block w3-left-align rocket-monthdates rocket-monthdates@(monthidx) " monthidx="@(monthidx)" onclick="setSelected($(this).attr('monthidx'));doDateSearchReload('@a.Key.ToString("yyyy-MM-dd")','@a.Key.AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd")')">
+            <a href="@ListUrl(moduleData.ListPageTabId(), new string[] {"month", a.Key.Month.ToString(),"year", a.Key.Year.ToString() })" )" class="w3-button w3-block w3-left-align rocket-monthdates rocket-monthdates@(monthidx) " monthidx="@(monthidx)" onclick="setSelected($(this).attr('monthidx'));">
                 <span>
                     @a.Key.ToString("MMMM yyyy")
                 </span>
                 <span class="w3-right">     
                     @a.Value.Count
                 </span>
-            </div>
+            </a>
         }
         monthidx += 1;
     }
 
 </div>
 
-@DateJsApiCall(moduleData.SystemKey, "#rocket-events", sessionParams)
-
 <script>
     $(document).ready(function () {
-        if (simplisity_getSessionField('searchdate1') != '')
-        {
-            setSelected(simplisity_getSessionField('monthidx'));
-        }
-        $('.rocket-filtercheckbox').click(function(){
-            $('.rocket-monthdates').removeClass('w3-grey');
-        });
-        $('.rocket-tagbutton').click(function(){
-            $('.rocket-monthdates').removeClass('w3-grey');
-        });
     });
-    function setSelected(monthidx) {
+    function setSelected(monthidx, month, year) {
         $('.rocket-monthdates').removeClass('w3-grey');
         $('.rocket-monthdates' + monthidx).addClass('w3-grey');
         simplisity_setSessionField('monthidx', monthidx);
