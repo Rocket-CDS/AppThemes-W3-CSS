@@ -80,6 +80,7 @@
 			<queryparam>eventid</queryparam>
 			<tablename>rocketdirectoryapi</tablename>
 			<systemkey>rocketeventsapi</systemkey>
+			<datatype>article</datatype>
 		</genxml>
 	</queryparams>
 </genxml>
