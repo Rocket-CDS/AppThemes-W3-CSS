@@ -8,19 +8,16 @@
 <!--inject-->
 
 <div id="rocket-events">
-    @{
-        Model.SetSetting("searchview", "false");
-        if (articleData != null)
-        {
-            <text>
-                [INJECT: apptheme, ArticleDetail.cshtml]
-            </text>
-        }
-        else
-        {
-            <text>
-                [INJECT: apptheme, ArticleList.cshtml]
-            </text>
-        }
+    @if (articleData != null)
+    {
+        <text>
+            [INJECT: apptheme, ArticleDetail.cshtml]
+        </text>
+    }
+    else
+    {
+        <text>
+            [INJECT: apptheme, ArticleList.cshtml]
+        </text>
     }
 </div>

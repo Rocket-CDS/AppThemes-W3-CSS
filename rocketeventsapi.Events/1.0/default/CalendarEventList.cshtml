@@ -6,8 +6,6 @@
 @using System.Globalization;
 @AssigDataModel(Model)
 @AddProcessDataResx(appTheme, true)
-@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
-
 @{
     var eventListData = (EventListData)Model.GetDataObject("eventlistdata");
     var articleDay = eventListData.GetEventsDayListInMonth(monthStartDate.Year, monthStartDate.Month);

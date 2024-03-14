@@ -4,7 +4,6 @@
 @using RocketEventsAPI.Components;
 @AssigDataModel(Model)
 @AddProcessDataResx(appTheme, true)
-@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
 @{
     var eventList = (Dictionary<DateTime, List<ArticleLimpet>>)Model.GetDataObject("eventlistbymonth");
@@ -19,7 +18,7 @@
     {
         if (a.Value.Count > 0)
         {
-            <a href="@ListUrl(moduleData.ListPageTabId(), new string[] {"month", a.Key.Month.ToString(),"year", a.Key.Year.ToString() })" )" class="w3-button w3-block w3-left-align rocket-monthdates rocket-monthdates@(monthidx) " monthidx="@(monthidx)" onclick="setSelected($(this).attr('monthidx'));">
+            <a href="@ListUrl(moduleData.ListPageTabId(), new string[] {"month", a.Key.Month.ToString(),"year", a.Key.Year.ToString() })" class="w3-button w3-block w3-left-align rocket-monthdates rocket-monthdates@(monthidx) " monthidx="@(monthidx)" onclick="setSelected($(this).attr('monthidx'));">
                 <span>
                     @a.Key.ToString("MMMM yyyy")
                 </span>
