@@ -19,6 +19,10 @@
         <br/>
         @CheckBox(info, "genxml/settings/turnoffcomments", "&nbsp;" + ResourceKey("RocketEventsApi.turnoffcomments").ToString(), " class='w3-check'", true)
     </div>
+    <div class="w3-quarter w3-padding">
+        <label>@ResourceKey("RocketEventsApi.nextcount")</label></br>
+        @TextBox(info, "genxml/settings/nextcount", " class='w3-input w3-border' ", "1", false, 0, "", "numeric")
+    </div>
 </div>
 
 <div class="w3-row  w3-padding">

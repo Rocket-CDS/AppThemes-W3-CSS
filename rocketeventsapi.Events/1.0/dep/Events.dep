@@ -35,22 +35,22 @@
 		<genxml>
 			<file><![CDATA[view.cshtml]]></file>
 			<name><![CDATA[List View]]></name>
-			<cmd>listdetail</cmd>
+			<cmd>detailonly</cmd>
 		</genxml>
 		<genxml>
 			<file><![CDATA[Months.cshtml]]></file>
 			<name><![CDATA[Months]]></name>
-			<cmd>satellite</cmd>
+			<cmd>none</cmd>
 		</genxml>
 		<genxml>
 			<file><![CDATA[Calendar.cshtml]]></file>
 			<name><![CDATA[Calendar]]></name>
-			<cmd>satellite</cmd>
+			<cmd>none</cmd>
 		</genxml>
 		<genxml>
 			<file><![CDATA[ArticleSat.cshtml]]></file>
 			<name><![CDATA[Next Events]]></name>
-			<cmd>satellite</cmd>
+			<cmd>none</cmd>
 		</genxml>
 	</moduletemplates>
 	<adminpanelinterfacekeys list="true">
