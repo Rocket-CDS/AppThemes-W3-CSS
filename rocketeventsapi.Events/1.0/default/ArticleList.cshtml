@@ -34,7 +34,7 @@
     @if (eventList.Count > 0)
     {
         <div class="w3-row w3-tiny">
-            <a href="@RssEventUrl(portalData.PortalId,"rocketeventsapi_rss", monthStartDate.Month, monthStartDate.Year)" target="_blank">
+            <a href="@RssEventUrl(portalData.PortalId,"rocketeventsapi_rss", monthEndDate.Month, monthEndDate.Year)" target="_blank">
                 <span class="material-icons">
                 rss_feed
                 </span>
