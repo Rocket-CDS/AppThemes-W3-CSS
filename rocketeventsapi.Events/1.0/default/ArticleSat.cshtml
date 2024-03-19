@@ -6,8 +6,7 @@
 @AddProcessDataResx(appTheme, true)
 <!--inject-->
 @{
-    var eventListData = (EventListData)Model.GetDataObject("eventlistdata");
-    var eventList = eventListData.GetEvents(1, 3);
+    var eventList = (List<ArticleLimpet>)Model.GetDataObject("eventnextlist");
 }
 
 <div class="w3-container eventsarticlelist">
