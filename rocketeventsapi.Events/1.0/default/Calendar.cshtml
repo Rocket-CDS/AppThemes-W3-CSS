@@ -12,9 +12,9 @@
 </div>
 
 <script>
-    function getMonthCalendar(monthDate) {
+    function getMonthCalendar(yearDate, monthDate) {
         $('#calmonth@(moduleData.ModuleId)').css({ 'opacity': 0.5 });
-        $('#calmonthwrapper@(moduleData.ModuleId)').getSimplisity('/Desktopmodules/dnnrocket/api/rocket/action', 'remote_publiclist', '{"disablecache":"true","moduleref":"@(moduleData.ModuleRef)","moduleid":"@(moduleData.ModuleId)","cmdtype":"satellite","basesystemkey":"rocketdirectoryapi","systemkey":"rocketeventsapi","template":"CalendarDisplay.cshtml","monthdate":"' + monthDate + '"}', '')
+        $('#calmonthwrapper@(moduleData.ModuleId)').getSimplisity('/Desktopmodules/dnnrocket/api/rocket/action', 'remote_publiclist', '{"disablecache":"true","moduleref":"@(moduleData.ModuleRef)","moduleid":"@(moduleData.ModuleId)","cmdtype":"satellite","basesystemkey":"rocketdirectoryapi","systemkey":"rocketeventsapi","template":"CalendarDisplay.cshtml","calyear":"' + yearDate + '","calmonth":"' + monthDate + '"}', '')
     }
     function getMonthCalendarDetail(d) {
         $('.a-dayselect').hide();

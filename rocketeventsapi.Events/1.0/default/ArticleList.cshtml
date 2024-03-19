@@ -8,7 +8,14 @@
 @{
     var articleListData = (ArticleLimpetList)Model.GetDataObject("articlelist");
     var eventList = (List<ArticleLimpet>)Model.GetDataObject("eventnextlist");
-    eventList.AddRange(articleListData.GetArticleList());
+    if (sessionParams.Get("month") == "")
+    {
+        eventList.AddRange(articleListData.GetArticleList());
+    }
+    else
+    {
+        eventList = articleListData.GetArticleList();
+    }
 }
 
 <div class="eventsarticlewrapper">

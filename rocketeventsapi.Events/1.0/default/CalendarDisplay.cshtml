@@ -10,19 +10,19 @@
 
 @{
     var firstModay = DateTime.MinValue.Date;
-    var monthDays = DateTime.DaysInMonth(monthStartDate.Year, monthStartDate.Month);
+    var monthDays = DateTime.DaysInMonth(calMonthStartDate.Year, calMonthStartDate.Month);
     var eventList = (List<ArticleLimpet>)Model.GetDataObject("eventmonthlist");
     var articleDay = (Dictionary<int, List<ArticleLimpet>>)Model.GetDataObject("eventlistbyday");
-    var firstDayOfWeek = (int)new DateTime(monthStartDate.Year, monthStartDate.Month, 1).DayOfWeek;
-    var f = new DateTime(monthStartDate.Year, monthStartDate.Month, 1).ToLongDateString();
+    var firstDayOfWeek = (int)new DateTime(calMonthStartDate.Year, calMonthStartDate.Month, 1).DayOfWeek;
+    var f = new DateTime(calMonthStartDate.Year, calMonthStartDate.Month, 1).ToLongDateString();
 }
 <div id="calmonth@(moduleData.ModuleId)">
 
     <div class="month">
         <ul class="monthheader">
-            <li class="w3-button w3-left" onclick="getMonthCalendar('@monthStartDate.AddMonths(-1).ToString("O")');">&#10094;</li>
-            <li class="w3-button w3-right" onclick="getMonthCalendar('@monthStartDate.AddMonths(1).ToString("O")');">&#10095;</li>
-            <li>@monthStartDate.ToString("MMMM")<br><span style="font-size:12px">@DateTime.Now.ToString("yyyy")</span></li>
+            <li class="w3-button w3-left" onclick="getMonthCalendar('@calMonthStartDate.AddMonths(-1).Year.ToString()','@calMonthStartDate.AddMonths(-1).Month.ToString()');">&#10094;</li>
+            <li class="w3-button w3-right" onclick="getMonthCalendar('@calMonthStartDate.AddMonths(1).Year.ToString()','@calMonthStartDate.AddMonths(1).Month.ToString()');">&#10095;</li>
+            <li>@calMonthStartDate.ToString("MMMM")<br><span style="font-size:12px">@calMonthStartDate.ToString("yyyy")</span></li>
         </ul>
     </div>
 
