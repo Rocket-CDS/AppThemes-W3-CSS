@@ -15,7 +15,7 @@
     {
         var eventDate = articleData.Info.GetXmlPropertyDate("genxml/textbox/eventstartdate");
         var date = articleData.Info.GetXmlPropertyDate("genxml/textbox/eventstartdate");
-        var dateFormat = date.ToString("dd/MM/yyyy");
+        var dateFormat = date.ToLongDateString();
 
         <div class="w3-card-4 w3-margin w3-white" style="overflow:hidden;">
             <img src="@ImageUrl(articleData.GetImage(0).RelPathWebp,640,200)" alt="@articleData.GetImage(0).Alt"  style="width:100%"/>
