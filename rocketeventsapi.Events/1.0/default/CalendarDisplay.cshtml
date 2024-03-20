@@ -49,13 +49,19 @@
 
         @while (day <= monthDays) 
         {
+            var dayDate = new DateTime(calMonthStartDate.Year, calMonthStartDate.Month, day).Date;
+            var todayClass = "";
+            if (DateTime.Now.Date == dayDate)
+            {
+                todayClass = "w3-blue";
+            }
             if (articleDay.ContainsKey(day))
             {
-                <li onclick="getMonthCalendarDetail('@day');" style="cursor:pointer;" class="activeday"><span>@day</span></li>
+                <li onclick="getMonthCalendarDetail('@day');" style="cursor:pointer;" class="activeday @(todayClass)"><span>@day</span></li>
             }
             else
             {
-                <li>@day</li>
+                <li class="@(todayClass)">@day</li>
             }
             day++;
         }
