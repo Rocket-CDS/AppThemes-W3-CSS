@@ -4,6 +4,7 @@
 			<ctrltype><![CDATA[css]]></ctrltype>
 			<url><![CDATA[/DesktopModules/DNNrocket/css/w3.css]]></url>
 			<ecofriendly>true</ecofriendly>
+			<condition check="notexist"><![CDATA[/Portals/_default/skins/rocketw3/w3.css]]></condition>
 		</genxml>
 		<genxml>
 			<ctrltype><![CDATA[css]]></ctrltype>
