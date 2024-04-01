@@ -28,7 +28,7 @@
     <div class="w3-threequarter">
         <div class="w3-row">
 
-            <div class="w3-half w3-padding">
+            <div class="w3-half w3-padding w3-section">
                 <div class="w3-row">
                     <div class="w3-col m2">
                     @foreach (var i in productData.GetImages())
@@ -46,7 +46,7 @@
                 <a class="w3-button" href="@DNNrocketUtils.NavigateURL(moduleSettings.ListPageTabId())">@ResourceKey("DNNrocket.back")</a>
 
             </div>
-            <div id="productdatasection@(productData.ProductId)" class="w3-half w3-padding">
+            <div id="productdatasection@(productData.ProductId)" class="w3-half w3-padding w3-section">
                 <h1>@(productData.Name)</h1>
                 <div>@(productData.Ref)</div>
 
@@ -57,33 +57,29 @@
 
                 @if (productData.SalePriceMinimumCents > 0)
                 {
-                    <div class="w3-xxlarge">
+                    <div class="w3-xxlarge w3-section">
                         <span>&nbsp; @productData.SalePriceMinimumDisplay()</span>
                         <span style="text-decoration:line-through;" class="w3-small">@productData.PriceMinimumDisplay()</span>
                     </div>
                 }
                 else
                 {
-                    <div class="w3-xxlarge">
+                    <div class="w3-xxlarge w3-section">
                         @productData.PriceMinimumDisplay()
                     </div>
                 }
 
-                <div class="">
+                <div class="w3-section">
                     @BreakOf(productData.Summary)
                 </div>
-                <div class="">
-                    @HtmlOf(productData.RichText)
-                </div>
-
-                <div class="w3-white w3-margin-bottom">
+                <div class="w3-white w3-margin-bottom w3-section">
                     @ModelDropdown(productData)
                 </div>
-                <div class="w3-white w3-margin-bottom">
+                <div class="w3-white w3-margin-bottom w3-section">
                     @OptionsInput(productData)
                 </div>
 
-                <div id="qtyinput@(productData.ProductId)" class="quickviewactions">
+                <div id="qtyinput@(productData.ProductId)" class="quickviewactions w3-section">
                     <div class="quickviewqty">
                         <div class="w3-bar">
                             <div class="w3-bar-item w3-border w3-col w3-center w3-button product-subtract" productid="@(productData.ProductId)">&minus;</div>
@@ -98,6 +94,10 @@
                             </span>
                         </div>
                     </div>
+                </div>
+
+                <div class="w3-section">
+                    @HtmlOf(productData.RichText)
                 </div>
 
             </div>
