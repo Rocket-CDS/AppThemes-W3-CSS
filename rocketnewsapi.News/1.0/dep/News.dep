@@ -81,6 +81,7 @@
 			<queryparam>newsid</queryparam>
 			<tablename>rocketdirectoryapi</tablename>
 			<systemkey>rocketnewsapi</systemkey>
+			<datatype>article</datatype>
 		</genxml>
 	</queryparams>
 </genxml>
