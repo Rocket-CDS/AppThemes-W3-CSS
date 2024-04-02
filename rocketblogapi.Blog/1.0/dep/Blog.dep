@@ -86,11 +86,13 @@
 			<queryparam>blogcatid</queryparam>
 			<tablename>rocketdirectoryapi</tablename>
 			<systemkey>rocketblogapi</systemkey>
+			<datatype>category</datatype>
 		</genxml>
 		<genxml>
 			<queryparam>blogid</queryparam>
 			<tablename>rocketdirectoryapi</tablename>
 			<systemkey>rocketblogapi</systemkey>
+			<datatype>article</datatype>
 		</genxml>
 	</queryparams>
 	<menuprovider>
@@ -98,7 +100,6 @@
 			<assembly>RocketDirectoryAPI</assembly>
 			<namespaceclass>RocketDirectoryAPI.Components.MenuDirectory</namespaceclass>
 			<systemkey>rocketblogapi</systemkey>
-			<datatype>article</datatype>
 		</genxml>
 	</menuprovider>
 </genxml>
