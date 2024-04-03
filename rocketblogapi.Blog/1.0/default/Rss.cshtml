@@ -15,9 +15,9 @@
         <description><![CDATA[@catalogSettings.Summary]]></description>
         <pubDate><![CDATA[@DateTime.Now.ToString("r")]]></pubDate>
         <lastBuildDate><![CDATA[@DateTime.Now.ToString("r")]]></lastBuildDate>
-        <generator><![CDATA[RocketCDS Blog RSS Generator]]></generator>
+        <generator><![CDATA[RocketCDS RSS Generator]]></generator>
         <ttl><![CDATA[30]]></ttl>
-        <atom:link href="@RssUrl(portalData.PortalId,sessionParams.Get("cmd"),sessionParams.GetInt("months"),sessionParams.Get("sqlidx"),sessionParams.GetInt("catid"))" rel="self" type="application/rss+xml" />
+        <atom:link href="@RssUrl(portalData.PortalId,sessionParams.Get("cmd"),sessionParams.GetInt("year"),sessionParams.GetInt("month"),sessionParams.GetInt("months"),sessionParams.Get("sqlidx"))" rel="self" type="application/rss+xml" />
 
 @foreach (ArticleLimpet articleData in rssList)
 {

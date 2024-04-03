@@ -25,7 +25,7 @@
     @if (articleList.Count > 0)
     {
         <div class="w3-row w3-tiny">
-            <a href="@RssUrl(portalData.PortalId,"rocketblogapi_rss",1,"publisheddate",sessionParams.GetInt("catid"))" target="_blank">
+            <a href="@RssUrl(portalData.PortalId,"rocketblogapi_rss", DateTime.Now.Year, DateTime.Now.Month, 1,"publisheddate")" target="_blank">
                 <span class="material-icons">
                 rss_feed
                 </span>
