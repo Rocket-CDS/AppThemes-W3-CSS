@@ -19,7 +19,7 @@
         <div class="w3-bar-item w3-bottombar w3-hover-grey w3-padding tablink imgstablink" onclick="openSection('imgs')">@ResourceKey("DNNrocket.images")</div>
         <div class="w3-bar-item w3-bottombar w3-hover-grey w3-padding tablink docstablink" onclick="openSection('docs')">@ResourceKey("DNNrocket.docs")</div>
         <div class="w3-bar-item w3-bottombar w3-hover-grey w3-padding tablink linkstablink" onclick="openSection('links')">@ResourceKey("DNNrocket.links")</div>
-        <div class="w3-bar-item w3-bottombar w3-hover-grey w3-padding tablink htmltexttablink" onclick="openSection('htmltext')">@ResourceKey("HtmlContent.htmltext")</div>
+        <div class="w3-bar-item w3-bottombar w3-hover-grey w3-padding tablink htmltexttablink" onclick="openSection('htmltexttab')">@ResourceKey("HtmlContent.htmltext")</div>
         <div class="w3-bar-item w3-bottombar w3-hover-grey w3-padding tablink othertablink" onclick="openSection('other')">@ResourceKey("HtmlContent.extra")</div>
     </div>
 
@@ -80,7 +80,7 @@
     </div>
     <div id="html" class='w3-row sectionname' style="display:none">
         <div class='w3-col m12 w3-padding'>
-            @EditFlag(sessionParams)  &nbsp;@ChatGPT("richtext")
+            @EditFlag(sessionParams)  &nbsp;@ChatGPT("richtext", "title")
             <div class='w3-col m12'>
                 @CKEditor4(info, "genxml/lang/genxml/textbox/richtext", true)
             </div>
@@ -112,7 +112,7 @@
             [INJECT:appthemesystem,ArticleLinks.cshtml]
         </div>
     </div>
-    <div id="htmltext" class='w3-row sectionname' style="display:none">
+    <div id="htmltexttab" class='w3-row sectionname' style="display:none">
         <div class='w3-col m12 w3-padding'>
             @EditFlag(sessionParams)
             @TextArea(info, "genxml/lang/genxml/textbox/htmltext", " class='w3-input w3-border' rows='8' ", "", true, 0)
