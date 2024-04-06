@@ -72,7 +72,14 @@
                 <div class="w3-section">
                     @BreakOf(productData.Summary)
                 </div>
-                <div class="w3-white w3-margin-bottom w3-section">
+                @{
+                    var displaymodels = "";
+                    if (productData.GetModels().Count == 1)
+                    {
+                        displaymodels = "w3-hide";
+                    }
+                }
+                <div class="w3-white w3-margin-bottom w3-section @(displaymodels)">
                     @ModelDropdown(productData)
                 </div>
                 <div class="w3-white w3-margin-bottom w3-section">
