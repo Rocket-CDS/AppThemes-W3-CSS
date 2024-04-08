@@ -38,12 +38,9 @@
             @RenderTemplate("SearchBanner.cshtml", appThemeDefault, Model, true)
             @foreach (ProductLimpet productData2 in productDataList.GetArticleList())
             {
-                var urlparams = new Dictionary<string, string>();
-                urlparams.Add("pid", productData2.ProductId.ToString());
-                var productDetailUrl = DNNrocketUtils.NavigateURL(moduleSettings.DetailPageTabId(), urlparams, productData2.Name);
 
                 <div class="w3-col s12 m6 l3 w3-padding w3-center">
-                    <a href="@(productDetailUrl)" class="" title="@productData2.Name" onclick="$('.simplisity_loader').show();">                       
+                    <a href="@DetailUrl(moduleSettings.DetailPageTabId(), productData2, categoryData)" class="" title="@productData2.Name" onclick="$('.simplisity_loader').show();">                       
                         <img class="sliderind@(moduleSettings.ModuleRef)" src="@ImageUrl(productData2.DefaultImageUrl(),200,200)" style="width:100%;">
                     </a>
                     <div class="w3-row w3-padding w3-center">
@@ -62,7 +59,7 @@
 
                     </div>
                     <div class="w3-padding" style="height:80px;overflow:hidden;">
-                        <a href="@(productDetailUrl)" class="" title="@productData2.Name" onclick="$('.simplisity_loader').show();">
+                        <a href="@DetailUrl(moduleSettings.DetailPageTabId(), productData2, categoryData)" class="" title="@productData2.Name" onclick="$('.simplisity_loader').show();">
                             @productData2.Name
                         </a>
                     </div>
