@@ -3,63 +3,74 @@
 @AssignDataModel(Model)
 <!--inject-->
 
-@{
-    var sFieldDict = new Dictionary<string, string>();
-    sFieldDict.Add("articleid", articleData.ArticleId.ToString());
-}
-@RenderLanguageSelector("articleadmin_editarticle", sFieldDict, appThemeDirectory, Model)
+<div class="pl-breadcrumb">
+    <div class="pl-breadcrumb-itemlink w3-border-blue w3-border-bottom w3-text-blue " onclick="simplisity_setCookieValue('adminpanelcmd','');window.location.reload();">@ResourceKey("DNNrocket.services")</div>
+    <div class="pl-breadcrumb-item">
+        <img src="/DesktopModules/DNNrocket/API/images/chevron_right.svg" />
+    </div>
+    <div class="pl-breadcrumb-itemlink w3-border-blue w3-border-bottom w3-text-blue simplisity_click" s-cmd="articleadmin_editlist" s-fields='{"track":"true"}'>@ResourceKey("RC.articles")</div>
+    <div class="pl-breadcrumb-item">
+        <img src="/DesktopModules/DNNrocket/API/images/chevron_right.svg" />
+    </div>
+    <div class="pl-breadcrumb-itemlink w3-border-blue w3-border-bottom w3-text-blue a-reloadpage simplisity_click" s-cmd="articleadmin_editarticle" s-fields='{"track":"true","articleid":"@articleData.ArticleId"}'>@articleData.Name</div>
+</div>
+
 
 <div id="articleedit">
 
-    <div id="articleeditcontent" class='w3-animate-opacity '>
+    <div id="articleeditcontent" class='w3-animate-opacity w3-card w3-padding w3-margin w3-white '>
 
         [INJECT:appthemedirectory,editbuttonbar.cshtml]
 
         <div id="articledatasection" class="">
             <div class='w3-row'>
+
                 <div class='w3-row'>
                     <div class="w3-col m1 w3-padding">
                         <label>@ResourceKey("RC.ref")</label>
                         @TextBox(info, articleData.RefXPath, " class='w3-input w3-border' autocomplete='off' ", "", false, 0)
                     </div>
-                    <div class="w3-col m10 w3-padding">
+                    <div class="w3-col m11 w3-padding">
                         <label>@ResourceKey("RC.name")</label>&nbsp;@EditFlag(sessionParams)
                         @TextBox(info, articleData.NameXPath, " class='w3-input w3-border' autocomplete='off' ", "", true, 0)
                     </div>
-                    <div class="w3-col m1 w3-padding">
-                        <label>@ResourceKey("Theme.price")</label>
-                        @TextBox(info, "genxml/textbox/price", " class='w3-input w3-border w3-right-align' autocomplete='off' ", "", false, 0)
-                    </div>
-                </div>
-
-                <div class=" w3-row w3-padding">
-                    <label>@ResourceKey("RC.summary")</label>&nbsp;@EditFlag(sessionParams)
-                    @TextArea(info, articleData.SummaryXPath, " class='w3-input w3-border' rows='8' autocomplete='off' ", "", true, 0)
-                </div>
-
-                <div class='w3-row'>
-                    <div class="w3-quarter w3-padding">
-                        @CheckBox(info, articleData.HiddenXPath, "&nbsp;" + ResourceKey("RC.hidden"), " class='w3-check' ")
-                    </div>
-                    <div class="w3-quarter w3-padding">
-                        @CheckBox(info, articleData.HiddenByCultureXPath, "&nbsp;" + ResourceKey("RC.hidden") + "&nbsp;" + EditFlag(sessionParams), " class='w3-check' ")
-                    </div>
-                </div>
-
-                <div class="w3-row w3-padding">
-                    @CKEditor4(info, "genxml/lang/genxml/textbox/richtext",true)
                 </div>
 
                 <div class="w3-padding">
-                    <div class="w3-bar-item w3-button tablink categoriestabtablink" onclick="openSection('categoriestab')">@ResourceKey("RC.categories")</div>
-                    <div class="w3-bar-item w3-button tablink propertytabtablink" onclick="openSection('propertytab')">@ResourceKey("RC.property")</div>
-                    <div class="w3-bar-item w3-button tablink imgstablink" onclick="openSection('imgs')">@ResourceKey("DNNrocket.images")</div>
-                    <div class="w3-bar-item w3-button tablink docstablink" onclick="openSection('docs')">@ResourceKey("DNNrocket.docs")</div>
-                    <div class="w3-bar-item w3-button tablink linkstablink" onclick="openSection('links')">@ResourceKey("DNNrocket.links")</div>
+                    <div class="w3-bar w3-margin-top w3-theme-l4">
+                        <div class="w3-bar-item w3-button w3-button w3-border-right w3-bottombar tablink generaltabtablink" onclick="openSection('generaltab')">@ResourceKey("RC.description")</div>
+                        <div class="w3-bar-item w3-button tablink w3-border-right categoriestabtablink" onclick="openSection('categoriestab')">@ResourceKey("RC.categories")</div>
+                        <div class="w3-bar-item w3-button tablink w3-border-right propertytabtablink" onclick="openSection('propertytab')">@ResourceKey("RC.property")</div>
+                        <div class="w3-bar-item w3-button tablink w3-border-right imgstablink" onclick="openSection('imgs')">@ResourceKey("DNNrocket.images")</div>
+                        <div class="w3-bar-item w3-button tablink w3-border-right docstablink" onclick="openSection('docs')">@ResourceKey("DNNrocket.docs")</div>
+                        <div class="w3-bar-item w3-button tablink linkstablink" onclick="openSection('links')">@ResourceKey("DNNrocket.links")</div>
+                    </div>
                 </div>
+
 
                 <div class="w3-padding">
 
+                    <div id="generaltab" class='w3-row sectionname a-articlecategorylist' >
+
+                        <div class=" w3-row w3-padding">
+                            <label>@ResourceKey("RC.summary")</label>&nbsp;@EditFlag(sessionParams)
+                            @TextArea(info, articleData.SummaryXPath, " class='w3-input w3-border' rows='8' autocomplete='off' ", "", true, 0)
+                        </div>
+
+                        <div class='w3-row'>
+                            <div class="w3-quarter w3-padding">
+                                @CheckBox(info, articleData.HiddenXPath, "&nbsp;" + ResourceKey("RC.hidden"), " class='w3-check' ")
+                            </div>
+                            <div class="w3-quarter w3-padding">
+                                @CheckBox(info, articleData.HiddenByCultureXPath, "&nbsp;" + ResourceKey("RC.hidden") + "&nbsp;" + EditFlag(sessionParams), " class='w3-check' ")
+                            </div>
+                        </div>
+
+                        <div class="w3-row w3-padding">
+                            @CKEditor4(info, "genxml/lang/genxml/textbox/richtext", true)
+                        </div>
+
+                    </div>
                     <div id="categoriestab" class='w3-row sectionname a-articlecategorylist' style="display:none">                       
                         [INJECT:appthemesystem,ArticleCategoryList.cshtml]
                     </div>
@@ -98,35 +109,12 @@
 </div>
 
 <script>
-    $(document).ready(function () {
-  
+    $(document).ready(function () { 
         var sectionName = simplisity_getCookieValue('sectionName');
         if ((typeof sectionName === 'undefined') || sectionName === '') {
-            sectionName = 'categoriestab';
+            sectionName = 'generaltab';
         }
-
-        $("#price").keydown(function (e) {
-            // Allow: backspace, delete, tab, escape, enter and .
-            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190, 188]) !== -1 ||
-                // Allow: Ctrl/cmd+A
-                (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
-                // Allow: Ctrl/cmd+C
-                (e.keyCode == 67 && (e.ctrlKey === true || e.metaKey === true)) ||
-                // Allow: Ctrl/cmd+X
-                (e.keyCode == 88 && (e.ctrlKey === true || e.metaKey === true)) ||
-                // Allow: home, end, left, right
-                (e.keyCode >= 35 && e.keyCode <= 39)) {
-                // let it happen, don't do anything
-                return;
-            }
-            // Ensure that it is a number and stop the keypress
-            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-                e.preventDefault();
-            }
-        });
-
         openSection(sectionName);
-        selectMenu('articleadmin');
     });
 
 
