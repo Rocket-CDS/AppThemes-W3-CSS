@@ -2,17 +2,18 @@
 @using DNNrocketAPI.Components;
 @using RocketDirectoryAPI.Components;
 @AssignDataModel(Model)
-<!--inject-->
 
-@{ 
+@{
     var rtnUrl = sessionParams.Get(portalContent.SystemKey + "listurl");
     if (rtnUrl == "")
     {
-        rtnUrl = DNNrocketUtils.NavigateURL(moduleSettings.ListPageTabId());
+        rtnUrl = DNNrocketUtils.NavigateURL(moduleData.ListPageTabId());
     }
-} 
+}
 
 @AddProcessData("resourcepath", appTheme.AppThemeVersionFolderRel + "/resx/")
+
+<!--inject-->
 
 <div class="w3-row">
     <a href="@(rtnUrl)" class="w3-button" style="float:right;" title="@articleData.Name">@ButtonText(ButtonTypes.back, sessionParams.CultureCode)</a>
@@ -22,12 +23,12 @@
         <h1>@articleData.Name</h1>
     <div class="w3-animate-opacity">
         <div class="w3-row w3-center">
-                <img class="imgrollovertarget" alt="@articleData.Name" src="@ThumbnailImageUrl(articleData.GetImage(0).RelPath,450,450)" style="width:60%">
+                <img class="imgrollovertarget" alt="@articleData.Name" src="@ImageUrl(articleData.GetImage(0).RelPath,450,450)" style="width:60%">
             <div class="w3-container">
                     @foreach (var i in articleData.GetImages())
                     {
                         <div class="w3-col s6 m4 l2 w3-padding-small" style="margin-bottom: 8px">
-                            <img class="imgrollover" src="@ThumbnailImageUrl(i.RelPath,450,450)" style="width:100%">
+                            <img class="imgrollover" src="@ImageUrl(i.RelPath,450,450)" style="width:100%">
                         </div>                        
                     }
             </div>

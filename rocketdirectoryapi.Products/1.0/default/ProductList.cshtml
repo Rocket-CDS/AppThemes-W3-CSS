@@ -18,18 +18,18 @@
 </div>
 
 <div class="w3-row w3-padding-16 w3-center">
-    @foreach (ArticleLimpet articleData in articleDataList.GetArticleList())
+    @foreach (ArticleLimpet articleData2 in articleDataList.GetArticleList())
     {
         var urlparams = new Dictionary<string, string>();
-        urlparams.Add("articleid", articleData.ArticleId.ToString());
+        urlparams.Add("articleid", articleData2.ArticleId.ToString());
 
         <div class="w3-col s12 m6 l3 w3-padding w3-center">
-            <a href="@(DNNrocketUtils.NavigateURL(sessionParams.TabId, urlparams, articleData.Name))" title="@articleData.Name" onclick="$('.simplisity_loader').show()">
-                <img src="@ImageUrl(articleData.GetImage(0).RelPath,200,200)" style="width:100%;" alt="@articleData.Name">
+            <a href="@(DNNrocketUtils.NavigateURL(sessionParams.TabId, urlparams, articleData2.Name))" title="@articleData2.Name" onclick="$('.simplisity_loader').show()">
+                <img src="@ImageUrl(articleData2.GetImage(0).RelPath,200,200)" style="width:100%;" alt="@articleData2.Name">
             </a>
             <div class="" style="height:100px;overflow:hidden;">
-                <h3>@articleData.Name</h3>
-                <p>@articleData.Summary</p>
+                <h3>@articleData2.Name</h3>
+                <p>@articleData2.Summary</p>
             </div>
         </div>
     }

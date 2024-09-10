@@ -32,4 +32,66 @@
 			<ecofriendly>true</ecofriendly>
 		</genxml>		
 	</deps>
+	<moduletemplates list="true">
+		<genxml>
+			<file>view.cshtml</file>
+			<name>List View</name>
+			<cmd>list</cmd>
+		</genxml>
+		<genxml>
+			<file>hozcatmenu2lvl.cshtml</file>
+			<name>Horizontal Category Menu (2 levels)</name>
+			<cmd>catmenu</cmd>
+		</genxml>
+	</moduletemplates>	
+	<adminpanelinterfacekeys list="true">
+		<genxml>
+			<interfacekey>articleadmin</interfacekey>
+			<show>true</show>
+		</genxml>
+		<genxml>
+			<interfacekey>categoryadmin</interfacekey>
+			<show>true</show>
+		</genxml>
+		<genxml>
+			<interfacekey>propertyadmin</interfacekey>
+			<show>true</show>
+		</genxml>
+		<genxml>
+			<interfacekey>settingsadmin</interfacekey>
+			<show>true</show>
+		</genxml>
+		<genxml>
+			<interfacekey>rocketdirectoryadmin</interfacekey>
+			<show>false</show>
+		</genxml>
+	</adminpanelinterfacekeys>
+	<queryparams list="true">
+		<genxml>
+			<queryparam>articleid</queryparam>
+			<tablename>rocketdirectoryapi</tablename>
+			<systemkey>rocketdirectoryapi</systemkey>
+			<datatype>article</datatype>
+		</genxml>
+		<genxml>
+			<queryparam>catid</queryparam>
+			<tablename>rocketdirectoryapi</tablename>
+			<systemkey>rocketdirectoryapi</systemkey>
+			<datatype>category</datatype>
+		</genxml>
+	</queryparams>
+	<menuprovider>
+		<genxml>
+			<assembly>RocketDirectoryAPI</assembly>
+			<namespaceclass>RocketDirectoryAPI.Components.MenuDirectory</namespaceclass>
+			<systemkey>rocketdirectoryapi</systemkey>
+		</genxml>
+	</menuprovider>
+	<searchindex list="true">
+		<genxml>
+			<searchtitle>genxml/lang/genxml/textbox/title</searchtitle>
+			<searchdescription>genxml/lang/genxml/textbox/richtext</searchdescription>
+			<searchbody>genxml/lang/genxml/textbox/richtext</searchbody>
+		</genxml>
+	</searchindex>
 </genxml>

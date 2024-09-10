@@ -9,11 +9,11 @@
 
 @{
     var sessionParams = (SessionParams)Model.SessionParamsData;
-    var moduleSettings = (ModuleContentLimpet)Model.GetDataObject("modulesettings");
+    var moduleData = (ModuleContentLimpet)Model.GetDataObject("modulesettings");
     var portalData = (PortalLimpet)Model.GetDataObject("portaldata");
     var portalCatalog = (PortalCatalogLimpet)Model.GetDataObject("portalcatalog");
     var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
-    var info = new SimplisityInfo(moduleSettings.Record);
+    var info = new SimplisityInfo(moduleData.Record);
 
     AddProcessDataResx(appTheme, true);
     AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/");
