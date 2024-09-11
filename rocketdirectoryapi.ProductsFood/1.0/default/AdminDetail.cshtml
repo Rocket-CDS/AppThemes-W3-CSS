@@ -40,6 +40,7 @@
                 <div class="w3-padding">
                     <div class="w3-bar w3-margin-top w3-theme-l4">
                         <div class="w3-bar-item w3-button w3-button w3-border-right w3-bottombar tablink generaltabtablink" onclick="openSection('generaltab')">@ResourceKey("RC.description")</div>
+                        <div class="w3-bar-item w3-button tablink w3-border-right modelstablink" onclick="openSection('models')">@ResourceKey("RC.models")</div>
                         <div class="w3-bar-item w3-button tablink w3-border-right categoriestabtablink" onclick="openSection('categoriestab')">@ResourceKey("RC.categories")</div>
                         <div class="w3-bar-item w3-button tablink w3-border-right propertytabtablink" onclick="openSection('propertytab')">@ResourceKey("RC.property")</div>
                         <div class="w3-bar-item w3-button tablink w3-border-right imgstablink" onclick="openSection('imgs')">@ResourceKey("DNNrocket.images")</div>
@@ -69,11 +70,14 @@
                         </div>
 
                         <div class="w3-row w3-padding">
-                            @CKEditor4(info, "genxml/lang/genxml/textbox/richtext", true)
+                            @CKEditor4(info, articleData.RichTextXPath, true)
                         </div>
 
                     </div>
-                    <div id="categoriestab" class='w3-row sectionname a-articlecategorylist' style="display:none">                       
+                    <div id="models" class='w3-row sectionname' style="display:none">
+                        [INJECT:appthemedirectory,ArticleModels.cshtml]
+                    </div>
+                    <div id="categoriestab" class='w3-row sectionname a-articlecategorylist' style="display:none">
                         [INJECT:appthemesystem,ArticleCategoryList.cshtml]
                     </div>
                     <div id="propertytab" class='w3-row sectionname a-articlepropertylist' style="display:none">

@@ -129,4 +129,7 @@
   <data name="categories.Text" xml:space="preserve">
     <value>Categories</value>
   </data>
+  <data name="models.Text" xml:space="preserve">
+    <value>Models</value>
+  </data>
 </root>
