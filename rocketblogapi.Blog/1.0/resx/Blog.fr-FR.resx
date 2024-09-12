@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,19 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="price.Text" xml:space="preserve">
-    <value>Prix</value>
+  <data name="addcomment.Text" xml:space="preserve">
+    <value>Ajouter un commentaire</value>
   </data>
-  <data name="details.Text" xml:space="preserve">
-    <value>Détails</value>
+  <data name="comment.Text" xml:space="preserve">
+    <value>Commentaire</value>
   </data>
-  <data name="allproducts.Text" xml:space="preserve">
-    <value>Tous les articles</value>
+  <data name="comments.Text" xml:space="preserve">
+    <value>Commentaires</value>
   </data>
-  <data name="categories.Text" xml:space="preserve">
-    <value>Catégories</value>
+  <data name="like.Text" xml:space="preserve">
+    <value>Comme</value>
   </data>
-  <data name="models.Text" xml:space="preserve">
-    <value>Modèles</value>
+  <data name="postcomments.Text" xml:space="preserve">
+    <value>Commentaires sur le poste</value>
+  </data>
+  <data name="rating.Text" xml:space="preserve">
+    <value>Evaluation</value>
+  </data>
+  <data name="readmore.Text" xml:space="preserve">
+    <value>Lire la suite</value>
+  </data>
+  <data name="replies.Text" xml:space="preserve">
+    <value>Réponses</value>
+  </data>
+  <data name="turnoffcomments.Text" xml:space="preserve">
+    <value>Désactiver les commentaires</value>
   </data>
 </root>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,19 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="price.Text" xml:space="preserve">
-    <value>Prix</value>
+  <data name="like.Text" xml:space="preserve">
+    <value>Comme</value>
   </data>
-  <data name="details.Text" xml:space="preserve">
-    <value>Détails</value>
-  </data>
-  <data name="allproducts.Text" xml:space="preserve">
-    <value>Tous les articles</value>
-  </data>
-  <data name="categories.Text" xml:space="preserve">
-    <value>Catégories</value>
-  </data>
-  <data name="models.Text" xml:space="preserve">
-    <value>Modèles</value>
+  <data name="readmore.Text" xml:space="preserve">
+    <value>Lire la suite</value>
   </data>
 </root>

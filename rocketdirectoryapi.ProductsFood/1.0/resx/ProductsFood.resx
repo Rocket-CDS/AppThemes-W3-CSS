@@ -226,46 +226,46 @@
     <value>Allergens in the product</value>
   </data>
   <data name="1.Text" xml:space="preserve">
-    <value>1. Gluten-containing cereals and gluten-related products</value>
+    <value>Gluten-containing cereals and gluten-related products</value>
   </data>
   <data name="2.Text" xml:space="preserve">
-    <value>2. Crustaceans and Crustacean Products</value>
+    <value>Crustaceans and Crustacean Products</value>
   </data>
   <data name="3.Text" xml:space="preserve">
-    <value>3. Eggs and Egg Products</value>
+    <value>Eggs and Egg Products</value>
   </data>
   <data name="4.Text" xml:space="preserve">
-    <value>4. Fish and fish products</value>
+    <value>Fish and fish products</value>
   </data>
   <data name="5.Text" xml:space="preserve">
-    <value>5. Peanut and Peanut Products</value>
+    <value>Peanut and Peanut Products</value>
   </data>
   <data name="6.Text" xml:space="preserve">
-    <value>6. Soybeans and soy products</value>
+    <value>Soybeans and soy products</value>
   </data>
   <data name="7.Text" xml:space="preserve">
-    <value>7. Milk and milk products</value>
+    <value>Milk and milk products</value>
   </data>
   <data name="8.Text" xml:space="preserve">
-    <value>8. Nuts</value>
+    <value>Nuts</value>
   </data>
   <data name="9.Text" xml:space="preserve">
-    <value>9. Celery and Celery Products</value>
+    <value>Celery and Celery Products</value>
   </data>
   <data name="10.Text" xml:space="preserve">
-    <value>10. Mustard and mustard products</value>
+    <value>Mustard and mustard products</value>
   </data>
   <data name="11.Text" xml:space="preserve">
-    <value>11. Sesame and derivatives</value>
+    <value>Sesame and derivatives</value>
   </data>
   <data name="12.Text" xml:space="preserve">
-    <value>12. Sulphur dioxide (SO2) and sulphites</value>
+    <value>Sulphur dioxide (SO2) and sulphites</value>
   </data>
   <data name="13.Text" xml:space="preserve">
-    <value>13. Lupin and Derivatives</value>
+    <value>Lupin and Derivatives</value>
   </data>
   <data name="14.Text" xml:space="preserve">
-    <value>14. Molluscs and Derivatives</value>
+    <value>Molluscs and Derivatives</value>
   </data>
   <data name="animal.Text" xml:space="preserve">
     <value>Animal</value>
@@ -281,5 +281,8 @@
   </data>
   <data name="taste.Text" xml:space="preserve">
     <value>Taste</value>
+  </data>
+  <data name="information.Text" xml:space="preserve">
+    <value>Information</value>
   </data>
 </root>
