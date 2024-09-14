@@ -4,6 +4,7 @@
 @AssignDataModel(Model)
 <!--inject-->
 
+
 <h1>
     @if (sessionParams.GetInt("catid") == 0)
     {
@@ -18,19 +19,26 @@
 </div>
 
 <div class="w3-row w3-padding-16 w3-center">
-    @foreach (ArticleLimpet articleData2 in articleDataList.GetArticleList())
+    @foreach (List<ArticleLimpet> articleDataList2 in articleDataList.GetArticleRows(4))
     {
-        var urlparams = new Dictionary<string, string>();
-        urlparams.Add("articleid", articleData2.ArticleId.ToString());
+        <div class="w3-row">
 
-        <div class="w3-col s12 m6 l3 w3-padding w3-center">
-            <a href="@(DNNrocketUtils.NavigateURL(sessionParams.TabId, urlparams, articleData2.Name))" title="@articleData2.Name" onclick="$('.simplisity_loader').show()">
+        @foreach (ArticleLimpet articleData2 in articleDataList2)
+        {
+            var urlparams = new Dictionary<string, string>();
+            urlparams.Add("articleid", articleData2.ArticleId.ToString());
+
+            <div class="w3-col s12 m6 l3 w3-padding w3-center">
+                <a href="@(DNNrocketUtils.NavigateURL(sessionParams.TabId, urlparams, articleData2.Name))" title="@articleData2.Name" onclick="$('.simplisity_loader').show()">
                 <img src="@ImageUrl(articleData2.GetImage(0).RelPath,200,200)" style="width:100%;" alt="@articleData2.Name">
             </a>
             <div class="" style="height:100px;overflow:hidden;">
                 <h3>@articleData2.Name</h3>
                 <p>@articleData2.Summary</p>
             </div>
+            </div>
+        }
+
         </div>
     }
 </div>

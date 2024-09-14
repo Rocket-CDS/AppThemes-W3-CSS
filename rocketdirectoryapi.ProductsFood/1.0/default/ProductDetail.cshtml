@@ -11,6 +11,9 @@
     }
 }
 <!--inject-->
+@{
+    var relatedArticles = articleData.GetRelatedArticles("",4);
+}
 
 <div class="w3-row">
     <a href="@(rtnUrl)" class="w3-button" style="float:right;" title="@articleData.Name">@ButtonText(ButtonTypes.back, sessionParams.CultureCode)</a>
@@ -371,6 +374,27 @@
 
     </div>
 </div>
+
+
+<div class="w3-xlarge w3-margin-top">@ResourceKey("ProductsFood.relatedarticles")</div>
+<div class="w3-row">
+    @foreach (var relatedArticleData in relatedArticles)
+    {
+        var urlparams = new Dictionary<string, string>();
+        urlparams.Add("articleid", relatedArticleData.ArticleId.ToString());
+
+        <div class="w3-col s12 m6 l3 w3-padding w3-center">
+            <a href="@(DNNrocketUtils.NavigateURL(sessionParams.TabId, urlparams, relatedArticleData.Name))" title="@relatedArticleData.Name" onclick="$('.simplisity_loader').show()">
+                <img src="@ImageUrl(relatedArticleData.GetImage(0).RelPath,200,200)" style="width:100%;" alt="@relatedArticleData.Name">
+            </a>
+            <div class="" style="height:100px;overflow:hidden;">
+                <h3>@relatedArticleData.Name</h3>
+                <p>@relatedArticleData.Summary</p>
+            </div>
+        </div>
+    }
+</div>
+
 
 <script>
 

@@ -285,4 +285,7 @@
   <data name="information.Text" xml:space="preserve">
     <value>Information</value>
   </data>
+  <data name="relatedarticles.Text" xml:space="preserve">
+    <value>Related Articles</value>
+  </data>
 </root>
