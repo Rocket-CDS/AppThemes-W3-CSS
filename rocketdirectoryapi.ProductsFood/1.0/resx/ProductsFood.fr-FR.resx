@@ -139,13 +139,13 @@
     <value>Lait</value>
   </data>
   <data name="origin.Text" xml:space="preserve">
-    <value>Origine</value>
+    <value>Provenance</value>
   </data>
   <data name="refining.Text" xml:space="preserve">
-    <value>Raffinage</value>
+    <value>Affinage</value>
   </data>
   <data name="rennet.Text" xml:space="preserve">
-    <value>Rennet</value>
+    <value>Présure</value>
   </data>
   <data name="type.Text" xml:space="preserve">
     <value>Type</value>
@@ -202,16 +202,16 @@
     <value>Valeur énergétique kcal en g</value>
   </data>
   <data name="fatg.Text" xml:space="preserve">
-    <value>Matières grasses en g</value>
+    <value>Lipides en g</value>
   </data>
   <data name="ofwhichfattyacids.Text" xml:space="preserve">
-    <value>- dont acides gras saturés en g</value>
+    <value>dont acides gras saturés en g</value>
   </data>
   <data name="carbohydrates.Text" xml:space="preserve">
     <value>Glucides en g</value>
   </data>
   <data name="ofwhichsugars.Text" xml:space="preserve">
-    <value>- dont sucres en g</value>
+    <value>dont sucres en g</value>
   </data>
   <data name="proteing.Text" xml:space="preserve">
     <value>Protéines en g</value>
@@ -225,77 +225,74 @@
   <data name="allergens.Text" xml:space="preserve">
     <value>Allergènes présents dans le produit</value>
   </data>
-  <data name="9Text" xml:space="preserve">
-    <value>9. Céleri et produits à base de céleri</value>
-  </data>
   <data name="refiningunit.Text" xml:space="preserve">
-    <value>Raffinage (unité de temps)</value>
+    <value>Affinage (unité de temps)</value>
   </data>
   <data name="mgpds.Text" xml:space="preserve">
     <value>Mg/pds</value>
   </data>
   <data name="appearanceexterior.Text" xml:space="preserve">
-    <value>Aspect extérieur</value>
+    <value>Apparence extérieure</value>
   </data>
   <data name="energyvaluecal.Text" xml:space="preserve">
     <value>Valeur énergétique kcal en g</value>
   </data>
   <data name="1.Text" xml:space="preserve">
-    <value>Céréales contenant du gluten et produits liés au gluten</value>
+    <value>Céréales contenant du gluten et produits dérivés</value>
   </data>
   <data name="2.Text" xml:space="preserve">
-    <value>Crustacés et produits à base de crustacés</value>
+    <value>Mollusques et produits dérivés</value>
   </data>
   <data name="3.Text" xml:space="preserve">
-    <value>Œufs et ovoproduits</value>
+    <value>Oeufs et produits dérivés</value>
   </data>
   <data name="4.Text" xml:space="preserve">
-    <value>Poisson et produits de la pêche</value>
+    <value>Poissons et produits dérivés</value>
   </data>
   <data name="5.Text" xml:space="preserve">
-    <value>Arachides et produits à base d'arachides</value>
+    <value>Cacahuète et produits dérivés</value>
   </data>
   <data name="6.Text" xml:space="preserve">
-    <value>Soja et produits à base de soja</value>
+    <value>Soja et produits dérivés</value>
   </data>
   <data name="7.Text" xml:space="preserve">
-    <value>Lait et produits laitiers</value>
+    <value>Lait et produits dérivés</value>
   </data>
   <data name="8.Text" xml:space="preserve">
-    <value>Noix</value>
+    <value>Fruits à coque</value>
   </data>
   <data name="9.Text" xml:space="preserve">
-    <value>Céleri et produits à base de céleri</value>
+    <value>Céleri et produits dérivés</value>
   </data>
   <data name="10.Text" xml:space="preserve">
-    <value>Moutarde et produits à base de moutarde</value>
+    <value>Moutarde et produits dérivés</value>
   </data>
   <data name="11.Text" xml:space="preserve">
-    <value>Sésame et dérivés</value>
+    <value>Sésame et produits dérivés</value>
   </data>
   <data name="12.Text" xml:space="preserve">
     <value>Dioxyde de soufre (SO2) et sulfites</value>
   </data>
   <data name="13.Text" xml:space="preserve">
-    <value>Lupin et dérivés</value>
+    <value>Lupin et produits dérivés</value>
   </data>
   <data name="14.Text" xml:space="preserve">
     <value>Mollusques et dérivés</value>
   </data>
   <data name="animal.Text" xml:space="preserve">
-    <value>Animaux</value>
+    <value>Type</value>
   </data>
   <data name="appearanceinterior.Text" xml:space="preserve">
-    <value>Aspect intérieur</value>
+    <value>Apparence intérieure</value>
   </data>
   <data name="consistency.Text" xml:space="preserve">
-    <value>Cohérence</value>
+    <value>Consistance</value>
   </data>
   <data name="odor.Text" xml:space="preserve">
     <value>Odeur</value>
   </data>
   <data name="taste.Text" xml:space="preserve">
-    <value>Le goût</value>
+    <value>Goût</value>
   </data>
   <data name="information.Text" xml:space="preserve">
     <value>Informations</value>
