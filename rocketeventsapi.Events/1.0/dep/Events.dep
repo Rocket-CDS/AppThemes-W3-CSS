@@ -35,7 +35,7 @@
 		<genxml>
 			<file><![CDATA[view.cshtml]]></file>
 			<name><![CDATA[List View]]></name>
-			<cmd>detailonly</cmd>
+			<cmd>list</cmd>
 		</genxml>
 		<genxml>
 			<file><![CDATA[Months.cshtml]]></file>
