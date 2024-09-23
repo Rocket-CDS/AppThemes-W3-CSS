@@ -43,6 +43,11 @@
 			<name>Horizontal Category Menu (2 levels)</name>
 			<cmd>catmenu</cmd>
 		</genxml>
+		<genxml>
+			<file>CategoryChildMenu.cshtml</file>
+			<name>Category Child Menu</name>
+			<cmd>catmenu</cmd>
+		</genxml>		
 	</moduletemplates>	
 	<adminpanelinterfacekeys list="true">
 		<genxml>

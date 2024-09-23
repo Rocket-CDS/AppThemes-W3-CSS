@@ -1,0 +1,25 @@
+﻿@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using RocketDirectoryAPI.Components;
+@AssignDataModel(Model)
+<!--inject-->
+
+<div class="w3-row">
+    <div class="w3-bar w3-light-grey">
+
+        <div>@categoryData.Name</div>
+
+        @foreach (var c in categoryData.GetDirectChildren())
+        {
+            if (!c.Hidden && !c.HiddenByCulture)
+            {
+                var catDict = new Dictionary<string, string>();
+                catDict.Add("catid", c.CategoryId.ToString());
+                <div class="w3-button">
+                    <a href="@DNNrocketUtils.NavigateURL(sessionParams.TabId, catDict, c.Name)" onclick="$('.simplisity_loader').show()" class="w3-bar-item w3-button">@c.Name</a>
+                </div>
+
+            }
+        }
+    </div>
+</div>
