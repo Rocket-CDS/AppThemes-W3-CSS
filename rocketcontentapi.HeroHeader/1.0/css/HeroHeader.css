@@ -1,0 +1,5 @@
+
+.ModRocketContentModC .topimageheader { height: 500px; position: relative; }
+.ModRocketContentModC .caption { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+.ModRocketContentModC .captiondark h2, .ModRocketContentModC .captiondark h3 { color: #000000; text-shadow: 0px 0px 4px #00000057; }
+.ModRocketContentModC .captionlight h2, .ModRocketContentModC .captionlight h3 { color: #ffffff; text-shadow: 0px 0px 4px #00000057; }

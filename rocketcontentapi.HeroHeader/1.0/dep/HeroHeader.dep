@@ -1,0 +1,15 @@
+<genxml>
+    <deps list="true">
+        <genxml>
+            <ctrltype>css></ctrltype>
+            <url>/DesktopModules/DNNrocket/css/w3.css</url>
+            <ecofriendly>true</ecofriendly>
+            <ignoreonskin>rocketw3></ignoreonskin>
+        </genxml>
+        <genxml>
+            <ctrltype>css</ctrltype>
+            <url>{appthemefolder}/css/HeroHeader.css</url>
+            <ecofriendly>true</ecofriendly>
+        </genxml>
+    </deps>
+</genxml>

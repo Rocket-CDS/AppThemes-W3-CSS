@@ -1,4 +1,5 @@
 ﻿@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
 @AssignDataModel(Model)
 @AddProcessDataResx(appThemeAdmin, true)
 <!--inject-->
@@ -8,30 +9,67 @@
 }
 
 <div class="w3-row">
-    <div class="w3-third w3-padding">
+    <div class="w3-quarter w3-padding">
         <label>@ResourceKey("DNNrocket.imageresize") (px)</label>
         @TextBox(info, "genxml/settings/imageresize", " class='w3-input w3-border'", "1600")
     </div>
-    <div class="w3-third w3-padding">
+    <div class="w3-quarter w3-padding">
         <label>@ResourceKey("DNNrocket.width") (px)</label>
         @TextBox(info, "genxml/settings/width", " class='w3-input w3-border'", "1600")
     </div>
-    <div class="w3-third w3-padding">
+    <div class="w3-quarter w3-padding">
         <label>@ResourceKey("DNNrocket.height") (px)</label>
         @TextBox(info, "genxml/settings/height", " class='w3-input w3-border'", "0")
     </div>
+    <div class="w3-quarter w3-padding">
+        <label>@ResourceKey("DNNrocket.crop")</label>
+        @DropDownList(info, "genxml/settings/crop", "center,top,bottom", ResourceKey("DNNrocket.position").ToString(), "class='w3-select w3-border'", "false")
+    </div>
 </div>
+<hr />
 <div class="w3-row">
-    <div class="w3-third w3-padding">
+    <div class="w3-quarter w3-padding">
+        <label>@ResourceKey("HeroHeader.titlehead1")</label><br />
+        @DropDownList(info, "genxml/settings/titlehead1", "h1,h2,h3,h4", "h1,h2,h3,h4", "class='w3-input w3-border' ", "h1")
+    </div>
+    <div class="w3-quarter w3-padding">
+        <label>@ResourceKey("HeroHeader.titlehead2")</label><br />
+        @DropDownList(info, "genxml/settings/titlehead2", "h1,h2,h3,h4", "h1,h2,h3,h4", "class='w3-input w3-border' ", "h2")
+    </div>
+    <div class="w3-quarter w3-padding">
+        <label>@ResourceKey("HeroHeader.titlepos")</label><br />
+        @DropDownList(info, "genxml/settings/titlepos", W3Utils.W3displayPosition(), "class='w3-input w3-border' ", "w3-display-middle")
+    </div>
+    <div class="w3-quarter w3-padding">
+        <label>@ResourceKey("HeroHeader.titlecolor")</label><br />
+        @DropDownList(info, "genxml/settings/titlecolor", W3Utils.W3colors(), "class='w3-input w3-border' ", "w3-text-black")
+    </div>
+</div>
+<hr />
+<div class="w3-row">
+    <div class="w3-quarter w3-padding">
+        <label>@ResourceKey("HeroHeader.quicktextsize")</label><br />
+        @DropDownList(info, "genxml/settings/quicktextsize", W3Utils.W3sizes(), "class='w3-input w3-border' ", "w3-medium")
+    </div>
+    <div class="w3-quarter w3-padding">
+        <label>@ResourceKey("HeroHeader.quicktextpos")</label><br />
+        @DropDownList(info, "genxml/settings/quicktextpos", W3Utils.W3displayPosition(), "class='w3-input w3-border' ", "w3-display-bottomright")
+    </div>
+    <div class="w3-quarter w3-padding">
+        <label>@ResourceKey("HeroHeader.quicktextwidth")</label>
+        @TextBox(info, "genxml/settings/quicktextwidth", " class='w3-input w3-border'  ", "25%")
+    </div>
+    <div class="w3-quarter w3-padding">
+        <label>@ResourceKey("HeroHeader.quicktextcolor")</label><br />
+        @DropDownList(info, "genxml/settings/quicktextcolor", W3Utils.W3colors(), "class='w3-input w3-border' ", "w3-text-black")
+    </div>
+</div>
+<hr/>
+<div class="w3-row">
+    <div class="w3-quarter w3-padding">
         <label>@ResourceKey("DNNrocket.cssClass")</label>
         @TextBox(info, "genxml/settings/cssclass", " class='w3-input w3-border'  ", "")
     </div>
-    <div class="w3-third w3-padding">
-        <label>@ResourceKey("DNNrocket.hr")</label><br />
-        @CheckBox(info, "genxml/settings/separation", "", "class='w3-check' ", false, false, 0)
-    </div>
-    <div class="w3-third w3-padding">
-        <label>@ResourceKey("DNNrocket.mask")</label><br />
-        @CheckBox(info, "genxml/settings/mask", "", "class='w3-check' ", false, false, 0)
-    </div>
 </div>
+
+
