@@ -1,5 +1,28 @@
+.heroheaderouter{overflow: auto;}
+.heroheaderinner{padding-top: 56%;}/* standard 16:9 ratio on mobile */
+.heroheaderbackground{background: #0000002e;position: absolute;top: 0;bottom: 0;left: 0;right: 0;}
+.heroheaderimage{}
+.heroheadertitle h1{font-size: 50px;text-align: center;}
+.heroheadertitle h2{font-size: 22px;text-align: center;}
+.heroheaderquicktext{}
 
-.ModRocketContentModC .topimageheader { height: 500px; position: relative; }
-.ModRocketContentModC .caption { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
-.ModRocketContentModC .captiondark h2, .ModRocketContentModC .captiondark h3 { color: #000000; text-shadow: 0px 0px 4px #00000057; }
-.ModRocketContentModC .captionlight h2, .ModRocketContentModC .captionlight h3 { color: #ffffff; text-shadow: 0px 0px 4px #00000057; }
+/* Phone */
+@media (min-width: 0) and (max-width: 600px) {
+.heroheadertitle h1{font-size: 32px;margin: 0;}
+.heroheadertitle h2{font-size: 16px;margin: 0;}
+}
+
+/* Phone and Tablet */
+@media (min-width: 0) and (max-width:991px) {
+
+}
+
+/* Desktop */
+@media (min-width: 992px) { 
+
+}
+
+/* Widescreen */
+@media (min-width: 1200px) { 
+
+}
