@@ -6,12 +6,12 @@
 
 <div class="@(moduleData.GetSetting("cssclass"))">
 
-    <div class="grid-wrapper">
+    <div class="w3-container">
 
         [INJECT:appthemesystem,ArticleHeaderView.cshtml]
 
-        <div class="grid-refs">
-            <div class="grid-sizer"></div>
+        <div class="w3-container grid-refs">
+            <div class="w3-row grid-sizer"></div>
 
             @foreach (var articleRowData in articleData.GetRows())
             {
@@ -32,7 +32,7 @@
                         }
                         if (linkData.IsDisabled || linkData.Hidden)
                         {
-                            <div class="grid-item grid-item@(gridsize) @(cssClassRow)">
+                            <div class="grid-item grid-item@(gridsize)  @(cssClassRow)">
                                 <div class="refsimg" style="background-image:url('@ImageUrl(articleImage.RelPath, "", "")');">
                                     <div class="refsoverlay"><h4>@rowData.GetXmlProperty("genxml/lang/genxml/textbox/title")</h4></div>
                                     <div class="refstext">

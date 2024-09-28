@@ -11,11 +11,11 @@
 
 <div class="@(moduleData.GetSetting("cssclass"))">
 
-    <div class="gblockswrapper">
+    <div class="W3-container">
 
         [INJECT:appthemesystem,ArticleHeaderView.cshtml]
 
-        <div class="gblocks">
+        <div class="w3-row">
             @foreach (var articleRowData in articleData.GetRows())
             {
                 var rowData = articleRowData.Info;
@@ -34,8 +34,8 @@
                         if (linkData.IsDisabled || linkData.Hidden)
                         {
 
-                            <div class="gblock @(cssClassRow)">
-                            <img src="@ImageUrl(articleImage.RelPath, width, height)" alt="@title" />
+                            <div class="w3-third w3-padding @(cssClassRow)">
+                            <img src="@ImageUrl(articleImage.RelPath, width, height)" style="width:100%" alt="@title" />
                             <div class="gblockstext">
                                 <h2>@title</h2>
                                 <h3>@BreakOf(rowData, "genxml/lang/genxml/textbox/text")</h3>
@@ -44,8 +44,8 @@
                         }
                         else
                         {
-                            <a class="gblock @(cssClassRow)" href="@(linkData.Url)" target="@(linkData.Target)">
-                            <img src="@ImageUrl(articleImage.RelPath, width, height)" alt="@title" />
+                            <a class="w3-third w3-padding @(cssClassRow)" href="@(linkData.Url)" target="@(linkData.Target)">
+                                <img src="@ImageUrl(articleImage.RelPath, width, height)" style="width:100%" alt="@title" />
                             <div class="gblockstext">
                                 <h2>@title</h2>
                                 <h3>@BreakOf(rowData, "genxml/lang/genxml/textbox/text")</h3>
