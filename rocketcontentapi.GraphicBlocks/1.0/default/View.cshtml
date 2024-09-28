@@ -15,8 +15,24 @@
 
         [INJECT:appthemesystem,ArticleHeaderView.cshtml]
 
-        <div class="w3-row">
-            @foreach (var articleRowData in articleData.GetRows())
+        @foreach (var articleRowList in articleData.GetArticleRows(4))
+        {
+            var widthCss = "";
+            if (articleRowList.Count() == 2)
+            {
+                widthCss = "w3-half";
+            }
+            if (articleRowList.Count() == 3)
+            {
+                widthCss = "w3-third";
+            }
+            if (articleRowList.Count() == 4)
+            {
+                widthCss = "w3-quarter";
+            }
+
+            <div class="w3-row">
+            @foreach (var articleRowData in articleRowList)
             {
                 var rowData = articleRowData.Info;
                 var hideRow = rowData.GetXmlPropertyBool("genxml/checkbox/hiderow");
@@ -34,7 +50,7 @@
                         if (linkData.IsDisabled || linkData.Hidden)
                         {
 
-                            <div class="w3-third w3-padding @(cssClassRow)">
+                            <div class="@(widthCss) w3-padding @(cssClassRow)">
                             <img src="@ImageUrl(articleImage.RelPath, width, height)" style="width:100%" alt="@title" />
                             <div class="gblockstext">
                                 <h2>@title</h2>
@@ -44,7 +60,7 @@
                         }
                         else
                         {
-                            <a class="w3-third w3-padding @(cssClassRow)" href="@(linkData.Url)" target="@(linkData.Target)">
+                            <a class="@(widthCss) w3-padding @(cssClassRow)" href="@(linkData.Url)" target="@(linkData.Target)">
                                 <img src="@ImageUrl(articleImage.RelPath, width, height)" style="width:100%" alt="@title" />
                             <div class="gblockstext">
                                 <h2>@title</h2>
@@ -55,6 +71,7 @@
                     }
                 }
             }
-        </div>
+            </div>
+        }
     </div>
 </div>
