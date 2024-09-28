@@ -7,6 +7,11 @@
 @{
     var width = moduleData.GetSettingInt("width");
     var height = moduleData.GetSettingInt("height");
+    var columnNumber = moduleData.GetSettingInt("columnnumber");
+    if (columnNumber == 0)
+    {
+        columnNumber = 4;
+    }
 }
 
 <div class="@(moduleData.GetSetting("cssclass"))">
@@ -15,7 +20,7 @@
 
         [INJECT:appthemesystem,ArticleHeaderView.cshtml]
 
-        @foreach (var articleRowList in articleData.GetArticleRows(4))
+        @foreach (var articleRowList in articleData.GetArticleRows(columnNumber))
         {
             var widthCss = "";
             if (articleRowList.Count() == 2)
