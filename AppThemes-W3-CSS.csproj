@@ -16,7 +16,7 @@
     <Compile Remove="rocketcontentapi.GraphicsBlocksWIP\**" />
     <Compile Remove="rocketcontentapi.ListDetail\**" />
     <Compile Remove="rocketcontentapi.News\**" />
-    <Compile Remove="rocketcontentapi.SVGBlocks\**" />
+    <Compile Remove="rocketdirectoryapi.Articles\**" />
     <EmbeddedResource Remove="rocketcontentapi.example1\1.0\css\**" />
     <EmbeddedResource Remove="rocketcontentapi.example1\1.0\dep\**" />
     <EmbeddedResource Remove="rocketcontentapi.example1\1.0\img\**" />
@@ -27,7 +27,7 @@
     <EmbeddedResource Remove="rocketcontentapi.GraphicsBlocksWIP\**" />
     <EmbeddedResource Remove="rocketcontentapi.ListDetail\**" />
     <EmbeddedResource Remove="rocketcontentapi.News\**" />
-    <EmbeddedResource Remove="rocketcontentapi.SVGBlocks\**" />
+    <EmbeddedResource Remove="rocketdirectoryapi.Articles\**" />
     <None Remove="rocketcontentapi.example1\1.0\css\**" />
     <None Remove="rocketcontentapi.example1\1.0\dep\**" />
     <None Remove="rocketcontentapi.example1\1.0\img\**" />
@@ -38,7 +38,7 @@
     <None Remove="rocketcontentapi.GraphicsBlocksWIP\**" />
     <None Remove="rocketcontentapi.ListDetail\**" />
     <None Remove="rocketcontentapi.News\**" />
-    <None Remove="rocketcontentapi.SVGBlocks\**" />
+    <None Remove="rocketdirectoryapi.Articles\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -73,8 +73,21 @@
 
   <ItemGroup>
     <Folder Include="rocketblogapi.Blog\1.0\js\" />
+    <Folder Include="rocketcontentapi.HeroHeader\1.0\css\" />
+    <Folder Include="rocketcontentapi.HeroHeader\1.0\dep\" />
     <Folder Include="rocketcontentapi.HtmlContent\1.0\img\" />
     <Folder Include="rocketcontentapi.HtmlContent\1.0\js\" />
+    <Folder Include="rocketcontentapi.SVGBlocks\1.0\css\" />
+    <Folder Include="rocketcontentapi.SVGBlocks\1.0\dep\" />
+    <Folder Include="rocketcontentapi.SVGBlocks\1.0\img\" />
+    <Folder Include="rocketcontentapi.SVGBlocks\1.0\js\" />
+    <Folder Include="rocketcontentapi.SVGBlocks\1.0\resx\" />
+    <Folder Include="rocketdirectoryapi.OMAProductsFood\1.0\css\" />
+    <Folder Include="rocketdirectoryapi.OMAProductsFood\1.0\default\" />
+    <Folder Include="rocketdirectoryapi.OMAProductsFood\1.0\dep\" />
+    <Folder Include="rocketdirectoryapi.OMAProductsFood\1.0\img\" />
+    <Folder Include="rocketdirectoryapi.OMAProductsFood\1.0\js\" />
+    <Folder Include="rocketdirectoryapi.OMAProductsFood\1.0\resx\" />
     <Folder Include="rocketdirectoryapi.Products\1.0\css\" />
     <Folder Include="rocketdirectoryapi.Products\1.0\default\" />
     <Folder Include="rocketdirectoryapi.Products\1.0\dep\" />
@@ -84,6 +97,12 @@
     <Folder Include="rocketdirectoryapi.Products\1.0\resx\" />
     <Folder Include="rocketeventsapi.Events\1.0\resx\" />
     <Folder Include="rocketnewsapi.News\1.0\js\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="rocketcontentapi.HeroHeader\1.0\resx\HeroHeader.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
