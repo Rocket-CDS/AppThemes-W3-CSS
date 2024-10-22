@@ -95,12 +95,14 @@
     <Folder Include="rocketdirectoryapi.Products\1.0\js\" />
     <Folder Include="rocketdirectoryapi.Products\1.0\modt\" />
     <Folder Include="rocketdirectoryapi.Products\1.0\resx\" />
-    <Folder Include="rocketeventsapi.Events\1.0\resx\" />
     <Folder Include="rocketnewsapi.News\1.0\js\" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="rocketcontentapi.HeroHeader\1.0\resx\HeroHeader.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="rocketeventsapi.Events\1.0\resx\Events.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
   </ItemGroup>

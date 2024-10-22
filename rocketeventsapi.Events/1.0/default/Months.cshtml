@@ -11,6 +11,14 @@
 
 <div class=" w3-margin-top ">
 
+
+    <a href="@ListUrl(moduleData.ListPageTabId())" class="w3-button w3-block w3-left-align" onclick="$('.simplisity_loader').show();setSelected('');">
+        <span class="w3-right">
+            @ResourceKey("RocketEventsAPI.latest")
+        </span>
+    </a>
+
+
     @{
         var monthidx = 1;
     }
@@ -18,7 +26,7 @@
     {
         if (a.Value.Count > 0)
         {
-            <a href="@ListUrl(moduleData.ListPageTabId(), new string[] {"month", a.Key.Month.ToString(),"year", a.Key.Year.ToString() })" class="w3-button w3-block w3-left-align rocket-monthdates rocket-monthdates@(monthidx) " monthidx="@(monthidx)" onclick="setSelected($(this).attr('monthidx'));">
+            <a href="@ListUrl(moduleData.ListPageTabId(), new string[] {"month", a.Key.Month.ToString(),"year", a.Key.Year.ToString() })" class="w3-button w3-block w3-left-align rocket-monthdates rocket-monthdates@(monthidx) " monthidx="@(monthidx)" onclick="$('.simplisity_loader').show();setSelected($(this).attr('monthidx'));">
                 <span>
                     @a.Key.ToString("MMMM yyyy")
                 </span>
