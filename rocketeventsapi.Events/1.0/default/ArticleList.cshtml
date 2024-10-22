@@ -16,6 +16,11 @@
     {
         eventList = articleListData.GetArticleList();
     }
+    if (eventList.Count == 0)
+    {
+        eventList = (List<ArticleLimpet>)Model.GetDataObject("eventpassedlist");
+    }
+
 }
 
 <div class="eventsarticlewrapper">
