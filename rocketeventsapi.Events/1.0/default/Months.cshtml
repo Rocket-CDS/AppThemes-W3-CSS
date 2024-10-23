@@ -26,7 +26,7 @@
     {
         if (a.Value.Count > 0)
         {
-            <a href="@ListUrl(moduleData.ListPageTabId(), new string[] {"month", a.Key.Month.ToString(),"year", a.Key.Year.ToString() })" class="w3-button w3-block w3-left-align rocket-monthdates rocket-monthdates@(monthidx) " monthidx="@(monthidx)" onclick="$('.simplisity_loader').show();setSelected($(this).attr('monthidx'));">
+            <a href="@ListUrl(moduleData.ListPageTabId(), new string[] {"month", a.Key.Month.ToString(),"year", a.Key.Year.ToString() })" class="w3-button w3-block w3-left-align rocket-monthdates rocket-monthdates@(monthidx) " monthidx="@(monthidx)" onclick="setSelected($(this).attr('monthidx'));">
                 <span>
                     @a.Key.ToString("MMMM yyyy")
                 </span>
@@ -42,6 +42,7 @@
 
 <script>
     function setSelected(monthidx, month, year) {
+        $('.simplisity_loader').show();
         $('.rocket-monthdates').removeClass('w3-grey');
         $('.rocket-monthdates' + monthidx).addClass('w3-grey');
         simplisity_setSessionField('monthidx', monthidx);
