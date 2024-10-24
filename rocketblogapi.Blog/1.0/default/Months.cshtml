@@ -6,7 +6,14 @@
 @AddProcessDataResx(appTheme, true)
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
-<div class=" ">
+<div class=" w3-margin-top ">
+
+    <a href="@ListUrl(moduleData.ListPageTabId())" class="w3-button w3-block w3-left-align" onclick="$('.simplisity_loader').show();setSelected('');doDateSearchReload('','');">
+        <span class="w3-right">
+            @ResourceKey("RocketBlogAPI.latest")
+        </span>
+    </a>
+
     @{
         var monthidx = 1;
     }
