@@ -2,28 +2,32 @@
 @AssignDataModel(Model)
 @AddProcessDataResx(appThemeView, true)
 <!--inject-->
+@{
+    var height = moduleData.GetSettingInt("height");
+}
 
-<div class="@(moduleData.GetSetting("cssclass"))">
-    <div class="citation-window">   
-        <div class="citation-content">
+<div class="w3-section w3-theme @(moduleData.GetSetting("cssclass"))">
+    <div class="w3-display-container w3-center citationcontainer" style="height:@(height)px;">
         @foreach (var articleRowData in articleData.GetRows())
         {
+            var articleImage = articleRowData.GetImage(0);
+            var linkData = articleRowData.Getlink(0);
             if (!articleRowData.GetBool("genxml/checkbox/hiderow"))
             {
-                <h2>@rowData.GetXmlProperty("genxml/lang/genxml/textbox/title")</h2>
-                <hr />
-                <div class="citation-text">@BreakOf(rowData, "genxml/lang/genxml/textbox/content")</div>
-                <div class="citation-link">
-                @foreach (var linkData in articleRowData.Getlinks())
-                {    
-                    if (!linkData.Hidden)
-                    {
-                        <a class="bigbutton" href="@(linkData.Url)" target="@(linkData.Target)">@linkData.Name</a>
-                    }
+                if (articleImage.RelPath != "")
+                {
+                    <img src="@ImageUrl(articleImage.RelPath, 1200, height)" style="width:100%;height:@(height)px;" />
                 }
+                <div class="w3-display-middle w3-padding @articleRowData.Get("genxml/select/textcolor")">
+                    <h1>@rowData.GetXmlProperty("genxml/lang/genxml/textbox/title")</h1>
+                    <hr />
+                    <div class="w3-margin">@BreakOf(rowData, "genxml/lang/genxml/textbox/content")</div>
+                    @if (!linkData.Hidden && !linkData.IsDisabled)
+                    {
+                        <a class="w3-button w3-pale-yellow w3-round citationlink" href="@(linkData.Url)" target="@(linkData.Target)">@linkData.Name</a>
+                    }
                 </div>
             }
         }
-        </div>
     </div>
 </div>
