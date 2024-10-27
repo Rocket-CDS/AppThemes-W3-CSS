@@ -36,4 +36,13 @@
         <label>@ResourceKey("DNNrocket.columns")</label>
         @DropDownList(info, "genxml/settings/columnnumber", "1,2,3,4", "1,2,3,4"," class='w3-input w3-border' ", "4")
     </div>
+    <div class="w3-third w3-padding">
+        <label>Caption Height</label>
+        @TextBox(info, "genxml/settings/captionheight", "class='w3-input w3-border'", "100")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>Padding</label><br/>
+        @CheckBox(info, "genxml/settings/padding",""," class='w3-check'")
+    </div>
 </div>
+

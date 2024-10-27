@@ -12,9 +12,16 @@
     {
         columnNumber = 4;
     }
+    var captionHeight = moduleData.GetSettingInt("captionheight");
+    var padding = moduleData.GetSettingBool("padding");
+    var paddingClass = "";
+    if (padding)
+    {
+        paddingClass = " w3-padding-small ";
+    }
 }
 
-<div class="w3-section @(moduleData.GetSetting("cssclass"))">
+<div class="w3-section @(moduleData.GetSetting("cssclass")) ">
 
         [INJECT:appthemesystem,ArticleHeaderView.cshtml]
 
@@ -34,7 +41,7 @@
                 widthCss = "w3-quarter";
             }
 
-        <div class="w3-row w3-text-white">
+        <div class="w3-row ">
             @foreach (var articleRowData in articleRowList)
             {                
                 var rowData = articleRowData.Info;
@@ -52,22 +59,22 @@
                         }
                         if (linkData.IsDisabled || linkData.Hidden)
                         {
-                            <div class="@(widthCss) w3-display-container @(cssClassRow)">
+                            <div class="@(widthCss) w3-display-container @(cssClassRow) @(paddingClass)">
                                     <img src="@ImageUrl(articleImage.RelPath, width, height)" style="width:100%;" alt="@title" />
-                                    <div class="gblockstext w3-display-middle">
-                                <h2>@title</h2>
-                                <h3>@BreakOf(rowData, "genxml/lang/genxml/textbox/text")</h3>
-                            </div>
+                                <div class="w3-display-bottom w3-padding w3-theme-d2" style="width:100%;height:@(captionHeight)px;">
+                                    <h2>@title</h2>
+                                    <h3>@rowData.GetXmlProperty("genxml/lang/genxml/textbox/text")</h3>
+                                </div>
                             </div>
                         }
                         else
                         {
-                            <a class="@(widthCss) w3-display-container @(cssClassRow)" href="@(linkData.Url)" target="@(linkData.Target)">
-                                    <img src="@ImageUrl(articleImage.RelPath, width, height)" style="width:100%;" alt="@title" />
-                            <div class="gblockstext w3-display-middle">
-                                <h2>@title</h2>
-                                <h3>@BreakOf(rowData, "genxml/lang/genxml/textbox/text")</h3>
-                            </div>
+                            <a class="@(widthCss) w3-display-container @(cssClassRow) @(paddingClass)" href="@(linkData.Url)" target="@(linkData.Target)" style="text-decoration:none;overflow:hidden;">
+                                <img src="@ImageUrl(articleImage.RelPath, width, height)" style="width:100%;" alt="@title" />
+                                <div class="w3-display-bottom w3-padding w3-theme-d2 w3-hover-theme" style="width:100%;height:@(captionHeight)px;">
+                                    <h2>@title</h2>
+                                    <h3>@BreakOf(rowData, "genxml/lang/genxml/textbox/text")</h3>
+                                </div>
                             </a>
                         }
                     }
