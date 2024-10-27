@@ -14,9 +14,7 @@
     }
 }
 
-<div class="@(moduleData.GetSetting("cssclass"))">
-
-    <div class="W3-container">
+<div class="w3-section @(moduleData.GetSetting("cssclass"))">
 
         [INJECT:appthemesystem,ArticleHeaderView.cshtml]
 
@@ -36,9 +34,9 @@
                 widthCss = "w3-quarter";
             }
 
-            <div class="w3-row">
+        <div class="w3-row w3-text-white">
             @foreach (var articleRowData in articleRowList)
-            {
+            {                
                 var rowData = articleRowData.Info;
                 var hideRow = rowData.GetXmlPropertyBool("genxml/checkbox/hiderow");
                 if (!hideRow)
@@ -54,10 +52,9 @@
                         }
                         if (linkData.IsDisabled || linkData.Hidden)
                         {
-
-                            <div class="@(widthCss) w3-padding @(cssClassRow)">
-                            <img src="@ImageUrl(articleImage.RelPath, width, height)" style="width:100%" alt="@title" />
-                            <div class="gblockstext">
+                            <div class="@(widthCss) w3-display-container @(cssClassRow)">
+                                    <img src="@ImageUrl(articleImage.RelPath, width, height)" style="width:100%;" alt="@title" />
+                                    <div class="gblockstext w3-display-middle">
                                 <h2>@title</h2>
                                 <h3>@BreakOf(rowData, "genxml/lang/genxml/textbox/text")</h3>
                             </div>
@@ -65,9 +62,9 @@
                         }
                         else
                         {
-                            <a class="@(widthCss) w3-padding @(cssClassRow)" href="@(linkData.Url)" target="@(linkData.Target)">
-                                <img src="@ImageUrl(articleImage.RelPath, width, height)" style="width:100%" alt="@title" />
-                            <div class="gblockstext">
+                            <a class="@(widthCss) w3-display-container @(cssClassRow)" href="@(linkData.Url)" target="@(linkData.Target)">
+                                    <img src="@ImageUrl(articleImage.RelPath, width, height)" style="width:100%;" alt="@title" />
+                            <div class="gblockstext w3-display-middle">
                                 <h2>@title</h2>
                                 <h3>@BreakOf(rowData, "genxml/lang/genxml/textbox/text")</h3>
                             </div>
@@ -76,7 +73,7 @@
                     }
                 }
             }
-            </div>
-        }
+        </div>
+    }
     </div>
 </div>
