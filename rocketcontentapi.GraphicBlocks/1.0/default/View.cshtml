@@ -13,15 +13,25 @@
         columnNumber = 4;
     }
     var captionHeight = moduleData.GetSettingInt("captionheight");
-    var padding = moduleData.GetSettingBool("padding");
-    var paddingClass = "";
-    if (padding)
+    var padding = moduleData.GetSettingInt("padding");
+    var paddingClass = "w3-padding";
+    if (padding == 1)
     {
         paddingClass = " w3-padding-small ";
     }
+    if (padding == 3)
+    {
+        paddingClass = " w3-padding-large ";
+    }
+    var color = moduleData.GetSetting("color");
+    var stylepadding = "";
+    if (moduleData.GetSettingInt("toppadding") > 0 || moduleData.GetSettingInt("bottompadding") > 0)
+    {
+        stylepadding = "padding-top:" + moduleData.GetSettingInt("toppadding") + "px;padding-bottom:" + moduleData.GetSettingInt("bottompadding") + "px;";
+    }
 }
 
-<div class="w3-section @(moduleData.GetSetting("cssclass")) ">
+<div class="w3-section @(moduleData.GetSetting("cssclass"))" style="@(stylepadding)">
 
         [INJECT:appthemesystem,ArticleHeaderView.cshtml]
 
@@ -61,9 +71,9 @@
                         {
                             <div class="@(widthCss) w3-display-container @(cssClassRow) @(paddingClass)">
                                     <img src="@ImageUrl(articleImage.RelPath, width, height)" style="width:100%;" alt="@title" />
-                                <div class="w3-display-bottom w3-padding w3-theme-d2" style="width:100%;height:@(captionHeight)px;">
-                                    <h2>@title</h2>
-                                    <h3>@rowData.GetXmlProperty("genxml/lang/genxml/textbox/text")</h3>
+                                <div class="w3-display-bottom w3-padding @(color) " style="width:100%;height:@(captionHeight)px;">
+                                    <h3>@title</h3>
+                                    <p>@rowData.GetXmlProperty("genxml/lang/genxml/textbox/text")</p>
                                 </div>
                             </div>
                         }
@@ -71,9 +81,9 @@
                         {
                             <a class="@(widthCss) w3-display-container @(cssClassRow) @(paddingClass)" href="@(linkData.Url)" target="@(linkData.Target)" style="text-decoration:none;overflow:hidden;">
                                 <img src="@ImageUrl(articleImage.RelPath, width, height)" style="width:100%;" alt="@title" />
-                                <div class="w3-display-bottom w3-padding w3-theme-d2 w3-hover-theme" style="width:100%;height:@(captionHeight)px;">
-                                    <h2>@title</h2>
-                                    <h3>@BreakOf(rowData, "genxml/lang/genxml/textbox/text")</h3>
+                                <div class="w3-display-bottom w3-padding  @(color) w3-hover" style="width:100%;height:@(captionHeight)px;">
+                                    <h3>@title</h3>
+                                    <p>@BreakOf(rowData, "genxml/lang/genxml/textbox/text")</p>
                                 </div>
                             </a>
                         }

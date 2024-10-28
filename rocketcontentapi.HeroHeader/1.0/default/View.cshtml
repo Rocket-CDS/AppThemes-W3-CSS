@@ -27,7 +27,7 @@
 	<div class="heroheaderinner">
 		<div class="heroheaderimage w3-display-container" style="background:url('@ImageUrl(articleImage.RelPath, width, height, "", "")') center @(crop) no-repeat;background-size: cover;position: absolute;top: 0;bottom: 0;left: 0;right: 0;">
 			<div class="heroheaderbackground">
-				<div class="heroheadertitle @moduleData.GetSetting("titlepos") @moduleData.GetSetting("titlecolor")">
+				<div class="heroheadertitle w3-center @moduleData.GetSetting("titlepos") @moduleData.GetSetting("titlecolor")">
 					@if (rowData.GetXmlProperty("genxml/lang/genxml/textbox/title") != "")
 					{
 						<@moduleData.GetSetting("titlehead1")>@rowData.GetXmlProperty("genxml/lang/genxml/textbox/title")</@moduleData.GetSetting("titlehead1")>
