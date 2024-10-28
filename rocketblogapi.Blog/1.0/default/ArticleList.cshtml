@@ -89,3 +89,22 @@
     }
 
 </div>
+
+<script>
+    $(document).ready(function () {
+
+        simplisity_setCookieValue('simplisity_language', simplisity_getCookieValue('language')); // get correct langauge for API
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const pageParam = urlParams.get('page');
+
+        $(window).on('beforeunload', function () {
+            if (!pageParam || pageParam == '') {
+            setSelected('');
+            simplisity_setSessionField('searchdate1', '');
+            simplisity_setSessionField('searchdate2', '');
+            simplisity_setSessionField('page', '1');
+            }
+        });
+    });
+</script>
