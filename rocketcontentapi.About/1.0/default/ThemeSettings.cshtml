@@ -18,6 +18,10 @@
 }
 <div class="w3-row">
     <div class="w3-third w3-padding">
+        <label>Layout</label><br />
+        @DropDownList(info, "genxml/settings/layout", "1,2","1,2", "class='w3-input w3-border' ", "")
+    </div>
+    <div class="w3-third w3-padding">
         <label>@ResourceKey("DNNrocket.cssClass")</label>
         @TextBox(info, "genxml/settings/cssclass", "class='w3-input w3-border'", "")
     </div>
@@ -28,5 +32,33 @@
     <div class="w3-third w3-padding">
         <label>@ResourceKey("DNNrocket.height")</label>
         @TextBox(info, "genxml/settings/height", "class='w3-input w3-border'", "320")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>Title Text Size</label><br />
+        @DropDownList(info, "genxml/settings/titlesize", W3Utils.W3sizes(), "class='w3-input w3-border' ", "w3-center")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>Content Text Size (Above Image)</label><br />
+        @DropDownList(info, "genxml/settings/abovesize", W3Utils.W3sizes(), "class='w3-input w3-border' ", "w3-center")
+    </div>    
+    <div class="w3-third w3-padding">
+        <label>Content Text Size (Below Image)</label><br />
+        @DropDownList(info, "genxml/settings/belowsize", W3Utils.W3sizes(), "class='w3-input w3-border' ", "w3-center")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>Alignment</label><br />
+        @DropDownList(info, "genxml/settings/pos", W3Utils.W3alignment(), "class='w3-input w3-border' ", "w3-center")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>Opacity</label><br />
+        @DropDownList(info, "genxml/settings/opacity", W3Utils.W3opacity(), "class='w3-input w3-border' ", "normal")
+    </div>    
+    <div class="w3-third w3-padding">
+        <label>Button Color</label><br />
+        @DropDownList(info, "genxml/settings/buttoncolor", W3Utils.W3colors(), "class='w3-input w3-border' ", "normal")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>Background Color</label><br />
+        @DropDownList(info, "genxml/settings/backgroundcolor", W3Utils.W3colors(), "class='w3-input w3-border' ", "normal")
     </div>
 </div>

@@ -2,26 +2,40 @@
 @using DNNrocketAPI.Components;
 @using RocketContentAPI.Components;
 @AssignDataModel(Model)
-@AddProcessDataResx(appThemeView, true)
 <!--inject-->
 @{
     var articleImage = articleRowData.GetImage(0);
     var linkData = articleRowData.Getlink(0);
 }
-<div class="@(moduleData.GetSetting("cssclass"))">
-    <div class="w3-container">
-        <img src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
-        @if (info.GetXmlProperty("genxml/lang/genxml/textbox/content") != "")
-        {
-            <p>
-                @info.GetXmlProperty("genxml/lang/genxml/textbox/content")
-            </p>
-        }
-        @if (!linkData.Hidden && !linkData.IsDisabled)
-        {
-            <a href="@(linkData.Url)" target="@(linkData.Target)">@linkData.Name</a>
-        }
-    </div>
+<div class="w3-section @(moduleData.GetSetting("cssclass"))">
+    @if (moduleData.GetSettingInt("layout") == 1)
+    {
+        <div class="w3-container">
+            <div class="w3-twothird">
+                [INJECT:appthemeview,layouttext.cshtml]
+            </div>
+            <div class="w3-third">
+                @if (articleImage.RelPath != "")
+                {
+                    <img class="@(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+                }
+            </div>
+        </div>
+    }
+    @if (moduleData.GetSettingInt("layout") == 2)
+    {
+        <div class="w3-container">
+            <div class="w3-third">
+                @if (articleImage.RelPath != "")
+                {
+                    <img class="@(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+                }
+            </div>
+            <div class="w3-twothird">
+                [INJECT:appthemeview,layouttext.cshtml]
+            </div>
+        </div>
+    }
 </div>
 
 

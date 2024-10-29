@@ -1,0 +1,26 @@
+﻿@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using RocketContentAPI.Components;
+<!--inject-->
+@if (info.GetXmlProperty("genxml/lang/genxml/textbox/title") != "")
+{
+    <p class="@moduleData.GetSetting("titlesize") w3-padding">
+        @BreakOf(info.GetXmlProperty("genxml/lang/genxml/textbox/title"))
+    </p>
+}
+@if (info.GetXmlProperty("genxml/lang/genxml/textbox/abovecontent") != "")
+{
+    <p class="@moduleData.GetSetting("abovesize") w3-padding">
+        @info.GetXmlProperty("genxml/lang/genxml/textbox/abovecontent")
+    </p>
+}
+@if (info.GetXmlProperty("genxml/lang/genxml/textbox/content") != "")
+{
+    <p class="@moduleData.GetSetting("belowsize") w3-padding">
+        @info.GetXmlProperty("genxml/lang/genxml/textbox/content")
+    </p>
+}
+@if (!linkData.Hidden && !linkData.IsDisabled)
+{
+    <a class="w3-button @(moduleData.GetSetting("buttoncolor")) w3-border w3-round aboutlink" href="@(linkData.Url)" target="@(linkData.Target)">@linkData.Name</a>
+}
