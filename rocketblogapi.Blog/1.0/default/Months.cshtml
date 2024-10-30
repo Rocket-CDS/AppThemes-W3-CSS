@@ -39,8 +39,7 @@
 
 <script>
     $(document).ready(function () {
-        if (simplisity_getSessionField('searchdate1') != '')
-        {
+        if (simplisity_getSessionField('searchdate1') != '' && simplisity_getSessionField('viewsearchtext') == '') {
             setSelected(simplisity_getSessionField('monthidx'));
         }
         $('.rocket-filtercheckbox').click(function(){
@@ -51,8 +50,10 @@
         });
     });
     function setSelected(monthidx) {
+        $('#viewsearchtext').val('');
         $('.rocket-monthdates').removeClass('w3-grey');
         $('.rocket-monthdates' + monthidx).addClass('w3-grey');
         simplisity_setSessionField('monthidx', monthidx);
+        simplisity_setSessionField('viewsearchtext', '');
     }
 </script>

@@ -82,12 +82,6 @@
     <Folder Include="rocketcontentapi.SVGBlocks\1.0\img\" />
     <Folder Include="rocketcontentapi.SVGBlocks\1.0\js\" />
     <Folder Include="rocketcontentapi.SVGBlocks\1.0\resx\" />
-    <Folder Include="rocketdirectoryapi.OMAProductsFood\1.0\css\" />
-    <Folder Include="rocketdirectoryapi.OMAProductsFood\1.0\default\" />
-    <Folder Include="rocketdirectoryapi.OMAProductsFood\1.0\dep\" />
-    <Folder Include="rocketdirectoryapi.OMAProductsFood\1.0\img\" />
-    <Folder Include="rocketdirectoryapi.OMAProductsFood\1.0\js\" />
-    <Folder Include="rocketdirectoryapi.OMAProductsFood\1.0\resx\" />
     <Folder Include="rocketdirectoryapi.Products\1.0\css\" />
     <Folder Include="rocketdirectoryapi.Products\1.0\default\" />
     <Folder Include="rocketdirectoryapi.Products\1.0\dep\" />
