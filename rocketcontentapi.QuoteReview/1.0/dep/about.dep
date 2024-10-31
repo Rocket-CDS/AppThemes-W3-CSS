@@ -1,0 +1,10 @@
+﻿<genxml>
+	<deps list="true">
+		<genxml>
+			<ctrltype>css</ctrltype>
+			<url>/DesktopModules/DNNrocket/css/w3.css</url>
+			<ecofriendly>true</ecofriendly>
+			<ignoreonskin><![CDATA[rocketw3]]></ignoreonskin>
+		</genxml>
+	</deps>
+</genxml>

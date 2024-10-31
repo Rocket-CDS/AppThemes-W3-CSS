@@ -1,0 +1,38 @@
+﻿@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using RocketContentAPI.Components;
+@AssignDataModel(Model)
+<!--inject-->
+@{
+    var articleImage = articleRowData.GetImage(0);
+}
+<div class="w3-section w3-center @moduleData.GetSetting("cssclass") @moduleData.GetSetting("backgroundcolor")">
+
+    @if (info.GetXmlProperty("genxml/lang/genxml/textbox/title") != "")
+    {
+        <p class="@moduleData.GetSetting("titlesize") w3-padding">
+            @BreakOf(info.GetXmlProperty("genxml/lang/genxml/textbox/title"))
+        </p>
+    }
+    @if (info.GetXmlProperty("genxml/lang/genxml/textbox/content") != "")
+    {
+        <p class="@moduleData.GetSetting("abovesize") w3-padding " style="width: 50%;display: inline-block;">
+            @info.GetXmlProperty("genxml/lang/genxml/textbox/content")
+        </p>
+    }
+    @if (articleImage.RelPath != "")
+    {
+        <div class="w3-tiny">
+            <img class="@(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+        </div>
+    }
+    @if (info.GetXmlProperty("genxml/textbox/name") != "")
+    {
+        <p class="@moduleData.GetSetting("belowsize") w3-padding">
+            @info.GetXmlProperty("genxml/textbox/name")
+        </p>
+    }
+
+</div>
+
+

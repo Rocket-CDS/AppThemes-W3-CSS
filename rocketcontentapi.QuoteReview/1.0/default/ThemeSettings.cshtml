@@ -1,0 +1,60 @@
+﻿@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI;
+@using Simplisity;
+@using RocketContentAPI.Components;
+@using DNNrocketAPI.Components;
+@using RocketPortal.Components;
+
+@{
+    var appThemeAdmin = (AppThemeLimpet)Model.GetDataObject("appthemeadmin");
+    var moduleData = (ModuleContentLimpet)Model.GetDataObject("modulesettings");
+    var info = new SimplisityInfo(moduleData.Record);
+
+    AddProcessDataResx(appThemeAdmin, true);
+    AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/");
+    AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/");
+
+    //NOTE: xPath for module settings must use "genxml/settings/*"
+}
+<div class="w3-row">
+    <div class="w3-third w3-padding">
+        <label>@ResourceKey("DNNrocket.cssClass")</label>
+        @TextBox(info, "genxml/settings/cssclass", "class='w3-input w3-border'", "")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>@ResourceKey("DNNrocket.height")</label>
+        @TextBox(info, "genxml/settings/height", "class='w3-input w3-border'", "120")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>@ResourceKey("DNNrocket.width")</label>
+        @TextBox(info, "genxml/settings/width", "class='w3-input w3-border'", "120")
+    </div>
+</div>
+<div class="w3-row">
+    <div class="w3-third w3-padding">
+        <label>Title Text Size</label><br />
+        @DropDownList(info, "genxml/settings/titlesize", W3Utils.W3sizes(), "class='w3-input w3-border' ", "w3-center")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>Quote Text Size</label><br />
+        @DropDownList(info, "genxml/settings/abovesize", W3Utils.W3sizes(), "class='w3-input w3-border' ", "w3-center")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>Name Text Size</label><br />
+        @DropDownList(info, "genxml/settings/belowsize", W3Utils.W3sizes(), "class='w3-input w3-border' ", "w3-center")
+    </div>
+</div>
+<div class="w3-row">
+    <div class="w3-third w3-padding">
+        <label>Alignment</label><br />
+        @DropDownList(info, "genxml/settings/pos", W3Utils.W3alignment(), "class='w3-input w3-border' ", "w3-center")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>Opacity</label><br />
+        @DropDownList(info, "genxml/settings/opacity", W3Utils.W3opacity(), "class='w3-input w3-border' ", "normal")
+    </div>    
+    <div class="w3-third w3-padding">
+        <label>Background Color</label><br />
+        @DropDownList(info, "genxml/settings/backgroundcolor", W3Utils.W3colors(), "class='w3-input w3-border' ", "normal")
+    </div>
+</div>
