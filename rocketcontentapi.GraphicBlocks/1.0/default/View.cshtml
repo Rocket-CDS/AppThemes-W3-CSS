@@ -13,6 +13,7 @@
         columnNumber = 4;
     }
     var captionHeight = moduleData.GetSettingInt("captionheight");
+    var alignment = moduleData.GetSetting("pos");
     var padding = moduleData.GetSettingInt("padding");
     var paddingClass = "w3-padding";
     if (padding == 1)
@@ -69,8 +70,11 @@
                         }
                         if (linkData.IsDisabled || linkData.Hidden)
                         {
-                            <div class="@(widthCss) w3-display-container @(cssClassRow) @(paddingClass)">
+                            <div class="@(widthCss) @(alignment) w3-display-container @(cssClassRow) @(paddingClass)">
+                                @if (articleImage.RelPath != "")
+                                {
                                     <img src="@ImageUrl(articleImage.RelPath, width, height)" style="width:100%;" alt="@title" />
+                                }
                                 <div class="w3-display-bottom w3-padding @(color) " style="width:100%;height:@(captionHeight)px;">
                                     <h3>@title</h3>
                                     <p>@rowData.GetXmlProperty("genxml/lang/genxml/textbox/text")</p>
@@ -79,8 +83,11 @@
                         }
                         else
                         {
-                            <a class="@(widthCss) w3-display-container @(cssClassRow) @(paddingClass)" href="@(linkData.Url)" target="@(linkData.Target)" style="text-decoration:none;overflow:hidden;">
-                                <img src="@ImageUrl(articleImage.RelPath, width, height)" style="width:100%;" alt="@title" />
+                            <a class="@(widthCss) @(alignment) w3-display-container @(cssClassRow) @(paddingClass)" href="@(linkData.Url)" target="@(linkData.Target)" style="text-decoration:none;overflow:hidden;">
+                                @if (articleImage.RelPath != "")
+                                {
+                                    <img src="@ImageUrl(articleImage.RelPath, width, height)" style="width:100%;" alt="@title" />
+                                }
                                 <div class="w3-display-bottom w3-padding  @(color) w3-hover" style="width:100%;height:@(captionHeight)px;">
                                     <h3>@title</h3>
                                     <p>@BreakOf(rowData, "genxml/lang/genxml/textbox/text")</p>

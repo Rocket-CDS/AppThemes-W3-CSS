@@ -12,7 +12,6 @@
     }
 }
 <div class="w3-section w3-center @moduleData.GetSetting("cssclass") @moduleData.GetSetting("backgroundcolor")" style="@(stylepadding)">
-
     @if (info.GetXmlProperty("genxml/lang/genxml/textbox/title") != "")
     {
         <p class="@moduleData.GetSetting("titlesize") w3-padding">
@@ -25,19 +24,15 @@
             @info.GetXmlProperty("genxml/lang/genxml/textbox/content")
         </p>
     }
+
     @if (articleImage.RelPath != "")
     {
-        <div class="w3-tiny">
+        <div class="w3-center " style="width:100%;">
             <img class="@(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
         </div>
     }
-    @if (info.GetXmlProperty("genxml/textbox/name") != "")
-    {
-        <p class="@moduleData.GetSetting("belowsize") w3-padding">
-            @info.GetXmlProperty("genxml/textbox/name")
-        </p>
-    }
 
 </div>
+
 
 

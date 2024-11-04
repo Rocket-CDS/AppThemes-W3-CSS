@@ -44,9 +44,13 @@
         <label>Padding</label><br/>
         @RadioButtonList(info, "genxml/settings/padding","1,2,3","Small,Medium,Large"," class=''","2")
     </div>
-    <div class="w3-quarter w3-padding">
+    <div class="w3-third w3-padding">
         <label>Color</label><br />
         @DropDownList(info, "genxml/settings/color", W3Utils.W3colors(), "class='w3-input w3-border' ", "w3-text-white")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>Alignment</label><br />
+        @DropDownList(info, "genxml/settings/pos", W3Utils.W3alignment(), "class='w3-input w3-border' ", "w3-center")
     </div>
     <div class="w3-row w3-padding ">
         <label>Top Padding</label>
