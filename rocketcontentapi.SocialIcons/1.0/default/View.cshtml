@@ -13,20 +13,22 @@
     var stylepadding = StylePadding();
 }
 
-<div class="w3-section @(backgroundcolor) @(moduleData.GetSetting("cssclass")) socialiconssection" style="@stylepadding">
-    @if (info.GetXmlProperty("genxml/lang/genxml/textbox/title") != "")
-    {
-        <div class="@titleSize socialiconstitle">@info.GetXmlProperty("genxml/lang/genxml/textbox/title")</div>
-    }
-    <div id="@articleRowData.RowKey" class="socialicons @iconSize @iconColor">
-        @LinkURL(info, "genxml/textbox/facebook", true, "<span class='ri-facebook " + paddingClass + "'></span>", " class='facebookicon' title='facebook' style='text-decoration:none;'  ")
-        @LinkURL(info, "genxml/textbox/linkedin", true, "<span class='ri-linkedin " + paddingClass + "'></span>", " class='linkedinicon' title='linkedin'  ")
-        @LinkURL(info, "genxml/textbox/instagram", true, "<span class='ri-instagram " + paddingClass + "'></span>", " class='instagramicon' title='instagram'  ")
-        @LinkURL(info, "genxml/textbox/youtube", true, "<span class='ri-youtube-play " + paddingClass + "'></span>", " class='youtubeicon' title='youtube'  ")
-        @LinkURL(info, "genxml/textbox/twitter", true, "<span class='ri-twitter " + paddingClass + "'></span>", " class='twittericon' title='twitter'  ")
-        @LinkURL(info, "genxml/textbox/pinterest", true, "<span class='ri-pinterest " + paddingClass + "'></span>", " class='pinteresticon' title='pinterest'  ")
-        @LinkURL(info, "genxml/textbox/tripadvisor", true, "<span class='ri-tripadvisor " + paddingClass + "'></span>", " class='tripadvisoricon' title='tripadvisor'  ")
-        @LinkURL(info, "genxml/textbox/rss", true, "<span class='ri-rss " + paddingClass + "'></span>", " class='rssicon' title='rss'  ")
+<div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))">
+    <div class="w3-section containerinner socialiconssection" style="@stylepadding">
+        @if (info.GetXmlProperty("genxml/lang/genxml/textbox/title") != "")
+        {
+            <div class="@titleSize socialiconstitle">@info.GetXmlProperty("genxml/lang/genxml/textbox/title")</div>
+        }
+        <div id="@articleRowData.RowKey" class="socialicons @iconSize @iconColor">
+            @LinkURL(info, "genxml/textbox/facebook", true, "<span class='ri-facebook " + paddingClass + "'></span>", " class='facebookicon' title='facebook' style='text-decoration:none;'  ")
+            @LinkURL(info, "genxml/textbox/linkedin", true, "<span class='ri-linkedin " + paddingClass + "'></span>", " class='linkedinicon' title='linkedin'  ")
+            @LinkURL(info, "genxml/textbox/instagram", true, "<span class='ri-instagram " + paddingClass + "'></span>", " class='instagramicon' title='instagram'  ")
+            @LinkURL(info, "genxml/textbox/youtube", true, "<span class='ri-youtube-play " + paddingClass + "'></span>", " class='youtubeicon' title='youtube'  ")
+            @LinkURL(info, "genxml/textbox/twitter", true, "<span class='ri-twitter " + paddingClass + "'></span>", " class='twittericon' title='twitter'  ")
+            @LinkURL(info, "genxml/textbox/pinterest", true, "<span class='ri-pinterest " + paddingClass + "'></span>", " class='pinteresticon' title='pinterest'  ")
+            @LinkURL(info, "genxml/textbox/tripadvisor", true, "<span class='ri-tripadvisor " + paddingClass + "'></span>", " class='tripadvisoricon' title='tripadvisor'  ")
+            @LinkURL(info, "genxml/textbox/rss", true, "<span class='ri-rss " + paddingClass + "'></span>", " class='rssicon' title='rss'  ")
+        </div>
     </div>
 </div>
 

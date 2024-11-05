@@ -4,35 +4,35 @@
 <!--inject-->
 @{
     var height = moduleData.GetSettingInt("height");
-    var stylepadding = "";
-    if (moduleData.GetSettingInt("toppadding") > 0 || moduleData.GetSettingInt("bottompadding") > 0)
-    {
-        stylepadding = "padding-top:" + moduleData.GetSettingInt("toppadding") + "px;padding-bottom:" + moduleData.GetSettingInt("bottompadding") + "px;";
-    }
+    var stylepadding = StylePadding();
+    var backgroundcolor = moduleData.GetSetting("backgroundcolor");
 }
 
-<div class="w3-section w3-theme @(moduleData.GetSetting("cssclass"))" style="@(stylepadding)">
-    <div class="w3-display-container w3-center citationcontainer" style="height:@(height)px;">
-        @foreach (var articleRowData in articleData.GetRows())
-        {
-            var articleImage = articleRowData.GetImage(0);
-            var linkData = articleRowData.Getlink(0);
-            if (!articleRowData.GetBool("genxml/checkbox/hiderow"))
+<div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))">
+    <div class="w3-section containerinner w3-theme" style="@(stylepadding)">
+        <div class="w3-display-container w3-center containerinner citationcontainer" style="height:@(height)px;">
+            @foreach (var articleRowData in articleData.GetRows())
             {
-                if (articleImage.RelPath != "")
+                var articleImage = articleRowData.GetImage(0);
+                var linkData = articleRowData.Getlink(0);
+                if (!articleRowData.GetBool("genxml/checkbox/hiderow"))
                 {
-                    <img src="@ImageUrl(articleImage.RelPath, 1200, height)" style="width:100%;height:@(height)px;" />
-                }
-                <div class="w3-display-middle w3-padding @articleRowData.Get("genxml/select/textcolor")">
-                    <div class="@moduleData.GetSetting("titlesize")">@rowData.GetXmlProperty("genxml/lang/genxml/textbox/title")</div>
-                    <hr />
-                    <div class="w3-margin @moduleData.GetSetting("contentsize")">@BreakOf(rowData, "genxml/lang/genxml/textbox/content")</div>
-                    @if (!linkData.Hidden && !linkData.IsDisabled)
+                    if (articleImage.RelPath != "")
                     {
-                        <a class="w3-button @(moduleData.GetSetting("buttoncolor")) w3-round citationlink" href="@(linkData.Url)" target="@(linkData.Target)">@linkData.Name</a>
+                        <img src="@ImageUrl(articleImage.RelPath, 1200, height)" style="width:100%;height:@(height)px;" />
                     }
-                </div>
+                    <div class="w3-display-middle w3-padding @articleRowData.Get("genxml/select/textcolor")">
+                        <div class="@moduleData.GetSetting("titlesize")">@rowData.GetXmlProperty("genxml/lang/genxml/textbox/title")</div>
+                        <hr />
+                        <div class="w3-margin @moduleData.GetSetting("contentsize")">@BreakOf(rowData, "genxml/lang/genxml/textbox/content")</div>
+                        @if (!linkData.Hidden && !linkData.IsDisabled)
+                        {
+                            <a class="w3-button @(moduleData.GetSetting("buttoncolor")) w3-round citationlink" href="@(linkData.Url)" target="@(linkData.Target)">@linkData.Name</a>
+                        }
+                    </div>
+                }
             }
-        }
+        </div>
     </div>
 </div>
+
