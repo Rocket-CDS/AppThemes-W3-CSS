@@ -1,0 +1,64 @@
+﻿@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@AssignDataModel(Model)
+@AddProcessDataResx(appThemeView, true)
+<!--inject-->
+
+@{
+    var width = moduleData.GetSettingInt("width");
+    var height = moduleData.GetSettingInt("height");
+    var captionHeight = moduleData.GetSettingInt("captionheight");
+    var alignment = moduleData.GetSetting("pos");
+    var paddingClass = moduleData.GetSetting("padding");
+    var backgroundcolor = moduleData.GetSetting("backgroundcolor");
+    var stylepadding = StylePadding();
+}
+
+<div class="w3-section @(backgroundcolor) @(moduleData.GetSetting("cssclass"))">
+
+        [INJECT:appthemesystem,ArticleHeaderView.cshtml]
+
+    @foreach (var articleRowData in articleData.GetRows())
+    {
+        Model.SetDataObject("articlerow", articleRowData);
+        var info = articleRowData.Info;
+        var layout = info.GetXmlPropertyInt("genxml/select/layout");
+        var hStyle = info.GetXmlProperty("genxml/select/headingstyle");
+        var headingHide = info.GetXmlPropertyBool("genxml/checkbox/hideheading");
+        var hideRow = info.GetXmlPropertyBool("genxml/checkbox/hiderow");
+        var articleImage = articleRowData.GetImage(0);
+        var linkData = articleRowData.Getlink(0);
+
+        <div class="w3-section" style="@(stylepadding)">
+            @if (moduleData.GetSettingInt("layout") == 1)
+            {
+                <div class="w3-container">
+                    <div class="w3-twothird">
+                        [INJECT:appthemeview,layouttext.cshtml]
+                    </div>
+                    <div class="w3-third">
+                        @if (articleImage.RelPath != "")
+                        {
+                            <img class="@(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+                        }
+                    </div>
+                </div>
+            }
+            @if (moduleData.GetSettingInt("layout") == 2)
+            {
+                <div class="w3-container">
+                    <div class="w3-third">
+                        @if (articleImage.RelPath != "")
+                        {
+                            <img class="@(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+                        }
+                    </div>
+                    <div class="w3-twothird">
+                        [INJECT:appthemeview,layouttext.cshtml]
+                    </div>
+                </div>
+            }
+        </div>
+
+    }
+</div>

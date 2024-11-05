@@ -2,76 +2,47 @@
 @AssignDataModel(Model)
 @AddProcessDataResx(appThemeView, true)
 <!--inject-->
-<div class="@moduleData.GetSetting("cssclass")">
-    <div class="contact-wrapper">
-        <div id="@articleRowData.RowKey" class="contact-infos">
-            @if (rowData.GetXmlProperty("genxml/lang/genxml/textbox/title") != "")
-            {
-                <h2>@rowData.GetXmlProperty("genxml/lang/genxml/textbox/title")</h2>
-            }
-            @if (rowData.GetXmlProperty("genxml/lang/genxml/textbox/company") != "")
-            {
-                <h1>@rowData.GetXmlProperty("genxml/lang/genxml/textbox/company")</h1>
-            }
-            <div class="contact-item">
-                <div class="ci-header">
-                    <span class="ri-location"></span>
-                </div>
-                <div class="ci-content">
-                    @if (rowData.GetXmlProperty("genxml/textbox/adress") != "")
-                    {
-                        <p>@BreakOf(info, "genxml/textbox/adress")</p>
-                    }
-                    <p>
-                    @if (rowData.GetXmlProperty("genxml/textbox/tel1") != "")
-                    {
-                        if (rowData.GetXmlProperty("genxml/textbox/clicktel1") != "")
-                        {
-                        <div>@ResourceKey("DNNrocket.tel1") : <a href="tel:@rowData.GetXmlProperty("genxml/textbox/clicktel1")">@rowData.GetXmlProperty("genxml/textbox/tel1")</a></div>
-                        }
-                        else
-                        {
-                        <div>@ResourceKey("DNNrocket.tel1") : @rowData.GetXmlProperty("genxml/textbox/tel1")</div>
-                        }
-                    }
-                    @if (rowData.GetXmlProperty("genxml/textbox/tel2") != "")
-                    {
-                        if (rowData.GetXmlProperty("genxml/textbox/clicktel2") != "")
-                        {
-                        <div>@ResourceKey("DNNrocket.tel2") : <a href="tel:@rowData.GetXmlProperty("genxml/textbox/clicktel2")">@rowData.GetXmlProperty("genxml/textbox/tel2")</a></div>
-                        }
-                        else
-                        {
-                        <div>@ResourceKey("DNNrocket.tel2") : @rowData.GetXmlProperty("genxml/textbox/tel2")</div>
-                        }
-                    }
-                    @if (rowData.GetXmlProperty("genxml/textbox/fax") != "")
-                    {
-                        <div>@ResourceKey("DNNrocket.fax") : @rowData.GetXmlProperty("genxml/textbox/fax")</div>
-                    }
-                    @if (rowData.GetXmlProperty("genxml/textbox/email") != "")
-                    {
-                        <div>@EmailOf(info, "genxml/textbox/email")</div>
-                    }
-                    </p>
-                </div>
-            </div>
-            [INJECT:appthemeview,DisplayContacts.cshtml]
+@{
+    var backgroundcolor = moduleData.GetSetting("backgroundcolor");
+    var stylepadding = StylePadding();
+}
 
-            @if (rowData.GetXmlProperty("genxml/lang/genxml/textbox/extrainfo") != "")
+<div class="w3-section @moduleData.GetSetting("cssclass") @(backgroundcolor)" style="@stylepadding">
+    <div id="@articleRowData.RowKey" class="contact-infos">
+        @if (rowData.GetXmlProperty("genxml/lang/genxml/textbox/title") != "")
+        {
+            <div class="w3-small">@rowData.GetXmlProperty("genxml/lang/genxml/textbox/title")</div>
+        }
+        @if (rowData.GetXmlProperty("genxml/lang/genxml/textbox/company") != "")
+        {
+            <div class="w3-xlarge">@rowData.GetXmlProperty("genxml/lang/genxml/textbox/company")</div>
+        }
+        <div class="w3-contaianer w3-margin-left">
+            @if (rowData.GetXmlProperty("genxml/textbox/adress") != "")
             {
-            <div class="contact-item">
-                <div class="ci-header">
-                    <span class="ri-info"></span>
-                </div>
-                <div class="ci-content">@BreakOf(info, "genxml/lang/genxml/textbox/extrainfo")</div>
-            </div>
+                <p class="">@BreakOf(info, "genxml/textbox/adress")</p>
+            }
+            @if (rowData.GetXmlProperty("genxml/textbox/email") != "")
+            {
+                <div class="">@EmailOf(info, "genxml/textbox/email")</div>
+            }
+            @if (rowData.GetXmlProperty("genxml/textbox/tel1") != "")
+            {
+                <div class="">@ResourceKey("DNNrocket.tel1") : @rowData.GetXmlProperty("genxml/textbox/tel1")</div>
+            }
+            @if (rowData.GetXmlProperty("genxml/textbox/fax") != "")
+            {
+                <div class="">@ResourceKey("DNNrocket.fax") : @rowData.GetXmlProperty("genxml/textbox/fax")</div>
             }
         </div>
-        @if (rowData.GetXmlProperty("genxml/lang/genxml/textbox/map") != "")
-        {
-            <div class="contact-map">@HtmlOf(info, "genxml/lang/genxml/textbox/map")</div>
-        }
 
+        <div class="w3-margin-top">
+            [INJECT:appthemeview,DisplayContacts.cshtml]
+        </div>
+
+        @if (rowData.GetXmlProperty("genxml/lang/genxml/textbox/extrainfo") != "")
+        {
+            <div class="w3-row w3-padding">@BreakOf(info, "genxml/lang/genxml/textbox/extrainfo")</div>
+        }
     </div>
 </div>

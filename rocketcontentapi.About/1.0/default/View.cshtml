@@ -6,12 +6,7 @@
 @{
     var articleImage = articleRowData.GetImage(0);
     var linkData = articleRowData.Getlink(0);
-    var stylepadding = "";
-    if (moduleData.GetSettingInt("toppadding") > 0 || moduleData.GetSettingInt("bottompadding") > 0)
-    {
-        stylepadding = "padding-top:" + moduleData.GetSettingInt("toppadding") + "px;padding-bottom:" + moduleData.GetSettingInt("bottompadding") + "px;";
-    }
-
+    var stylepadding = StylePadding();
 }
 <div class="w3-section @(moduleData.GetSetting("cssclass"))" style="@(stylepadding)">
     @if (moduleData.GetSettingInt("layout") == 1)

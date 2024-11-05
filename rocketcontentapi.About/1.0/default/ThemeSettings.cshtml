@@ -12,14 +12,13 @@
 
     AddProcessDataResx(appThemeAdmin, true);
     AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/");
-    AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/");
 
     //NOTE: xPath for module settings must use "genxml/settings/*"
 }
 <div class="w3-row">
     <div class="w3-third w3-padding">
         <label>Layout</label><br />
-        @DropDownList(info, "genxml/settings/layout", "1,2","1,2", "class='w3-input w3-border' ", "")
+        @DropDownList(info, "genxml/settings/layout", "1,2","Left Image,Right Image", "class='w3-input w3-border' ", "")
     </div>
     <div class="w3-third w3-padding">
         <label>@ResourceKey("DNNrocket.cssClass")</label>
@@ -38,12 +37,12 @@
         @DropDownList(info, "genxml/settings/titlesize", W3Utils.W3sizes(), "class='w3-input w3-border' ", "w3-center")
     </div>
     <div class="w3-third w3-padding">
-        <label>Content Text Size (Above Image)</label><br />
-        @DropDownList(info, "genxml/settings/abovesize", W3Utils.W3sizes(), "class='w3-input w3-border' ", "w3-center")
+        <label>Text Size</label><br />
+        @DropDownList(info, "genxml/settings/textsize", W3Utils.W3sizes(), "class='w3-input w3-border' ", "w3-center")
     </div>    
     <div class="w3-third w3-padding">
-        <label>Content Text Size (Below Image)</label><br />
-        @DropDownList(info, "genxml/settings/belowsize", W3Utils.W3sizes(), "class='w3-input w3-border' ", "w3-center")
+        <label>Content Size</label><br />
+        @DropDownList(info, "genxml/settings/contentsize", W3Utils.W3sizes(), "class='w3-input w3-border' ", "w3-center")
     </div>
     <div class="w3-third w3-padding">
         <label>Alignment</label><br />

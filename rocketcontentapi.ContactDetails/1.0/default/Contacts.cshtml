@@ -23,7 +23,7 @@
                 <label class="w3-center w3-large">@ResourceKey("DNNrocket.contact") N°@(contactId)</label>
                 <div class="w3-container w3-padding w3-card">
                     <div class="w3-col m6 w3-padding">
-                        <label>@ResourceKey("DNNrocket.contact")</label>
+                        <label>@ResourceKey("DNNrocket.title")</label>
                         @TextBox(contactInfo, "genxml/textbox/contact" + fieldId, " class='w3-input w3-border' ", "", false, contactLP)
                     </div>
                     <div class="w3-col m6 w3-padding">
@@ -31,8 +31,8 @@
                         @TextBox(contactInfo, "genxml/textbox/name" + fieldId, " class='w3-input w3-border' ", "", false, contactLP)
                     </div>
                     <div class="w3-col m6 w3-padding">
-                        <label>@ResourceKey("DNNrocket.mobile")</label>
-                        @TextBox(contactInfo, "genxml/textbox/mobile" + fieldId, " class='w3-input w3-border' ", "", false, contactLP)
+                        <label>@ResourceKey("DNNrocket.tel1")</label>
+                        @TextBox(contactInfo, "genxml/textbox/contacttel" + fieldId, " class='w3-input w3-border' ", "", false, contactLP)
                     </div>
                     <div class="w3-col m6 w3-padding">
                         <label>@ResourceKey("DNNrocket.email")</label>

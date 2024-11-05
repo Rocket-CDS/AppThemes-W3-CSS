@@ -4,25 +4,31 @@
 <!--inject-->
 @if (info.GetXmlProperty("genxml/lang/genxml/textbox/title") != "")
 {
-    <p class="@moduleData.GetSetting("titlesize") w3-padding">
+    <p class="@moduleData.GetSetting("titlesize") @paddingClass">
         @BreakOf(info.GetXmlProperty("genxml/lang/genxml/textbox/title"))
     </p>
 }
 @if (info.GetXmlProperty("genxml/lang/genxml/textbox/text") != "")
 {
-    <p class="@moduleData.GetSetting("textsize") w3-padding">
+    <p class="@moduleData.GetSetting("textsize") @paddingClass">
         @info.GetXmlProperty("genxml/lang/genxml/textbox/text")
     </p>
 }
 @if (info.GetXmlProperty("genxml/lang/genxml/textbox/content") != "")
 {
-    <p class="@moduleData.GetSetting("contentsize") w3-padding">
+    <p class="@moduleData.GetSetting("contentsize") @paddingClass">
         @info.GetXmlProperty("genxml/lang/genxml/textbox/content")
+    </p>
+}
+@if (info.GetXmlProperty("genxml/lang/genxml/textbox/price") != "")
+{
+    <p class="@moduleData.GetSetting("pricesize") @paddingClass">
+        @info.GetXmlProperty("genxml/lang/genxml/textbox/price")
     </p>
 }
 @if (!linkData.Hidden && !linkData.IsDisabled)
 {
-    <p class="w3-padding">
+    <div class="w3-row @paddingClass">
         <a class="w3-button @(moduleData.GetSetting("buttoncolor")) w3-border w3-round aboutlink" href="@(linkData.Url)" target="@(linkData.Target)">@linkData.Name</a>
-    </p>
+    </div>
 }

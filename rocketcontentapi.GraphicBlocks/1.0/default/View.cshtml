@@ -14,25 +14,13 @@
     }
     var captionHeight = moduleData.GetSettingInt("captionheight");
     var alignment = moduleData.GetSetting("pos");
-    var padding = moduleData.GetSettingInt("padding");
-    var paddingClass = "w3-padding";
-    if (padding == 1)
-    {
-        paddingClass = " w3-padding-small ";
-    }
-    if (padding == 3)
-    {
-        paddingClass = " w3-padding-large ";
-    }
+    var paddingClass = moduleData.GetSetting("padding");
     var color = moduleData.GetSetting("color");
-    var stylepadding = "";
-    if (moduleData.GetSettingInt("toppadding") > 0 || moduleData.GetSettingInt("bottompadding") > 0)
-    {
-        stylepadding = "padding-top:" + moduleData.GetSettingInt("toppadding") + "px;padding-bottom:" + moduleData.GetSettingInt("bottompadding") + "px;";
-    }
+    var stylepadding = StylePadding();
+    var backgroundcolor = moduleData.GetSetting("backgroundcolor");
 }
 
-<div class="w3-section @(moduleData.GetSetting("cssclass"))" style="@(stylepadding)">
+<div class="w3-section @(moduleData.GetSetting("cssclass")) @backgroundcolor " style="@(stylepadding)">
 
         [INJECT:appthemesystem,ArticleHeaderView.cshtml]
 
