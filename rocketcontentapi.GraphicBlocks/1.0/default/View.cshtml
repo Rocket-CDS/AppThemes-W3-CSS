@@ -20,7 +20,8 @@
     var backgroundcolor = moduleData.GetSetting("backgroundcolor");
 }
 
-<div class="w3-section @(moduleData.GetSetting("cssclass")) @backgroundcolor " style="@(stylepadding)">
+<div class="containerouter">
+    <div class="w3-section @(moduleData.GetSetting("cssclass")) @backgroundcolor containerinner" style="@(stylepadding)">
 
         [INJECT:appthemesystem,ArticleHeaderView.cshtml]
 
@@ -87,4 +88,5 @@
             }
         </div>
     }
+</div>
 </div>
