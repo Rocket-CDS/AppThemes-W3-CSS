@@ -14,12 +14,13 @@
     var backgroundcolor = moduleData.GetSetting("backgroundcolor");
     var stylepadding = StylePadding();
     var headingText = moduleData.GetSetting("heading" + sessionParams.CultureCode);
+    var titleSize = moduleData.GetSetting("titlesize");
 }
 
 <div class="@(moduleData.GetSetting("cssclass")) @(backgroundcolor) " style="@(stylepadding)">
     @if (headingText != "")
     {
-        <h2 class="title">@headingText</h2>
+        <div class="title @titleSize">@headingText</div>
     }
     <div id="contactform@(moduleData.ModuleId)" class=" w3-row">
         <div class="w3-container">
