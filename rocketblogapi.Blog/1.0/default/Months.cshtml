@@ -6,22 +6,27 @@
 @AddProcessDataResx(appTheme, true)
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
+@{
+    var monthList = RocketDirectoryAPIUtils.GetArticlesByMonth(systemData.SystemKey, DateTime.Now.AddMonths(-6), 12, "publisheddate", sessionParams.GetInt("catid"));
+}
 <div class=" w3-margin-top ">
 
-    <a href="@ListUrl(moduleData.ListPageTabId())" class="w3-button w3-block w3-left-align" onclick="$('.simplisity_loader').show();setSelected('');doDateSearchReload('','');">
-        <span class="w3-right">
+    <a href="@ListUrl(moduleData.ListPageTabId())" class="w3-button w3-block w3-left-align" onclick="showAll()">
+        <span class="w3-text-black">
             @ResourceKey("RocketBlogAPI.latest")
+        </span>
+        <span class="w3-right">
         </span>
     </a>
 
     @{
         var monthidx = 1;
     }
-    @foreach (var a in RocketDirectoryAPIUtils.GetArticlesByMonth(systemData.SystemKey, DateTime.Now.AddMonths(-6), 12, "publisheddate", sessionParams.GetInt("catid")))
+    @foreach (var a in monthList)
     {
         if (a.Value.Count > 0)
         {
-            <div class="w3-button w3-block w3-left-align rocket-monthdates rocket-monthdates@(monthidx) " monthidx="@(monthidx)" onclick="setSelected($(this).attr('monthidx'));doDateSearchReload('@a.Key.ToString("yyyy-MM-dd")','@a.Key.AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd")')">
+            <div class="w3-button w3-block w3-left-align rocket-monthdates rocket-monthdates@(monthidx) " monthidx="@(monthidx)" onclick="showSelected($(this).attr('monthidx'),'@a.Key.ToString("yyyy-MM-dd")', '@a.Key.AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd")');">
                 <span>
                     @a.Key.ToString("MMMM yyyy")
                 </span>
@@ -40,20 +45,22 @@
 <script>
     $(document).ready(function () {
         if (simplisity_getSessionField('searchdate1') != '' && simplisity_getSessionField('viewsearchtext') == '') {
-            setSelected(simplisity_getSessionField('monthidx'));
+            showSelected(simplisity_getSessionField('monthidx'));
         }
-        $('.rocket-filtercheckbox').click(function(){
-            $('.rocket-monthdates').removeClass('w3-grey');
-        });
-        $('.rocket-tagbutton').click(function(){
-            $('.rocket-monthdates').removeClass('w3-grey');
-        });
     });
-    function setSelected(monthidx) {
+    function showSelected(monthidx, date1, date2) {
         $('#viewsearchtext').val('');
         $('.rocket-monthdates').removeClass('w3-grey');
         $('.rocket-monthdates' + monthidx).addClass('w3-grey');
         simplisity_setSessionField('monthidx', monthidx);
         simplisity_setSessionField('viewsearchtext', '');
+        doDateSearchReload(date1, date2);
     }
+    function showAll() {
+        $('#viewsearchtext').val('');
+        simplisity_setSessionField('monthidx', '');
+        simplisity_setSessionField('viewsearchtext', '');
+        doDateSearchReload('', '');       
+    }
+
 </script>
