@@ -43,3 +43,37 @@
 .rocket-tagsgroup {
     font-size: 18px !important
 }
+
+.rocket-filters {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.rocket-filtersgroup {
+    font-size: 18px !important;
+    margin-top: 8px;
+}
+.rocket-filtercheckbox {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    top: 6px
+}
+.rocket-filtercheckbox-name {
+    padding-left: 8px;
+}
+.rocket-filterbuttonclear {
+    border: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: #d5f1f2;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
