@@ -5,26 +5,31 @@
 <!--inject-->
 
 <div class="w3-row">
-    <a href="@ListUrl(portalContent.ListPageTabId)" class="w3-button" style="float:right;" title="@articleData.Name">@ButtonText(ButtonTypes.back, sessionParams.CultureCode)</a>
-
-    <div class="w3-row">
-
-        <h1>@articleData.Name</h1>
+    <a href="@ListUrl(portalContent.ListPageTabId)" class="w3-button w3-theme w3-right" title="@articleData.Name">@ResourceKey("DNNrocket.back")</a>
+    <h1>@articleData.Name</h1>
     <div class="w3-animate-opacity">
-        <div class="w3-row w3-center">
-                <img class="imgrollovertarget" alt="@articleData.Name" src="@ImageUrl(articleData.GetImage(0).RelPath,450,450)" style="width:60%">
-            <div class="w3-container">
-                    @foreach (var i in articleData.GetImages())
-                    {
-                        <div class="w3-col s6 m4 l2 w3-padding-small" style="margin-bottom: 8px">
-                            <img class="imgrollover" src="@ImageUrl(i.RelPath,450,450)" style="width:100%">
-                        </div>                        
-                    }
+        <p>@articleData.Summary</p>
+        <div class="w3-row">
+        <div class="w3-third">
+            <div class="w3-row w3-padding-small">
+                <img class="imgrollovertarget " alt="@articleData.Name" src="@ImageUrl(articleData.GetImage(0).RelPath,450,450)" style="width:100%">
+            </div>
+            <div class="w3-row">
+                @foreach (var i in articleData.GetImages())
+                {
+                    <div class="w3-col s6 m4 l2 w3-padding-small">
+                        <img class="imgrollover" src="@ImageUrl(i.RelPath,450,450)" style="width:100%">
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="w3-twothird">
+                <div>
+                    @articleData.RichText &nbsp;
+                </div>
             </div>
         </div>
     </div>
-</div>
-
 </div>
 
 <script>
