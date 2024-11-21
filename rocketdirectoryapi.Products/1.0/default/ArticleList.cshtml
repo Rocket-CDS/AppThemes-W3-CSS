@@ -1,0 +1,49 @@
+﻿@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using RocketDirectoryAPI.Components;
+@AssignDataModel(Model)
+<!--inject-->
+
+<div class="w3-row">
+        <h1>
+            @if (sessionParams.GetInt("catid") == 0)
+            {
+                <span>@portalData.Name</span>
+            }
+            else
+            {
+                <span>@categoryData.Name</span>
+            }
+        </h1>
+
+        <div class="w3-row">
+            [INJECT:appthemedefault,SearchBanner.cshtml]
+        </div>
+
+        <div class="w3-row w3-padding-16 w3-center">
+            @foreach (ArticleLimpet articleData2 in articleDataList.GetArticleList())
+            {
+                <div class="w3-col s12 m6 l3 w3-padding w3-center">
+                <a href="@DetailUrl(portalContent.ListPageTabId, articleData2)#articledisplay" title="@articleData2.Name" onclick="$('.simplisity_loader').show()">
+                        <img src="@ImageUrl(articleData2.GetImage(0).RelPath,200,200)" style="width:100%;" alt="@articleData2.Name">
+                    </a>
+                    <div class="" style="height:100px;overflow:hidden;">
+                        <h3>@articleData2.Name</h3>
+                        <p>@articleData2.Summary</p>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="w3-row w3-padding-16 w3-center">
+            [INJECT:appthemedefault,ArticlePaging.cshtml]
+        </div>
+
+        <script>
+            $(document).ready(function () {
+                $('.simplisity_loader').hide();
+            });
+        </script>
+</div>
+
+

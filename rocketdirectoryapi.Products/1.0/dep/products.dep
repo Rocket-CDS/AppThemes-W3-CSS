@@ -39,6 +39,11 @@
 			<cmd>list</cmd>
 		</genxml>
 		<genxml>
+			<file>tagfilter.cshtml</file>
+			<name>Tag Filter</name>
+			<cmd>list</cmd>
+		</genxml>
+		<genxml>
 			<file>hozcatmenu2lvl.cshtml</file>
 			<name>Horizontal Category Menu (2 levels)</name>
 			<cmd>catmenu</cmd>

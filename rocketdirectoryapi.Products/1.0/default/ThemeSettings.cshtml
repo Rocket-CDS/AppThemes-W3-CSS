@@ -6,18 +6,10 @@
 @using DNNrocketAPI.Components;
 @using System.Globalization;
 @using Rocket.AppThemes.Components;
-
+@AssignDataModel(Model)
+<!--inject-->
 @{
-    var sessionParams = (SessionParams)Model.SessionParamsData;
-    var moduleData = (ModuleContentLimpet)Model.GetDataObject("modulesettings");
-    var portalData = (PortalLimpet)Model.GetDataObject("portaldata");
-    var portalCatalog = (PortalCatalogLimpet)Model.GetDataObject("portalcatalog");
-    var appTheme = (AppThemeLimpet)Model.GetDataObject("apptheme");
     var info = new SimplisityInfo(moduleData.Record);
-
-    AddProcessDataResx(appTheme, true);
-    AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/");
-
     //NOTE: xPath for module settings must use "genxml/settings/*"
 }
 
@@ -25,6 +17,17 @@
     <div class="w3-third w3-padding">
         <label>@ResourceKey("DNNrocket.pagesize")</label>
         @DropDownList(info, "genxml/settings/pagesize", "12,24,48,96", "12,24,48,96", " style='height:40px;' class='w3-input w3-border simplisity_sessionfield ' onchange=\"doSearchReload();return false;\" title='" + @ResourceKey("DNNrocket.pagesize", sessionParams.CultureCode) + "'", "24")
+    </div>
+</div>
+
+<div class="w3-row  w3-padding">
+    <div class="w3-row">
+        <div class='w3-row w3-padding'>
+            <div class="w3-large w3-margin-bottom">@ResourceKey("RC.propertygroups")</div>
+
+            @FilterGroupCheckBox(info, catalogSettings)
+
+        </div>
     </div>
 </div>
 

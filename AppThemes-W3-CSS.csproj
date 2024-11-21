@@ -83,7 +83,6 @@
     <Folder Include="rocketcontentapi.SVGBlocks\1.0\js\" />
     <Folder Include="rocketcontentapi.SVGBlocks\1.0\resx\" />
     <Folder Include="rocketdirectoryapi.Products\1.0\css\" />
-    <Folder Include="rocketdirectoryapi.Products\1.0\default\" />
     <Folder Include="rocketdirectoryapi.Products\1.0\dep\" />
     <Folder Include="rocketdirectoryapi.Products\1.0\img\" />
     <Folder Include="rocketdirectoryapi.Products\1.0\js\" />
