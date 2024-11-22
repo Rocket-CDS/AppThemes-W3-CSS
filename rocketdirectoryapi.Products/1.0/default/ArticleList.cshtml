@@ -20,19 +20,25 @@
             [INJECT:appthemedefault,SearchBanner.cshtml]
         </div>
 
-        <div class="w3-row w3-padding-16 w3-center">
-            @foreach (ArticleLimpet articleData2 in articleDataList.GetArticleList())
-            {
-                <div class="w3-col s12 m6 l3 w3-padding w3-center">
-                <a href="@DetailUrl(portalContent.ListPageTabId, articleData2)#articledisplay" title="@articleData2.Name" onclick="$('.simplisity_loader').show()">
-                        <img src="@ImageUrl(articleData2.GetImage(0).RelPath,200,200)" style="width:100%;" alt="@articleData2.Name">
-                    </a>
-                    <div class="" style="height:100px;overflow:hidden;">
-                        <h3>@articleData2.Name</h3>
-                        <p>@articleData2.Summary</p>
+        <div class="w3-row w3-padding">
+
+        @foreach (List<ArticleLimpet> rowlist in articleDataList.GetArticleRows(3))
+        {
+            <div class="w3-row" >
+                @foreach (ArticleLimpet articleData2 in rowlist)
+                {
+                    <div class="w3-third w3-padding-small w3-center">
+                        <a href="@DetailUrl(portalContent.ListPageTabId, articleData2)#articledisplay" title="@articleData2.Name" onclick="$('.simplisity_loader').show()">
+                            <img src="@ImageUrl(articleData2.GetImage(0).RelPath,400,225)" style="width:100%;" alt="@articleData2.Name">
+                        </a>
+                        <div class="w3-row">
+                            <h3>@articleData2.Name</h3>
+                            <p>@Succinct(articleData2.Summary, 80, true)</p>
+                        </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
+        }
         </div>
 
         <div class="w3-row w3-padding-16 w3-center">
