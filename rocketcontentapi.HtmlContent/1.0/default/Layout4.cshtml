@@ -3,19 +3,17 @@
 @AddProcessDataResx(appTheme, true)
 <!--inject-->
 
-@foreach (var img in articleRowData.GetImages())
-{
-    if (!img.Hidden)
-    {
-        <div class="w3-col m3 w3-padding-small">
-            <img class="sliderind@(moduleData.ModuleRef) w3-round" src="@ImageUrl(img.RelPath, 400, 400)" style="width:100%">
-        </div>        
-    }
-}
-    
-
-<div class="w3-row w3-padding-small">
-    @HtmlOf(rowData.GetXmlProperty("genxml/lang/genxml/textbox/richtext"))
+<div class="w3-container">
+    <div class="w3-twothird @moduleData.GetSetting("padding")">
+        @HtmlOf(rowData.GetXmlProperty("genxml/lang/genxml/textbox/richtext"))
+    </div>
+    <div class="w3-third">
+        @foreach (var articleImage in articleRowData.GetImages())
+        {
+            if (!articleImage.Hidden)
+            {
+                <img class="w3-image @(moduleData.GetSetting("opacity")) @moduleData.GetSetting("padding") " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+            }
+        }
+    </div>
 </div>
-
-

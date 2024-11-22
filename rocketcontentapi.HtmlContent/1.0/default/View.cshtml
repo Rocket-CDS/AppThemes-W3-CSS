@@ -2,122 +2,83 @@
 @AssignDataModel(Model)
 @AddProcessDataResx(appTheme, true)
 <!--inject-->
-
-<h1>
-    @headerData.GetXmlProperty("genxml/lang/genxml/header/heading")
-</h1>
+@{
+    var width = moduleData.GetSettingInt("width");
+    var height = moduleData.GetSettingInt("height");
+    var alignment = moduleData.GetSetting("pos");
+    var paddingClass = moduleData.GetSetting("padding");
+    var color = moduleData.GetSetting("color");
+    var stylepadding = StylePadding();
+    var backgroundcolor = moduleData.GetSetting("backgroundcolor");
+}
+<div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))">
+    <div class="w3-section containerinner" style="@(stylepadding)">
 
 @foreach (var articleRowData in articleData.GetRows())
 {
     Model.SetDataObject("articlerow", articleRowData);
     var info = articleRowData.Info;
     var layout = info.GetXmlPropertyInt("genxml/select/layout");
-    var hStyle = info.GetXmlProperty("genxml/select/headingstyle");
-    var headingHide = info.GetXmlPropertyBool("genxml/checkbox/hideheading");
     var hideRow = info.GetXmlPropertyBool("genxml/checkbox/hiderow");
 
-    var swclass = "";
-    var wclass = "w3-row";
-    if (info.GetXmlPropertyInt("genxml/textbox/rowwidth") > 0 && info.GetXmlPropertyInt("genxml/textbox/rowwidth") < 12)
+    if (!hideRow)
     {
-        swclass = "w3-col m" + ((12 - info.GetXmlPropertyInt("genxml/textbox/rowwidth")) / 2).ToString();
-        wclass = "w3-col m" + info.GetXmlPropertyInt("genxml/textbox/rowwidth");
-    }
-    var bgclass = "";
-    if (info.GetXmlPropertyBool("genxml/checkbox/backgroundcolor"))
-    {
-        bgclass = moduleData.Record.GetXmlProperty("genxml/settings/backgroundcolorclass");
-    }
-
-    <div class="w3-row @(bgclass) " rowkey="@articleRowData.RowKey" style="padding-top: @(info.GetXmlProperty("genxml/textbox/spacingtop"))px; padding-bottom: @(info.GetXmlProperty("genxml/textbox/spacingbottom"))px;">
-
-    @if (!hideRow)
-    {
-        if (swclass != "")
-        {
-                <div class="@swclass">&nbsp;</div>
-            }
-
-        <div class="@wclass">
-
-        @if (!headingHide)
-        {
-            var title = info.GetXmlProperty("genxml/lang/genxml/textbox/title");
-            var headingalignvalue = info.GetXmlPropertyInt("genxml/select/headingalign");
-            var headingalign = "";
-            if (headingalignvalue == 1)
-            {
-                headingalign = "w3-center";
-            }
-            if (headingalignvalue == 2)
-            {
-                headingalign = "w3-right";
-            }
-
-            if (hStyle == "")
-            {
-                hStyle = "h1";
-            }
-
-            if (title != "")
-            {
-            <div class="w3-padding @(headingalign)">
-                @if (hStyle.ToLower() == "h1")
-                {
-                    <h1>@title</h1>
-                }
-                @if (hStyle.ToLower() == "h2")
-                {
-                    <h2>@title</h2>
-                }
-                @if (hStyle.ToLower() == "h3")
-                {
-                    <h3>@title</h3>
-                }
-                @if (hStyle.ToLower() == "h4")
-                {
-                    <h4>@title</h4>
-                }
-            </div>
-            }
-        }
+        [INJECT: appthemesystem, ArticleHeaderView.cshtml]
         <div class="w3-row">
 
         @if (layout == 0)
         {
-                    @RenderTemplate("layout0.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
+            <text>
+            [INJECT: apptheme, layout0.cshtml]
+            </text>
         }
         @if (layout == 1)
         {
-                    @RenderTemplate("layout1.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
+            <text>
+                [INJECT: apptheme, layout1.cshtml]
+            </text>
         }
         @if (layout == 2)
         {
-                    @RenderTemplate("layout2.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
+            <text>
+                [INJECT: apptheme, layout2.cshtml]
+            </text>
         }
         @if (layout == 3)
         {
-                    @RenderTemplate("layout3.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
+            <text>
+                [INJECT: apptheme, layout3.cshtml]
+            </text>
         }
         @if (layout == 4)
         {
-                    @RenderTemplate("layout4.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
+            <text>
+                [INJECT: apptheme, layout4.cshtml]
+            </text>
         }
         @if (layout == 5)
         {
-                    @RenderTemplate("layout5.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
+            <text>
+                [INJECT: apptheme, layout5.cshtml]
+            </text>
         }
         @if (layout == 6)
         {
-                    @RenderTemplate("layout6.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
+            <text>
+                [INJECT: apptheme, layout6.cshtml]
+            </text>
         }
         @if (layout == 7)
         {
-                    @RenderTemplate("layout7.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
+            <text>
+                [INJECT: apptheme, layout7.cshtml]
+            </text>
         }
         @if (layout == 8)
         {
-                    @RenderTemplate("layout8.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
+            <text>
+                [INJECT: apptheme, layout8.cshtml]
+            </text>
         }
 
         @if (info.GetXmlProperty("genxml/lang/genxml/textbox/htmltext") != "")
@@ -133,14 +94,8 @@
                     @RenderTemplate("links.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
         }
         </div>
-        </div>
-
-        if (swclass != "")
-        {
-                <div class="@swclass">&nbsp;</div>
-        }
-
     }
-</div>
 }
 
+    </div>
+</div>

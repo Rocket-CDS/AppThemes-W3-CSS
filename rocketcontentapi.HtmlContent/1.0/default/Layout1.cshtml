@@ -4,15 +4,19 @@
 <!--inject-->
 
 <div class="w3-row">
-    <div class="w3-col m3 l2 w3-padding-small">
-    @if (articleRowData.GetImageList().Count > 0)
+    @foreach (var articleImage in articleRowData.GetImages())
     {
-        var img = articleRowData.GetImages().First();
-            <img class="sliderind@(moduleData.ModuleRef) w3-round" src="@ImageUrl(img.RelPath, 400, 400)" style="width:100%">
+        if (!articleImage.Hidden)
+        {
+            <div class="w3-third @moduleData.GetSetting("padding")">
+                <img class="w3-image @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+            </div>
+        }
     }
-    </div>
-    <div class="w3-col m9 l10 w3-padding-small">
-        @HtmlOf(rowData.GetXmlProperty("genxml/lang/genxml/textbox/richtext"))
-    </div>
+</div>   
+
+<div class="w3-row  @moduleData.GetSetting("padding")">
+    @HtmlOf(rowData.GetXmlProperty("genxml/lang/genxml/textbox/richtext"))
 </div>
+
 

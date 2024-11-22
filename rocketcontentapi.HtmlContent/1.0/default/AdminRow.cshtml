@@ -25,54 +25,25 @@
 
     <div id="heading" class='w3-row sectionname' style="display:none">
 
-        <div class='w3-row w3-margin-top w3-border'>
-            <div class="w3-half">
-                <div class='w3-col m12 w3-padding' style='min-width: 200px;'>
-                    <label>@ResourceKey("HtmlContent.heading")</label>		&nbsp;@EditFlag(sessionParams)
-                    @TextBox(info, "genxml/lang/genxml/textbox/title", " class='w3-input w3-border' autocomplete='off' ", "", true, 0)
-                </div>
-            </div>
-            <div class="w3-half">
-                <div class='w3-col m2 w3-padding' style='min-width: 85px;'>
-                    <label>@ResourceKey("HtmlContent.headingstyle")</label>
-                    @DropDownList(info, "genxml/select/headingstyle", "h1,h2,h3,h4", "H1,H2,H3,H4", "class='w3-select w3-border ' ", "", false, 0)
-                </div>
-                <div class='w3-col m4 w3-padding' style='min-width: 170px;'>
-                    <label>&nbsp;</label>
-                    @RadioButtonList(info, "genxml/select/headingalign", "0,1,2", "<span class='material-icons'>format_align_left</span>,<span class='material-icons'>format_align_center</span>,<span class='material-icons'>format_align_right</span>", "", "1", "", false, 0, "")
-                </div>
-                <div class='w3-col m2 w3-padding'>
-                    <label>@ResourceKey("HtmlContent.hide")</label><br />
-                    @CheckBox(info, "genxml/checkbox/hideheading", "", "class='w3-check' ", false, false, 0)
-                </div>
-            </div>
-        </div>
+        [INJECT:appthemesystem,ArticleHeader.cshtml]
 
         <div class='w3-row w3-padding'>
             @{
                 var imgLayoutList = "";
-                for (int i = 0; i < 9; i++)
+                for (int i = 0; i < 5; i++)
                 {
                     imgLayoutList += "<img src='" + appThemeAdmin.AppThemeFolderRel + "/img/Newspaper" + i + ".png' />,";
                 }
                 imgLayoutList = imgLayoutList.TrimEnd(',');
             }
             <label>@ResourceKey("HtmlContent.layout")</label>
-            @RadioButtonList(info, "genxml/select/layout", "0,1,2,3,4,5,6,7,8", imgLayoutList, "class='  ' ", "0", "", false, 0)
+            @RadioButtonList(info, "genxml/select/layout", "0,1,2,3,4", imgLayoutList, "class='  ' ", "0", "", false, 0)
         </div>
 
         <div class='w3-row'>
             <div class='w3-quarter w3-padding'>
                 <label>@ResourceKey("HtmlContent.hide")</label><br />
                 @CheckBox(info, "genxml/checkbox/hiderow", "", "class='w3-check' ", false, false, 0)
-            </div>
-            <div class="w3-quarter w3-padding">
-                <label>@ResourceKey("HtmlContent.backgroundcolor")</label><br />
-                @CheckBox(info, "genxml/checkbox/backgroundcolor", "&nbsp;" + ResourceKey("HtmlContent.on").ToString(), "class='w3-check'")
-            </div>
-            <div class="w3-half w3-padding ">
-                <label>@ResourceKey("HtmlContent.rowwidth")</label>
-                @TextBox(info, "genxml/textbox/rowwidth", " class='w3-input' min='0' max='12' step='2'", "12", false, 0, "", "range")
             </div>
         </div>
 
@@ -99,7 +70,7 @@
             @RadioButtonList(info, "genxml/select/documentalign", "0,1,2", "<span class='material-icons'>format_align_left</span>,<span class='material-icons'>format_align_center</span>,<span class='material-icons'>format_align_right</span>", "", "1", "", false, 0, "")
         </div>
         <div class='w3-col m12 w3-padding '>
-            [INJECT:appthemesystem,ArticleDocument.cshtml]
+            [INJECT:appthemesystem,ArticleDocuments.cshtml]
         </div>
     </div>
 
