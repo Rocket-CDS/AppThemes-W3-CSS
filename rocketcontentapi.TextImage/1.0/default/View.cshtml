@@ -7,7 +7,9 @@
     var articleImage = articleRowData.GetImage(0);
     var stylepadding = StylePadding();
 }
-<div class="w3-section @moduleData.GetSetting("pos") @moduleData.GetSetting("cssclass") @moduleData.GetSetting("backgroundcolor")" style="@(stylepadding)">
+<div class="containerouter @moduleData.GetSetting("backgroundcolor") @(moduleData.GetSetting("cssclass"))">
+    <div class="w3-section containerinner @moduleData.GetSetting("pos")" style="@(stylepadding)">
+
     @if (info.GetXmlProperty("genxml/lang/genxml/textbox/title") != "")
     {
         <p class="@moduleData.GetSetting("titlesize") w3-padding">
@@ -28,6 +30,7 @@
         </div>
     }
 
+    </div>
 </div>
 
 
