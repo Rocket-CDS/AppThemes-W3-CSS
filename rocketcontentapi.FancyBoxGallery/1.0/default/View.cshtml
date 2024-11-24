@@ -4,26 +4,36 @@
 @AssignDataModel(Model)
 @AddProcessDataResx(appThemeView, true)
 <!--inject-->
+@{
+    var stylepadding = StylePadding();
+    var backgroundcolor = moduleData.GetSetting("backgroundcolor");
+}
 
-    <div class="@moduleData.GetSetting("cssclass")">
+<div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))">
+    <div class="w3-section containerinner gallery-wrapper" style="@(stylepadding)">
+        [INJECT:appthemesystem,ArticleHeaderView.cshtml]
+        <div class="w3-row gallery">
 
-        <div class="gallery-wrapper">
-            [INJECT:appthemesystem,ArticleHeaderView.cshtml]
-            <div class="gallery">
-
-            @foreach (ArticleImage articleImage in articleRowData.GetImages())
+            @foreach (List<ArticleImage> rowlist in articleRowData.GetImageRows(4))
             {
-                if (articleImage.RelPath != "")
-                {
-                    <a data-fancybox="@(articleRowData.RowKey)" data-caption="@(articleImage.Alt)" href="@(articleImage.RelPath)">
-                        <img src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" alt="@(articleImage.Alt)" />
-                    </a>
-
-                }
+                <div class="w3-row">
+                    @foreach (ArticleImage articleImage in rowlist)
+                    {
+                        if (!articleImage.Hidden && articleImage.RelPath != "")
+                        {
+                            <div class="w3-quarter w3-padding-small w3-center">
+                                <a data-fancybox="@(articleRowData.RowKey)" data-caption="@(articleImage.Alt)" href="@(articleImage.RelPath)">
+                                    <img src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" style="width:100%;" alt="@(articleImage.Alt)" />
+                                </a>
+                            </div>
+                        }
+                    }
+                </div>
             }
-            </div>
+
         </div>
     </div>
+</div>
 
 <script type="text/javascript">
 

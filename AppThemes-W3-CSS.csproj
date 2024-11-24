@@ -6,35 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="rocketcontentapi.example1\1.0\css\**" />
-    <Compile Remove="rocketcontentapi.example1\1.0\dep\**" />
-    <Compile Remove="rocketcontentapi.example1\1.0\img\**" />
-    <Compile Remove="rocketcontentapi.example1\1.0\js\**" />
-    <Compile Remove="rocketcontentapi.example1\1.0\modt\**" />
-    <Compile Remove="rocketcontentapi.example1\1.0\resx\**" />
-    <Compile Remove="rocketcontentapi.example1\3.0\**" />
     <Compile Remove="rocketcontentapi.GraphicsBlocksWIP\**" />
     <Compile Remove="rocketcontentapi.ListDetail\**" />
     <Compile Remove="rocketcontentapi.News\**" />
     <Compile Remove="rocketdirectoryapi.Articles\**" />
-    <EmbeddedResource Remove="rocketcontentapi.example1\1.0\css\**" />
-    <EmbeddedResource Remove="rocketcontentapi.example1\1.0\dep\**" />
-    <EmbeddedResource Remove="rocketcontentapi.example1\1.0\img\**" />
-    <EmbeddedResource Remove="rocketcontentapi.example1\1.0\js\**" />
-    <EmbeddedResource Remove="rocketcontentapi.example1\1.0\modt\**" />
-    <EmbeddedResource Remove="rocketcontentapi.example1\1.0\resx\**" />
-    <EmbeddedResource Remove="rocketcontentapi.example1\3.0\**" />
     <EmbeddedResource Remove="rocketcontentapi.GraphicsBlocksWIP\**" />
     <EmbeddedResource Remove="rocketcontentapi.ListDetail\**" />
     <EmbeddedResource Remove="rocketcontentapi.News\**" />
     <EmbeddedResource Remove="rocketdirectoryapi.Articles\**" />
-    <None Remove="rocketcontentapi.example1\1.0\css\**" />
-    <None Remove="rocketcontentapi.example1\1.0\dep\**" />
-    <None Remove="rocketcontentapi.example1\1.0\img\**" />
-    <None Remove="rocketcontentapi.example1\1.0\js\**" />
-    <None Remove="rocketcontentapi.example1\1.0\modt\**" />
-    <None Remove="rocketcontentapi.example1\1.0\resx\**" />
-    <None Remove="rocketcontentapi.example1\3.0\**" />
     <None Remove="rocketcontentapi.GraphicsBlocksWIP\**" />
     <None Remove="rocketcontentapi.ListDetail\**" />
     <None Remove="rocketcontentapi.News\**" />
@@ -73,15 +52,13 @@
 
   <ItemGroup>
     <Folder Include="rocketblogapi.Blog\1.0\js\" />
+    <Folder Include="rocketcontentapi.About\1.0\dep\" />
+    <Folder Include="rocketcontentapi.ContactDetails\1.0\dep\" />
     <Folder Include="rocketcontentapi.HeroHeader\1.0\css\" />
     <Folder Include="rocketcontentapi.HeroHeader\1.0\dep\" />
+    <Folder Include="rocketcontentapi.HtmlContent\1.0\css\" />
     <Folder Include="rocketcontentapi.HtmlContent\1.0\img\" />
     <Folder Include="rocketcontentapi.HtmlContent\1.0\js\" />
-    <Folder Include="rocketcontentapi.SVGBlocks\1.0\css\" />
-    <Folder Include="rocketcontentapi.SVGBlocks\1.0\dep\" />
-    <Folder Include="rocketcontentapi.SVGBlocks\1.0\img\" />
-    <Folder Include="rocketcontentapi.SVGBlocks\1.0\js\" />
-    <Folder Include="rocketcontentapi.SVGBlocks\1.0\resx\" />
     <Folder Include="rocketdirectoryapi.Products\1.0\css\" />
     <Folder Include="rocketdirectoryapi.Products\1.0\dep\" />
     <Folder Include="rocketdirectoryapi.Products\1.0\img\" />
