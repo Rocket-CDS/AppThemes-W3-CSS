@@ -16,7 +16,7 @@
 
             @foreach (List<ArticleImage> rowlist in articleRowData.GetImageRows(4))
             {
-                <div class="w3-row">
+                <div class="w3-row w3-padding-small" >
                     @foreach (ArticleImage articleImage in rowlist)
                     {
                         if (!articleImage.Hidden && articleImage.RelPath != "")
