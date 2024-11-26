@@ -1,0 +1,36 @@
+﻿@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using RocketDirectoryAPI.Components;
+@AssignDataModel(Model)
+@AddProcessDataResx(appTheme, true)
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
+
+<!--inject-->
+@if (!String.IsNullOrEmpty(article.Name))
+{
+    <p class="@moduleData.GetSetting("titlesize") @paddingClass">
+        <span>@article.Name</span><br/>
+        <span class="w3-opacity">@DateOf(article.Info, article.PublishedDateXPath, sessionParams.CultureCode, "dd MMM yyy")</span>
+    </p>
+}
+@if (!String.IsNullOrEmpty(article.Summary))
+{
+    <p class="@moduleData.GetSetting("textsize") @paddingClass">
+        @BreakOf(article.Summary)
+    </p>
+}
+
+<div class="w3-row @paddingClass">
+    <a href="@DetailUrl(moduleData.DetailPageTabId(), article, categoryData)" class="w3-button @(moduleData.GetSetting("buttoncolor")) w3-border w3-round aboutlink" title="@article.Name" onclick="$('#simplisity_loader').show();">
+        <b>@ResourceKey("Blog.readmore")&nbsp;&gt;&nbsp;</b>
+    </a>
+</div>
+
+@if (!moduleData.GetSettingBool("turnoffcomments"))
+{
+    <div class="w3-row w3-hide-small">
+        <p><span class="w3-padding-large w3-right"><b>@ResourceKey("Blog.comments")&nbsp;  </b> <span class="w3-tag">@article.ReviewCount</span></span></p>
+    </div>
+}
+
+

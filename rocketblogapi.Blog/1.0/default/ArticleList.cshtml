@@ -7,9 +7,15 @@
 <!--inject-->
 @{
     var articleList = articleDataList.GetArticleList();
+    var width = moduleData.GetSettingInt("width");
+    var height = moduleData.GetSettingInt("height");
+    var captionHeight = moduleData.GetSettingInt("captionheight");
+    var alignment = moduleData.GetSetting("pos");
+    var paddingClass = moduleData.GetSetting("padding");
+    var backgroundcolor = moduleData.GetSetting("backgroundcolor");
 }
-
-<div class="blogarticlewrapper">
+<div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))" style="padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
+    <div class="w3-section containerinner">
 
     @if (sessionParams.GetInt("catid") == 0)
     {
@@ -31,6 +37,51 @@
                 </span>
             </a>
         </div>
+
+                foreach (var article in articleList)
+                {
+                    var info = article.Info;
+                    var layout = info.GetXmlPropertyInt("genxml/select/layout");
+                    var hStyle = info.GetXmlProperty("genxml/select/headingstyle");
+                    var headingHide = info.GetXmlPropertyBool("genxml/checkbox/hideheading");
+                    var hideRow = info.GetXmlPropertyBool("genxml/checkbox/hiderow");
+                    var articleImage = article.GetImage(0);
+                    var linkData = article.Getlink(0);
+
+                    <div class="w3-section">
+                        @if (moduleData.GetSettingInt("layout") == 1)
+                        {
+                            <div class="w3-container">
+                                <div class="w3-twothird">
+                                [INJECT:appthemeview,layouttext.cshtml]
+                                </div>
+                                <div class="w3-third">
+                                    @if (articleImage.RelPath != "")
+                                    {
+                                        <img class="w3-image @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+                                    }
+                                </div>
+                            </div>
+                        }
+                        @if (moduleData.GetSettingInt("layout") == 2)
+                        {
+                            <div class="w3-container">
+                                <div class="w3-third">
+                                    @if (articleImage.RelPath != "")
+                                    {
+                                        <img class="w3-image @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+                                    }
+                                </div>
+                                <div class="w3-twothird">
+                                    [INJECT:appthemeview,layouttext.cshtml]
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+
+                }
+
 
         <div class="w3-container blogarticlelist">
 
@@ -88,6 +139,7 @@
             <div class="h2-headline">@ResourceKey("DNNrocket.notfound")</div>
     }
 
+    </div>
 </div>
 
 <script>
