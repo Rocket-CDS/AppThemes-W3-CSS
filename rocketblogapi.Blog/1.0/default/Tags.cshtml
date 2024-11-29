@@ -9,7 +9,6 @@
     var displayList = new List<int>();
 }
 <div class="rocket-tags w3-padding">
-    @TagButtonClear("X", sessionParams)
     @foreach (var g in moduleData.GetPropertyModuleGroups(catalogSettings))
     {
         foreach (var p in propertyDataList.GetPropertyTagList(g.Key))
@@ -21,6 +20,7 @@
             }
         }
     }
+    @TagButtonClear("X", sessionParams)
 </div>
 
 @TagJsApiCall(moduleData.SystemKey,"#rocket-blog", sessionParams)
