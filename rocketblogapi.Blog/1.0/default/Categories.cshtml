@@ -6,35 +6,44 @@
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
 
-<div class="categories">
+<div class="categories w3-padding w3-margin-top">
 
-    <h4>@ResourceKey("DNNrocket.categories") :</h4>
+    <h4>@ResourceKey("DNNrocket.categories")</h4>
 
-    <div class="w3-bar-block w3-light-grey">
-        <a href="@DNNrocketUtils.NavigateURL(sessionParams.TabId)" onclick="clearDateSearch();$('.simplisity_loader').show();" class="w3-bar-item w3-button">@ResourceKey("DNNrocket.all")</a>
+    <div class="w3-bar-block">
+        <a href="@ListUrl(moduleData.ListPageTabId())" onclick="clearDateSearch();$('.simplisity_loader').show();" class="w3-bar-item w3-button categorylink">@ResourceKey("DNNrocket.all")</a>
 
-        @foreach (var c in categoryDataList.GetCategoryTree())
+        @foreach (var catData in categoryDataList.GetCategoryTree())
         {
-            if (!c.Hidden && !c.HiddenByCulture && c.Level == 0)
+            var selectedCat = "";
+            var showloader = "$('.simplisity_loader').show();"; // Page does not refresh if anchor is on a link.
+            if (catData.CategoryId == categoryData.CategoryId)
             {
-                if (c.Level == 0)
+                selectedCat = " w3-theme-l3 ";
+                showloader = "";
+            }
+            if (!catData.Hidden && !catData.HiddenByCulture && catData.Level == 0)
+            {
+                if (catData.Level == 0)
                 {
-                    var l = c.GetDirectChildren();
-                    var catDict = new Dictionary<string, string>();
-                    catDict.Add("catid", c.CategoryId.ToString());
+                    var l = catData.GetDirectChildren();
                     if (l.Count == 0)
                     {
-                        <a href="@DNNrocketUtils.NavigateURL(sessionParams.TabId, catDict, c.Name)" class="w3-bar-item w3-button" onclick="clearDateSearch();$('.simplisity_loader').show();">@c.Name (@c.GetArticles().RecordCount)</a>
+                        <a href="@ListUrl(moduleData.ListPageTabId(), catData)#rocketblogdisplay" class="w3-bar-item w3-button categorylink @selectedCat" onclick="clearDateSearch();@showloader" style="text-decoration: none;">@catData.Name (@catData.GetArticles().RecordCount)</a>
                     }
                     else
                     {
-                        <a href="@DNNrocketUtils.NavigateURL(sessionParams.TabId, catDict, c.Name)" class="w3-bar-item w3-button" onclick="clearDateSearch();$('.simplisity_loader').show();">@c.Name (@c.GetArticles().RecordCount)</a>
+                        <a href="@ListUrl(moduleData.ListPageTabId(), catData)#rocketblogdisplay" class="w3-bar-item w3-button categorylink @selectedCat" onclick="clearDateSearch();@showloader" style="text-decoration: none;">@catData.Name (@catData.GetArticles().RecordCount)</a>
                         <div class="w3-margin-left">
                             @foreach (var child in l)
                             {
-                                var catDict2 = new Dictionary<string, string>();
-                                catDict2.Add("catid", child.CategoryId.ToString());
-                                <a href="@DNNrocketUtils.NavigateURL(sessionParams.TabId, catDict2, child.Name)" class="w3-bar-item w3-button" onclick="clearDateSearch();$('.simplisity_loader').show();">@child.Name  (@child.GetArticles().RecordCount)</a>
+                                selectedCat = "";
+                                if (child.CategoryId == categoryData.CategoryId)
+                                {
+                                    selectedCat = " w3-theme-l3 ";
+                                    showloader = "";
+                                }
+                                <a href="@ListUrl(moduleData.ListPageTabId(), child)#rocketblogdisplay" class="w3-bar-item w3-button categorylink @selectedCat" onclick="clearDateSearch();@showloader" style="text-decoration: none;">@child.Name  (@child.GetArticles().RecordCount)</a>
                             }
                         </div>
                     }

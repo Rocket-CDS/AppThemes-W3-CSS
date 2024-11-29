@@ -9,15 +9,15 @@
 @{
     var monthList = RocketDirectoryAPIUtils.GetArticlesByMonth(systemData.SystemKey, DateTime.Now.AddMonths(-6), 12, "publisheddate", sessionParams.GetInt("catid"));
 }
-<div class=" w3-margin-top ">
+<div class="w3-padding w3-margin-top ">
 
-    <a href="@ListUrl(moduleData.ListPageTabId())" class="w3-button w3-block w3-left-align" onclick="showAll()">
+    <div class="w3-button w3-block w3-left-align w3-theme-l3 rocket-monthdates rocket-monthdates0" onclick="showAll()">
         <span class="w3-text-black">
             @ResourceKey("RocketBlogAPI.latest")
         </span>
         <span class="w3-right">
         </span>
-    </a>
+    </div>
 
     @{
         var monthidx = 1;
@@ -50,8 +50,8 @@
     });
     function showSelected(monthidx, date1, date2) {
         $('#viewsearchtext').val('');
-        $('.rocket-monthdates').removeClass('w3-grey');
-        $('.rocket-monthdates' + monthidx).addClass('w3-grey');
+        $('.rocket-monthdates').removeClass('w3-theme-l3');
+        $('.rocket-monthdates' + monthidx).addClass('w3-theme-l3');
         simplisity_setSessionField('monthidx', monthidx);
         simplisity_setSessionField('viewsearchtext', '');
         doDateSearchReload(date1, date2);
@@ -60,7 +60,9 @@
         $('#viewsearchtext').val('');
         simplisity_setSessionField('monthidx', '');
         simplisity_setSessionField('viewsearchtext', '');
-        doDateSearchReload('', '');       
+        $('.rocket-monthdates').removeClass('w3-theme-l3');
+        $('.rocket-monthdates0').addClass('w3-theme-l3');
+        doDateSearchReload('', '');
     }
 
 </script>
