@@ -9,7 +9,7 @@
 @{
     var monthList = RocketDirectoryAPIUtils.GetArticlesByMonth(systemData.SystemKey, DateTime.Now.AddMonths(-6), 12, "publisheddate", sessionParams.GetInt("catid"));
 }
-<div class="w3-padding w3-margin-top ">
+<div class="rocket-months w3-padding w3-margin-top ">
 
     <div class="w3-button w3-block w3-left-align w3-theme-l3 rocket-monthdates rocket-monthdates0" onclick="showAll()">
         <span class="w3-text-black">

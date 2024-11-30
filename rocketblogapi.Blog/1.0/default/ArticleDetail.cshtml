@@ -87,11 +87,11 @@
                     {
                         if (!doc.Hidden)
                         {
-                            <div class="w3-padding">
-                                <a target="_blank" href="/@doc.RelPath">
+                            <a target="_blank" href="/@doc.RelPath.TrimStart('/')">
+                                <div class="w3-button w3-theme-l3 w3-block w3-left-align rocket-document">
                                     @doc.Name
-                                </a>
-                            </div>
+                                </div>
+                            </a>
                         }
                     }
                 </div>
@@ -102,7 +102,8 @@
                 var reviewfieldId = "articlereview";
                 var userData = UserUtils.GetUserData(PortalUtils.GetCurrentPortalId(), UserUtils.GetCurrentUserId());
                 <p class="w3-clear"></p>
-                <div class="simplisity_panel">
+                <div class="w3-xlarge w3-margin-top">@ResourceKey("DNNrocket.reviews")</div>
+                <div class="simplisity_panel w3-margin-top">
                     <div id="blogreviewinput" class="w3-margin-top">
                        <div class="w3-row">
                             <div class="w3-half">
