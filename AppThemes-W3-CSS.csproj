@@ -30,6 +30,9 @@
     <Reference Include="RocketAppThemes">
       <HintPath>..\..\..\bin\RocketAppThemes.dll</HintPath>
     </Reference>
+    <Reference Include="RocketBlogAPI">
+      <HintPath>..\..\..\bin\RocketBlogAPI.dll</HintPath>
+    </Reference>
     <Reference Include="RocketContentAPI">
       <HintPath>..\..\..\bin\RocketContentAPI.dll</HintPath>
     </Reference>

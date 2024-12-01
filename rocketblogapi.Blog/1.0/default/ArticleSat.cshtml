@@ -1,4 +1,4 @@
-﻿@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+﻿@inherits RocketBlogAPI.Components.RocketBlogAPITokens<Simplisity.SimplisityRazor>
 @using DNNrocketAPI.Components;
 @using RocketDirectoryAPI.Components;
 @AssignDataModel(Model)
@@ -7,38 +7,50 @@
 <!--inject-->
 @{
     var articleList = articleDataList.GetArticleList(moduleData);
+    var width = moduleData.GetSettingInt("width");
+    var height = moduleData.GetSettingInt("height");
+    var alignment = moduleData.GetSetting("pos");
+    var paddingClass = moduleData.GetSetting("padding");
+    var backgroundcolor = moduleData.GetSetting("backgroundcolor");
 }
 
-<div class="w3-container blogarticlelist">
+<div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))" style="padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
+    <div class="w3-section containerinner">
 
-    @foreach (ArticleLimpet articleData in articleList)
+    @foreach (ArticleLimpet article in articleList)
     {
-        var urlparams = new Dictionary<string, string>();
-        urlparams.Add("articleid", articleData.ArticleId.ToString());
-        var date = articleData.Info.GetXmlPropertyDate("genxml/textbox/publisheddate");
+        var articleImage = article.GetImage(0);
+        var date = article.Info.GetXmlPropertyDate("genxml/textbox/publisheddate");
         var dateFormat = date.ToString("dd/MM/yyyy");
 
-        <div class="w3-card-4 w3-margin w3-white" style="overflow:hidden;">
-            <img src="@ImageUrl(articleData.GetImage(0).RelPathWebp,640,200)" alt="@articleData.GetImage(0).Alt"  style="width:100%"/>
-            <div class="w3-container">
-                <h3><b>@articleData.Name</b></h3>
-                <h5><span class="w3-opacity">@DateOf(articleData.Info, articleData.PublishedDateXPath,sessionParams.CultureCode, "dd MMM yyy")</span></h5>
-            </div>
-
-            <div class="w3-container">
-                <div class="w3-row">
-                    <div class="w3-col m8 s12">
-                        <p>
-                            <a href="@DetailUrl(moduleData.DetailPageTabId(), articleData, categoryData)" class="w3-button w3-padding-large w3-white w3-border" title="@articleData.Name" onclick="$('#simplisity_loader').show();">
-                                <b>@ResourceKey("Blog.readmore")&nbsp;&gt;&nbsp;</b>
-                            </a>
-                        </p>
-                    </div>
+        if (articleImage.RelPath != "")
+        {
+            if (moduleData.GetSettingInt("satlayout") == 0)
+            {
+                <div class="w3-row @alignment">
+                    <a href="@DetailUrl(moduleData.DetailPageTabId(), article, categoryData)" class="@paddingClass" title="@article.Name" onclick="$('.simplisity_loader').show();">
+                        <img class="w3-image @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+                    </a>
+                    <p class="@moduleData.GetSetting("titlesize") @paddingClass">
+                        <span>@article.Name</span><br />
+                        <span class="w3-opacity">@DateOf(article.Info, article.PublishedDateXPath, sessionParams.CultureCode, "dd MMM yyy")</span>
+                    </p>
                 </div>
-            </div>
-        </div>
-
-        <hr/>
+            }
+            if (moduleData.GetSettingInt("satlayout") == 1)
+            {
+                <div class="w3-quarter @alignment w3-padding-small">
+                    <a href="@DetailUrl(moduleData.DetailPageTabId(), article, categoryData)" class="@paddingClass" title="@article.Name" onclick="$('.simplisity_loader').show();">
+                        <img class="w3-image @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+                    </a>
+                    <p class="@moduleData.GetSetting("titlesize") @paddingClass">
+                        <span>@article.Name</span><br />
+                        <span class="w3-opacity">@DateOf(article.Info, article.PublishedDateXPath, sessionParams.CultureCode, "dd MMM yyy")</span>
+                    </p>
+                </div>
+            }
+        }
     }
 
+    </div>
 </div>

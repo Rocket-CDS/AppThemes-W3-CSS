@@ -1,4 +1,4 @@
-﻿@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+﻿@inherits RocketBlogAPI.Components.RocketBlogAPITokens<Simplisity.SimplisityRazor>
 @using DNNrocketAPI.Components;
 @using RocketDirectoryAPI.Components;
 @AssignDataModel(Model)
@@ -14,6 +14,7 @@
     var paddingClass = moduleData.GetSetting("padding");
     var backgroundcolor = moduleData.GetSetting("backgroundcolor");
 }
+
 <div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))" style="padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
     <div class="w3-section containerinner">
 
