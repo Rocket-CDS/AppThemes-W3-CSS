@@ -4,17 +4,25 @@
 @using RocketEventsAPI.Components;
 @AssignDataModel(Model)
 @AddProcessDataResx(appTheme, true)
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
 @{
-    var articleListData = (ArticleLimpetList)Model.GetDataObject("articlelist");
+    var articleList = articleDataList.GetArticleList();
+    var width = moduleData.GetSettingInt("width");
+    var height = moduleData.GetSettingInt("height");
+    var captionHeight = moduleData.GetSettingInt("captionheight");
+    var alignment = moduleData.GetSetting("pos");
+    var paddingClass = moduleData.GetSetting("padding");
+    var backgroundcolor = moduleData.GetSetting("backgroundcolor");
+
     var eventList = (List<ArticleLimpet>)Model.GetDataObject("eventnextlist");
     if (sessionParams.GetInt("month") == 0 && sessionParams.Get("searchtext") == "")
     {
-        eventList.AddRange(articleListData.GetArticleList());
+        eventList.AddRange(articleList);
     }
     else
     {
-        eventList = articleListData.GetArticleList();
+        eventList = articleList;
     }
     if (eventList.Count == 0)
     {
@@ -22,84 +30,94 @@
     }
 
 }
+<div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))" style="padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
+    <div class="w3-section containerinner">
 
-<div class="eventsarticlewrapper">
 
-    @if (sessionParams.GetInt("catid") == 0)
-    {
-        <h1>@portalData.Name</h1>
-    }
-    else
-    {
-        <h1>@categoryData.Name</h1>
-    }
+        <div class="eventsarticlewrapper">
 
-[INJECT:appthemedirectorydefault,SearchBanner.cshtml]
-
-    @if (eventList.Count > 0)
-    {
-        <div class="w3-row w3-tiny">
-            <a href="@RssEventUrl(portalData.PortalId,"rocketeventsapi_rss", monthEndDate.Month, monthEndDate.Year)" target="_blank">
-                <span class="material-icons">
-                rss_feed
-                </span>
-            </a>
-        </div>
-
-        <div class="w3-container eventsarticlelist">
-
-            @foreach (ArticleLimpet article in eventList)
+            @if (sessionParams.GetInt("catid") == 0)
             {
-                var eventDate = article.Info.GetXmlPropertyDate("genxml/textbox/eventstartdate");
-
-                <div class="w3-card-4 w3-margin w3-white" style="overflow:hidden;">
-                    @if (article.GetImage(0).RelPathWebp != "")
-                    {
-                        <img src="@ImageUrl(article.GetImage(0).RelPathWebp,800,300)" alt="@article.GetImage(0).Alt" style="width:100%;height:284px;" />
-                    }
-                    <div class="w3-container">
-                        <h3><b>@article.Name</b></h3>
-                        <h5><span class="w3-opacity">@DateOf(article.Info, "genxml/textbox/eventstartdate", sessionParams.CultureCode, "dd MMM yyy")</span></h5>
-                    </div>
-
-                    <div class="w3-container">
-                        <p>
-                            @Succinct(article.Summary,100)
-                        </p>
-                        <div class="w3-row">
-                            <div class="w3-col m8 s12">
-                                <p>
-                                    @{
-                                        var detailUrlParams = listUrlParams.Concat(new string[] { "eventdate", eventDate.ToString("yyyy-MM-dd") }).ToArray();
-                                    }
-                                    <a href="@DetailUrl(moduleData.DetailPageTabId(), article, detailUrlParams)" class="w3-button w3-padding-large w3-white w3-border" title="@article.Name" onclick="$('#simplisity_loader').show();">
-                                        <b>@ResourceKey("RocketEventsApi.readmore")&nbsp;&gt;&nbsp;</b>
-                                    </a>
-                                </p>
-                            </div>
-                            @if (!moduleData.GetSettingBool("turnoffcomments"))
-                            {
-                                <div class="w3-col m4 w3-hide-small">
-                                    <p><span class="w3-padding-large w3-right"><b>@ResourceKey("RocketEventsApi.comments")&nbsp;  </b> <span class="w3-tag">@article.ReviewCount</span></span></p>
-                                </div>
-                            }
-                        </div>
-                    </div>
-                </div>
-
-                <hr/>
+                <h1>@portalData.Name</h1>
+            }
+            else
+            {
+                <h1>@categoryData.Name</h1>
             }
 
+            [INJECT:appthemedirectorydefault,SearchBanner.cshtml]
+
+            @if (eventList.Count > 0)
+            {
+                <div class="w3-row w3-tiny">
+                    <a href="@RssEventUrl(portalData.PortalId,"rocketeventsapi_rss", monthEndDate.Month, monthEndDate.Year)" target="_blank">
+                        <span class="material-icons">
+                            rss_feed
+                        </span>
+                    </a>
+                </div>
+
+                <div class="w3-container eventsarticlelist">
+
+                    @foreach (ArticleLimpet article in eventList)
+                    {
+                        var info = article.Info;
+                        var layout = info.GetXmlPropertyInt("genxml/select/layout");
+                        var hStyle = info.GetXmlProperty("genxml/select/headingstyle");
+                        var headingHide = info.GetXmlPropertyBool("genxml/checkbox/hideheading");
+                        var hideRow = info.GetXmlPropertyBool("genxml/checkbox/hiderow");
+                        var articleImage = article.GetImage(0);
+                        var linkData = article.Getlink(0);
+
+                        <div class="w3-section">
+                            @if (moduleData.GetSettingInt("layout") == 1)
+                            {
+                                <div class="w3-container">
+                                    <div class="w3-twothird">
+                                        [INJECT:appthemeview,layouttext.cshtml]
+                                    </div>
+                                    <div class="w3-third">
+                                        @if (articleImage.RelPath != "")
+                                        {
+                                            <img class="w3-image @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+                                        }
+                                    </div>
+                                </div>
+                            }
+                            @if (moduleData.GetSettingInt("layout") == 2)
+                            {
+                                <div class="w3-container">
+                                    <div class="w3-third">
+                                        @if (articleImage.RelPath != "")
+                                        {
+                                            <img class="w3-image @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+                                        }
+                                    </div>
+                                    <div class="w3-twothird">
+                                        [INJECT:appthemeview,layouttext.cshtml]
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    }
+
+                </div>
+
+                <div class="w3-row w3-padding-16 w3-center">
+                    [INJECT:appthemesystem,articlePaging.cshtml]
+                </div>
+
+            }
+            else
+            {
+                <div class="w3-center w3-jumbo">@ResourceKey("RocketEventsApi.noresults")</div>
+            }
+
+        </div>
+
+
     </div>
-
-    <div class="w3-row w3-padding-16 w3-center">        
-        [INJECT:appthemesystem,articlePaging.cshtml]
-    </div>
-
-    }
-    else
-    {
-        <div class="w3-center w3-jumbo">@ResourceKey("RocketEventsApi.noresults")</div>
-    }
-
 </div>
+
+

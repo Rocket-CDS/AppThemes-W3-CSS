@@ -8,15 +8,22 @@
 @AddProcessDataResx(appTheme, true)
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
+@{
+    var width = moduleData.GetSettingInt("width");
+    var height = moduleData.GetSettingInt("height");
+    var captionHeight = moduleData.GetSettingInt("captionheight");
+    var alignment = moduleData.GetSetting("pos");
+    var paddingClass = moduleData.GetSetting("padding");
+    var backgroundcolor = moduleData.GetSetting("backgroundcolor");
+}
+<div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))" style="padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
+    <div class="w3-section containerinner eventsarticledetail">
 
-<div class="w3-container eventsarticledetail">
+        <div>
+            <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)#rocketblogdisplay" onclick="$('.simplisity_loader').show();" class="w3-button @(moduleData.GetSetting("buttoncolor")) w3-border w3-round backlink">@ButtonIconText(ButtonTypes.back)</a>
+        </div>
 
-    <div>
-        <a href="@ListUrl(moduleData.ListPageTabId(), listUrlParams)" class="w3-button w3-theme-action">@ButtonIconText(ButtonTypes.back)</a>
-    </div>
-
-
-    <div class="w3-container w3-margin w3-padding-large w3-border">
+    <div class="w3-container w3-margin">
         <div class="w3-center">
             <h3>@articleData.Name</h3>
             @if (sessionParams.Get("eventdate") != "")
@@ -33,23 +40,29 @@
             }
         </div>
 
-        <div class="w3-justify">
-            <img id="mainimage@(articleData.ArticleId)" src="@ImageUrl(articleData.GetImage(0).RelPathWebp,640,400)" alt="@articleData.GetImage(0).Alt" style="width:100%" />
-            <div class="w3-row w3-hide-small">
-                @if (articleData.GetImages().Count > 1)
-                {
-                    foreach (var i in articleData.GetImages().Take(6))
-                    {
-                        <div class="w3-col m2 w3-padding">
-                            <img src="@ImageUrl(i.RelPathWebp,120,120)" onMouseOver="$('#mainimage@(articleData.ArticleId)').prop('src','@ImageUrl(i.RelPathWebp,640,400)');" alt="" style="width:100%" />
-                        </div>
-                    }
-                }
-            </div>
+            <p>@BreakOf(articleData.Summary)</p>
+
+            <div class="w3-justify">
+                <div class="w3-row">
+                    <div class="w3-col m1 l1 w3-hide-small">
+                        @if (articleData.GetImages().Count > 1)
+                        {
+                            foreach (var i in articleData.GetImages().Take(6))
+                            {
+                                <div class="" style="padding-bottom:8px;padding-right:8px;">
+                                    <img src="@ImageUrl(i.RelPathWebp,120,120)" onMouseOver="$('#mainimage@(articleData.ArticleId)').prop('src','@ImageUrl(i.RelPathWebp,640,400)');" alt="" style="width:100%" />
+                                </div>
+                            }
+                        }
+                    </div>
+                    <div class="w3-col m11 l11">
+                        <img id="mainimage@(articleData.ArticleId)" src="@ImageUrl(articleData.GetImage(0).RelPathWebp,640,400)" alt="@articleData.GetImage(0).Alt" style="width:100%" />
+                    </div>
+                </div>
+
             <div class="w3-row w3-margin w3-small">
                 @ResourceKey("RocketEventsApi.rating"):&nbsp;@articleData.ReviewScore
             </div>
-            <i>@BreakOf(articleData.Summary)</i>
             <p>
                 @HtmlOf(articleData.RichText)
             </p>
@@ -87,11 +100,11 @@
                     {
                         if (!doc.Hidden)
                         {
-                            <div class="w3-padding">
-                                <a target="_blank" href="/@doc.RelPath">
+                            <a target="_blank" href="/@doc.RelPath.TrimStart('/')">
+                                <div class="w3-button w3-theme-l3 w3-block w3-left-align rocket-document">
                                     @doc.Name
-                                </a>
-                            </div>
+                                </div>
+                            </a>
                         }
                     }
                 </div>
@@ -102,7 +115,8 @@
                 var reviewfieldId = "articlereview";
                 var userData = UserUtils.GetUserData(PortalUtils.GetCurrentPortalId(), UserUtils.GetCurrentUserId());
                 <p class="w3-clear"></p>
-                <div class="simplisity_panel">
+                <div class="w3-xlarge w3-margin-top">@ResourceKey("RocketEventsApi.comments")</div>
+                <div class="simplisity_panel  w3-margin-top">
                     <div id="eventsreviewinput" class="w3-margin-top">
                        <div class="w3-row">
                             <div class="w3-half">
@@ -157,4 +171,5 @@
             }
         </div>
     </div>
+</div>
 </div>

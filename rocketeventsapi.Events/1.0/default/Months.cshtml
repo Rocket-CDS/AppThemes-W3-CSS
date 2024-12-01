@@ -9,11 +9,10 @@
     var eventList = (Dictionary<DateTime, List<ArticleLimpet>>)Model.GetDataObject("eventlistbymonth");
 }
 
-<div class=" w3-margin-top ">
+<div class="rocket-eventmonths w3-padding w3-margin-top ">
 
-
-    <a href="@ListUrl(moduleData.ListPageTabId())" class="w3-button w3-block w3-left-align" onclick="$('.simplisity_loader').show();setSelected('');">
-        <span class="w3-right">
+    <a href="@ListUrl(moduleData.ListPageTabId())" class="w3-button w3-block w3-left-align rocket-monthdates rocket-monthdates0 w3-theme-l3" onclick="$('.simplisity_loader').show();setSelected('0');">
+        <span class="w3-text-black">
             @ResourceKey("RocketEventsAPI.latest")
         </span>
     </a>
@@ -41,10 +40,15 @@
 </div>
 
 <script>
+    $(document).ready(function () {
+        var monthidx = simplisity_getSessionField('monthidx');
+        if (monthidx != '' && simplisity_getSessionField('viewsearchtext') == '') {
+            $('.rocket-monthdates').removeClass('w3-theme-l3');
+            $('.rocket-monthdates' + monthidx).addClass('w3-theme-l3');
+        }
+    });
     function setSelected(monthidx, month, year) {
         $('.simplisity_loader').show();
-        $('.rocket-monthdates').removeClass('w3-grey');
-        $('.rocket-monthdates' + monthidx).addClass('w3-grey');
         simplisity_setSessionField('monthidx', monthidx);
     }
 </script>

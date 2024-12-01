@@ -90,40 +90,29 @@
 
 }
 <!-- List Settings -->
-@if (moduleData.DisplayTemplate == "articlelist.cshtml")
+@if (moduleData.DisplayTemplate == "view.cshtml")
 {
     <div class="w3-section">
 
-        <div class='w3-row'>
-            <div class="w3-third w3-padding">
-                <label>@ResourceKey("DNNrocket.pagesize")</label>
-                @DropDownList(info, "genxml/settings/pagesize", "6,12,24,48", "6,12,24,48", " style='height:40px;' class='w3-input w3-border simplisity_sessionfield ' onchange=\"doSearchReload();return false;\" title='" + @ResourceKey("DNNrocket.pagesize", sessionParams.CultureCode) + "'", "24")
-            </div>
-            <div class="w3-third w3-padding">
-                <br />
-                @CheckBox(info, "genxml/settings/turnoffcomments", "&nbsp;" + ResourceKey("Blog.turnoffcomments").ToString(), " class='w3-check'", true)
-            </div>
-        </div>
-
-        <div class="w3-third w3-padding">
-            <label>@ResourceKey("DNNrocket.imageresize") (px)</label>
-            @TextBox(info, "genxml/settings/imageresize", " class='w3-input w3-border'", "1024")
-        </div>
         <div class="w3-third w3-padding">
             <label>Layout</label>
             @DropDownList(info, "genxml/settings/layout", "1,2", "Image Right,Image Left", "class='w3-input w3-border' ", "2")
+        </div>
+        <div class="w3-third w3-padding">
+            <label>@ResourceKey("DNNrocket.pagesize")</label>
+            @DropDownList(info, "genxml/settings/pagesize", "6,12,24,48", "6,12,24,48", " style='height:40px;' class='w3-input w3-border simplisity_sessionfield ' onchange=\"doSearchReload();return false;\" title='" + @ResourceKey("DNNrocket.pagesize", sessionParams.CultureCode) + "'", "24")
         </div>
         <div class="w3-third w3-padding">
             <label>@ResourceKey("RC.alignment")</label>
             @DropDownList(info, "genxml/settings/pos", W3Utils.W3alignment(), "class='w3-input w3-border' ", "w3-center")
         </div>
         <div class="w3-third w3-padding">
-            <label>@ResourceKey("DNNrocket.width")</label>
-            @TextBox(info, "genxml/settings/imagewidth", "class='w3-input w3-border'", "320")
+            <label>@ResourceKey("DNNrocket.imagewidth")</label>
+            @TextBox(info, "genxml/settings/width", "class='w3-input w3-border'", "320")
         </div>
         <div class="w3-third w3-padding">
-            <label>@ResourceKey("DNNrocket.height")</label>
-            @TextBox(info, "genxml/settings/imageheight", "class='w3-input w3-border'", "320")
+            <label>@ResourceKey("DNNrocket.imageheight")</label>
+            @TextBox(info, "genxml/settings/height", "class='w3-input w3-border'", "320")
         </div>
         <div class="w3-third w3-padding">
             <label>@ResourceKey("RC.titletextsize")</label>
@@ -147,15 +136,23 @@
         </div>
         <div class="w3-third w3-padding">
             <label>Button Color</label>
-            @DropDownList(info, "genxml/settings/buttoncolor", W3Utils.W3colors(), "class='w3-input w3-border' ", "normal")
+            @DropDownList(info, "genxml/settings/buttoncolor", W3Utils.W3colors(), "class='w3-input w3-border' ", "w3-theme")
         </div>
         <div class="w3-third w3-padding">
             <label>Background Color</label>
-            @DropDownList(info, "genxml/settings/backgroundcolor", W3Utils.W3colors(), "class='w3-input w3-border' ", "normal")
+            @DropDownList(info, "genxml/settings/backgroundcolor", W3Utils.W3colors(), "class='w3-input w3-border' ", "")
         </div>
         <div class="w3-third w3-padding">
             <label>Padding</label><br />
             @RadioButtonList(info, "genxml/settings/padding", "w3-padding-small,w3-padding,w3-padding-large", "Small,Medium,Large", " class=''", "w3-padding")
+        </div>
+        <div class="w3-third w3-padding">
+            <label>@ResourceKey("Blog.turnoffcomments")</label><br />
+            @CheckBox(info, "genxml/settings/turnoffcomments", "", " class='w3-check'", true)
+        </div>
+        <div class="w3-third w3-padding">
+            <label>@ResourceKey("DNNrocket.cssClass")</label>
+            @TextBox(info, "genxml/settings/cssclass", "class='w3-input w3-border'", "")
         </div>
         <div class="w3-row w3-padding ">
             <label>Top Padding</label>
@@ -166,10 +163,6 @@
             @TextBox(info, "genxml/settings/bottompadding", " class='w3-input' min='0' max='300' step='50'", "50", false, 0, "", "range")
         </div>
 
-        <div class="w3-third w3-padding">
-            <label>@ResourceKey("DNNrocket.cssClass")</label>
-            @TextBox(info, "genxml/settings/cssclass", "class='w3-input w3-border'", "")
-        </div>
 
     </div>
 }
