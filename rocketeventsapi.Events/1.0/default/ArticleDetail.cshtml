@@ -26,18 +26,14 @@
     <div class="w3-container w3-margin">
         <div class="w3-center">
             <h3>@articleData.Name</h3>
-            @if (sessionParams.Get("eventdate") != "")
-            {
-                // do not show if no date in URL, canonical links cannot have the eventdate in the URL so we do not want to show those to the search engine.
-                <h5>
-                    <span class="w3-opacity">@articleEventStartDate.ToLongDateString()</span>
-                    @if (articleEventStartDate != articleEventEndDate)
-                    {
-                        <span class="w3-opacity"> - @articleEventEndDate.ToLongDateString()</span>
-                    }
+            <h5>
+                <span class="w3-opacity">@articleEventStartDate.ToLongDateString()</span>
+                @if (articleEventStartDate != articleEventEndDate)
+                {
+                    <span class="w3-opacity"> - @articleEventEndDate.ToLongDateString()</span>
+                }
 
-                </h5>
-            }
+            </h5>
         </div>
 
             <p>@BreakOf(articleData.Summary)</p>
