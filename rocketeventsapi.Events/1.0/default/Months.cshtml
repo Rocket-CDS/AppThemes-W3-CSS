@@ -9,7 +9,7 @@
     var eventList = (Dictionary<DateTime, List<ArticleLimpet>>)Model.GetDataObject("eventlistbymonth");
 }
 
-<div class="rocket-eventmonths w3-padding w3-margin-top ">
+<div class="rocket-eventmonths " style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
 
     <a href="@ListUrl(moduleData.ListPageTabId())" class="w3-button w3-block w3-left-align monthlink rocket-monthdates rocket-monthdates0 w3-theme-l3" onclick="$('.simplisity_loader').show();setSelected('0');">
         <span>

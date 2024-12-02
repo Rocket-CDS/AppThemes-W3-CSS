@@ -50,19 +50,6 @@
         <label>@ResourceKey("RC.alignment")</label>
         @DropDownList(info, "genxml/settings/pos", W3Utils.W3alignment(), "class='w3-input w3-border' ", "w3-center")
     </div>
-    <div class="w3-third w3-padding">
-        <label>@ResourceKey("DNNrocket.cssClass")</label>
-        @TextBox(info, "genxml/settings/cssclass", "class='w3-input w3-border'", "")
-    </div>
-    <div class="w3-row w3-padding ">
-        <label>Top Padding</label>
-        @TextBox(info, "genxml/settings/toppadding", " class='w3-input' min='0' max='320' step='8'", "8", false, 0, "", "range")
-    </div>
-    <div class="w3-row w3-padding ">
-        <label>Bottom Padding</label>
-        @TextBox(info, "genxml/settings/bottompadding", " class='w3-input' min='0' max='320' step='8'", "8", false, 0, "", "range")
-    </div>
-
 }
 <!-- Filter Settings -->
 @if (moduleData.DisplayTemplate == "filters.cshtml")
@@ -150,22 +137,22 @@
             <label>@ResourceKey("Blog.turnoffcomments")</label><br />
             @CheckBox(info, "genxml/settings/turnoffcomments", "", " class='w3-check'", true)
         </div>
-        <div class="w3-third w3-padding">
-            <label>@ResourceKey("DNNrocket.cssClass")</label>
-            @TextBox(info, "genxml/settings/cssclass", "class='w3-input w3-border'", "")
-        </div>
-        <div class="w3-row w3-padding ">
-            <label>Top Padding</label>
-            @TextBox(info, "genxml/settings/toppadding", " class='w3-input' min='0' max='320' step='8'", "8", false, 0, "", "range")
-        </div>
-        <div class="w3-row w3-padding ">
-            <label>Bottom Padding</label>
-            @TextBox(info, "genxml/settings/bottompadding", " class='w3-input' min='0' max='320' step='8'", "8", false, 0, "", "range")
-        </div>
-
 
     </div>
 }
+
+<div class="w3-third w3-padding">
+    <label>@ResourceKey("DNNrocket.cssClass")</label>
+    @TextBox(info, "genxml/settings/cssclass", "class='w3-input w3-border'", "")
+</div>
+<div class="w3-row w3-padding ">
+    <label>Top Padding</label>
+    @TextBox(info, "genxml/settings/toppadding", " class='w3-input' min='0' max='320' step='8'", "8", false, 0, "", "range")
+</div>
+<div class="w3-row w3-padding ">
+    <label>Bottom Padding</label>
+    @TextBox(info, "genxml/settings/bottompadding", " class='w3-input' min='0' max='320' step='8'", "8", false, 0, "", "range")
+</div>
 
 
 @if (moduleData.DisplayTemplate == "tags.cshtml" || moduleData.DisplayTemplate == "filters.cshtml")

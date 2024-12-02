@@ -8,7 +8,7 @@
 @{
     var displayList = new List<int>();
 }
-<div class="rocket-tags w3-padding w3-margin-top">
+<div class="rocket-tags " style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
     @foreach (var g in moduleData.GetPropertyModuleGroups(catalogSettings))
     {
         foreach (var p in propertyDataList.GetPropertyTagList(g.Key))
