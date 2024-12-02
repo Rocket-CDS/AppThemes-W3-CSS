@@ -18,7 +18,7 @@
 }
 <div id="calmonth@(moduleData.ModuleId)">
 
-    <div class="month">
+    <div class="month w3-theme-l3">
         <ul class="monthheader">
             <li class="w3-button w3-left" onclick="getMonthCalendar('@calMonthStartDate.AddMonths(-1).Year.ToString()','@calMonthStartDate.AddMonths(-1).Month.ToString()');">&#10094;</li>
             <li class="w3-button w3-right" onclick="getMonthCalendar('@calMonthStartDate.AddMonths(1).Year.ToString()','@calMonthStartDate.AddMonths(1).Month.ToString()');">&#10095;</li>
@@ -26,7 +26,7 @@
         </ul>
     </div>
 
-    <ul class="weekdays">
+    <ul class="weekdays w3-theme-l1">
         <li>@firstModay.ToString("ddd")</li>
         <li>@firstModay.AddDays(1).ToString("ddd")</li>
         <li>@firstModay.AddDays(2).ToString("ddd")</li>
@@ -36,7 +36,7 @@
         <li>@firstModay.AddDays(6).ToString("ddd")</li>
     </ul>
 
-    <ul class="days">
+    <ul class="days w3-theme-l5 w3-border">
         @{
             int startDays = 1;
             int day = 1;
@@ -53,11 +53,11 @@
             var todayClass = "";
             if (DateTime.Now.Date == dayDate)
             {
-                todayClass = "w3-blue";
+                todayClass = "w3-theme-dark";
             }
             if (articleDay.ContainsKey(day))
             {
-                <li onclick="getMonthCalendarDetail('@day');" style="cursor:pointer;" class="activeday @(todayClass)"><span>@day</span></li>
+                <li onclick="getMonthCalendarDetail('@day');" style="cursor:pointer;" class="activeday w3-theme @(todayClass)"><span>@day</span></li>
             }
             else
             {

@@ -7,7 +7,7 @@
 @AssignDataModel(Model)
 @AddProcessDataResx(appTheme, true)
 <!--inject-->
-<div id="calmonthwrapper@(moduleData.ModuleId)">
+<div id="calmonthwrapper@(moduleData.ModuleId)" style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
     [INJECT:apptheme,CalendarDisplay.cshtml]
 </div>
 
