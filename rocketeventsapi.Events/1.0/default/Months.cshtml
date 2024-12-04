@@ -40,6 +40,12 @@
 
 <script>
     $(document).ready(function () {
+        @if (sessionParams.Get("month") == "")
+        {
+            <text>
+                    simplisity_setSessionField('monthidx', '');
+            </text>
+        }
         var monthidx = simplisity_getSessionField('monthidx');
         if (monthidx != '' && simplisity_getSessionField('viewsearchtext') == '') {
             $('.rocket-monthdates').removeClass('w3-theme-l3');

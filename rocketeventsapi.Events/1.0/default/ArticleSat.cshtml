@@ -7,41 +7,53 @@
 <!--inject-->
 @{
     var eventList = (List<ArticleLimpet>)Model.GetDataObject("eventnextlist");
+    var width = moduleData.GetSettingInt("width");
+    var height = moduleData.GetSettingInt("height");
+    var alignment = moduleData.GetSetting("pos");
+    var paddingClass = moduleData.GetSetting("padding");
+    var backgroundcolor = moduleData.GetSetting("backgroundcolor");
 }
 
 <div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))" style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
     <div class="w3-section eventsarticlelist containerinner">
 
-    @foreach (ArticleLimpet articleData in eventList)
+    @foreach (ArticleLimpet article in eventList)
     {
-        var eventDate = articleData.Info.GetXmlPropertyDate("genxml/textbox/eventstartdate");
-        var date = articleData.Info.GetXmlPropertyDate("genxml/textbox/eventstartdate");
-        var dateFormat = date.ToLongDateString();
+        // Do not list the article if we are looking at it. (Prevents bug with procesing overlay not closing)
+        if (article.ArticleId != sessionParams.GetInt("eventid"))
+        {
+                
+            var articleImage = article.GetImage(0);
+            var eventDate = article.Info.GetXmlPropertyDate("genxml/textbox/eventstartdate");
 
-        <div class="w3-card-4 w3-margin w3-white" style="overflow:hidden;">
-            <img src="@ImageUrl(articleData.GetImage(0).RelPathWebp,640,200)" alt="@articleData.GetImage(0).Alt"  style="width:100%"/>
-            <div class="w3-container">
-                <h3><b>@articleData.Name</b></h3>
-                <h5><span class="w3-opacity">@DateOf(articleData.Info, "genxml/textbox/eventstartdate", sessionParams.CultureCode, "dd MMM yyy")</span></h5>
-            </div>
-
-            <div class="w3-container">
-                <div class="w3-row">
-                    <div class="w3-col m8 s12">
-                        <p>
-                            @{
-                                var detailUrlParams = listUrlParams.Concat(new string[] { "eventdate", eventDate.ToString("yyyy-MM-dd") }).ToArray();
-                            }
-                            <a href="@DetailUrl(moduleData.DetailPageTabId(), article, detailUrlParams)" class="w3-button w3-padding-large w3-white w3-border" title="@articleData.Name" onclick="$('#simplisity_loader').show();">
-                                <b>@ResourceKey("RocketEventsApi.readmore")&nbsp;&gt;&nbsp;</b>
-                            </a>
+            if (articleImage.RelPath != "")
+            {
+                if (moduleData.GetSettingInt("satlayout") == 0)
+                {
+                    <div class="w3-row @alignment eventlistdetail">
+                            <a href="@DetailUrl(moduleData.DetailPageTabId(), article, categoryData)#rocketeventsdisplay" class="@paddingClass" title="@article.Name" onclick="$('.simplisity_loader').show();">
+                            <img class="w3-image @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+                        </a>
+                        <p class="@moduleData.GetSetting("titlesize") @paddingClass">
+                            <span>@article.Name</span><br />
+                            <span class="w3-opacity">@DateOf(eventDate, sessionParams.CultureCode, "dd MMM yyy")</span>
                         </p>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <hr/>
+                }
+                if (moduleData.GetSettingInt("satlayout") == 1)
+                {
+                    <div class="w3-col s12 m3 l2 @alignment w3-padding-small eventlistdetail">
+                            <a href="@DetailUrl(moduleData.DetailPageTabId(), article, categoryData)#rocketeventsdisplay" class="@paddingClass" title="@article.Name" onclick="$('.simplisity_loader').show();">
+                            <img class="w3-image @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+                        </a>
+                        <p class="@moduleData.GetSetting("titlesize") @paddingClass">
+                            <span>@article.Name</span><br />
+                            <span class="w3-opacity">@DateOf(eventDate, sessionParams.CultureCode, "dd MMM yyy")</span>
+                        </p>
+                    </div>
+                }
+            }
+        }
     }
 
     </div>

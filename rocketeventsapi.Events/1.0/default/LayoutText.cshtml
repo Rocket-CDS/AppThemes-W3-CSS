@@ -6,7 +6,8 @@
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
 @{
-    var eventDate = article.Info.GetXmlPropertyDate("genxml/textbox/eventstartdate");
+    
+    var eventDate = article.Info.GetXmlPropertyDate("genxml/textbox/eventstartdate");    
 }
 @if (!String.IsNullOrEmpty(article.Name))
 {

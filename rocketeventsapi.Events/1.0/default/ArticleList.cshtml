@@ -7,7 +7,7 @@
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
 @{
-    var articleList = articleDataList.GetArticleList();
+    var eventList = articleDataList.GetArticleList();
     var width = moduleData.GetSettingInt("width");
     var height = moduleData.GetSettingInt("height");
     var captionHeight = moduleData.GetSettingInt("captionheight");
@@ -15,20 +15,11 @@
     var paddingClass = moduleData.GetSetting("padding");
     var backgroundcolor = moduleData.GetSetting("backgroundcolor");
 
-    var eventList = (List<ArticleLimpet>)Model.GetDataObject("eventnextlist");
-    if (sessionParams.GetInt("month") == 0 && sessionParams.Get("searchtext") == "")
-    {
-        eventList.AddRange(articleList);
-    }
-    else
-    {
-        eventList = articleList;
-    }
     if (eventList.Count == 0)
     {
         eventList = (List<ArticleLimpet>)Model.GetDataObject("eventpassedlist");
     }
-
+    Model.SetSetting("pagesizelist", "6,12,24,48");
 }
 <div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))" style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
     <div class="w3-section containerinner">
@@ -119,5 +110,6 @@
 
     </div>
 </div>
+
 
 
