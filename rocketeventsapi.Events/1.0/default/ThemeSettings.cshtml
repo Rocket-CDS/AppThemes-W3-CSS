@@ -28,7 +28,7 @@
     </div>
     <div class="w3-third w3-padding">
         <label>@ResourceKey("DNNrocket.pagesize")</label>
-        @DropDownList(info, "genxml/settings/pagesize", "6,12,24,48", "6,12,24,48", " style='height:40px;' class='w3-input w3-border simplisity_sessionfield ' onchange=\"doSearchReload();return false;\" title='" + @ResourceKey("DNNrocket.pagesize", sessionParams.CultureCode) + "'", "6")
+        @DropDownList(info, "genxml/settings/pagesize", "6,12,24,48", "6,12,24,48", " class='w3-input w3-border '", "24")
     </div>
     <div class="w3-third w3-padding">
         <label>@ResourceKey("DNNrocket.imagewidth")</label>
@@ -52,7 +52,7 @@
     </div>
     <div class="w3-third w3-padding">
         <label>@ResourceKey("RC.alignment")</label>
-        @DropDownList(info, "genxml/settings/pos", W3Utils.W3alignment(), "class='w3-input w3-border' ", "w3-center")
+        @DropDownList(info, "genxml/settings/alignment", W3Utils.W3alignment(), "class='w3-input w3-border' ", "w3-center")
     </div>
     <div class="w3-third w3-padding">
         <label>Background Color</label>
@@ -99,7 +99,7 @@
         </div>
         <div class="w3-third w3-padding">
             <label>@ResourceKey("RC.alignment")</label>
-            @DropDownList(info, "genxml/settings/pos", W3Utils.W3alignment(), "class='w3-input w3-border' ", "w3-center")
+            @DropDownList(info, "genxml/settings/alignment", W3Utils.W3alignment(), "class='w3-input w3-border' ", "w3-center")
         </div>
         <div class="w3-third w3-padding">
             <label>@ResourceKey("DNNrocket.imagewidth")</label>
@@ -123,7 +123,7 @@
         </div>
         <div class="w3-third w3-padding">
             <label>@ResourceKey("RC.alignment")</label>
-            @DropDownList(info, "genxml/settings/pos", W3Utils.W3alignment(), "class='w3-input w3-border' ", "w3-center")
+            @DropDownList(info, "genxml/settings/alignment", W3Utils.W3alignment(), "class='w3-input w3-border' ", "w3-center")
         </div>
         <div class="w3-third w3-padding">
             <label>Opacity</label>

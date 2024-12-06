@@ -9,7 +9,7 @@
     var width = moduleData.GetSettingInt("width");
     var height = moduleData.GetSettingInt("height");
     var captionHeight = moduleData.GetSettingInt("captionheight");
-    var alignment = moduleData.GetSetting("pos");
+    var alignment = moduleData.GetSetting("alignment");
     var paddingClass = moduleData.GetSetting("padding");
     var backgroundcolor = moduleData.GetSetting("backgroundcolor");
 }
@@ -37,13 +37,13 @@
                             foreach (var i in articleData.GetImages().Take(6))
                             {
                                 <div class="" style="padding-bottom:8px;padding-right:8px;">
-                                    <img src="@ImageUrl(i.RelPathWebp,120,120)" onMouseOver="$('#mainimage@(articleData.ArticleId)').prop('src','@ImageUrl(i.RelPathWebp,640,400)');" alt="" style="width:100%" />
+                                    <img src="@ImageUrl(i.RelPath,120,120)" onMouseOver="$('#mainimage@(articleData.ArticleId)').prop('src','@ImageUrl(i.RelPath,640,400)');" alt="" style="width:100%" />
                                 </div>
                             }
                         }
                     </div>
                     <div class="w3-col m11 l11">
-                            <img id="mainimage@(articleData.ArticleId)" src="@ImageUrl(articleData.GetImage(0).RelPathWebp,640,400)" alt="@articleData.GetImage(0).Alt" style="width:100%" />
+                            <img id="mainimage@(articleData.ArticleId)" src="@ImageUrl(articleData.GetImage(0).RelPath,640,400)" alt="@articleData.GetImage(0).Alt" style="width:100%" />
                     </div>
                 </div>
 
