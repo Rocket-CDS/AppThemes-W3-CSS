@@ -58,7 +58,7 @@
                                 [INJECT:appthemeview,layouttext.cshtml]
                                 </div>
                                 <div class="w3-third">
-                                    @if (articleImage.RelPath != "")
+                                    @if (articleImage.RelPath != "" && moduleData.GetSettingBool("showimage"))
                                     {
                                         <img class="w3-image @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
                                     }
@@ -69,7 +69,7 @@
                         {
                             <div class="w3-container">
                                 <div class="w3-third">
-                                    @if (articleImage.RelPath != "")
+                                    @if (articleImage.RelPath != "" && moduleData.GetSettingBool("showimage"))
                                     {
                                         <img class="w3-image @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
                                     }
