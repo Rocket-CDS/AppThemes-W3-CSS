@@ -5,36 +5,59 @@
 @AddProcessDataResx(appTheme, true)
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
-<div class="w3-container newsarticledetail">
+@{
+    var width = moduleData.GetSettingInt("width");
+    var height = moduleData.GetSettingInt("height");
+    var captionHeight = moduleData.GetSettingInt("captionheight");
+    var alignment = moduleData.GetSetting("alignment");
+    var paddingClass = moduleData.GetSetting("padding");
+    var backgroundcolor = moduleData.GetSetting("backgroundcolor");
+}
+<div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))" style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
+    <div class="w3-section containerinner blogarticledetail">
 
     <div>
-        <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)" class="w3-button w3-theme-action">@ButtonIconText(ButtonTypes.back)</a>
+            <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)#rocketblogdisplay" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-action w3-border w3-round backlink">@ButtonIconText(ButtonTypes.back)</a>
     </div>
 
 
-    <div class="w3-container w3-margin w3-padding-large w3-border">
+    <div class="w3-container w3-margin">
         <div class="w3-center">
             <h3>@articleData.Name</h3>
             <h5><span class="w3-opacity">@DateOf(articleData.Info, articleData.PublishedDateXPath,sessionParams.CultureCode, "dd MMM yyyy")</span></h5>
         </div>
 
+        <p>@BreakOf(articleData.Summary)</p>
+
         <div class="w3-justify">
-            <img id="mainimage@(articleData.ArticleId)" src="@ImageUrl(articleData.GetImage(0).RelPathWebp,640,400)" alt="@articleData.GetImage(0).Alt" style="width:100%" />
-            <div class="w3-row w3-hide-small">
-                @if (articleData.GetImages().Count > 1)
-                {
-                    foreach (var i in articleData.GetImages().Take(6))
-                    {
-                        <div class="w3-col m2 w3-padding">
-                            <img src="@ImageUrl(i.RelPathWebp,120,120)" onMouseOver="$('#mainimage@(articleData.ArticleId)').prop('src','@ImageUrl(i.RelPathWebp,640,400)');" alt="" style="width:100%" />
-                        </div>
-                    }
-                }
-            </div>
-            <i>@BreakOf(articleData.Summary)</i>
+                <div class="w3-row">
+                    <div class="w3-col m1 l1 w3-hide-small" >
+                        @if (articleData.GetImages().Count > 1)
+                        {
+                            foreach (var i in articleData.GetImages().Take(6))
+                            {
+                                <div class="" style="padding-bottom:8px;padding-right:8px;">
+                                    <img src="@ImageUrl(i.RelPath,120,120)" onMouseOver="$('#mainimage@(articleData.ArticleId)').prop('src','@ImageUrl(i.RelPath,640,400)');" alt="" style="width:100%" />
+                                </div>
+                            }
+                        }
+                    </div>
+                    <div class="w3-col m11 l11">
+                            <img id="mainimage@(articleData.ArticleId)" src="@ImageUrl(articleData.GetImage(0).RelPath,640,400)" alt="@articleData.GetImage(0).Alt" style="width:100%" />
+                    </div>
+                </div>
+
             <p>
                 @HtmlOf(articleData.RichText)
             </p>
+            <div class="w3-row">
+                @foreach (var tag in articleData.GetProperties("tags"))
+                {
+                    <span class="w3-light-grey w3-round-xlarge w3-padding w3-margin-right">
+                        @tag.Name
+                    </span>
+                }
+            </div>
 
             <div class="w3-row">
                 <div class="w3-half">
@@ -61,16 +84,21 @@
                     {
                         if (!doc.Hidden)
                         {
-                            <div class="w3-padding">
-                                <a target="_blank" href="/@doc.RelPath">
+                            <a target="_blank" href="/@doc.RelPath.TrimStart('/')">
+                                <div class="w3-button w3-theme-l3 w3-block w3-left-align rocket-document">
                                     @doc.Name
-                                </a>
-                            </div>
+                                </div>
+                            </a>
                         }
                     }
                 </div>
             </div>
 
+            <div>
+                <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)#rocketblogdisplay" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-action w3-border w3-round backlink">@ButtonIconText(ButtonTypes.back)</a>
+            </div>
+
         </div>
+    </div>
     </div>
 </div>

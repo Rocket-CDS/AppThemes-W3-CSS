@@ -33,15 +33,18 @@
                         <td style="width:54px;">
                         @if (articleData.IsHidden)
                         {
-                                    <span class="material-icons">
-                                        hide_source
-                                    </span>
+                            <span class="material-icons">
+                                hide_source
+                            </span>
                         }
                         </td>
                         <td style="width:54px;">
                             <img src="@ImageUrl(articleData.GetImage(0).RelPath, 48, 48)" style="height:48px;width:48px;" class="w3-round" />
                         </td>
-                        <td><div class="w3-tiny">@articleData.Ref</div><b>@articleData.Name</b></td>
+                        <td>
+                            <div class="w3-tiny">@articleData.Ref</div><b>@articleData.Name</b>
+                            <div class="w3-small">@DateOf(articleData.PublishedDate, articleData.CultureCode, "d")</div>
+                        </td>
                     </tr>
             }
         </table>

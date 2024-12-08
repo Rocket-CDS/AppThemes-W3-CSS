@@ -5,18 +5,27 @@
 @AddProcessDataResx(appTheme, true)
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
-@{
-    Model.SetSetting("searchview", "false");
-    if (articleData != null)
-    {
-        <text>
-            [INJECT: apptheme, ArticleDetail.cshtml]
-        </text>
+
+<div id="rocketnewsdisplay" style="position:relative;top:-165px;"></div>
+
+<div id="rocket-news">
+    @{
+        if (articleData != null)
+        {
+            <text>
+                [INJECT: apptheme, ArticleDetail.cshtml]
+            </text>
+        }
+        else
+        {
+            <text>
+                [INJECT: apptheme, ArticleList.cshtml]
+            </text>
+        }
     }
-    else
-    {
-        <text>
-            [INJECT: apptheme, ArticleList.cshtml]
-        </text>
-    }
-}
+</div>
+
+<div class="simplisity_loader" style="display:none;">
+    <span class=" simplisity_loader_inner">
+    </span>
+</div>

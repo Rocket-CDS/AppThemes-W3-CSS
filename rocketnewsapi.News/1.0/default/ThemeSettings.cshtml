@@ -1,39 +1,173 @@
 ﻿@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI;
+@using Simplisity;
+@using RocketContentAPI.Components;
+@using DNNrocketAPI.Components;
+@using RocketPortal.Components;
 @AssignDataModel(Model)
 @AddProcessDataResx(appTheme, true)
 <!--inject-->
 @{
+    var groupDict = catalogSettings.GetPropertyGroups();
     var info = moduleDataInfo;
     //NOTE: xPath for module settings must use "genxml/settings/*"
 }
-@{
-    var groupDict = catalogSettings.GetPropertyGroups();
+
+<style>
+    .w3-input {
+        height: 41px;
+    }
+</style>
+
+<!-- Satelite Settings -->
+@if (moduleData.DisplayTemplate == "articlesat.cshtml")
+{
+    <div class="w3-third w3-padding">
+        <label>Layout</label>
+        @DropDownList(info, "genxml/settings/satlayout", "0,1", "Vertical,Horizontal", "class='w3-input w3-border' ", "2")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>@ResourceKey("DNNrocket.imagewidth")</label>
+        @TextBox(info, "genxml/settings/width", "class='w3-input w3-border'", "180")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>@ResourceKey("DNNrocket.imageheight")</label>
+        @TextBox(info, "genxml/settings/height", "class='w3-input w3-border'", "180")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>Opacity</label>
+        @DropDownList(info, "genxml/settings/opacity", W3Utils.W3opacity(), "class='w3-input w3-border' ", "normal")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>@ResourceKey("DNNrocket.itemlimit")</label>
+        @TextBox(info, "genxml/settings/itemlimit", " class='w3-input w3-border' ", "3")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>@ResourceKey("RC.titletextsize")</label>
+        @DropDownList(info, "genxml/settings/titlesize", W3Utils.W3sizes(), "class='w3-input w3-border' ", "w3-large")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>@ResourceKey("RC.alignment")</label>
+        @DropDownList(info, "genxml/settings/alignment", W3Utils.W3alignment(), "class='w3-input w3-border' ", "w3-center")
+    </div>
+}
+<!-- Filter Settings -->
+@if (moduleData.DisplayTemplate == "filters.cshtml")
+{
+
+}
+<!-- Tag Settings -->
+@if (moduleData.DisplayTemplate == "tags.cshtml")
+{
+
+}
+<!-- Month Settings -->
+@if (moduleData.DisplayTemplate == "months.cshtml")
+{
+
+}
+<!-- Category Settings -->
+@if (moduleData.DisplayTemplate == "categories.cshtml")
+{
+
+}
+<!-- Detail Settings -->
+@if (moduleData.DisplayTemplate == "articledetail.cshtml")
+{
+
+}
+<!-- List Settings -->
+@if (moduleData.DisplayTemplate == "view.cshtml")
+{
+    <div class="w3-section">
+
+        <div class="w3-third w3-padding">
+            <label>Layout</label>
+            @DropDownList(info, "genxml/settings/layout", "1,2", "Image Right,Image Left", "class='w3-input w3-border' ", "2")
+        </div>
+        <div class="w3-third w3-padding">
+            <label>@ResourceKey("DNNrocket.pagesize")</label>
+            @DropDownList(info, "genxml/settings/pagesize", "6,12,24,48", "6,12,24,48", " class='w3-input w3-border '", "24")
+        </div>
+        <div class="w3-third w3-padding">
+            <label>@ResourceKey("RC.alignment")</label>
+            @DropDownList(info, "genxml/settings/alignment", W3Utils.W3alignment(), "class='w3-input w3-border' ", "w3-center")
+        </div>
+        <div class="w3-third w3-padding">
+            <label>@ResourceKey("DNNrocket.imagewidth")</label>
+            @TextBox(info, "genxml/settings/width", "class='w3-input w3-border'", "320")
+        </div>
+        <div class="w3-third w3-padding">
+            <label>@ResourceKey("DNNrocket.imageheight")</label>
+            @TextBox(info, "genxml/settings/height", "class='w3-input w3-border'", "320")
+        </div>
+        <div class="w3-third w3-padding">
+            <label>@ResourceKey("RC.titletextsize")</label>
+            @DropDownList(info, "genxml/settings/titlesize", W3Utils.W3sizes(), "class='w3-input w3-border' ", "w3-large")
+        </div>
+        <div class="w3-third w3-padding">
+            <label>Text Size</label>
+            @DropDownList(info, "genxml/settings/textsize", W3Utils.W3sizes(), "class='w3-input w3-border' ", "")
+        </div>
+        <div class="w3-third w3-padding">
+            <label>Content Size</label>
+            @DropDownList(info, "genxml/settings/contentsize", W3Utils.W3sizes(), "class='w3-input w3-border' ", "")
+        </div>
+        <div class="w3-third w3-padding">
+            <label>Opacity</label>
+            @DropDownList(info, "genxml/settings/opacity", W3Utils.W3opacity(), "class='w3-input w3-border' ", "normal")
+        </div>
+        <div class="w3-third w3-padding">
+            <label>Background Color</label>
+            @DropDownList(info, "genxml/settings/backgroundcolor", W3Utils.W3colors(), "class='w3-input w3-border' ", "")
+        </div>
+        <div class="w3-third w3-padding">
+            <label>Padding</label><br />
+            @RadioButtonList(info, "genxml/settings/padding", "w3-padding-small,w3-padding,w3-padding-large", "Small,Medium,Large", " class=''", "w3-padding")
+        </div>
+        <div class="w3-third w3-padding">
+            <label>@ResourceKey("News.showimage")</label><br />
+            @CheckBox(info, "genxml/settings/showimage", "", " class='w3-check'", true)
+        </div>
+
+    </div>
 }
 
-<div class='w3-row'>
-    <div class="w3-quarter w3-padding">
-        <label>@ResourceKey("DNNrocket.pagesize")</label>
-        @DropDownList(info, "genxml/settings/pagesize", "12,24,48", "12,24,48", " style='height:40px;' class='w3-input w3-border simplisity_sessionfield ' onchange=\"doSearchReload();return false;\" title='" + @ResourceKey("DNNrocket.pagesize", sessionParams.CultureCode) + "'", "24")
+<div class="w3-row ">
+    <div class="w3-row ">
+        <div class="w3-third w3-padding">
+            <label>@ResourceKey("DNNrocket.cssClass")</label>
+            @TextBox(info, "genxml/settings/cssclass", "class='w3-input w3-border'", "")
+        </div>
     </div>
-    <div class="w3-quarter w3-padding">
-        <label>@ResourceKey("DNNrocket.itemlimit")</label>
-        @TextBox(info, "genxml/settings/itemlimit", " class='w3-input w3-border' ", "0")
+    <div class="w3-row w3-padding ">
+        <label>Top Padding</label>
+        @TextBox(info, "genxml/settings/toppadding", " class='w3-input' min='0' max='320' step='8'", "8", false, 0, "", "range")
+    </div>
+    <div class="w3-row w3-padding ">
+        <label>Bottom Padding</label>
+        @TextBox(info, "genxml/settings/bottompadding", " class='w3-input' min='0' max='320' step='8'", "8", false, 0, "", "range")
     </div>
 </div>
 
-<div class="w3-row  w3-padding">
-    <div class="w3-row">
-        <div class='w3-row w3-padding'>
-            <div class="w3-large w3-margin-bottom">@ResourceKey("RC.propertygroups")</div>
-            @foreach (var p in groupDict)
-            {
-                <span class="w3-padding">
-                    @FilterGroupCheckBox(info, p.Key, p.Value)
-                </span>
-            }
+
+@if (moduleData.DisplayTemplate == "tags.cshtml" || moduleData.DisplayTemplate == "filters.cshtml")
+{
+    <div class="w3-row  w3-padding">
+        <div class="w3-row">
+            <div class='w3-row w3-padding'>
+                <div class="w3-large w3-margin-bottom">@ResourceKey("RC.propertygroups")</div>
+                @foreach (var p in groupDict)
+                {
+                    <span class="w3-padding">
+                        @FilterGroupCheckBox(info, p.Key, p.Value)
+                    </span>
+                }
+            </div>
         </div>
     </div>
-</div>
+}
+
 
 
 <script>

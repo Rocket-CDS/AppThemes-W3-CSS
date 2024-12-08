@@ -6,7 +6,8 @@
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
 
-<div class="rocket-filters">
+<div class="rocket-filters " style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
+
     @foreach (var g in moduleData.GetPropertyModuleGroups(catalogSettings))
     {
         <div class="rocket-filtergroup">@g.Value</div>
@@ -20,4 +21,4 @@
 
 </div>
 
-@FilterJsApiCall(moduleData.SystemKey, sessionParams)
+@FilterJsApiCall(moduleData, sessionParams)

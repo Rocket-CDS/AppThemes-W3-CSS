@@ -123,4 +123,7 @@
   <data name="readmore.Text" xml:space="preserve">
     <value>Read More</value>
   </data>
+  <data name="showimage.Text" xml:space="preserve">
+    <value>Show Image on list</value>
+  </data>
 </root>

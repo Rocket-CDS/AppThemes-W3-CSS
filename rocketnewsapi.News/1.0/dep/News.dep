@@ -30,18 +30,8 @@
 	<moduletemplates list="true">
 		<genxml>
 			<file><![CDATA[view.cshtml]]></file>
-			<name><![CDATA[List and Detail]]></name>
+			<name><![CDATA[List View]]></name>
 			<cmd>listdetail</cmd>
-		</genxml>
-		<genxml>
-			<file><![CDATA[ArticleList.cshtml]]></file>
-			<name><![CDATA[List]]></name>
-			<cmd>listonly</cmd>
-		</genxml>
-		<genxml>
-			<file><![CDATA[ArticleDetail.cshtml]]></file>
-			<name><![CDATA[Detail]]></name>
-			<cmd>detailonly</cmd>
 		</genxml>
 		<genxml>
 			<file><![CDATA[Categories.cshtml]]></file>
@@ -49,8 +39,13 @@
 			<cmd>catmenu</cmd>
 		</genxml>
 		<genxml>
+			<file><![CDATA[Filters.cshtml]]></file>
+			<name><![CDATA[Filters]]></name>
+			<cmd>catmenu</cmd>
+		</genxml>
+		<genxml>
 			<file><![CDATA[ArticleSat.cshtml]]></file>
-			<name><![CDATA[Satelite]]></name>
+			<name><![CDATA[Satellite]]></name>
 			<cmd>satellite</cmd>
 		</genxml>
 	</moduletemplates>
@@ -78,10 +73,23 @@
 	</adminpanelinterfacekeys>
 	<queryparams list="true">
 		<genxml>
+			<queryparam>newscatid</queryparam>
+			<tablename>rocketdirectoryapi</tablename>
+			<systemkey>rocketnewsapi</systemkey>
+			<datatype>category</datatype>
+		</genxml>
+		<genxml>
 			<queryparam>newsid</queryparam>
 			<tablename>rocketdirectoryapi</tablename>
 			<systemkey>rocketnewsapi</systemkey>
 			<datatype>article</datatype>
 		</genxml>
 	</queryparams>
+	<menuprovider>
+		<genxml>
+			<assembly>RocketDirectoryAPI</assembly>
+			<namespaceclass>RocketDirectoryAPI.Components.MenuDirectory</namespaceclass>
+			<systemkey>rocketnewsapi</systemkey>
+		</genxml>
+	</menuprovider>
 </genxml>
