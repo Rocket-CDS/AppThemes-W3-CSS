@@ -54,17 +54,32 @@
 <!-- Filter Settings -->
 @if (moduleData.DisplayTemplate == "filters.cshtml")
 {
-
+    if (moduleData.ApiModuleRef == moduleData.ModuleRef)
+    {
+        <div class="w3-row w3-text-red w3-large">
+            @ResourceKey("News.warningapisettings")
+        </div>
+    }
 }
 <!-- Tag Settings -->
 @if (moduleData.DisplayTemplate == "tags.cshtml")
 {
-
+    if (moduleData.ApiModuleRef == moduleData.ModuleRef)
+    {
+        <div class="w3-row w3-text-red w3-large">
+            @ResourceKey("News.warningapisettings")
+        </div>
+    }
 }
 <!-- Month Settings -->
 @if (moduleData.DisplayTemplate == "months.cshtml")
 {
-
+    if (moduleData.ApiModuleRef == moduleData.ModuleRef)
+    {
+        <div class="w3-row w3-text-red w3-large">
+            @ResourceKey("News.warningapisettings")
+        </div>
+    }
 }
 <!-- Category Settings -->
 @if (moduleData.DisplayTemplate == "categories.cshtml")
