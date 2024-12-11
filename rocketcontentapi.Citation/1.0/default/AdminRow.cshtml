@@ -15,14 +15,14 @@
 
 <div class="w3-row">
     <div class="w3-col">
-        <label>@ResourceKey("DNNrocket.title")</label>
+        <label>@ResourceKey("DNNrocket.title")</label>&nbsp;@EditFlag(sessionParams)&nbsp;@DeepL("title", "title")
         @TextBox(info, "genxml/lang/genxml/textbox/title", "class='w3-input w3-border w3-margin-bottom' autocomplete='off' MaxLength='200'", "", false)
     </div>
 </div>
 
 <div class="w3-row">
     <div class="w3-col">
-        <label>@ResourceKey("DNNrocket.content")</label>
+        <label>@ResourceKey("DNNrocket.content")</label>&nbsp;@EditFlag(sessionParams)&nbsp;@ChatGPT("content")&nbsp;@DeepL("content", "content")
         @TextArea(info, "genxml/lang/genxml/textbox/content", " rows='4' class='w3-input w3-border' autocomplete='off' ", "", false, 0)
     </div>
 </div>

@@ -8,35 +8,31 @@
 
 <div class="w3-row w3-padding">
     <div class="w3-col">
-        <label>@ResourceKey("DNNrocket.title")</label>
+        <label>@ResourceKey("DNNrocket.title")</label>&nbsp;@EditFlag(sessionParams)&nbsp;@DeepL("title", "title")
         @TextBox(info, "genxml/lang/genxml/textbox/title", "class='w3-input w3-border w3-margin-bottom' autocomplete='off' MaxLength='200'", "", false)
     </div>
 </div>
 
 <div class="w3-row w3-padding">
     <div class="w3-col">
-        <label>@ResourceKey("DNNRocket.text")</label>&nbsp;@EditFlag(sessionParams)
+        <label>@ResourceKey("DNNRocket.text")</label>&nbsp;@EditFlag(sessionParams)&nbsp;@ChatGPT("text")&nbsp;@DeepL("text","text")
         @TextArea(info, "genxml/lang/genxml/textbox/text", "class='w3-input w3-border w3-margin-bottom' autocomplete='off' MaxLength='500' row='4'", "", false)
     </div>
 </div>
 
 <div class="w3-row w3-padding">
     <label>@ResourceKey("DNNrocket.image")</label>
-    <div class="w3-row w3-border w3-card w3-round-large w3-padding">
-        [INJECT:appthemesystem,ArticleImage.cshtml]
-    </div>
+    [INJECT:appthemesystem,ArticleImage.cshtml]
 </div>
 
 <div class="w3-row w3-padding">
     <div class="w3-col">
-        <label>@ResourceKey("DNNRocket.content")</label>&nbsp;@EditFlag(sessionParams)
+        <label>@ResourceKey("DNNRocket.content")</label>&nbsp;@EditFlag(sessionParams)&nbsp;@ChatGPT("content")&nbsp;@DeepL("content", "content")
         @TextArea(info, "genxml/lang/genxml/textbox/content", "class='w3-input w3-border w3-margin-bottom' autocomplete='off' MaxLength='500' row='4'", "", false)
     </div>
 </div>
 
 <div class="w3-row w3-padding">
     <label>@ResourceKey("DNNrocket.link")</label>
-    <div class="w3-row w3-border w3-card w3-round-large w3-padding">
-        [INJECT:appthemesystem,ArticleLink.cshtml]
-    </div>
+    [INJECT:appthemesystem,ArticleLink.cshtml]
 </div>
