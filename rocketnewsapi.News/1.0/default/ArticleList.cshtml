@@ -19,7 +19,7 @@
 <div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))" style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
     <div class="w3-section containerinner">
 
-        @if (sessionParams.GetInt("catid") == 0)
+        @if (!categoryData.Exists)
         {
             <h1>@portalData.Name</h1>
         }

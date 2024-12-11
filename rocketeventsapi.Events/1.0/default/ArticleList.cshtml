@@ -27,7 +27,7 @@
 
         <div class="eventsarticlewrapper">
 
-            @if (sessionParams.GetInt("catid") == 0)
+            @if (!categoryData.Exists)
             {
                 <h1>@portalData.Name</h1>
             }

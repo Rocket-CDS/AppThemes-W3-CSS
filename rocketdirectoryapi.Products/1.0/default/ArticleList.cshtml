@@ -6,7 +6,7 @@
 
 <div class="w3-row">
         <h1>
-            @if (sessionParams.GetInt("catid") == 0)
+            @if (!categoryData.Exists)
             {
                 <span>@portalData.Name</span>
             }

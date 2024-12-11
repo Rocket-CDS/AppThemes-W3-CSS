@@ -11,7 +11,7 @@
     <div class="rocket-categoriestitle">@ResourceKey("DNNrocket.categories")</div>
 
     <div class="w3-bar-block">
-        <a href="@ListUrl(moduleData.ListPageTabId())" onclick="clearDateSearch();$('.simplisity_loader').show();" class="w3-bar-item w3-button categorylink">@ResourceKey("DNNrocket.all")</a>
+        <a href="@ListUrl(moduleData.ListPageTabId())" onclick="clearFiltersCategories();$('.simplisity_loader').show();" class="w3-bar-item w3-button rocket-categorylink">@ResourceKey("DNNrocket.all")</a>
 
         @foreach (var catData in categoryDataList.GetCategoryTree())
         {
@@ -29,11 +29,11 @@
                     var l = catData.GetDirectChildren();
                     if (l.Count == 0)
                     {
-                        <a href="@ListUrl(moduleData.ListPageTabId(), catData)#rocketblogdisplay" class="w3-bar-item w3-button categorylink @selectedCat" onclick="clearDateSearch();@showloader" style="text-decoration: none;">@catData.Name (@catData.GetArticles().RecordCount)</a>
+                        <a href="@ListUrl(moduleData.ListPageTabId(), catData)#rocketblogdisplay" class="w3-bar-item w3-button rocket-categorylink @selectedCat" onclick="@(showloader)clearDateSearch();" style="text-decoration: none;">@catData.Name (@catData.GetArticles().RecordCount)</a>
                     }
                     else
                     {
-                        <a href="@ListUrl(moduleData.ListPageTabId(), catData)#rocketblogdisplay" class="w3-bar-item w3-button categorylink @selectedCat" onclick="clearDateSearch();@showloader" style="text-decoration: none;">@catData.Name (@catData.GetArticles().RecordCount)</a>
+                        <a href="@ListUrl(moduleData.ListPageTabId(), catData)#rocketblogdisplay" class="w3-bar-item w3-button rocket-categorylink @selectedCat" onclick="@(showloader)clearDateSearch();" style="text-decoration: none;">@catData.Name (@catData.GetArticles().RecordCount)</a>
                         <div class="w3-margin-left">
                             @foreach (var child in l)
                             {
@@ -43,7 +43,7 @@
                                     selectedCat = " w3-theme-l3 ";
                                     showloader = "";
                                 }
-                                <a href="@ListUrl(moduleData.ListPageTabId(), child)#rocketblogdisplay" class="w3-bar-item w3-button categorylink @selectedCat" onclick="clearDateSearch();@showloader" style="text-decoration: none;">@child.Name  (@child.GetArticles().RecordCount)</a>
+                                <a href="@ListUrl(moduleData.ListPageTabId(), child)#rocketblogdisplay" class="w3-bar-item w3-button rocket-categorylink @selectedCat" onclick="@(showloader)clearDateSearch();" style="text-decoration: none;">@child.Name  (@child.GetArticles().RecordCount)</a>
                             }
                         </div>
                     }
@@ -54,7 +54,11 @@
 </div>
 
 <script>
-    function clearDateSearch() {
+    function clearFiltersCategories() {
+        $('#viewsearchtext').val('');
+        simplisity_setSessionField('monthidx', '');
+        simplisity_setSessionField('viewsearchtext', '');
+        $('.rocket-monthdates').removeClass('w3-theme-l3');
         simplisity_setSessionField('searchdate1', '');
         simplisity_setSessionField('searchdate2', '');
     }
