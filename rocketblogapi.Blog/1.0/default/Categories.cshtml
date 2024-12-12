@@ -11,16 +11,14 @@
     <div class="rocket-categoriestitle">@ResourceKey("DNNrocket.categories")</div>
 
     <div class="w3-bar-block">
-        <a href="@ListUrl(moduleData.ListPageTabId())" onclick="clearFiltersCategories();$('.simplisity_loader').show();" class="w3-bar-item w3-button rocket-categorylink">@ResourceKey("DNNrocket.all")</a>
+        <a href="@ListUrl(moduleData.ListPageTabId())" onclick="blog_clearFiltersCategories();" class="w3-bar-item w3-button rocket-categorylink">@ResourceKey("DNNrocket.all")</a>
 
         @foreach (var catData in categoryDataList.GetCategoryTree())
         {
             var selectedCat = "";
-            var showloader = "$('.simplisity_loader').show();"; // Page does not refresh if anchor is on a link.
             if (catData.CategoryId == categoryData.CategoryId)
             {
                 selectedCat = " w3-theme-l3 ";
-                showloader = "";
             }
             if (!catData.Hidden && !catData.HiddenByCulture && catData.Level == 0)
             {
@@ -29,11 +27,11 @@
                     var l = catData.GetDirectChildren();
                     if (l.Count == 0)
                     {
-                        <a href="@ListUrl(moduleData.ListPageTabId(), catData)" class="w3-bar-item w3-button rocket-categorylink @selectedCat" onclick="@(showloader)clearFiltersCategories();" style="text-decoration: none;">@catData.Name (@catData.GetArticles().RecordCount)</a>
+                        <a href="@ListUrl(moduleData.ListPageTabId(), catData)" class="w3-bar-item w3-button rocket-categorylink @selectedCat" onclick="blog_clearFiltersCategories();" style="text-decoration: none;">@catData.Name (@catData.GetArticles().RecordCount)</a>
                     }
                     else
                     {
-                        <a href="@ListUrl(moduleData.ListPageTabId(), catData)" class="w3-bar-item w3-button rocket-categorylink @selectedCat" onclick="@(showloader)clearFiltersCategories();" style="text-decoration: none;">@catData.Name (@catData.GetArticles().RecordCount)</a>
+                        <a href="@ListUrl(moduleData.ListPageTabId(), catData)" class="w3-bar-item w3-button rocket-categorylink @selectedCat" onclick="blog_clearFiltersCategories();" style="text-decoration: none;">@catData.Name (@catData.GetArticles().RecordCount)</a>
                         <div class="w3-margin-left">
                             @foreach (var child in l)
                             {
@@ -41,9 +39,8 @@
                                 if (child.CategoryId == categoryData.CategoryId)
                                 {
                                     selectedCat = " w3-theme-l3 ";
-                                    showloader = "";
                                 }
-                                <a href="@ListUrl(moduleData.ListPageTabId(), child)" class="w3-bar-item w3-button rocket-categorylink @selectedCat" onclick="@(showloader)clearFiltersCategories();" style="text-decoration: none;">@child.Name  (@child.GetArticles().RecordCount)</a>
+                                <a href="@ListUrl(moduleData.ListPageTabId(), child)" class="w3-bar-item w3-button rocket-categorylink @selectedCat" onclick="blog_clearFiltersCategories();" style="text-decoration: none;">@child.Name  (@child.GetArticles().RecordCount)</a>
                             }
                         </div>
                     }
@@ -54,12 +51,4 @@
 </div>
 
 <script>
-    function clearFiltersCategories() {
-        $('#viewsearchtext').val('');
-        simplisity_setSessionField('monthidx', '');
-        simplisity_setSessionField('viewsearchtext', '');
-        $('.rocket-monthdates').removeClass('w3-theme-l3');
-        simplisity_setSessionField('searchdate1', '');
-        simplisity_setSessionField('searchdate2', '');
-    }
 </script>

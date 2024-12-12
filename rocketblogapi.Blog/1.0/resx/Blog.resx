@@ -120,6 +120,9 @@
   <data name="addcomment.Text" xml:space="preserve">
     <value>Add Comment</value>
   </data>
+  <data name="clearfilterandcats.Text" xml:space="preserve">
+    <value>Clear Filters and Categories on month select.  (Reload Page)</value>
+  </data>
   <data name="comment.Text" xml:space="preserve">
     <value>Comment</value>
   </data>
