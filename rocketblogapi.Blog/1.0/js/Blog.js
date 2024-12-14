@@ -43,3 +43,69 @@ function blog_clearFiltersCategories() {
     // Clear Filter checkboxes
     $('.rocket-filtercheckbox').each(function (i, obj) { simplisity_setSessionField(this.id, false); });
 }
+function blog_pageLoad() {
+    $('.simplisity_loader').show();
+    if (simplisity_getSessionField('searchdate1') != '' && simplisity_getSessionField('viewsearchtext') == '') {
+        monthidx = simplisity_getSessionField('monthidx');
+        $('.rocket-monthdates').removeClass('w3-theme-l3');
+        $('.rocket-monthdates' + monthidx).addClass('w3-theme-l3');
+    }
+    $('.simplisity_loader').hide();
+}
+
+function blog_sharrre(pageUrl, iconClass) {
+    var list = ['facebook', 'linkedin', 'twitter', 'pinterest'];
+    $('#rocket-sharrre').sharrre({
+        share: {
+            facebook: true,
+            twitter: true,
+            linkedin: true,
+            pinterest: true,
+        },
+        buttons: {
+            facebook: {
+                popup: {
+                    width: 1200,
+                    height: 900
+                }
+            },
+            twitter: {
+                popup: {
+                    width: 1200,
+                    height: 900
+                }
+            },
+            linkedin: {
+                popup: {
+                    width: 1200,
+                    height: 900
+                }
+            },
+            pinterest: {
+                popup: {
+                    width: 1200,
+                    height: 900
+                }
+            },
+        },
+        url: pageUrl,
+        enableCounter: false,
+        enableHover: false,
+        template: function () {
+            content = '';
+            for (i in list) {
+                service = list[i];
+                content += '<a class="' + service + '"><span class="ri-' + service + ' ' + iconClass + '"></span></a>';
+            }
+            return content;
+        }(), render: function (api, options) {
+            for (i in list) {
+                service = list[i];
+                $(api.element).on('click', '.' + service, function () {
+                    api.openPopup(this.className);
+                });
+            }
+        }
+    });
+
+}

@@ -47,15 +47,3 @@
 </div>
 
 @DateJsApiCall(moduleData, "#rocket-blog", sessionParams)
-
-<script>
-    $(document).ready(function () {
-        if (simplisity_getSessionField('searchdate1') != '' && simplisity_getSessionField('viewsearchtext') == '') {
-            monthidx = simplisity_getSessionField('monthidx');
-            $('.rocket-monthdates').removeClass('w3-theme-l3');
-            $('.rocket-monthdates' + monthidx).addClass('w3-theme-l3');
-        }
-        $('.simplisity_loader').hide();
-    });
-
-</script>
