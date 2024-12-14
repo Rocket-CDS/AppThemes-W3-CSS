@@ -17,9 +17,9 @@
 }
 <div class="rocket-months " style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
 
-    <div class="w3-button w3-block w3-left-align rocket-monthdates " onclick="blog_showSelectedMonths('0','','','@broswerUrl','@broswerUrl');">
+    <div class="w3-button w3-block w3-left-align rocket-monthdates " onclick="blog_showSelectedMonths('0','','','@broswerUrl','@broswerUrl','w3-theme-l3');">
         <span>
-            @ResourceKey("RocketBlogAPI.latest")
+            @ResourceKey("DNNrocket.all")
         </span>
         <span class="w3-right">
         </span>
@@ -32,7 +32,7 @@
     {
         if (a.Value.Count > 0)
         {
-            <div class="w3-button w3-block w3-left-align rocket-monthdates rocket-monthdates@(monthidx) " monthidx="@(monthidx)" onclick="blog_showSelectedMonths($(this).attr('monthidx'),'@a.Key.ToString("yyyy-MM-dd")', '@a.Key.AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd")', '@reloadUrl','@broswerUrl');">
+            <div class="w3-button w3-block w3-left-align rocket-monthdates rocket-monthdates@(monthidx) " monthidx="@(monthidx)" onclick="blog_showSelectedMonths($(this).attr('monthidx'),'@a.Key.ToString("yyyy-MM-dd")', '@a.Key.AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd")', '@reloadUrl','@broswerUrl','w3-theme-l3');">
                 <span>
                     @a.Key.ToString("MMMM yyyy")
                 </span>

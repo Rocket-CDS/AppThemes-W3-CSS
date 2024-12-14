@@ -11,7 +11,7 @@
     <div class="rocket-categoriestitle">@ResourceKey("DNNrocket.categories")</div>
 
     <div class="w3-bar-block">
-        <a href="@ListUrl(moduleData.ListPageTabId())" onclick="blog_clearFiltersCategories();" class="w3-bar-item w3-button rocket-categorylink">@ResourceKey("DNNrocket.all")</a>
+        <a href="@ListUrl(moduleData.ListPageTabId())" onclick="blog_clearFiltersCategories('w3-theme-l3');" class="w3-bar-item w3-button rocket-categorylink">@ResourceKey("DNNrocket.all")</a>
 
         @foreach (var catData in categoryDataList.GetCategoryTree())
         {
@@ -27,11 +27,11 @@
                     var l = catData.GetDirectChildren();
                     if (l.Count == 0)
                     {
-                        <a href="@ListUrl(moduleData.ListPageTabId(), catData)" class="w3-bar-item w3-button rocket-categorylink @selectedCat" onclick="blog_clearFiltersCategories();" style="text-decoration: none;">@catData.Name (@catData.GetArticles().RecordCount)</a>
+                        <a href="@ListUrl(moduleData.ListPageTabId(), catData)" class="w3-bar-item w3-button rocket-categorylink @selectedCat" onclick="blog_clearFiltersCategories('w3-theme-l3');" style="text-decoration: none;">@catData.Name (@catData.GetArticles().RecordCount)</a>
                     }
                     else
                     {
-                        <a href="@ListUrl(moduleData.ListPageTabId(), catData)" class="w3-bar-item w3-button rocket-categorylink @selectedCat" onclick="blog_clearFiltersCategories();" style="text-decoration: none;">@catData.Name (@catData.GetArticles().RecordCount)</a>
+                        <a href="@ListUrl(moduleData.ListPageTabId(), catData)" class="w3-bar-item w3-button rocket-categorylink @selectedCat" onclick="blog_clearFiltersCategories('w3-theme-l3');" style="text-decoration: none;">@catData.Name (@catData.GetArticles().RecordCount)</a>
                         <div class="w3-margin-left">
                             @foreach (var child in l)
                             {
@@ -40,7 +40,7 @@
                                 {
                                     selectedCat = " w3-theme-l3 ";
                                 }
-                                <a href="@ListUrl(moduleData.ListPageTabId(), child)" class="w3-bar-item w3-button rocket-categorylink @selectedCat" onclick="blog_clearFiltersCategories();" style="text-decoration: none;">@child.Name  (@child.GetArticles().RecordCount)</a>
+                                <a href="@ListUrl(moduleData.ListPageTabId(), child)" class="w3-bar-item w3-button rocket-categorylink @selectedCat" onclick="blog_clearFiltersCategories('w3-theme-l3');" style="text-decoration: none;">@child.Name  (@child.GetArticles().RecordCount)</a>
                             }
                         </div>
                     }
@@ -49,6 +49,3 @@
         }
     </div>
 </div>
-
-<script>
-</script>
