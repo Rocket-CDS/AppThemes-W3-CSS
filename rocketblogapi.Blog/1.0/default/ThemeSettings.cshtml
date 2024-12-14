@@ -89,7 +89,12 @@
 <!-- Detail Settings -->
 @if (moduleData.DisplayTemplate == "articledetail.cshtml")
 {
-
+    if (moduleData.ApiModuleRef == moduleData.ModuleRef)
+    {
+        <div class="w3-row w3-text-red w3-large">
+            @ResourceKey("Blog.warningapisettings")
+        </div>
+    }
 }
 <!-- List Settings -->
 @if (moduleData.DisplayTemplate == "view.cshtml")

@@ -32,7 +32,7 @@
     {
         if (a.Value.Count > 0)
         {
-            <div class="w3-button w3-block w3-left-align rocket-monthdates rocket-monthdates@(monthidx) " monthidx="@(monthidx)" onclick="blog_showSelectedMonths($(this).attr('monthidx'),'@a.Key.ToString("yyyy-MM-dd")', '@a.Key.AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd")', '@reloadUrl','@broswerUrl','w3-theme-l3');">
+            <div class="w3-button w3-block w3-left-align rocket-monthdates rocket-monthdates@(monthidx) " monthidx="@(monthidx)" onclick="blog_showSelectedMonths('@(monthidx)','@a.Key.ToString("yyyy-MM-dd")', '@a.Key.AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd")', '@reloadUrl','@broswerUrl','w3-theme-l3');">
                 <span>
                     @a.Key.ToString("MMMM yyyy")
                 </span>
