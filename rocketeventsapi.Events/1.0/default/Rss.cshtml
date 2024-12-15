@@ -22,12 +22,10 @@
         <ttl><![CDATA[30]]></ttl>
         <atom:link href="@RssEventUrl(portalData.PortalId,sessionParams.Get("cmd"),sessionParams.GetInt("month"),sessionParams.GetInt("year"))" rel="self" type="application/rss+xml" />
 
-@foreach (ArticleLimpet articleData in eventList)
-{
-    var urlparams = new Dictionary<string, string>();
-    urlparams.Add("articleid", articleData.ArticleId.ToString());
-    var date = articleData.Info.GetXmlPropertyDate("genxml/textbox/publisheddate");
-    var dateFormat = date.ToShortDateString();
+    @foreach (ArticleLimpet articleData in eventList)
+    {
+        var urlparams = new Dictionary<string, string>();
+        urlparams.Add("articleid", articleData.ArticleId.ToString());
 
         <item>
             <title><![CDATA[@articleData.Name]]></title>
@@ -46,7 +44,7 @@
             <media:thumbnail width="@(imagewidthrss)" height="@(imageheightrss)" url="@(portalData.EngineUrlWithProtocol)@ImageUrl(articleData.GetImage(0).RelPath, imagewidthrss, imageheightrss)" />
             } 
         </item>
-}
+    }
 
     </channel>
 </rss>

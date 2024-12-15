@@ -7,15 +7,23 @@
 <!--inject-->
 @{
     var eventList = (Dictionary<DateTime, List<ArticleLimpet>>)Model.GetDataObject("eventlistbymonth");
+    var reloadUrl = "";
+    var broswerUrl = ListUrl(moduleData.ListPageTabId()).ToString();
+    if (categoryDataList.DataList.Count > 0)
+    {
+        reloadUrl = broswerUrl;
+    }
 }
 
 <div class="rocket-eventmonths " style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
 
-    <a href="@ListUrl(moduleData.ListPageTabId())" class="w3-button w3-block w3-left-align monthlink rocket-monthdates rocket-monthdates0 w3-theme-l3" onclick="$('.simplisity_loader').show();setSelected('0');">
+    <div class="w3-button w3-block w3-left-align rocket-monthdates " onclick="events_showSelectedMonths('0','','','@broswerUrl','@broswerUrl','w3-theme-l3');">
         <span>
-            @ResourceKey("RocketEventsAPI.latest")
+            @ResourceKey("DNNrocket.all")
         </span>
-    </a>
+        <span class="w3-right">
+        </span>
+    </div>
 
     @{
         var monthidx = 1;
@@ -24,36 +32,17 @@
     {
         if (a.Value.Count > 0)
         {
-            <a href="@ListUrl(moduleData.ListPageTabId(), new string[] {"month", a.Key.Month.ToString(),"year", a.Key.Year.ToString() })" class="w3-button w3-block w3-left-align monthlink rocket-monthdates rocket-monthdates@(monthidx) " monthidx="@(monthidx)" onclick="setSelected($(this).attr('monthidx'));">
+            <div class="w3-button w3-block w3-left-align rocket-monthdates rocket-monthdates@(monthidx) " monthidx="@(monthidx)" onclick="events_showSelectedMonths('@(monthidx)','@a.Key.ToString("yyyy-MM-dd")', '@a.Key.AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd")', '@reloadUrl','@broswerUrl','w3-theme-l3');">
                 <span>
                     @a.Key.ToString("MMMM yyyy")
                 </span>
-                <span class="w3-right">     
+                <span class="w3-right">
                     @a.Value.Count
                 </span>
-            </a>
+            </div>
         }
         monthidx += 1;
     }
-
 </div>
 
-<script>
-    $(document).ready(function () {
-        @if (sessionParams.Get("month") == "")
-        {
-            <text>
-                    simplisity_setSessionField('monthidx', '');
-            </text>
-        }
-        var monthidx = simplisity_getSessionField('monthidx');
-        if (monthidx != '' && simplisity_getSessionField('viewsearchtext') == '') {
-            $('.rocket-monthdates').removeClass('w3-theme-l3');
-            $('.rocket-monthdates' + monthidx).addClass('w3-theme-l3');
-        }
-    });
-    function setSelected(monthidx, month, year) {
-        $('.simplisity_loader').show();
-        simplisity_setSessionField('monthidx', monthidx);
-    }
-</script>
+@DateJsApiCall(moduleData, "#rocket-events", sessionParams)

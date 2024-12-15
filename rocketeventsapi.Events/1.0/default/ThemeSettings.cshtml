@@ -59,16 +59,6 @@
         @DropDownList(info, "genxml/settings/backgroundcolor", W3Utils.W3colors(), "class='w3-input w3-border' ", "")
     </div>
 }
-<!-- Filter Settings -->
-@if (moduleData.DisplayTemplate == "filters.cshtml")
-{
-    if (moduleData.ApiModuleRef == moduleData.ModuleRef)
-    {
-        <div class="w3-row w3-text-red w3-large">
-            @ResourceKey("Events.warningapisettings")
-        </div>
-    }
-}
 <!-- Tag Settings -->
 @if (moduleData.DisplayTemplate == "tags.cshtml")
 {
@@ -89,15 +79,15 @@
         </div>
     }
 }
-<!-- Category Settings -->
-@if (moduleData.DisplayTemplate == "categories.cshtml")
-{
-
-}
 <!-- Detail Settings -->
 @if (moduleData.DisplayTemplate == "articledetail.cshtml")
 {
-
+    if (moduleData.ApiModuleRef == moduleData.ModuleRef)
+    {
+        <div class="w3-row w3-text-red w3-large">
+            @ResourceKey("Events.warningapisettings")
+        </div>
+    }
 }
 <!-- List Settings -->
 @if (moduleData.DisplayTemplate == "view.cshtml")
@@ -172,9 +162,7 @@
 
 
 
-
-
-@if (moduleData.DisplayTemplate == "tags.cshtml" || moduleData.DisplayTemplate == "filters.cshtml")
+@if (moduleData.DisplayTemplate == "tags.cshtml")
 {
     <div class="w3-row  w3-padding">
         <div class="w3-row">
