@@ -106,6 +106,8 @@
                 </div>
             </div>
 
+            <div id="rocket-sharrre" class="w3-row w3-xxlarge"></div>
+
             @if (!moduleData.GetSettingBool("turnoffcomments") && UserUtils.IsValidUser(PortalUtils.GetCurrentPortalId(), UserUtils.GetCurrentUserId()))
             {
                 var reviewfieldId = "articlereview";
@@ -174,3 +176,8 @@
 
 </div>
 </div>
+<script>
+    $(document).ready(function () {
+        events_sharrre('@DetailUrl(moduleData.DetailPageTabId(), articleData, categoryData)', 'w3-padding w3-button')
+    });
+</script>

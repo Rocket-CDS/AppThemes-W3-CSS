@@ -94,6 +94,8 @@
                 </div>
             </div>
 
+            <div id="rocket-sharrre" class="w3-row w3-xxlarge"></div>
+
             <div>
                 <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)#rocketblogdisplay" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-action w3-border w3-round backlink">@ButtonIconText(ButtonTypes.back)</a>
             </div>
@@ -102,3 +104,10 @@
     </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        news_sharrre('@DetailUrl(moduleData.DetailPageTabId(), articleData, categoryData)', 'w3-padding w3-button')
+    });
+</script>
+
