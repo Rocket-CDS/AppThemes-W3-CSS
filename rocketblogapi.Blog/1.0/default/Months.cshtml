@@ -7,17 +7,17 @@
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
 @{
-    var monthList = RocketDirectoryAPIUtils.GetArticlesByMonth(sessionParams, systemData.SystemKey, DateTime.Now.AddMonths(-6), 12, "publisheddate");
+    var monthList = RocketDirectoryAPIUtils.GetArticlesByMonth(sessionParams, systemData.SystemKey, DateTime.Now.AddMonths(-12), 12, "publisheddate");
     var reloadUrl = "";
-    var broswerUrl = ListUrl(moduleData.ListPageTabId()).ToString();
+    var browserUrl = ListUrl(moduleData.ListPageTabId()).ToString();
     if (categoryDataList.DataList.Count > 0)
     {
-        reloadUrl = broswerUrl;
+        reloadUrl = browserUrl;
     }
 }
 <div class="rocket-months " style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
 
-    <div class="w3-button w3-block w3-left-align rocket-monthdates " onclick="blog_showSelectedMonths('0','','','@broswerUrl','@broswerUrl','w3-theme-l3');">
+    <div class="w3-button w3-block w3-left-align rocket-monthdates " onclick="blog_showSelectedMonths('0','','','@browserUrl','@browserUrl','w3-theme-l3');">
         <span>
             @ResourceKey("DNNrocket.all")
         </span>
@@ -32,7 +32,7 @@
     {
         if (a.Value.Count > 0)
         {
-            <div class="w3-button w3-block w3-left-align rocket-monthdates rocket-monthdates@(monthidx) " monthidx="@(monthidx)" onclick="blog_showSelectedMonths('@(monthidx)','@a.Key.ToString("yyyy-MM-dd")', '@a.Key.AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd")', '@reloadUrl','@broswerUrl','w3-theme-l3');">
+            <div class="w3-button w3-block w3-left-align rocket-monthdates rocket-monthdates@(monthidx) " monthidx="@(monthidx)" onclick="blog_showSelectedMonths('@(monthidx)','@a.Key.ToString("yyyy-MM-dd")', '@a.Key.AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd")', '@reloadUrl','@browserUrl','w3-theme-l3');">
                 <span>
                     @a.Key.ToString("MMMM yyyy")
                 </span>
