@@ -17,8 +17,7 @@
                 @CheckBox(info, "genxml/checkbox/defaultopen",""," class='w3-check' ")
             </div>
             <div class='w3-col m12 w3-padding'>
-                <label>@ResourceKey("DNNrocket.answer")</label>
-                @EditFlag(sessionParams)
+                <label>@ResourceKey("DNNrocket.answer")</label>&nbsp;@EditFlag(sessionParams)&nbsp;@DeepL("richtext", "richtext")
                 <div class='w3-col m12'>
                     @CKEditor4(info, "genxml/lang/genxml/textbox/richtext", true)
                 </div>

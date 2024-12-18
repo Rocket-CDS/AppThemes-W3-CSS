@@ -9,15 +9,17 @@ function blog_showSelectedMonths(monthidx, date1, date2, reloadUrl, browserUrl, 
     simplisity_setSessionField('searchdate1', date1);
     simplisity_setSessionField('searchdate2', date2);
     $('.rocket-categorylink').removeClass(cscSelectedClass);
+    simplisity_setSessionField('rocketpropertyidtag', '0');
     if (browserUrl && browserUrl != '') {
         history.pushState('', "Title", browserUrl);
     }
     if (reloadUrl && reloadUrl != '') {
-        simplisity_setSessionField('rocketpropertyidtag', '0');
         $('.rocket-filtercheckbox').each(function (i, obj) { simplisity_setSessionField(this.id, false); });
         location.replace(reloadUrl);
     }
     else {
+        $('.rocket-tagbutton').removeClass('rocket-tagbuttonOn');
+        $('.rocket-tagbuttonclear').hide();
         var element_to_scroll_to = document.getElementById('rocketblogdisplay');
         element_to_scroll_to.scrollIntoView();
         doDateSearchReload(date1, date2);

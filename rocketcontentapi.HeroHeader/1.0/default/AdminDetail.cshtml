@@ -8,20 +8,20 @@
 
 <div class="w3-row w3-padding">
     <div class="w3-col">
-        <label>@ResourceKey("DNNrocket.title1")</label>&nbsp;@EditFlag(sessionParams)
+        <label>@ResourceKey("DNNrocket.title1")</label>&nbsp;@EditFlag(sessionParams)&nbsp;@DeepL("title", "title")
         @TextBox(info, "genxml/lang/genxml/textbox/title", " type='text' class='w3-input w3-card w3-border w3-round-large' ", "", false)
     </div>
 </div>
 
 <div class="w3-row w3-padding">
     <div class="w3-col">
-        <label>@ResourceKey("DNNrocket.title2")</label>&nbsp;@EditFlag(sessionParams)
+        <label>@ResourceKey("DNNrocket.title2")</label>&nbsp;@EditFlag(sessionParams)&nbsp;@DeepL("text", "text")
         @TextBox(info, "genxml/lang/genxml/textbox/text", " type='text' class='w3-input w3-card w3-border w3-round-large' ", "", false)
     </div>
 </div>
 <div class="w3-row w3-padding">
     <div class="w3-col">
-        <label>@ResourceKey("HeroHeader.quicktext")</label>&nbsp;@EditFlag(sessionParams)
+        <label>@ResourceKey("HeroHeader.quicktext")</label>&nbsp;@EditFlag(sessionParams)&nbsp;@ChatGPT("quicktext", "title")&nbsp;@DeepL("quicktext", "quicktext")
         @TextArea(info, "genxml/lang/genxml/textbox/quicktext", " type='text' class='w3-input w3-card w3-border w3-round-large' maxlength='250' ", "", false)
     </div>
 </div>
