@@ -62,12 +62,7 @@
     <Folder Include="rocketcontentapi.HtmlContent\1.0\css\" />
     <Folder Include="rocketcontentapi.HtmlContent\1.0\img\" />
     <Folder Include="rocketcontentapi.HtmlContent\1.0\js\" />
-    <Folder Include="rocketdirectoryapi.Products\1.0\css\" />
-    <Folder Include="rocketdirectoryapi.Products\1.0\dep\" />
-    <Folder Include="rocketdirectoryapi.Products\1.0\img\" />
-    <Folder Include="rocketdirectoryapi.Products\1.0\js\" />
-    <Folder Include="rocketdirectoryapi.Products\1.0\modt\" />
-    <Folder Include="rocketdirectoryapi.Products\1.0\resx\" />
+    <Folder Include="rocketdirectoryapi.ProductsAA\1.0\img\" />
   </ItemGroup>
 
   <ItemGroup>

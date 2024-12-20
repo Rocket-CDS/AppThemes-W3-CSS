@@ -1,46 +1,175 @@
-﻿@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
 @using DNNrocketAPI.Components;
 @using RocketDirectoryAPI.Components;
 @AssignDataModel(Model)
+@AddProcessDataResx(appTheme, true)
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
+@{
+    var width = moduleData.GetSettingInt("width");
+    var height = moduleData.GetSettingInt("height");
+    var captionHeight = moduleData.GetSettingInt("captionheight");
+    var alignment = moduleData.GetSetting("alignment");
+    var paddingClass = moduleData.GetSetting("padding");
+    var backgroundcolor = moduleData.GetSetting("backgroundcolor");
+}
+<div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))" style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
+    <div class="w3-section containerinner productsarticledetail">
 
-<div class="w3-row">
-    <a href="@ListUrl(portalContent.ListPageTabId)" class="w3-button w3-theme w3-right" title="@articleData.Name">@ResourceKey("DNNrocket.back")</a>
-    <h1>@articleData.Name</h1>
-    <div class="w3-animate-opacity">
-        <p>@articleData.Summary</p>
-        <div class="w3-row">
-        <div class="w3-third">
-            <div class="w3-row w3-padding-small">
-                <img class="imgrollovertarget " alt="@articleData.Name" src="@ImageUrl(articleData.GetImage(0).RelPath,450,450)" style="width:100%">
-            </div>
-            <div class="w3-row">
-                @foreach (var i in articleData.GetImages())
-                {
-                    <div class="w3-col s6 m4 l2 w3-padding-small">
-                        <img class="imgrollover" src="@ImageUrl(i.RelPath,450,450)" style="width:100%">
+    <div>
+            <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-action w3-border w3-round backlink">@ButtonIconText(ButtonTypes.back)</a>
+    </div>
+
+
+    <div class="w3-container w3-margin">
+        <div class="w3-center">
+            <h3>@articleData.Name</h3>
+            <h5><span class="w3-opacity">@DateOf(articleData.Info, articleData.PublishedDateXPath,sessionParams.CultureCode, "dd MMM yyyy")</span></h5>
+        </div>
+
+        <p>@BreakOf(articleData.Summary)</p>
+
+        <div class="w3-justify">
+                <div class="w3-row">
+                    <div class="w3-col m1 l1 w3-hide-small" >
+                        @if (articleData.GetImages().Count > 1)
+                        {
+                            foreach (var i in articleData.GetImages().Take(6))
+                            {
+                                <div class="" style="padding-bottom:8px;padding-right:8px;">
+                                    <img src="@ImageUrl(i.RelPath,120,120)" onMouseOver="$('#mainimage@(articleData.ArticleId)').prop('src','@ImageUrl(i.RelPath,640,400)');" alt="" style="width:100%" />
+                                </div>
+                            }
+                        }
                     </div>
+                    <div class="w3-col m11 l11">
+                            <img id="mainimage@(articleData.ArticleId)" src="@ImageUrl(articleData.GetImage(0).RelPath,640,400)" alt="@articleData.GetImage(0).Alt" style="width:100%" />
+                    </div>
+                </div>
+
+            <div class="w3-row w3-margin w3-small">
+                @ResourceKey("Products.rating"):&nbsp;@articleData.ReviewScore
+            </div>
+            <p>
+                @HtmlOf(articleData.RichText)
+            </p>
+            <div class="w3-row">
+                @foreach (var tag in articleData.GetProperties("tags"))
+                {
+                    <span class="w3-light-grey w3-round-xlarge w3-padding w3-margin-right">
+                        @tag.Name
+                    </span>
                 }
             </div>
-        </div>
-        <div class="w3-twothird">
-                <div>
-                    @articleData.RichText &nbsp;
+
+            <div class="w3-row">
+                <div class="w3-half">
+                    @if (articleData.GetLinkList().Count > 0)
+                    {
+                        <div class="w3-xlarge w3-margin-top">@ButtonIcon(ButtonTypes.link)&nbsp;@ResourceKey("DNNrocket.links")</div>
+                    }
+                    @foreach (var lk in articleData.Getlinks())
+                    {
+                        if (!lk.Hidden)
+                        {
+                            <div class="w3-padding">
+                                <a target="_blank" href="@lk.Url" target="@lk.Target">@lk.Name</a>
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="w3-half">
+                    @if (articleData.GetDocList().Count > 0)
+                    {
+                        <div class="w3-xlarge w3-margin-top">@ButtonIcon(ButtonTypes.download)&nbsp;@ResourceKey("DNNrocket.documents")</div>
+                    }
+                    @foreach (var doc in articleData.GetDocs())
+                    {
+                        if (!doc.Hidden)
+                        {
+                            <a target="_blank" href="/@doc.RelPath.TrimStart('/')">
+                                <div class="w3-button w3-theme-l3 w3-block w3-left-align rocket-document">
+                                    @doc.Name
+                                </div>
+                            </a>
+                        }
+                    }
                 </div>
             </div>
+
+            <div id="rocket-sharrre" class="w3-row w3-xxlarge"></div>
+
+            @if (!moduleData.GetSettingBool("turnoffcomments") && UserUtils.IsValidUser(PortalUtils.GetCurrentPortalId(), UserUtils.GetCurrentUserId()))
+            {
+                var reviewfieldId = "articlereview";
+                var userData = UserUtils.GetUserData(PortalUtils.GetCurrentPortalId(), UserUtils.GetCurrentUserId());
+                <p class="w3-clear"></p>
+                <div class="w3-xlarge w3-margin-top">@ResourceKey("DNNrocket.reviews")</div>
+                <div class="simplisity_panel w3-margin-top">
+                    <div id="productsreviewinput" class="w3-margin-top">
+                       <div class="w3-row">
+                            <div class="w3-half">
+                                <label>@ResourceKey("DNNrocket.name")</label>
+                                @TextBox(infoempty, "genxml/textbox/name" + reviewfieldId, "  maxlength='30' class='w3-input w3-border' autocomplete='off'", userData.DisplayName, false)
+                            </div>
+                            <div class="w3-quarter">
+                                <label>@ResourceKey("Products.rating")</label><br/>
+                                @RadioButtonList(infoempty, "genxml/select/stars" + reviewfieldId,"1,2,3,4,5","1,2,3,4,5"," class='w3-right'","", ResourceKey("Products.stars").ToString(),false)
+                            </div>
+                            <div class="w3-col m12">
+                                <label>@ResourceKey("Products.comment")</label>
+                                @TextArea(infoempty, "genxml/textbox/comment" + reviewfieldId, " maxlength='300' class='w3-input w3-border' autocomplete='off'", "", false)
+                            </div>
+                       </div>
+                    </div>
+                    <div id="productspostinoput" class="w3-center w3-margin-top">
+                        <div class="w3-button w3-white w3-border simplisity_confirmclick" s-confirm="@ResourceKey("Products.postcomments")?" s-cmd="remote_publicadduserreview" s-post="#productsreviewinput" s-return="#productsreviewinput" s-reload="true" s-fields='{"articleid":"@articleData.ArticleId"}'>
+                            <b>@ResourceKey("Products.addcomment")&nbsp;</b>
+                        </div>
+                    </div>
+                    <script>
+                        $(document).ready(function () {
+                            $(document).simplisityStartUp('/Desktopmodules/dnnrocket/api/rocket/action', { systemkey: 'rocketproductsapi' });
+                        });
+                    </script>
+                </div>
+            }
+            @if (!moduleData.GetSettingBool("turnoffcomments"))
+            {
+
+                <div class="w3-right w3-margin-top">
+                    <div class="w3-button w3-black" onclick="$('#productsreviews').toggle();">
+                        <b>@ResourceKey("Products.replies")&nbsp;</b>
+                        <span class="w3-tag w3-white">@articleData.ReviewCount</span>
+                    </div>
+                </div>
+                <p class="w3-clear"></p>
+
+                <div id="productsreviews" class="w3-margin-top" style="display:none;">
+                    @foreach (var r in articleData.GetReviews())
+                    {
+                        if (!r.Hidden)
+                        {
+                            <div class="w3-row w3-border-top w3-padding">
+                                <div class="w3-large">@r.Name<span class="w3-opacity w3-medium">&nbsp;@DateOf(r.Info, "genxml/textbox/reviewdate",sessionParams.CultureCode,"dd MMM yyy")</span></div>
+                                <div class="w3-small w3-margin-left">@BreakOf(r.Comment)</div>
+                            </div>                       
+                        }
+                    }
+                </div>
+            }
+
+                <div>
+                    <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)#rocketproductsdisplay" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-action w3-border w3-round backlink">@ButtonIconText(ButtonTypes.back)</a>
+                </div>
+
         </div>
+    </div>
     </div>
 </div>
 
 <script>
-
     $(document).ready(function () {
-
-        $('.imgrollover').unbind("mouseover");
-        $(".imgrollover").mouseover(function () {
-            $('.imgrollovertarget').attr('src', $(this).attr('src'));
-        });
-        $('.simplisity_loader').hide();
+        products_sharrre('@DetailUrl(moduleData.DetailPageTabId(), articleData, categoryData)', 'w3-padding w3-button')
     });
-
 </script>

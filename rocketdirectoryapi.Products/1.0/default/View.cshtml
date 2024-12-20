@@ -1,26 +1,36 @@
-﻿@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
-@using RocketDirectoryAPI.Components;
+@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
 @using DNNrocketAPI.Components;
+@using RocketDirectoryAPI.Components;
 @AssignDataModel(Model)
+@AddProcessDataResx(appTheme, true)
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
 
-<div id="articledisplay" style="position:relative;top:-165px;"></div>
+<div id="rocketproductsdisplay" style="position:relative;top:-165px;"></div>
 
-<div class="containerouter w3-margin-top">
-    <div class="w3-section containerinner">
-        @if (articleData != null)
+<div id="rocket-products">
+    @{
+        if (articleData != null)
         {
-            <div id="articlelistdisplay" class="w3-row">
-                [INJECT:apptheme,ArticleDetail.cshtml]
-            </div>
+            <text>
+                [INJECT: apptheme, ArticleDetail.cshtml]
+            </text>
         }
         else
         {
-            <div id="articlelistdisplay" class="w3-row">
-                [INJECT:apptheme,ArticleList.cshtml]
-            </div>
+            <text>
+                [INJECT: apptheme, ArticleList.cshtml]
+            </text>
         }
-    </div>
+    }
+</div>
+<div class="simplisity_loader" style="display:none;">
+    <span class=" simplisity_loader_inner">
+    </span>
 </div>
 
-<div class="w3-overlay simplisity_loader" style="z-index:999;"></div>
+<script>
+    $(document).ready(function () {
+        products_pageLoad('w3-theme-l3');
+    });
+</script>

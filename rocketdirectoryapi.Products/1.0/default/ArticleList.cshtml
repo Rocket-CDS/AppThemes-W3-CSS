@@ -1,55 +1,98 @@
-﻿@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
 @using DNNrocketAPI.Components;
 @using RocketDirectoryAPI.Components;
 @AssignDataModel(Model)
+@AddProcessDataResx(appTheme, true)
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
+@{
+    var articleList = articleDataList.GetArticleList();
+    var width = moduleData.GetSettingInt("width");
+    var height = moduleData.GetSettingInt("height");
+    var captionHeight = moduleData.GetSettingInt("captionheight");
+    var alignment = moduleData.GetSetting("alignment");
+    var paddingClass = moduleData.GetSetting("padding");
+    var backgroundcolor = moduleData.GetSetting("backgroundcolor");
+    Model.SetSetting("pagesizelist", "6,12,24,48");
+}
 
-<div class="w3-row">
-        <h1>
-            @if (!categoryData.Exists)
-            {
-                <span>@portalData.Name</span>
-            }
-            else
-            {
-                <span>@categoryData.Name</span>
-            }
-        </h1>
+<div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))" style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
+    <div class="w3-section containerinner">
 
-        <div class="w3-row">
-            [INJECT:appthemedefault,SearchBanner.cshtml]
+    @if (!categoryData.Exists)
+    {
+        <h1>@portalData.Name</h1>
+    }
+    else
+    {
+        <h1>@categoryData.Name</h1>
+    }
+
+[INJECT:appthemedirectorydefault,SearchBanner.cshtml]
+
+    @if (articleList.Count > 0)
+    {
+        <div class="w3-row w3-tiny">
+            <a href="@RssUrl(portalData.PortalId,"rocketproductsapi_rss", DateTime.Now.AddMonths(-11).Year, DateTime.Now.AddMonths(-11).Month, 12,"publisheddate")" target="_blank">
+                <span class="material-icons">
+                    rss_feed
+                </span>
+            </a>
         </div>
 
-        <div class="w3-row w3-padding">
-
-        @foreach (List<ArticleLimpet> rowlist in articleDataList.GetArticleRows(3))
-        {
-            <div class="w3-row" >
-                @foreach (ArticleLimpet articleData2 in rowlist)
+                foreach (var article in articleList)
                 {
-                    <div class="w3-third w3-padding-small w3-center">
-                        <a href="@DetailUrl(portalContent.ListPageTabId, articleData2)#articledisplay" title="@articleData2.Name" onclick="$('.simplisity_loader').show()">
-                            <img src="@ImageUrl(articleData2.GetImage(0).RelPath,400,225)" style="width:100%;" alt="@articleData2.Name">
-                        </a>
-                        <div class="w3-row">
-                            <h3>@articleData2.Name</h3>
-                            <p>@Succinct(articleData2.Summary, 80, true)</p>
-                        </div>
+                    var info = article.Info;
+                    var layout = info.GetXmlPropertyInt("genxml/select/layout");
+                    var hStyle = info.GetXmlProperty("genxml/select/headingstyle");
+                    var headingHide = info.GetXmlPropertyBool("genxml/checkbox/hideheading");
+                    var hideRow = info.GetXmlPropertyBool("genxml/checkbox/hiderow");
+                    var articleImage = article.GetImage(0);
+                    var linkData = article.Getlink(0);
+
+                    <div class="w3-section">
+                        @if (moduleData.GetSettingInt("layout") == 1)
+                        {
+                            <div class="w3-container">
+                                <div class="w3-twothird">
+                                [INJECT:appthemeview,layouttext.cshtml]
+                                </div>
+                                <div class="w3-third">
+                                    @if (articleImage.RelPath != "" && moduleData.GetSettingBool("showimage"))
+                                    {
+                                        <img class="w3-image @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+                                    }
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="w3-container">
+                                <div class="w3-third">
+                                    @if (articleImage.RelPath != "" && moduleData.GetSettingBool("showimage"))
+                                    {
+                                        <img class="w3-image @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+                                    }
+                                </div>
+                                <div class="w3-twothird">
+                                    [INJECT:appthemeview,layouttext.cshtml]
+                                </div>
+                            </div>
+                        }
+
                     </div>
+
                 }
-            </div>
-        }
-        </div>
 
-        <div class="w3-row w3-padding-16 w3-center">
-            [INJECT:appthemedefault,ArticlePaging.cshtml]
-        </div>
+    <div class="w3-row w3-padding-16 w3-center">
+        [INJECT:appthemedirectorydefault,articlePaging.cshtml]
+    </div>
 
-        <script>
-            $(document).ready(function () {
-                $('.simplisity_loader').hide();
-            });
-        </script>
+    }
+    else
+    {
+            <div class="h2-headline">@ResourceKey("DNNrocket.notfound")</div>
+    }
+
+    </div>
 </div>
-
-
