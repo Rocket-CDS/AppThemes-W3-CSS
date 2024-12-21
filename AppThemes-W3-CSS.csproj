@@ -59,7 +59,6 @@
     <Folder Include="rocketcontentapi.ContactDetails\1.0\dep\" />
     <Folder Include="rocketcontentapi.HeroHeader\1.0\css\" />
     <Folder Include="rocketcontentapi.HeroHeader\1.0\dep\" />
-    <Folder Include="rocketcontentapi.HtmlContent\1.0\css\" />
     <Folder Include="rocketcontentapi.HtmlContent\1.0\img\" />
     <Folder Include="rocketcontentapi.HtmlContent\1.0\js\" />
     <Folder Include="rocketdirectoryapi.ProductsAA\1.0\img\" />

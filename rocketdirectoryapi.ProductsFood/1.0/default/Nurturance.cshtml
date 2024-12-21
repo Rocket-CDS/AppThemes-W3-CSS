@@ -13,6 +13,16 @@
     var ediblecrustList = "Oui,Non,Aucune";
 }
 
+<div class="w3-row w3-margin-bottom">
+    <div onclick="$('#nurturance').toggle();" class="w3-button w3-block w3-theme w3-left-align w3-round-large " style="margin-bottom:8px;">
+        <strong>@ResourceKey("ProductsFood.nurturance")</strong>
+        <span id="nurturanceexpand" class="material-icons w3-right">
+            unfold_more
+        </span>
+    </div>
+    <div id="nurturance" class='w3-row sectionname w3-border w3-padding w3-round-large' style="">
+
+
 <div class="w3-row">
     <div class="w3-col m2 w3-padding">
         <label>@ResourceKey("ProductsFood.origin")</label>
@@ -226,6 +236,9 @@
             @CheckBox(info, "genxml/checkbox/allergens14", "", " class='w3-check'")
             <label>@ResourceKey("ProductsFood.14")</label>
         </div>
+    </div>
+</div>
+
     </div>
 </div>
 

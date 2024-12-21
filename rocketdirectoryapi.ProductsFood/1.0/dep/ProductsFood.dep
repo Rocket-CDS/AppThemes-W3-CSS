@@ -1,4 +1,4 @@
-﻿<genxml>
+<genxml>
 	<deps list="true">
 		<genxml>
 			<ctrltype><![CDATA[css]]></ctrltype>
@@ -17,38 +17,58 @@
 			<ecofriendly>true</ecofriendly>
 		</genxml>
 		<genxml>
-			<ctrltype><![CDATA[css]]></ctrltype>
-			<url><![CDATA[{appthemefolder}/css/Products.css]]></url>
+			<ctrltype><![CDATA[js]]></ctrltype>
+			<url><![CDATA[{appthemefolder}/js/productsfood.js]]></url>
 			<ecofriendly>true</ecofriendly>
 		</genxml>
 		<genxml>
 			<ctrltype><![CDATA[css]]></ctrltype>
-			<url><![CDATA[https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium]]></url>
+			<url><![CDATA[{appthemefolder}/css/ProductsFood.css]]></url>
 			<ecofriendly>true</ecofriendly>
 		</genxml>
 		<genxml>
 			<ctrltype><![CDATA[css]]></ctrltype>
 			<url><![CDATA[https://fonts.googleapis.com/icon?family=Material+Icons]]></url>
 			<ecofriendly>true</ecofriendly>
-		</genxml>		
+		</genxml>
+		<genxml>
+			<ctrltype><![CDATA[js]]></ctrltype>
+			<url><![CDATA[{appthemefolder}/js/jquery.sharrre.min.js]]></url>
+			<ecofriendly>true</ecofriendly>
+		</genxml>
+		<genxml>
+			<ctrltype><![CDATA[css]]></ctrltype>
+			<url><![CDATA[/DesktopModules/DNNrocket/css/rocket-icons-v1.0/style.css]]></url>
+			<ecofriendly>true</ecofriendly>
+		</genxml>
 	</deps>
 	<moduletemplates list="true">
 		<genxml>
-			<file>view.cshtml</file>
-			<name>List View</name>
-			<cmd>list</cmd>
+			<file><![CDATA[view.cshtml]]></file>
+			<name><![CDATA[List View]]></name>
+			<cmd>listdetail</cmd>
 		</genxml>
 		<genxml>
-			<file>hozcatmenu2lvl.cshtml</file>
-			<name>Horizontal Category Menu (2 levels)</name>
+			<file><![CDATA[Categories.cshtml]]></file>
+			<name><![CDATA[Category Menu]]></name>
 			<cmd>catmenu</cmd>
 		</genxml>
 		<genxml>
-			<file>CategoryChildMenu.cshtml</file>
-			<name>Category Child Menu</name>
+			<file><![CDATA[Filters.cshtml]]></file>
+			<name><![CDATA[Filters]]></name>
 			<cmd>catmenu</cmd>
-		</genxml>		
-	</moduletemplates>	
+		</genxml>
+		<genxml>
+			<file><![CDATA[Tags.cshtml]]></file>
+			<name><![CDATA[Tags]]></name>
+			<cmd>catmenu</cmd>
+		</genxml>
+		<genxml>
+			<file><![CDATA[ArticleSat.cshtml]]></file>
+			<name><![CDATA[Satellite]]></name>
+			<cmd>satellite</cmd>
+		</genxml>
+	</moduletemplates>
 	<adminpanelinterfacekeys list="true">
 		<genxml>
 			<interfacekey>articleadmin</interfacekey>
@@ -68,35 +88,28 @@
 		</genxml>
 		<genxml>
 			<interfacekey>rocketdirectoryadmin</interfacekey>
-			<show>false</show>
+			<show>true</show>
 		</genxml>
 	</adminpanelinterfacekeys>
 	<queryparams list="true">
 		<genxml>
-			<queryparam>articleid</queryparam>
+			<queryparam>productsfoodcatid</queryparam>
 			<tablename>rocketdirectoryapi</tablename>
-			<systemkey>rocketdirectoryapi</systemkey>
-			<datatype>article</datatype>
+			<systemkey>rocketproductsfoodapi</systemkey>
+			<datatype>category</datatype>
 		</genxml>
 		<genxml>
-			<queryparam>catid</queryparam>
+			<queryparam>productsfoodid</queryparam>
 			<tablename>rocketdirectoryapi</tablename>
-			<systemkey>rocketdirectoryapi</systemkey>
-			<datatype>category</datatype>
+			<systemkey>rocketproductsfoodapi</systemkey>
+			<datatype>article</datatype>
 		</genxml>
 	</queryparams>
 	<menuprovider>
 		<genxml>
 			<assembly>RocketDirectoryAPI</assembly>
 			<namespaceclass>RocketDirectoryAPI.Components.MenuDirectory</namespaceclass>
-			<systemkey>rocketdirectoryapi</systemkey>
+			<systemkey>rocketproductsfoodapi</systemkey>
 		</genxml>
 	</menuprovider>
-	<searchindex list="true">
-		<genxml>
-			<searchtitle>genxml/lang/genxml/textbox/title</searchtitle>
-			<searchdescription>genxml/lang/genxml/textbox/richtext</searchdescription>
-			<searchbody>genxml/lang/genxml/textbox/richtext</searchbody>
-		</genxml>
-	</searchindex>
 </genxml>

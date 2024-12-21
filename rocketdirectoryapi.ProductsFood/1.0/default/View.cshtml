@@ -1,30 +1,36 @@
-﻿@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
-@using RocketDirectoryAPI.Components;
+@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
 @using DNNrocketAPI.Components;
+@using RocketDirectoryAPI.Components;
 @AssignDataModel(Model)
+@AddProcessDataResx(appTheme, true)
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
 
-<div id="catalog-tag" class="catalog-container">
-    @{
-        var rtnUrl = sessionParams.Get(portalContent.SystemKey + "listurl");
-        if (rtnUrl == "")
-        {
-            rtnUrl = DNNrocketUtils.NavigateURL(moduleData.ListPageTabId());
-        }
-        AddProcessData("resourcepath", appTheme.AppThemeVersionFolderRel + "/resx/");
-    }
+<div id="rocketproductsfooddisplay" style="position:relative;top:-165px;"></div>
 
-    @if (articleData != null)
-    {
-        <div class="w3-row">
-            [INJECT:apptheme,ProductDetail.cshtml]
-        </div>
-    }
-    else
-    {
-        <div class="w3-row">
-            [INJECT:apptheme,ProductList.cshtml]
-        </div>
+<div id="rocket-productsfood">
+    @{
+        if (articleData != null)
+        {
+            <text>
+                [INJECT: apptheme, ArticleDetail.cshtml]
+            </text>
+        }
+        else
+        {
+            <text>
+                [INJECT: apptheme, ArticleList.cshtml]
+            </text>
+        }
     }
 </div>
-<div class="w3-overlay simplisity_loader" style="z-index:999;"></div>
+<div class="simplisity_loader" style="display:none;">
+    <span class=" simplisity_loader_inner">
+    </span>
+</div>
+
+<script>
+    $(document).ready(function () {
+        productsfood_pageLoad('w3-theme-l3');
+    });
+</script>

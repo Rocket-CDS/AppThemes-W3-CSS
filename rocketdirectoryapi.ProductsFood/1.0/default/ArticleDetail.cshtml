@@ -1,0 +1,486 @@
+@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using RocketDirectoryAPI.Components;
+@AssignDataModel(Model)
+@AddProcessDataResx(appTheme, true)
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
+<!--inject-->
+@{
+    var width = moduleData.GetSettingInt("width");
+    var height = moduleData.GetSettingInt("height");
+    var captionHeight = moduleData.GetSettingInt("captionheight");
+    var alignment = moduleData.GetSetting("alignment");
+    var paddingClass = moduleData.GetSetting("padding");
+    var backgroundcolor = moduleData.GetSetting("backgroundcolor");
+}
+<div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))" style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
+    <div class="w3-section containerinner productsfoodarticledetail">
+
+    <div>
+            <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-action w3-border w3-round backlink">@ButtonIconText(ButtonTypes.back)</a>
+    </div>
+
+
+    <div class="w3-container w3-margin">
+        <div class="w3-center">
+            <h3>@articleData.Name</h3>
+            <h5><span class="w3-opacity">@DateOf(articleData.Info, articleData.PublishedDateXPath,sessionParams.CultureCode, "dd MMM yyyy")</span></h5>
+        </div>
+
+        @if (!moduleData.GetSettingBool("turnoffcomments"))
+        {
+            <div class="w3-row w3-right w3-margin-top w3-margin-bottom">
+                <b>@ResourceKey("ProductsFood.rating"):&nbsp;@articleData.ReviewScore</b>
+            </div>
+        }
+
+        <div class="w3-row w3-margin">
+            @BreakOf(articleData.Summary)
+        </div>
+
+        <div class="w3-justify">
+                <div class="w3-row">
+                    <div class="w3-col m1 l1 w3-hide-small" >
+                        @if (articleData.GetImages().Count > 1)
+                        {
+                            foreach (var i in articleData.GetImages().Take(6))
+                            {
+                                <div class="" style="padding-bottom:8px;padding-right:8px;">
+                                    <img src="@ImageUrl(i.RelPath,120,120)" onMouseOver="$('#mainimage@(articleData.ArticleId)').prop('src','@ImageUrl(i.RelPath,640,400)');" alt="" style="width:100%" />
+                                </div>
+                            }
+                        }
+                    </div>
+                    <div class="w3-col m11 l11">
+                            <img id="mainimage@(articleData.ArticleId)" src="@ImageUrl(articleData.GetImage(0).RelPath,640,400)" alt="@articleData.GetImage(0).Alt" style="width:100%" />
+                    </div>
+                </div>
+
+                <div class="w3-row w3-margin">
+                    @HtmlOf(articleData.RichText)
+                </div>
+
+                <div class="w3-row w3-margin">
+                    <table class="w3-table w3-bordered">
+                    <tbody>
+                        <tr>
+                            <th>@ResourceKey("DNNrocket.name")</th>
+                                <th class="w3-right-align" style="width:80px;">@ResourceKey("RC.price")</th>
+                        </tr>
+                        @foreach (ArticleModel m in articleData.GetModels())
+                        {
+                            <tr>
+                                <td>@m.Name <span class="w3-small">(@m.Ref)</span></td>
+                                    <td class="w3-right-align">@m.PriceDisplay()</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="w3-row">
+                @foreach (var tag in articleData.GetProperties("tags"))
+                {
+                    <span class="w3-light-grey w3-round-xlarge w3-padding w3-margin-right">
+                        @tag.Name
+                    </span>
+                }
+            </div>
+
+                <div class="w3-row">
+                    <h3>@ResourceKey("ProductsFood.information")</h3>
+
+                    <table class="w3-table">
+                        <tbody>
+                            <tr>
+                                <th>@ResourceKey("ProductsFood.origin")</th>
+                                <th>@ResourceKey("ProductsFood.type")</th>
+                                <th>@ResourceKey("ProductsFood.milk")</th>
+                                <th>@ResourceKey("ProductsFood.mgms")</th>
+                                <th>@ResourceKey("ProductsFood.mgpds")</th>
+                                <th>@ResourceKey("ProductsFood.salt")</th>
+                                <th>@ResourceKey("ProductsFood.rennet")</th>
+                                <th>@ResourceKey("ProductsFood.refining")</th>
+                            </tr>
+                            <tr>
+                                <td>@info.GetXmlProperty("genxml/select/orgin")</td>
+                                <td>@info.GetXmlProperty("genxml/select/animal")</td>
+                                <td>@info.GetXmlProperty("genxml/select/milk")</td>
+                                <td>@info.GetXmlProperty("genxml/textbox/mgms")</td>
+                                <td>@info.GetXmlProperty("genxml/textbox/mgpds")</td>
+                                <td>@info.GetXmlProperty("genxml/textbox/salt")</td>
+                                <td>@info.GetXmlProperty("genxml/select/rennet")</td>
+                                <td>@info.GetXmlProperty("genxml/textbox/refining") @info.GetXmlProperty("genxml/select/refiningunit")</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <table class="w3-table">
+                    <tbody>
+                        <tr>
+                            <th>@ResourceKey("ProductsFood.ediblecrust")</th>
+                            <th>@ResourceKey("ProductsFood.otherinformation")</th>
+                            <th>@ResourceKey("ProductsFood.packaging")</th>
+                        </tr>
+                        <tr>
+                            <td>@info.GetXmlProperty("genxml/select/ediblecrust")</td>
+                            <td>
+                                @BreakOf(info, "genxml/textbox/otherinformation")
+                                @if (info.GetXmlPropertyBool("genxml/checkbox/bacteriaculture"))
+                                {
+                                    <div class="extrainfo">@ResourceKey("ProductsFood.bacteriaculture")</div>
+                                }
+                                @if (info.GetXmlPropertyBool("genxml/checkbox/haymilk"))
+                                {
+                                    <div class="extrainfo">@ResourceKey("ProductsFood.haymilk")</div>
+                                }
+                                @if (info.GetXmlPropertyBool("genxml/checkbox/silagefree"))
+                                {
+                                    <div class="extrainfo">@ResourceKey("ProductsFood.silagefree")</div>
+                                }
+                                @if (info.GetXmlPropertyBool("genxml/checkbox/naturallylactosefree"))
+                                {
+                                    <div class="extrainfo">@ResourceKey("ProductsFood.naturallylactosefree")</div>
+                                }
+                                @if (info.GetXmlPropertyBool("genxml/checkbox/microbialrennet"))
+                                {
+                                    <div class="extrainfo">@ResourceKey("ProductsFood.microbialrennet")</div>
+                                }
+                            </td>
+                            <td>@info.GetXmlProperty("genxml/textbox/packaging")</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                @if (info.GetXmlPropertyBool("genxml/checkbox/sensorycharacteristics"))
+                {
+                    <!-- Caractéristiques sensorielles  -->
+                    <h4>@ResourceKey("ProductsFood.sensorycharacteristics")</h4>
+                    <div>
+                        <table class="w3-table">
+                            <tbody>
+                                @if (info.GetXmlProperty("genxml/textbox/appearanceexterior") != "")
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.appearanceexterior")</td>
+                                        <td>@info.GetXmlProperty("genxml/textbox/appearanceexterior")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlProperty("genxml/textbox/appearanceinterior") != "")
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.appearanceinterior")</td>
+                                        <td>@info.GetXmlProperty("genxml/textbox/appearanceinterior")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlProperty("genxml/textbox/consistency") != "")
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.consistency")</td>
+                                        <td>@info.GetXmlProperty("genxml/textbox/consistency")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlProperty("genxml/textbox/odor") != "")
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.odor")</td>
+                                        <td>@info.GetXmlProperty("genxml/textbox/odor")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlProperty("genxml/textbox/taste") != "")
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.taste")</td>
+                                        <td>@info.GetXmlProperty("genxml/textbox/taste")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+
+                @if (info.GetXmlPropertyBool("genxml/checkbox/nutritionalinformation"))
+                {
+                    <!-- Informations nutritionnelles -->
+                    <h4>@ResourceKey("ProductsFood.nutritionalinformation")</h4>
+                    <div>
+                        <table class="w3-table">
+                            <tbody>
+                                @if (info.GetXmlProperty("genxml/textbox/energyvaluekj") != "")
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.energyvaluekj")</td>
+                                        <td>@info.GetXmlProperty("genxml/textbox/energyvaluekj")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlProperty("genxml/textbox/energyvaluecal") != "")
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.energyvaluecal")</td>
+                                        <td>@info.GetXmlProperty("genxml/textbox/energyvaluecal")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlProperty("genxml/textbox/fatg") != "")
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.fatg")</td>
+                                        <td>@info.GetXmlProperty("genxml/textbox/fatg")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlProperty("genxml/textbox/ofwhichfattyacids") != "")
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.ofwhichfattyacids")</td>
+                                        <td>@info.GetXmlProperty("genxml/textbox/ofwhichfattyacids")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlProperty("genxml/textbox/carbohydrates") != "")
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.carbohydrates")</td>
+                                        <td>@info.GetXmlProperty("genxml/textbox/carbohydrates")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlProperty("genxml/textbox/ofwhichsugars") != "")
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.ofwhichsugars")</td>
+                                        <td>@info.GetXmlProperty("genxml/textbox/ofwhichsugars")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlProperty("genxml/textbox/proteing") != "")
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.proteing")</td>
+                                        <td>@info.GetXmlProperty("genxml/textbox/proteing")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlProperty("genxml/textbox/fibreg") != "")
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.fibreg")</td>
+                                        <td>@info.GetXmlProperty("genxml/textbox/fibreg")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlProperty("genxml/textbox/sel") != "")
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.saltg")</td>
+                                        <td>@info.GetXmlProperty("genxml/textbox/saltg")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+
+                @if (info.GetXmlPropertyBool("genxml/checkbox/allergens"))
+                {
+                    <!-- Allergènes -->
+                    <h4>@ResourceKey("ProductsFood.allergens")</h4>
+                    <div>
+                        <table class="w3-table">
+                            <tbody>
+                                @if (info.GetXmlPropertyBool("genxml/checkbox/allergens1"))
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.1")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlPropertyBool("genxml/checkbox/allergens2"))
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.2")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlPropertyBool("genxml/checkbox/allergens3"))
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.3")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlPropertyBool("genxml/checkbox/allergens4"))
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.4")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlPropertyBool("genxml/checkbox/allergens5"))
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.5")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlPropertyBool("genxml/checkbox/allergens6"))
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.6")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlPropertyBool("genxml/checkbox/allergens7"))
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.7")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlPropertyBool("genxml/checkbox/allergens8"))
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.8")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlPropertyBool("genxml/checkbox/allergens9"))
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.9")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlPropertyBool("genxml/checkbox/allergens10"))
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.10")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlPropertyBool("genxml/checkbox/allergens11"))
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.11")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlPropertyBool("genxml/checkbox/allergens12"))
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.12")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlPropertyBool("genxml/checkbox/allergens13"))
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.13")</td>
+                                    </tr>
+                                }
+                                @if (info.GetXmlPropertyBool("genxml/checkbox/allergens14"))
+                                {
+                                    <tr>
+                                        <td>@ResourceKey("ProductsFood.14")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+
+                <hr />
+
+
+            <div class="w3-row">
+                <div class="w3-half">
+                    @if (articleData.GetLinkList().Count > 0)
+                    {
+                        <div class="w3-xlarge w3-margin-top">@ButtonIcon(ButtonTypes.link)&nbsp;@ResourceKey("DNNrocket.links")</div>
+                    }
+                    @foreach (var lk in articleData.Getlinks())
+                    {
+                        if (!lk.Hidden)
+                        {
+                            <div class="w3-padding">
+                                <a target="_blank" href="@lk.Url" target="@lk.Target">@lk.Name</a>
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="w3-half">
+                    @if (articleData.GetDocList().Count > 0)
+                    {
+                        <div class="w3-xlarge w3-margin-top">@ButtonIcon(ButtonTypes.download)&nbsp;@ResourceKey("DNNrocket.documents")</div>
+                    }
+                    @foreach (var doc in articleData.GetDocs())
+                    {
+                        if (!doc.Hidden)
+                        {
+                            <a target="_blank" href="/@doc.RelPath.TrimStart('/')">
+                                <div class="w3-button w3-theme-l3 w3-block w3-left-align rocket-document">
+                                    @doc.Name
+                                </div>
+                            </a>
+                        }
+                    }
+                </div>
+            </div>
+
+            <div id="rocket-sharrre" class="w3-row w3-xxlarge w3-margin"></div>
+
+            @if (!moduleData.GetSettingBool("turnoffcomments") && UserUtils.IsValidUser(PortalUtils.GetCurrentPortalId(), UserUtils.GetCurrentUserId()))
+            {
+                var reviewfieldId = "articlereview";
+                var userData = UserUtils.GetUserData(PortalUtils.GetCurrentPortalId(), UserUtils.GetCurrentUserId());
+                <p class="w3-clear"></p>
+                <div class="w3-xlarge w3-margin-top">@ResourceKey("DNNrocket.reviews")</div>
+                <div class="simplisity_panel w3-margin-top">
+                    <div id="productsfoodreviewinput" class="w3-margin-top">
+                       <div class="w3-row">
+                            <div class="w3-half">
+                                <label>@ResourceKey("DNNrocket.name")</label>
+                                @TextBox(infoempty, "genxml/textbox/name" + reviewfieldId, "  maxlength='30' class='w3-input w3-border' autocomplete='off'", userData.DisplayName, false)
+                            </div>
+                            <div class="w3-quarter">
+                                <label>@ResourceKey("ProductsFood.rating")</label><br/>
+                                @RadioButtonList(infoempty, "genxml/select/stars" + reviewfieldId,"1,2,3,4,5","1,2,3,4,5"," class='w3-right'","", ResourceKey("ProductsFood.stars").ToString(),false)
+                            </div>
+                            <div class="w3-col m12">
+                                <label>@ResourceKey("ProductsFood.comment")</label>
+                                @TextArea(infoempty, "genxml/textbox/comment" + reviewfieldId, " maxlength='300' class='w3-input w3-border' autocomplete='off'", "", false)
+                            </div>
+                       </div>
+                    </div>
+                    <div id="productsfoodpostinoput" class="w3-center w3-margin-top">
+                        <div class="w3-button w3-white w3-border simplisity_confirmclick" s-confirm="@ResourceKey("ProductsFood.postcomments")?" s-cmd="remote_publicadduserreview" s-post="#productsfoodreviewinput" s-return="#productsfoodreviewinput" s-reload="true" s-fields='{"articleid":"@articleData.ArticleId"}'>
+                            <b>@ResourceKey("ProductsFood.addcomment")&nbsp;</b>
+                        </div>
+                    </div>
+                    <script>
+                        $(document).ready(function () {
+                            $(document).simplisityStartUp('/Desktopmodules/dnnrocket/api/rocket/action', { systemkey: 'rocketproductsfoodapi' });
+                        });
+                    </script>
+                </div>
+            }
+            @if (!moduleData.GetSettingBool("turnoffcomments"))
+            {
+
+                <div class="w3-right w3-margin-top">
+                    <div class="w3-button w3-black" onclick="$('#productsfoodreviews').toggle();">
+                        <b>@ResourceKey("ProductsFood.replies")&nbsp;</b>
+                        <span class="w3-tag w3-white">@articleData.ReviewCount</span>
+                    </div>
+                </div>
+                <p class="w3-clear"></p>
+
+                <div id="productsfoodreviews" class="w3-margin-top" style="display:none;">
+                    @foreach (var r in articleData.GetReviews())
+                    {
+                        if (!r.Hidden)
+                        {
+                            <div class="w3-row w3-border-top w3-padding">
+                                <div class="w3-large">@r.Name<span class="w3-opacity w3-medium">&nbsp;@DateOf(r.Info, "genxml/textbox/reviewdate",sessionParams.CultureCode,"dd MMM yyy")</span></div>
+                                <div class="w3-small w3-margin-left">@BreakOf(r.Comment)</div>
+                            </div>                       
+                        }
+                    }
+                </div>
+            }
+
+                <div>
+                    <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)#rocketproductsfooddisplay" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-action w3-border w3-round backlink">@ButtonIconText(ButtonTypes.back)</a>
+                </div>
+
+        </div>
+    </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        productsfood_sharrre('@DetailUrl(moduleData.DetailPageTabId(), articleData, categoryData)', 'w3-padding w3-button')
+    });
+</script>
