@@ -27,7 +27,16 @@
             <h5><span class="w3-opacity">@DateOf(articleData.Info, articleData.PublishedDateXPath,sessionParams.CultureCode, "dd MMM yyyy")</span></h5>
         </div>
 
-        <p>@BreakOf(articleData.Summary)</p>
+            @if (!moduleData.GetSettingBool("turnoffcomments"))
+            {
+                <div class="w3-row w3-right w3-margin-top w3-margin-bottom">
+                    <b>@ResourceKey("Products.rating"):&nbsp;@articleData.ReviewScore</b>
+                </div>
+            }
+
+            <div class="w3-row w3-margin">
+                @BreakOf(articleData.Summary)
+            </div>
 
         <div class="w3-justify">
                 <div class="w3-row">
@@ -47,13 +56,10 @@
                     </div>
                 </div>
 
-            <div class="w3-row w3-margin w3-small">
-                @ResourceKey("Blog.rating"):&nbsp;@articleData.ReviewScore
-            </div>
-            <p>
-                @HtmlOf(articleData.RichText)
-            </p>
-            <div class="w3-row">
+                <div class="w3-row w3-margin">
+                    @HtmlOf(articleData.RichText)
+                </div>
+                <div class="w3-row">
                 @foreach (var tag in articleData.GetProperties("tags"))
                 {
                     <span class="w3-light-grey w3-round-xlarge w3-padding w3-margin-right">

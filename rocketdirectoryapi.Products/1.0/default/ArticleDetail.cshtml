@@ -27,7 +27,16 @@
             <h5><span class="w3-opacity">@DateOf(articleData.Info, articleData.PublishedDateXPath,sessionParams.CultureCode, "dd MMM yyyy")</span></h5>
         </div>
 
-        <p>@BreakOf(articleData.Summary)</p>
+        @if (!moduleData.GetSettingBool("turnoffcomments"))
+        {
+            <div class="w3-row w3-right w3-margin-top w3-margin-bottom">
+                <b>@ResourceKey("Products.rating"):&nbsp;@articleData.ReviewScore</b>
+            </div>
+        }
+
+        <div class="w3-row w3-margin">
+            @BreakOf(articleData.Summary)
+        </div>
 
         <div class="w3-justify">
                 <div class="w3-row">
@@ -47,12 +56,28 @@
                     </div>
                 </div>
 
-            <div class="w3-row w3-margin w3-small">
-                @ResourceKey("Products.rating"):&nbsp;@articleData.ReviewScore
+                <div class="w3-row w3-margin">
+                    @HtmlOf(articleData.RichText)
+                </div>
+
+                <div class="w3-row w3-margin">
+                    <table class="w3-table w3-bordered">
+                    <tbody>
+                        <tr>
+                            <th>@ResourceKey("DNNrocket.name")</th>
+                                <th class="w3-right-align" style="width:80px;">@ResourceKey("RC.price")</th>
+                        </tr>
+                        @foreach (ArticleModel m in articleData.GetModels())
+                        {
+                            <tr>
+                                <td>@m.Name <span class="w3-small">(@m.Ref)</span></td>
+                                    <td class="w3-right-align">@m.PriceDisplay()</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
-            <p>
-                @HtmlOf(articleData.RichText)
-            </p>
+
             <div class="w3-row">
                 @foreach (var tag in articleData.GetProperties("tags"))
                 {
@@ -97,7 +122,7 @@
                 </div>
             </div>
 
-            <div id="rocket-sharrre" class="w3-row w3-xxlarge"></div>
+            <div id="rocket-sharrre" class="w3-row w3-xxlarge w3-margin"></div>
 
             @if (!moduleData.GetSettingBool("turnoffcomments") && UserUtils.IsValidUser(PortalUtils.GetCurrentPortalId(), UserUtils.GetCurrentUserId()))
             {
