@@ -5,10 +5,9 @@
 @{
     var height = moduleData.GetSettingInt("height");
     var stylepadding = StylePadding();
-    var backgroundcolor = moduleData.GetSetting("backgroundcolor");
 }
 
-<div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))">
+<div class="containerouter @(moduleData.GetSetting("cssclass"))">
     <div class="w3-section containerinner w3-theme" style="@(stylepadding)">
         <div class="w3-display-container w3-center containerinner citationcontainer" style="height:@(height)px;">
             @foreach (var articleRowData in articleData.GetRows())

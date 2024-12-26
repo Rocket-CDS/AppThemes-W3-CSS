@@ -20,13 +20,13 @@
         @if (info.GetXmlProperty("genxml/lang/genxml/textbox/content") != "")
         {
             <p class="@moduleData.GetSetting("abovesize") w3-padding " style="width: 50%;display: inline-block;">
-                @info.GetXmlProperty("genxml/lang/genxml/textbox/content")
+                <i>"@info.GetXmlProperty("genxml/lang/genxml/textbox/content")"</i>
             </p>
         }
         @if (articleImage.RelPath != "")
         {
             <div class="w3-tiny">
-                <img class="@(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+                <img class="@(moduleData.GetSetting("opacity")) w3-circle" src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
             </div>
         }
         @if (info.GetXmlProperty("genxml/textbox/name") != "")
