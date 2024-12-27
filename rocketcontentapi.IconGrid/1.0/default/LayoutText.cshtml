@@ -1,0 +1,17 @@
+﻿@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using RocketContentAPI.Components;
+<!--inject-->
+@if (info.GetXmlProperty("genxml/lang/genxml/textbox/title") != "")
+{
+    <p class="@moduleData.GetSetting("titlesize") @paddingClass">
+        @BreakOf(info.GetXmlProperty("genxml/lang/genxml/textbox/title"))
+    </p>
+}
+@if (info.GetXmlProperty("genxml/lang/genxml/textbox/text") != "")
+{
+    <p class="@moduleData.GetSetting("textsize") @paddingClass">
+        @BreakOf(info.GetXmlProperty("genxml/lang/genxml/textbox/text"))
+    </p>
+}
+&nbsp;

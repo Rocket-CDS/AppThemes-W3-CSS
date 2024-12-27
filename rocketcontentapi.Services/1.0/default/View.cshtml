@@ -39,7 +39,7 @@
                         <div class="w3-third">
                             @if (articleImage.RelPath != "")
                             {
-                                <img class="w3-image @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+                                <img class="w3-image w3-border @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
                             }
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                         <div class="w3-third">
                             @if (articleImage.RelPath != "")
                             {
-                                <img class="w3-image @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+                                <img class="w3-image w3-border @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
                             }
                         </div>
                         <div class="w3-twothird">

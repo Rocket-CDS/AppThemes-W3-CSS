@@ -1,0 +1,69 @@
+﻿@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@AssignDataModel(Model)
+@AddProcessDataResx(appThemeView, true)
+<!--inject-->
+
+@{
+    var width = moduleData.GetSettingInt("width");
+    var height = moduleData.GetSettingInt("height");
+    var columnNumber = moduleData.GetSettingInt("columnnumber");
+    if (columnNumber == 0)
+    {
+        columnNumber = 4;
+    }
+    var paddingClass = moduleData.GetSetting("padding");
+    var color = moduleData.GetSetting("color");
+    var stylepadding = StylePadding();
+    var backgroundcolor = moduleData.GetSetting("backgroundcolor");
+    var imgList = articleRowData.GetImages();
+    var widthCss = "";
+    if (columnNumber == 2)
+    {
+        widthCss = "w3-half";
+    }
+    if (columnNumber == 3)
+    {
+        widthCss = "w3-third";
+    }
+    if (columnNumber == 4)
+    {
+        widthCss = "w3-quarter";
+    }
+
+}
+
+<div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))">
+    <div class="w3-section containerinner" style="@(stylepadding)">
+
+        @if (moduleData.GetSettingInt("layout") == 1)
+        {
+            <div class="w3-container">
+                <div class="w3-twothird">
+                    [INJECT:appthemeview,layouttext.cshtml]
+                </div>
+                <div class="w3-third">
+                    [INJECT:appthemeview,layouticons.cshtml]
+                </div>
+            </div>
+        }
+        @if (moduleData.GetSettingInt("layout") == 2)
+        {
+            <div class="w3-container">
+                <div class="w3-third">
+                    [INJECT:appthemeview,layouticons.cshtml]
+                </div>
+                <div class="w3-twothird">
+                    [INJECT:appthemeview,layouttext.cshtml]
+                </div>
+            </div>
+        }
+        @if (moduleData.GetSettingInt("layout") == 3)
+        {
+            <div class="w3-container">
+                [INJECT:appthemeview,layouticons.cshtml]
+            </div>
+        }
+
+    </div>
+</div>

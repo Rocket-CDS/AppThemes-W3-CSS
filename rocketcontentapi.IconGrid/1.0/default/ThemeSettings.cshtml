@@ -1,0 +1,83 @@
+﻿@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI;
+@using Simplisity;
+@using RocketContentAPI.Components;
+@using DNNrocketAPI.Components;
+@using RocketPortal.Components;
+
+@{
+    var appThemeAdmin = (AppThemeLimpet)Model.GetDataObject("appthemeadmin");
+    var moduleData = (ModuleContentLimpet)Model.GetDataObject("modulesettings");
+    var info = new SimplisityInfo(moduleData.Record);
+
+    AddProcessDataResx(appThemeAdmin, true);
+    AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketContent/App_LocalResources/");
+
+    //NOTE: xPath for module settings must use "genxml/settings/*"
+}
+<style>.w3-input { height: 41px; }</style>
+<div class="w3-row">
+    <div class="w3-third w3-padding">
+        <label>@ResourceKey("DNNrocket.imageresize") (px)</label>
+        @TextBox(info, "genxml/settings/imageresize", " class='w3-input w3-border'", "1024")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>@ResourceKey("DNNrocket.width") (px)</label>
+        @TextBox(info, "genxml/settings/width", " class='w3-input w3-border'", "180")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>@ResourceKey("DNNrocket.height") (px)</label>
+        @TextBox(info, "genxml/settings/height", " class='w3-input w3-border'", "180")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>Layout</label>
+        @DropDownList(info, "genxml/settings/layout", "1,2,3", "Icons Right,Icons Left,Only Icons", "class='w3-input w3-border' ", "")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>@ResourceKey("DNNrocket.columns")</label>
+        @DropDownList(info, "genxml/settings/columnnumber", "1,2,3,4", "1,2,3,4", " class='w3-input w3-border' ", "4")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>Padding</label><br />
+        @RadioButtonList(info, "genxml/settings/padding", "w3-padding-small,w3-padding,w3-padding-large", "Small,Medium,Large", " class='w3-input'", "w3-padding")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>Text Color</label><br />
+        @DropDownList(info, "genxml/settings/color", W3Utils.W3colors(), "class='w3-input w3-border' ", "w3-text-white")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>Title Text Size</label>
+        @DropDownList(info, "genxml/settings/titlesize", W3Utils.W3sizes(), "class='w3-input w3-border' ", "")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>Text Size</label>
+        @DropDownList(info, "genxml/settings/textsize", W3Utils.W3sizes(), "class='w3-input w3-border' ", "")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>Icon Text Size</label><br />
+        @DropDownList(info, "genxml/settings/icontextsize", W3Utils.W3sizes(), "class='w3-input w3-border' ", "")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>Background Color</label><br />
+        @DropDownList(info, "genxml/settings/backgroundcolor", W3Utils.W3colors(), "class='w3-input w3-border' ", "normal")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>Image Style</label><br />
+        @DropDownList(info, "genxml/settings/imagestyle", W3Utils.W3imagestyle(), "class='w3-input w3-border' ", "")
+    </div>
+    <div class="w3-third w3-padding">
+        <label>@ResourceKey("DNNrocket.cssClass")</label>
+        @TextBox(info, "genxml/settings/cssclass", "class='w3-input w3-border'", "")
+    </div>
+
+    <div class="w3-row w3-padding ">
+        <label>Top Padding</label>
+        @TextBox(info, "genxml/settings/toppadding", " class='w3-input' min='0' max='320' step='8'", "8", false, 0, "", "range")
+    </div>
+    <div class="w3-row w3-padding ">
+        <label>Bottom Padding</label>
+        @TextBox(info, "genxml/settings/bottompadding", " class='w3-input' min='0' max='320' step='8'", "8", false, 0, "", "range")
+    </div>
+
+</div>
+

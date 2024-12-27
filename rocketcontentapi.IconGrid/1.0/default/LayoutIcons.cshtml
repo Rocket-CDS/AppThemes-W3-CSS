@@ -1,0 +1,14 @@
+﻿@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using RocketContentAPI.Components;
+<!--inject-->
+@foreach (var articleImage in imgList)
+{
+    <div class="@(widthCss) w3-center w3-display-container @(paddingClass)">
+        <img src="@ImageUrl(articleImage.RelPath, width, height)" class="@moduleData.GetSetting("imagestyle")" style="width:@(width)px;" alt="@articleImage.Alt" />
+        <div class="w3-display-bottom w3-padding @(color) ">
+            <div class="@moduleData.GetSetting("icontextsize")">@articleImage.Alt</div>
+        </div>
+    </div>
+}
+&nbsp;
