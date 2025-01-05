@@ -1,7 +1,7 @@
 @inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
 @using DNNrocketAPI;
 @using Simplisity;
-@using RocketContentAPI.Components;
+@using RocketDirectoryAPI.Components;
 @using DNNrocketAPI.Components;
 @using RocketPortal.Components;
 @AssignDataModel(Model)
@@ -10,6 +10,7 @@
 @{
     var groupDict = catalogSettings.GetPropertyGroups();
     var info = moduleDataInfo;
+    var categoryData = new CategoryLimpet(portalData.PortalId, moduleData.DefaultCategoryId, sessionParams.CultureCode, systemData.SystemKey);
     //NOTE: xPath for module settings must use "genxml/settings/*"
 }
 
@@ -102,6 +103,17 @@
     <div class="w3-section">
 
         <div class="w3-third w3-padding">
+            <label>@ResourceKey("RC.defaultcategory")&nbsp;</label>
+            <div class="w3-row">
+                <div id="defaultcategorydisplay" class="w3-border w3-light-grey " style="width:100%;height:40px;">
+                    @categoryData.Name
+                    <span class="w3-right w3-button w3-theme parentcategoryselect" onclick="$('#categoryselect').show();" style="width:64px;height:40px;">@ButtonIcon(ButtonTypes.tree)</span>
+                </div>
+            </div>
+            @HiddenField(info, "genxml/settings/defaultcategory")
+            @RenderTemplate("ModuleSettingsCatSelect.cshtml", appThemeDirectory, Model, true)
+        </div>
+        <div class="w3-third w3-padding">
             <label>Layout</label>
             @DropDownList(info, "genxml/settings/layout", "1,2", "Image Right,Image Left", "class='w3-input w3-border' ", "2")
         </div>
@@ -141,17 +153,28 @@
             <label>Background Color</label>
             @DropDownList(info, "genxml/settings/backgroundcolor", W3Utils.W3colors(), "class='w3-input w3-border' ", "")
         </div>
-        <div class="w3-third w3-padding">
+        <div class="w3-third w3-padding" style='height:80px;'>
             <label>Padding</label><br />
             @RadioButtonList(info, "genxml/settings/padding", "w3-padding-small,w3-padding,w3-padding-large", "Small,Medium,Large", " class=''", "w3-padding")
         </div>
-        <div class="w3-third w3-padding">
+        <div class="w3-third w3-padding" style='height:80px;'>
             <label>@ResourceKey("ProductsFood.turnoffcomments")</label><br />
             @CheckBox(info, "genxml/settings/turnoffcomments", "", " class='w3-check'", true)
         </div>
-        <div class="w3-third w3-padding">
+        <div class="w3-third w3-padding" style='height:80px;'>
             <label>@ResourceKey("ProductsFood.showimage")</label><br />
             @CheckBox(info, "genxml/settings/showimage", "", " class='w3-check'", true)
+        </div>
+        <div class="w3-row">
+            <div class="w3-third w3-padding">
+                @CheckBox(info, "genxml/settings/showsearchtext", ResourceKey("RC.showsearchtext").ToString(), "class='w3-check'")
+            </div>
+            <div class="w3-third w3-padding">
+                @CheckBox(info, "genxml/settings/showorderby", ResourceKey("RC.showorderby").ToString(), "class='w3-check'")
+            </div>
+            <div class="w3-third w3-padding">
+                @CheckBox(info, "genxml/settings/showpagesize", ResourceKey("RC.showpagesize").ToString(), "class='w3-check'")
+            </div>
         </div>
 
     </div>
