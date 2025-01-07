@@ -23,7 +23,7 @@ function news_showSelectedMonths(monthidx, date1, date2, reloadUrl, browserUrl, 
     else {
         $('.rocket-tagbutton').removeClass('rocket-tagbuttonOn');
         $('.rocket-tagbuttonclear').hide();
-        var element_to_scroll_to = document.getElementById('rocketblogdisplay');
+        var element_to_scroll_to = document.getElementById('rocketnewsdisplay');
         element_to_scroll_to.scrollIntoView();
         doDateSearchReload(date1, date2);
     }
