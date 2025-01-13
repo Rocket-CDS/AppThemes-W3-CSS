@@ -1,9 +1,9 @@
-function events_showSelectedMonths(monthidx, date1, date2, reloadUrl, browserUrl, cscSelectedClass) {
+function events_showSelectedMonths(monthidx, date1, date2, reloadUrl, browserUrl, cssSelectedClass) {
     $('.simplisity_loader').show();
     simplisity_setSessionField('page', '1');
     $('#viewsearchtext').val('');
-    $('.rocket-monthdates').removeClass(cscSelectedClass);
-    $('.rocket-monthdates' + monthidx).addClass(cscSelectedClass);
+    $('.rocket-monthdates').removeClass(cssSelectedClass);
+    $('.rocket-monthdates' + monthidx).addClass(cssSelectedClass);
     simplisity_setSessionField('viewsearchtext', '');
     simplisity_setSessionField('monthidx', monthidx);
     simplisity_setSessionField('searchdate1', date1);
@@ -12,7 +12,7 @@ function events_showSelectedMonths(monthidx, date1, date2, reloadUrl, browserUrl
     simplisity_setSessionField('rocketpropertyidtag', '0');
     $('.rocket-tagbutton').removeClass('rocket-tagbuttonOn');
 
-    $('.rocket-categorylink').removeClass(cscSelectedClass);
+    $('.rocket-categorylink').removeClass(cssSelectedClass);
     if (browserUrl && browserUrl != '') {
         history.pushState('', "Title", browserUrl);
     }
@@ -27,12 +27,12 @@ function events_showSelectedMonths(monthidx, date1, date2, reloadUrl, browserUrl
         doDateSearchReload(date1, date2);
     }
 }
-function events_pageLoad(cscSelectedClass) {
+function events_pageLoad(cssSelectedClass) {
     $('.simplisity_loader').show();
     if (simplisity_getSessionField('searchdate1') != '' && simplisity_getSessionField('viewsearchtext') == '') {
         monthidx = simplisity_getSessionField('monthidx');
-        $('.rocket-monthdates').removeClass(cscSelectedClass);
-        $('.rocket-monthdates' + monthidx).addClass(cscSelectedClass);
+        $('.rocket-monthdates').removeClass(cssSelectedClass);
+        $('.rocket-monthdates' + monthidx).addClass(cssSelectedClass);
     }
     $('.simplisity_loader').hide();
 }
