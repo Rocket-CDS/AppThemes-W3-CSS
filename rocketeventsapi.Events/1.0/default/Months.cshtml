@@ -9,6 +9,10 @@
     var eventList = (Dictionary<DateTime, List<ArticleLimpet>>)Model.GetDataObject("eventlistbymonth");
     var reloadUrl = "";
     var broswerUrl = ListUrl(moduleData.ListPageTabId()).ToString();
+    if (sessionParams.GetInt(RocketDirectoryAPIUtils.UrlQueryCategoryKey(portalData.PortalId, portalContent.SystemKey)) > 0)
+    {
+        reloadUrl = broswerUrl;
+    }
 }
 
 <div class="rocket-eventmonths " style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
