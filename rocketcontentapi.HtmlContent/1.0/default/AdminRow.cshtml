@@ -32,15 +32,21 @@
                     @TextBox(info, "genxml/lang/genxml/textbox/title", "class='w3-input w3-border'", "", true)
                 </div>
                 <div class="w3-col m2">
+                    <div class="w3-margin-bottom">
                     <label>@ResourceKey("DNNrocket.headingstyle")</label>
+                    </div>
                     @DropDownList(info, "genxml/select/style", "h1,h2,h3,h4", "H1,H2,H3,H4", "class='w3-select w3-border ' ", "", false)
                 </div>
                 <div class="w3-col m2">
-                    <label>@ResourceKey("DNNrocket.headingalign")</label>
+                    <div class="w3-margin-bottom">
+                        <label>@ResourceKey("DNNrocket.headingalign")</label>
+                    </div>
                     @RadioButtonList(info, "genxml/select/align", "w3left,w3center,w3right", "<span class='material-icons'>format_align_left</span>,<span class='material-icons'>format_align_center</span>,<span class='material-icons'>format_align_right</span>", "", "w3center", "", false, 0, "")
                 </div>
                 <div class="w3-col m2">
-                    <label>@ResourceKey("DNNrocket.anchor")</label>&nbsp;@EditFlag(sessionParams)
+                    <div class="w3-margin-bottom">
+                        <label>@ResourceKey("DNNrocket.anchor")</label>&nbsp;@EditFlag(sessionParams)
+                    </div>
                     @TextBox(info, "genxml/lang/genxml/textbox/anchor", "class='w3-input w3-border' autocomplete='off'", "", true)
                 </div>
             </div>
