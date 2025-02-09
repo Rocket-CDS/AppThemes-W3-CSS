@@ -5,7 +5,7 @@
 
 <div class="w3-container">
     <div class="w3-twothird @moduleData.GetSetting("padding")">
-        @HtmlOf(rowData.GetXmlProperty("genxml/lang/genxml/textbox/richtext"))
+        @HtmlOf(info.GetXmlProperty("genxml/lang/genxml/textbox/richtext"))
     </div>
     <div class="w3-third">
         @foreach (var articleImage in articleRowData.GetImages())
