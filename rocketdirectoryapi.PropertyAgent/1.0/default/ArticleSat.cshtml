@@ -1,0 +1,56 @@
+﻿@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using RocketDirectoryAPI.Components;
+@AssignDataModel(Model)
+@AddProcessDataResx(appTheme, true)
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
+<!--inject-->
+@{
+    var articleList = articleDataList.GetArticleList(moduleData);
+    var width = moduleData.GetSettingInt("width");
+    var height = moduleData.GetSettingInt("height");
+    var alignment = moduleData.GetSetting("alignment");
+    var paddingClass = moduleData.GetSetting("padding");
+    var backgroundcolor = moduleData.GetSetting("backgroundcolor");
+}
+
+<div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))" style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
+    <div class="w3-section containerinner">
+
+        @foreach (ArticleLimpet article in articleList)
+        {
+            var articleImage = article.GetImage(0);
+            var date = article.Info.GetXmlPropertyDate("genxml/textbox/publisheddate");
+            var dateFormat = date.ToString("dd/MM/yyyy");
+
+            if (articleImage.RelPath != "")
+            {
+                if (moduleData.GetSettingInt("satlayout") == 0)
+                {
+                    <div class="w3-row @alignment">
+                        <a href="@DetailUrl(moduleData.DetailPageTabId(), article, categoryData)" class="@paddingClass" title="@article.Name" onclick="$('.simplisity_loader').show();">
+                            <img class="w3-image @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+                        </a>
+                        <p class="@moduleData.GetSetting("titlesize") @paddingClass">
+                            <span>@article.Name</span><br />
+                            <span class="w3-opacity">@DateOf(article.Info, article.PublishedDateXPath, sessionParams.CultureCode, "dd MMM yyy")</span>
+                        </p>
+                    </div>
+                }
+                if (moduleData.GetSettingInt("satlayout") == 1)
+                {
+                    <div class="w3-quarter @alignment w3-padding-small">
+                        <a href="@DetailUrl(moduleData.DetailPageTabId(), article, categoryData)" class="@paddingClass" title="@article.Name" onclick="$('.simplisity_loader').show();">
+                            <img class="w3-image @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+                        </a>
+                        <p class="@moduleData.GetSetting("titlesize") @paddingClass">
+                            <span>@article.Name</span><br />
+                            <span class="w3-opacity">@DateOf(article.Info, article.PublishedDateXPath, sessionParams.CultureCode, "dd MMM yyy")</span>
+                        </p>
+                    </div>
+                }
+            }
+        }
+
+    </div>
+</div>
