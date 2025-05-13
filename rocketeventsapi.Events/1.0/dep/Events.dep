@@ -45,6 +45,11 @@
 			<url><![CDATA[/DesktopModules/DNNrocket/css/rocket-icons-v1.0/style.css]]></url>
 			<ecofriendly>true</ecofriendly>
 		</genxml>
+		<genxml>
+			<ctrltype><![CDATA[css]]></ctrltype>
+			<url><![CDATA[/DesktopModules/DNNrocket/API/Themes/config-w3/1.0/css/dnnrocket-theme.css]]></url>
+			<ecofriendly>true</ecofriendly>
+		</genxml>
 	</deps>
 	<moduletemplates list="true">
 		<genxml>
