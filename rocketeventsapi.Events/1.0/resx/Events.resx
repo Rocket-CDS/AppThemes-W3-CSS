@@ -144,6 +144,9 @@
   <data name="turnoffcomments.Text" xml:space="preserve">
     <value>Turn Off Comments</value>
   </data>
+  <data name="viewdays.Text" xml:space="preserve">
+    <value>Display Future Events (days)</value>
+  </data>
   <data name="warningapisettings.Text" xml:space="preserve">
     <value>Warning: The "API Module Settings" should be selected.  Usually you should select the "List Veiw" module</value>
   </data>
