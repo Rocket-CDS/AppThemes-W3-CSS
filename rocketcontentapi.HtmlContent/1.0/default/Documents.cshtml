@@ -21,7 +21,7 @@
 {
     <div class="w3-container">
         <div class="@(documentalign)">
-            <a href="/@(d.RelPath)" class="w3-button" download>@(d.Name)</a>
+            <a href="/@(d.RelPath.TrimStart('/'))" class="w3-button" download>@(d.Name)</a>
         </div>
     </div>    
 }

@@ -62,6 +62,7 @@
     <Folder Include="rocketcontentapi.HtmlContent\1.0\img\" />
     <Folder Include="rocketcontentapi.HtmlContent\1.0\js\" />
     <Folder Include="rocketdirectoryapi.PropertyAgent\1.0\img\" />
+    <Folder Include="rocketlibraryapi.ResourcesExample\1.0\resx\" />
   </ItemGroup>
 
   <ItemGroup>
