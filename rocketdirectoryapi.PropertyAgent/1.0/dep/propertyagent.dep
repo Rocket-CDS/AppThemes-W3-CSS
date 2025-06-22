@@ -94,7 +94,7 @@
 		<genxml>
 			<assembly>RocketDirectoryAPI</assembly>
 			<namespaceclass>RocketDirectoryAPI.Components.MenuDirectory</namespaceclass>
-			<systemkey>rocketproductsapi</systemkey>
+			<systemkey>rocketdirectoryapi</systemkey>
 		</genxml>
 	</menuprovider>
 </genxml>

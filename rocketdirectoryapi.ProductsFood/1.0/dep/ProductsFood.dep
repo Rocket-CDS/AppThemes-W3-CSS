@@ -95,13 +95,13 @@
 		<genxml>
 			<queryparam>productsfoodcatid</queryparam>
 			<tablename>rocketdirectoryapi</tablename>
-			<systemkey>rocketproductsfoodapi</systemkey>
+			<systemkey>rocketdirectoryapi</systemkey>
 			<datatype>category</datatype>
 		</genxml>
 		<genxml>
 			<queryparam>productsfoodid</queryparam>
 			<tablename>rocketdirectoryapi</tablename>
-			<systemkey>rocketproductsfoodapi</systemkey>
+			<systemkey>rocketdirectoryapi</systemkey>
 			<datatype>article</datatype>
 		</genxml>
 	</queryparams>
@@ -109,7 +109,7 @@
 		<genxml>
 			<assembly>RocketDirectoryAPI</assembly>
 			<namespaceclass>RocketDirectoryAPI.Components.MenuDirectory</namespaceclass>
-			<systemkey>rocketproductsfoodapi</systemkey>
+			<systemkey>rocketdirectoryapi</systemkey>
 		</genxml>
 	</menuprovider>
 </genxml>
