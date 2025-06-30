@@ -1,0 +1,117 @@
+@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using RocketDirectoryAPI.Components;
+@AssignDataModel(Model)
+@AddProcessDataResx(appTheme, true)
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
+<!--inject-->
+@{
+    var width = moduleData.GetSettingInt("width");
+    var height = moduleData.GetSettingInt("height");
+    var captionHeight = moduleData.GetSettingInt("captionheight");
+    var alignment = moduleData.GetSetting("alignment");
+    var paddingClass = moduleData.GetSetting("padding");
+    var backgroundcolor = moduleData.GetSetting("backgroundcolor");
+}
+<div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))" style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
+    <div class="w3-section containerinner productsarticledetail">
+        <div>
+                <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-action w3-border w3-round backlink">@ButtonIconText(ButtonTypes.back)</a>
+        </div>
+        <div class="w3-container w3-margin">
+            <div class="w3-center">
+                <h2>@articleData.Info.GetXmlProperty("genxml/textbox/title")</h2>
+            </div>
+
+            <div class="w3-row w3-margin">
+                <div id="summarykbasehtml">
+                    @articleData.Info.GetXmlProperty("genxml/textbox/mdtext")
+                </div>                
+            </div>
+
+            <div class="w3-justify">
+                    <div class="w3-row">
+                        <div class="w3-col m1 l1 w3-hide-small" >
+                            @if (articleData.GetImages().Count > 1)
+                            {
+                                foreach (var i in articleData.GetImages().Take(6))
+                                {
+                                    <div class="" style="padding-bottom:8px;padding-right:8px;">
+                                        <img src="@ImageUrl(i.RelPath,120,120)" onMouseOver="$('#mainimage@(articleData.ArticleId)').prop('src','@ImageUrl(i.RelPath,640,400)');" alt="" style="width:100%" />
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div class="w3-col m11 l11">
+                                <img id="mainimage@(articleData.ArticleId)" src="@ImageUrl(articleData.GetImage(0).RelPath,640,400)" alt="@articleData.GetImage(0).Alt" style="width:100%" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-row">
+                    @foreach (var tag in articleData.GetProperties("tags"))
+                    {
+                        <span class="w3-light-grey w3-round-xlarge w3-padding w3-margin-right">
+                            @tag.Name
+                        </span>
+                    }
+                </div>
+
+                <div class="w3-row">
+                    <div class="w3-half">
+                        @if (articleData.GetLinkList().Count > 0)
+                        {
+                            <div class="w3-xlarge w3-margin-top">@ButtonIcon(ButtonTypes.link)&nbsp;@ResourceKey("DNNrocket.links")</div>
+                        }
+                        @foreach (var lk in articleData.Getlinks())
+                        {
+                            if (!lk.Hidden)
+                            {
+                                <div class="w3-padding">
+                                    <a target="_blank" href="@lk.Url" target="@lk.Target">@lk.Name</a>
+                                </div>
+                            }
+                        }
+                    </div>
+                    <div class="w3-half">
+                        @if (articleData.GetDocList().Count > 0)
+                        {
+                            <div class="w3-xlarge w3-margin-top">@ButtonIcon(ButtonTypes.download)&nbsp;@ResourceKey("DNNrocket.documents")</div>
+                        }
+                        @foreach (var doc in articleData.GetDocs())
+                        {
+                            if (!doc.Hidden)
+                            {
+                                <a target="_blank" href="/@doc.RelPath.TrimStart('/')">
+                                    <div class="w3-button w3-theme-l3 w3-block w3-left-align rocket-document">
+                                        @doc.Name
+                                    </div>
+                                </a>
+                            }
+                        }
+                    </div>
+                </div>
+
+
+                <div>
+                    <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)#rocketproductsdisplay" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-action w3-border w3-round backlink">@ButtonIconText(ButtonTypes.back)</a>
+                </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    function summarykbaseShow() {
+        var converter = new showdown.Converter(),
+            text = $('#summarykbasehtml').text(),
+            html = converter.makeHtml(text);
+        $('#summarykbasehtml').html(html);
+    }
+
+    $(document).ready(function () {
+        summarykbaseShow();
+    });
+</script>

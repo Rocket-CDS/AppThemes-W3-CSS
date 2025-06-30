@@ -1,0 +1,35 @@
+@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using RocketDirectoryAPI.Components;
+@AssignDataModel(Model)
+@AddProcessDataResx(appTheme, true)
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
+<!--inject-->
+@{
+    var displayList = new List<int>();
+}
+<div class="rocket-tags " style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
+    @foreach (var g in moduleData.GetPropertyModuleGroups(catalogSettings))
+    {
+        foreach (var p in propertyDataList.GetPropertyTagList(g.Key))
+        {
+            if (!displayList.Contains(p.Key))
+            {
+                @TagButton(p.Key, p.Value ,sessionParams)
+                displayList.Add(p.Key);
+            }
+        }
+    }
+    @TagButtonClear("X", sessionParams)
+</div>
+
+@TagJsApiCall(moduleData,"#rocket-products", sessionParams)
+
+<script>
+    $(document).ready(function () {
+        $(".rocket-tagbutton").on("click", function () {
+            var element_to_scroll_to = document.getElementById('rocketproductsdisplay');
+            element_to_scroll_to.scrollIntoView();
+        });
+    });
+</script>
