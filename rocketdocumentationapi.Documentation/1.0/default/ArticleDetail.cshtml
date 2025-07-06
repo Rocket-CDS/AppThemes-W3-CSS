@@ -13,40 +13,38 @@
     var paddingClass = moduleData.GetSetting("padding");
     var backgroundcolor = moduleData.GetSetting("backgroundcolor");
 }
-<div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))" style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
+<div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))" style="display:none;padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
     <div class="w3-section containerinner productsarticledetail">
         <div>
                 <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-action w3-border w3-round backlink">@ButtonIconText(ButtonTypes.back)</a>
         </div>
         <div class="w3-container w3-margin">
             <div class="w3-center">
-                <h2>@articleData.Info.GetXmlProperty("genxml/textbox/title")</h2>
+                <h2>@articleData.Name</h2>
             </div>
 
             <div class="w3-row w3-margin">
-                <div id="summarykbasehtml">
-                    @articleData.Info.GetXmlProperty("genxml/textbox/mdtext")
-                </div>                
+                <div id="summarykbasehtml">@articleData.Info.GetXmlProperty("genxml/textbox/mdtext").Trim()</div>                
             </div>
 
             <div class="w3-justify">
+                @if (articleData.GetImages().Count > 1)
+                {
                     <div class="w3-row">
                         <div class="w3-col m1 l1 w3-hide-small" >
-                            @if (articleData.GetImages().Count > 1)
+                            @foreach (var i in articleData.GetImages().Take(6))
                             {
-                                foreach (var i in articleData.GetImages().Take(6))
-                                {
-                                    <div class="" style="padding-bottom:8px;padding-right:8px;">
-                                        <img src="@ImageUrl(i.RelPath,120,120)" onMouseOver="$('#mainimage@(articleData.ArticleId)').prop('src','@ImageUrl(i.RelPath,640,400)');" alt="" style="width:100%" />
-                                    </div>
-                                }
+                                <div class="" style="padding-bottom:8px;padding-right:8px;">
+                                    <img src="@ImageUrl(i.RelPath,120,120)" onMouseOver="$('#mainimage@(articleData.ArticleId)').prop('src','@ImageUrl(i.RelPath,640,400)');" alt="" style="width:100%" />
+                                </div>
                             }
                         </div>
                         <div class="w3-col m11 l11">
                                 <img id="mainimage@(articleData.ArticleId)" src="@ImageUrl(articleData.GetImage(0).RelPath,640,400)" alt="@articleData.GetImage(0).Alt" style="width:100%" />
                         </div>
                     </div>
-                </div>
+                }
+            </div>
 
                 <div class="w3-row">
                     @foreach (var tag in articleData.GetProperties("tags"))
@@ -109,6 +107,7 @@
             text = $('#summarykbasehtml').text(),
             html = converter.makeHtml(text);
         $('#summarykbasehtml').html(html);
+        $('.containerouter').show();
     }
 
     $(document).ready(function () {

@@ -157,14 +157,6 @@
             <label>Padding</label><br />
             @RadioButtonList(info, "genxml/settings/padding", "w3-padding-small,w3-padding,w3-padding-large", "Small,Medium,Large", " class=''", "w3-padding")
         </div>
-        <div class="w3-third w3-padding" style='height:80px;'>
-            <label>@ResourceKey("Products.turnoffcomments")</label><br />
-            @CheckBox(info, "genxml/settings/turnoffcomments", "", " class='w3-check'", true)
-        </div>
-        <div class="w3-third w3-padding" style='height:80px;'>
-            <label>@ResourceKey("Products.showimage")</label><br />
-            @CheckBox(info, "genxml/settings/showimage", "", " class='w3-check'", true)
-        </div>
         <div class="w3-row">
             <div class="w3-third w3-padding">
                 @CheckBox(info, "genxml/settings/showsearchtext", ResourceKey("RC.showsearchtext").ToString(), "class='w3-check'")

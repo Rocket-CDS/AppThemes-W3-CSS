@@ -1,0 +1,9 @@
+@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@AssignDataModel(Model)
+@AddProcessDataResx(appThemeView, true)
+<!--inject-->
+
+<div class="w3-row w3-padding">
+    <label>@ResourceKey("DNNrocket.link")</label>
+    [INJECT:appthemesystem,ArticleLinks.cshtml]
+</div>

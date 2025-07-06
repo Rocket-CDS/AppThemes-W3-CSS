@@ -1,0 +1,11 @@
+@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@AssignDataModel(Model)
+@AddProcessDataResx(appThemeView, true)
+<!--inject-->
+
+<div class="w3-row w3-padding">
+    <div class="w3-col">
+        <label>@ResourceKey("DNNRocket.content")</label>&nbsp;@EditFlag(sessionParams)&nbsp;@ChatGPT("content")&nbsp;@DeepL("content", "content")
+        @TextArea(info, "genxml/lang/genxml/textbox/content", "class='w3-input w3-border w3-margin-bottom' autocomplete='off' MaxLength='500' row='4'", "", false)
+    </div>
+</div>

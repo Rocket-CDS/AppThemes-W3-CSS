@@ -6,6 +6,7 @@
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
 @{
+
     var articleList = articleDataList.GetArticleList();
     var width = moduleData.GetSettingInt("width");
     var height = moduleData.GetSettingInt("height");
@@ -19,28 +20,30 @@
 <div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))" style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
     <div class="w3-section containerinner">
 
-    @if (!categoryData.Exists)
-    {
-        <h1>@portalData.Name</h1>
-    }
-    else
-    {
-        <h1>@categoryData.Name</h1>
-    }
+        @if (!categoryData.Exists)
+        {
+            <h1>@catalogSettings.CatalogName</h1>
+        }
+        else
+        {
+            <h1>@categoryData.Name</h1>
+        }
 
-[INJECT:appthemedirectorydefault,SearchBanner.cshtml]
-
-    @if (articleList.Count > 0)
-    {
-        <div class="w3-row w3-tiny">
-            <a href="@RssUrl(portalData.PortalId,"rocketproductsapi_rss", DateTime.Now.AddMonths(-11).Year, DateTime.Now.AddMonths(-11).Month, 12,"publisheddate")" target="_blank">
-                <span class="material-icons">
-                    rss_feed
-                </span>
-            </a>
+        <div class="w3-bar searchdata">
+            <div class="w3-bar-item ">
+                <div class="w3-bar">
+                    @TextBox(infoempty, "genxml/textbox/viewsearchtext", " class='w3-bar-item w3-input w3-border w3-border-theme w3-light-grey simplisity_sessionfield actionentrykey' autocomplete='off' ", sessionParams.Get("viewsearchtext"))
+                    <span class="w3-bar-item w3-button clearsearch " style="display:none;" onclick="clearSearch();return false;">@ButtonIcon(ButtonTypes.cancel)</span>
+                    <span class="w3-bar-item w3-button w3-border w3-border-theme w3-theme simplisity_click dosearch" onclick="doSearchReload();return false;" style="height:40.5px;">@ButtonIcon(ButtonTypes.search)</span>
+                </div>
+            </div>
         </div>
 
-                foreach (var article in articleList)
+        @if (articleList.Count > 0)
+        {
+            <table class="w3-table w3-bordered">
+
+                @foreach (var article in articleList)
                 {
                     var info = article.Info;
                     var layout = info.GetXmlPropertyInt("genxml/select/layout");
@@ -49,19 +52,31 @@
                     var hideRow = info.GetXmlPropertyBool("genxml/checkbox/hiderow");
                     var articleImage = article.GetImage(0);
                     var linkData = article.Getlink(0);
+                    var defaultCat = new CategoryLimpet(portalData.PortalId, article.DefaultCategory(), sessionParams.CultureCode, catalogSettings.SystemKey);
 
-                <h1>moduleData.DetailPageTabId(): @moduleData.DetailPageTabId()</h1>
-                    <div class="w3-section">
-
-                        <div class="w3-row @paddingClass">
-                        <a href="@DetailUrl(moduleData.DetailPageTabId(), article, categoryData)" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-action w3-border w3-round" title="@article.Info.GetXmlProperty("genxml/textbox/title")">
-                                <b>More&nbsp;&gt;&nbsp;</b>
+                    <tr>
+                        <td>
+                            <a href="@DetailUrl(moduleData.DetailPageTabId(), article, categoryData)" class="w3-text-blue" style="text-decoration: none;" onclick="$('.simplisity_loader').show();" title="@article.Info.GetXmlProperty("genxml/textbox/title")">
+                                @if (defaultCat.Exists)
+                                {
+                                    <span>
+                                        @defaultCat.Name : @article.Name
+                                    </span>
+                                } 
+                                else
+                                {
+                                    <span>
+                                        @article.Name
+                                    </span>
+                                }                               
                             </a>
-                        </div>
-
-                    </div>
-
+                            <div>
+                                @article.Summary!
+                            </div>
+                        </td>
+                    </tr>
                 }
+            </table>
 
     <div class="w3-row w3-padding-16 w3-center">
         [INJECT:appthemedirectorydefault,articlePaging.cshtml]
@@ -75,3 +90,52 @@
 
     </div>
 </div>
+
+<script>
+
+    $(document).ready(function () {
+        if ($('.actionentrykey').val() !== '') {
+            $('.actionentrykey').focus();
+            $('.clearsearch').show();
+            $('.dosearch').hide();
+            var tmpStr = $('.actionentrykey').val();
+            $('.actionentrykey').val('');
+            $('.actionentrykey').val(tmpStr);
+            $('#viewsearchtext').addClass('w3-theme-light');
+        }
+        else {
+            $('#viewsearchtext').removeClass('w3-theme-light');
+            $('.clearsearch').hide();
+            $('.dosearch').show();
+        }
+
+        $('.actionentrykey').unbind('keypress');
+        $('.actionentrykey').on('keypress', function (e) {
+            if (e.keyCode == 13) {
+                doSearchReload();
+                return false; // prevent the button click from happening
+            }
+        });
+
+        simplisity_setSessionField('viewsearchtext', $('#viewsearchtext').val()); // we need to repopulate the session cookie if the DNN search has been used.
+
+        $('.simplisity_loader').hide();
+    });
+
+    function clearSearch() {
+        $('#viewsearchtext').val('');
+        doSearchReload();
+    }
+
+    function doSearchReload() {
+        simplisity_setSessionField('viewsearchtext', $('#viewsearchtext').val());
+        $('.simplisity_loader').show();
+
+    @{
+        var urlp = new Dictionary<string, string>();
+        urlp.Add("page", "1");
+    }
+        window.location.href = '@(DNNrocketUtils.NavigateURL(moduleData.ListPageTabId(), urlp))';
+    }
+
+</script>

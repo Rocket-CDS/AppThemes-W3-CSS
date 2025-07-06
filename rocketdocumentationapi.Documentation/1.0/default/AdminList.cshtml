@@ -24,6 +24,7 @@
                 <tr>
                     <th style="width:54px;"></th>
                     <th>@ResourceKey("DNNrocket.name")</th>
+                    <th>@ResourceKey("DNNrocket.Summary")</th>
                 </tr>
             </thead>
             @foreach (ArticleLimpet articleData in articleDataList.GetArticleList())
@@ -38,9 +39,12 @@
                         }
                         </td>
                         <td>
-                            <b>@articleData.Info.GetXmlProperty("genxml/textbox/title")</b>
+                            <b>@articleData.Name</b>
                         </td>
-                    </tr>
+                    <td>
+                        @articleData.Summary
+                        </td>
+                </tr>
             }
         </table>
 
