@@ -24,7 +24,10 @@
             </div>
 
             <div class="w3-row w3-margin">
-                <div id="summarykbasehtml">@articleData.Info.GetXmlProperty("genxml/textbox/mdtext").Trim()</div>                
+                <div class="w3-col m10">
+                    <div id="summarykbasehtml">@articleData.Info.GetXmlProperty("genxml/textbox/mdtext").Trim()</div>
+                </div>
+                <div id="anchormenu" class="w3-col m2 w3-padding-small"></div>
             </div>
 
             <div class="w3-justify">
@@ -109,8 +112,29 @@
         $('#summarykbasehtml').html(html);
         $('.containerouter').show();
     }
+    function buildanchormenu() {
+        $("h2, h3, h5").each(function (index) {
+            if ($(this).is("h2")) {
+                $('#anchormenu').append("<div class='w3-margin-top w3-light-grey anchormenuh2' onclick=\"moveTo('" + $(this).attr('id') + "')\">" + $(this).text() + "</div>");
+            }
+            if ($(this).is("h3")) {
+                $('#anchormenu').append("<div class='w3-small w3-light-grey anchormenuh3' onclick=\"moveTo('" + $(this).attr('id') + "')\">" + $(this).text() + "</div>");
+            }
+            if ($(this).is("h5")) {
+                $('#anchormenu').append("<div class='w3-small w3-light-grey anchormenuh3' onclick=\"moveTo('" + $(this).attr('id') + "')\">" + $(this).text() + "</div>");
+            }
+        });
+    }
+    function moveTo(headingid) {
+        $([document.documentElement, document.body]).animate({
+            scrollTop: $('#' + headingid).offset().top
+        }, 200);
+    }
+
 
     $(document).ready(function () {
+        $('.simplisity_loader').hide();
         summarykbaseShow();
+        buildanchormenu();
     });
 </script>
