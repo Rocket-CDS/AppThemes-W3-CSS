@@ -25,12 +25,12 @@
     var headerDate = new DateTime(headYear, headMonth, articleListDict.Key);
     <div class="w3-xlarge a-dayselect  @(keyclass)">@headerDate.ToString("D", new CultureInfo(sessionParams.CultureCode))</div>
     <table class="w3-table w3-margin-top w3-bordered w3-margin-bottom w3-border-top a-dayselect @(keyclass)">
-        @foreach (var articleData in articleList2)
+        @foreach (var articleDataCalenderList in articleList2)
         {
-            var eventDate = articleData.Info.GetXmlPropertyDate("genxml/textbox/eventstartdate");
+            var eventDate = articleDataCalenderList.Info.GetXmlPropertyDate("genxml/textbox/eventstartdate");
             <tr>
                 <td style="width:54px;">
-                    @if (articleData.IsHidden)
+                    @if (articleDataCalenderList.IsHidden)
                     {
                         <span class="material-icons">
                             hide_source
@@ -38,18 +38,18 @@
                     }
                 </td>
                 <td style="width:54px;">
-                    <img src="@ImageUrl(articleData.GetImage(0).RelPath, 48, 48)" style="height:48px;width:48px;" class="w3-round" />
+                    <img src="@ImageUrl(articleDataCalenderList.GetImage(0).RelPath, 48, 48)" style="height:48px;width:48px;" class="w3-round" />
                 </td>
                 <td>
-                    <div class="w3-tiny">@articleData.Ref</div>
-                    <b>@articleData.Name</b>
+                    <div class="w3-tiny">@articleDataCalenderList.Ref</div>
+                    <b>@articleDataCalenderList.Name</b>
                     <div>
-                        @Succinct(articleData.Summary, 70)
+                        @Succinct(articleDataCalenderList.Summary, 70)
                     </div>
                 </td>
                 <td>
                     <div class="w3-row w3-padding-small">
-                        <a href="@DetailUrl(moduleData.DetailPageTabId(), articleData, categoryData, new string[] {"month", eventDate.Month.ToString(),"year", eventDate.Year.ToString(),"eventdate", eventDate.ToString("yyyy-MM-dd")})" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-action w3-border w3-round" title="@articleData.Name">
+                        <a href="@DetailUrl(moduleData.DetailPageTabId(), articleDataCalenderList, categoryData, new string[] {"month", eventDate.Month.ToString(),"year", eventDate.Year.ToString(),"eventdate", eventDate.ToString("yyyy-MM-dd")})" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-action w3-border w3-round" title="@articleDataCalenderList.Name">
                             <b>@ResourceKey("RocketEventsApi.readmore")&nbsp;&gt;&nbsp;</b>
                         </a>
                     </div>

@@ -4,9 +4,10 @@
 @using RocketEventsAPI.Components;
 @AssignDataModel(Model)
 @AddProcessDataResx(appTheme, true)
+
 <!--inject-->
 @{
-    var eventList = (Dictionary<DateTime, List<ArticleLimpet>>)Model.GetDataObject("eventlistbymonth");
+    var eventListMonth = (Dictionary<DateTime, List<ArticleLimpet>>)Model.GetDataObject("eventlistbymonth");
     var reloadUrl = "";
     var broswerUrl = ListUrl(moduleData.ListPageTabId()).ToString();
     if (sessionParams.GetInt(RocketDirectoryAPIUtils.UrlQueryCategoryKey(portalData.PortalId, portalContent.SystemKey)) > 0)
@@ -28,7 +29,7 @@
     @{
         var monthidx = 1;
     }
-    @foreach (var a in eventList.Reverse())
+    @foreach (var a in eventListMonth.Reverse())
     {
         if (a.Value.Count > 0)
         {

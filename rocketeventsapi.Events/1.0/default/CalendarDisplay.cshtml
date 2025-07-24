@@ -6,12 +6,16 @@
 @using System.Globalization;
 @AssignDataModel(Model)
 @AddProcessDataResx(appTheme, true)
+
+@{
+    var eventList = (List<ArticleLimpet>)Model.GetDataObject("eventmonthlist");
+}
+
 <!--inject-->
 
 @{
     var firstModay = DateTime.MinValue.Date;
     var monthDays = DateTime.DaysInMonth(calMonthStartDate.Year, calMonthStartDate.Month);
-    var eventList = (List<ArticleLimpet>)Model.GetDataObject("eventmonthlist");
     var articleDay = (Dictionary<int, List<ArticleLimpet>>)Model.GetDataObject("eventlistbyday");
     var firstDayOfWeek = (int)new DateTime(calMonthStartDate.Year, calMonthStartDate.Month, 1).DayOfWeek;
     var f = new DateTime(calMonthStartDate.Year, calMonthStartDate.Month, 1).ToLongDateString();

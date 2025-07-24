@@ -1,27 +1,47 @@
 ﻿@inherits RocketEventsAPI.Components.RocketEventsAPITokens<Simplisity.SimplisityRazor>
 @using DNNrocketAPI.Components;
-@using RocketDirectoryAPI.Components;
+@using RocketDirectoryAPI.Components;  
 @using RocketEventsAPI.Components;
+@using System.Globalization;
 @AssignDataModel(Model)
 @AddProcessDataResx(appTheme, true)
 <!--inject-->
 
 <div id="rocketeventsdisplay" style="position:relative;top:-165px;"></div>
 
-<div id="rocket-events">
-    @if (articleData != null)
-    {
-        <text>
-            [INJECT: apptheme, ArticleDetail.cshtml]
-        </text>
-    }
-    else
-    {
-        <text>
-            [INJECT: apptheme, ArticleList.cshtml]
-        </text>
-    }
+<div class="w3-row">
+    <div class="w3-col l9 m9 s12  w3-padding">
+        <div id="rocket-events">
+            @if (articleData != null)
+            {
+                <text>
+                    [INJECT: apptheme, ArticleDetail.cshtml]
+                </text>
+            }
+            else
+            {
+                <text>
+                    [INJECT: apptheme, ArticleList.cshtml]
+                </text>
+            }
+        </div>
+    </div>
+	<div class="w3-col l3 m3 s12  w3-padding-small">
+        @if (moduleSettings.GetSettingBool("showcalendar"))
+        {
+                <text>
+        [INJECT: apptheme, Calendar.cshtml]            
+                </text>
+        }
+        @if (moduleSettings.GetSettingBool("showmonths"))
+        {
+                <text>
+        [INJECT: apptheme, Months.cshtml]            
+                </text>
+        }
+	</div>
 </div>
+
 <div class="simplisity_loader" style="display:none;">
     <span class=" simplisity_loader_inner">
     </span>

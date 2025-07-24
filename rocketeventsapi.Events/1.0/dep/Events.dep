@@ -54,6 +54,11 @@
 	<moduletemplates list="true">
 		<genxml>
 			<file><![CDATA[view.cshtml]]></file>
+			<name><![CDATA[Full View]]></name>
+			<cmd>list</cmd>
+		</genxml>
+		<genxml>
+			<file><![CDATA[listview.cshtml]]></file>
 			<name><![CDATA[List View]]></name>
 			<cmd>list</cmd>
 		</genxml>

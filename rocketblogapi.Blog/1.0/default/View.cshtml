@@ -6,24 +6,48 @@
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
 
+
 <div id="rocketblogdisplay" style="position:relative;top:-165px;"></div>
 
-<div id="rocket-blog">
-    @{
-        if (articleData != null)
+<div class="w3-row">
+    <div class="w3-col l9 m9 s12  w3-padding">
+        <div id="rocket-blog">
+            @if (articleData != null)
+            {
+                <text>
+                    [INJECT: apptheme, ArticleDetail.cshtml]
+                </text>
+            }
+            else
+            {
+                <text>
+                    [INJECT: apptheme, ArticleList.cshtml]
+                </text>
+            }
+        </div>
+    </div>
+    <div class="w3-col l3 m3 s12  w3-padding-small">
+        @if (moduleSettings.GetSettingBool("showmonths"))
         {
             <text>
-                [INJECT: apptheme, ArticleDetail.cshtml]
+                [INJECT: apptheme, Months.cshtml]
             </text>
         }
-        else
+        @if (moduleSettings.GetSettingBool("showtags"))
         {
             <text>
-                [INJECT: apptheme, ArticleList.cshtml]
+                [INJECT: apptheme, Tags.cshtml]
             </text>
         }
-    }
+        @if (moduleSettings.GetSettingBool("showfilters"))
+        {
+            <text>
+                [INJECT: apptheme, Filters.cshtml]
+            </text>
+        }
+    </div>
 </div>
+
 <div class="simplisity_loader" style="display:none;">
     <span class=" simplisity_loader_inner">
     </span>
@@ -34,3 +58,5 @@
         blog_pageLoad('w3-theme-l3');
     });
 </script>
+
+

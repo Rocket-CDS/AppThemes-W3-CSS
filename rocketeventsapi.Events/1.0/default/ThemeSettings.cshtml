@@ -91,7 +91,7 @@
     }
 }
 <!-- List Settings -->
-@if (moduleData.DisplayTemplate == "view.cshtml")
+@if (moduleData.DisplayTemplate == "view.cshtml" || moduleData.DisplayTemplate == "listview.cshtml")
 {
     <div class="w3-section">
 
@@ -166,6 +166,17 @@
                 @CheckBox(info, "genxml/settings/showpagesize", ResourceKey("RC.showpagesize").ToString(), "class='w3-check'")
             </div>
         </div>
+    @if (moduleData.DisplayTemplate == "view.cshtml")
+    {
+            <div class="w3-row">
+                <div class="w3-third w3-padding">
+                    @CheckBox(info, "genxml/settings/showcalendar", ResourceKey("Events.showcalendar").ToString(), "class='w3-check'",true)
+                </div>
+                <div class="w3-third w3-padding">
+                    @CheckBox(info, "genxml/settings/showmonths", ResourceKey("Events.showmonths").ToString(), "class='w3-check'")
+                </div>
+            </div>
+        }
     </div>
 }
 

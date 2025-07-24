@@ -141,6 +141,12 @@
   <data name="replies.Text" xml:space="preserve">
     <value>Replies</value>
   </data>
+  <data name="showcalendar.Text" xml:space="preserve">
+    <value>Show Calendar</value>
+  </data>
+  <data name="showmonths.Text" xml:space="preserve">
+    <value>Show Months</value>
+  </data>
   <data name="turnoffcomments.Text" xml:space="preserve">
     <value>Turn Off Comments</value>
   </data>
