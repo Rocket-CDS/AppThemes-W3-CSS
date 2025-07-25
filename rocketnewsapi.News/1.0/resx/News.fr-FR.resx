@@ -123,4 +123,22 @@
   <data name="readmore.Text" xml:space="preserve">
     <value>Lire la suite</value>
   </data>
+  <data name="showcategories.Text" xml:space="preserve">
+    <value>Afficher les catégories</value>
+  </data>
+  <data name="showfilters.Text" xml:space="preserve">
+    <value>Afficher les filtres</value>
+  </data>
+  <data name="showmonths.Text" xml:space="preserve">
+    <value>Mois d'exposition</value>
+  </data>
+  <data name="showtags.Text" xml:space="preserve">
+    <value>Afficher les étiquettes</value>
+  </data>
+  <data name="showimage.Text" xml:space="preserve">
+    <value>Afficher l'image dans la liste</value>
+  </data>
+  <data name="warningapisettings.Text" xml:space="preserve">
+    <value>Attention : Le module "API Module Settings" doit être sélectionné.  En général, vous devez sélectionner le module "List View".</value>
+  </data>
 </root>

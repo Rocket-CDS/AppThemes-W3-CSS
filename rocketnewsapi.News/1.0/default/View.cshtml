@@ -8,21 +8,43 @@
 
 <div id="rocketnewsdisplay" style="position:relative;top:-165px;"></div>
 
-<div id="rocket-news">
-    @{
-        if (articleData != null)
+<div class="w3-row">
+    <div class="w3-col l9 m9 s12  w3-padding">
+        <div id="rocket-news">
+            @if (articleData != null)
+            {
+                <text>
+                    [INJECT: apptheme, ArticleDetail.cshtml]
+                </text>
+            }
+            else
+            {
+                <text>
+                    [INJECT: apptheme, ArticleList.cshtml]
+                </text>
+            }
+        </div>
+    </div>
+    <div class="w3-col l3 m3 s12  w3-padding-small">
+        @if (moduleSettings.GetSettingBool("showcategories"))
         {
             <text>
-                [INJECT: apptheme, ArticleDetail.cshtml]
+                [INJECT: apptheme, Categories.cshtml]
             </text>
         }
-        else
+        @if (moduleSettings.GetSettingBool("showmonths"))
         {
             <text>
-                [INJECT: apptheme, ArticleList.cshtml]
+                [INJECT: apptheme, Months.cshtml]
             </text>
         }
-    }
+        @if (moduleSettings.GetSettingBool("showfilters"))
+        {
+            <text>
+                [INJECT: apptheme, Filters.cshtml]
+            </text>
+        }
+    </div>
 </div>
 
 <div class="simplisity_loader" style="display:none;">
@@ -34,3 +56,4 @@
         news_pageLoad('w3-theme-l3');
     });
 </script>
+

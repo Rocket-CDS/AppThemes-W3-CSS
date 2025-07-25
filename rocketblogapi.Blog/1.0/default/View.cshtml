@@ -27,6 +27,12 @@
         </div>
     </div>
     <div class="w3-col l3 m3 s12  w3-padding-small">
+        @if (moduleSettings.GetSettingBool("showcategories"))
+        {
+            <text>
+                [INJECT: apptheme, Categories.cshtml]
+            </text>
+        }
         @if (moduleSettings.GetSettingBool("showmonths"))
         {
             <text>
