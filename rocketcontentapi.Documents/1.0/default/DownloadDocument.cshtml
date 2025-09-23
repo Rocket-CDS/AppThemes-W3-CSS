@@ -1,0 +1,28 @@
+@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@AssignDataModel(Model)
+<!--inject-->
+
+<div class="w3-justify simplisity_panel">
+
+    <div class="w3-row">
+        @foreach (var doc in articleRowData.GetDocs())
+        {
+            if (!doc.Hidden)
+            {
+
+                <br/>
+                <a class="w3-button w3-theme-l3 w3-block w3-left-align simplisity_filedownload" s-cmd="remote_publicdownload" @SFields("rowkey", articleRowData.RowKey, "dockey", doc.DocKey, "moduleid", sessionParams.ModuleId.ToString(), "tabid", sessionParams.TabId.ToString())>
+                    @doc.Name
+                </a>
+
+            }
+        }
+    </div>
+
+<script>
+    $(document).ready(function () {
+        $(document).simplisityStartUp('/Desktopmodules/dnnrocket/api/rocket/action', { "systemkey": "rocketcontentapi"});
+    });
+</script>
+

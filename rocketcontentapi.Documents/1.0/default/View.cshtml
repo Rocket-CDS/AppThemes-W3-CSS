@@ -1,0 +1,18 @@
+﻿@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using RocketContentAPI.Components;
+@AssignDataModel(Model)
+<!--inject-->
+@{
+    var stylepadding = StylePadding();
+    var backgroundcolor = moduleData.GetSetting("backgroundcolor");
+}
+<div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))">
+    <div class="w3-section containerinner" style="@(stylepadding)">
+        <div class="w3-container">
+            [INJECT:appthemeview,layouttext.cshtml]
+            [INJECT:appthemeview,DownloadDocument.cshtml]
+        </div>
+    </div>
+</div>
+
