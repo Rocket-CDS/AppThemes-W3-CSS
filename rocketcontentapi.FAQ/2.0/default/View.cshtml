@@ -1,0 +1,52 @@
+﻿@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@using RocketContentAPI.Components;
+@AssignDataModel(Model)
+@AddProcessDataResx(appThemeView, true)
+<!--inject-->
+@{
+    var backgroundcolor = moduleData.GetSetting("backgroundcolor");
+    var stylepadding = StylePadding();
+}
+
+<div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))">
+    <div class="w3-section containerinner" style="@(stylepadding)">
+
+    [INJECT:appthemesystem,ArticleHeaderView.cshtml]
+
+        <table class="" style="width:100%;">
+
+    @foreach (var articleRowData in articleData.GetRows())
+    {
+        var contentId = "content" + articleRowData.RowKey + sessionParams.ModuleId;
+        var rowData = articleRowData.Info;
+        var defaultOpenClass = "";
+        var defaultOpenStyle = "display:none;";
+        if (articleRowData.GetBool("genxml/checkbox/defaultopen"))
+        {
+            defaultOpenClass = " accordion-active a-active" + sessionParams.ModuleId;
+            defaultOpenStyle = "";
+        }
+
+            <tr class="w3-card w3-round-large"  onclick="slideAccordionFAQ('@(contentId)','@(sessionParams.ModuleId)')" style="cursor:pointer;">
+                    <td class="w3-theme w3-large w3-padding" style="width:32px;vertical-align:middle;">
+                        <span class="arrowright@(contentId) ">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z" /></svg>
+                    </span>
+                        <span class="arrowleft@(contentId)" style="display:none;">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z" /></svg>
+                        </span>
+                </td>
+                <td class=" w3-large w3-padding">@rowData.GetXmlProperty("genxml/lang/genxml/textbox/title")</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="w3-padding">
+                    <div id="@(contentId)" class="accordion-content @(defaultOpenClass)" style="@(defaultOpenStyle)">@HtmlOf(rowData.GetXmlProperty("genxml/lang/genxml/textbox/richtext"))</div>
+                </td>
+            </tr>
+    }
+        </table>
+
+    </div>
+</div>
+

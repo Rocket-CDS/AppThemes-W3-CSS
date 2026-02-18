@@ -1,0 +1,21 @@
+@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@AssigDataModel(Model)
+@AddProcessDataResx(appThemeView, true)
+<!--inject-->
+<div class="w3-row @info.GetXmlProperty("genxml/select/align").Replace("w3","w3-")">
+@{
+    var moduleTitle = info.GetXmlProperty("genxml/lang/genxml/textbox/title");
+    var headerStyle = info.GetXmlProperty("genxml/select/style");
+}
+
+@if (info.GetXmlProperty("genxml/lang/genxml/textbox/anchor") != "")
+{
+<span id="@info.GetXmlProperty("genxml/lang/genxml/textbox/anchor")"></span>;
+}
+
+@if (moduleTitle != "" && headerStyle != "")
+{
+    var headerElement = "<" + headerStyle + ">" + moduleTitle + "</" + headerStyle + ">";
+    @HtmlOf(headerElement)
+}
+</div>

@@ -1,0 +1,27 @@
+﻿@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@using DNNrocketAPI.Components;
+@AssignDataModel(Model)
+@AddProcessDataResx(appThemeView, true)
+<!--inject-->
+
+@{
+    var documentalignvalue = info.GetXmlPropertyInt("genxml/select/documentalign");
+    var documentalign = "";
+    if (documentalignvalue == 1)
+    {
+        documentalign = "w3-center";
+    }
+    if (documentalignvalue == 2)
+    {
+        documentalign = "w3-right-align";
+    }
+}
+
+@foreach (ArticleDoc d in articleRowData.GetDocs())
+{
+    <div class="w3-container">
+        <div class="@(documentalign)">
+            <a href="@(d.RelPath)" class="w3-button" download>@(d.Name)</a>
+        </div>
+    </div>    
+}

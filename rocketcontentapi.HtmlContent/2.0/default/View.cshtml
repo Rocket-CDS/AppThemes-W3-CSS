@@ -1,0 +1,101 @@
+﻿@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@AssignDataModel(Model)
+@AddProcessDataResx(appTheme, true)
+<!--inject-->
+@{
+    var width = moduleData.GetSettingInt("width");
+    var height = moduleData.GetSettingInt("height");
+    var alignment = moduleData.GetSetting("alignment");
+    var paddingClass = moduleData.GetSetting("padding");
+    var color = moduleData.GetSetting("color");
+    var stylepadding = StylePadding();
+    var backgroundcolor = moduleData.GetSetting("backgroundcolor");
+}
+<div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))">
+    <div class="w3-section containerinner" style="@(stylepadding)">
+
+@foreach (var articleRowData in articleData.GetRows())
+{
+    Model.SetDataObject("articlerow", articleRowData);
+    var info = articleRowData.Info;
+    var layout = info.GetXmlPropertyInt("genxml/select/layout");
+    var hideRow = info.GetXmlPropertyBool("genxml/checkbox/hiderow");
+
+    if (!hideRow)
+    {
+        [INJECT: apptheme, ArticleHeader.cshtml]
+        <div class="w3-row">
+
+        @if (layout == 0)
+        {
+            <text>
+            [INJECT: apptheme, layout0.cshtml]
+            </text>
+        }
+        @if (layout == 1)
+        {
+            <text>
+                [INJECT: apptheme, layout1.cshtml]
+            </text>
+        }
+        @if (layout == 2)
+        {
+            <text>
+                [INJECT: apptheme, layout2.cshtml]
+            </text>
+        }
+        @if (layout == 3)
+        {
+            <text>
+                [INJECT: apptheme, layout3.cshtml]
+            </text>
+        }
+        @if (layout == 4)
+        {
+            <text>
+                [INJECT: apptheme, layout4.cshtml]
+            </text>
+        }
+        @if (layout == 5)
+        {
+            <text>
+                [INJECT: apptheme, layout5.cshtml]
+            </text>
+        }
+        @if (layout == 6)
+        {
+            <text>
+                [INJECT: apptheme, layout6.cshtml]
+            </text>
+        }
+        @if (layout == 7)
+        {
+            <text>
+                [INJECT: apptheme, layout7.cshtml]
+            </text>
+        }
+        @if (layout == 8)
+        {
+            <text>
+                [INJECT: apptheme, layout8.cshtml]
+            </text>
+        }
+
+        @if (info.GetXmlProperty("genxml/lang/genxml/textbox/htmltext") != "")
+        {
+                    @RenderTemplate("htmltext.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
+        }
+        @if (articleRowData.GetDocList().Count > 0)
+        {
+                    @RenderTemplate("documents.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
+        }
+        @if (articleRowData.Getlinks().Count > 0)
+        {
+                    @RenderTemplate("links.cshtml", moduleData.ModuleRef, appThemeView, Model, true)
+        }
+        </div>
+    }
+}
+
+    </div>
+</div>

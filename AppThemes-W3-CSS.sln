@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\..\..\..\..\..\Projects\DesktopModules\DNNrocket\css\w3.css = ..\..\..\..\..\..\Projects\DesktopModules\DNNrocket\css\w3.css
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppTheme-AgenceSesame", "..\AppTheme-AgenceSesame\AppTheme-AgenceSesame.csproj", "{E7D5E634-F98B-7949-7818-7D8614CB1D17}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Comp All|Any CPU = Comp All|Any CPU
@@ -28,6 +30,16 @@ Global
 		{ED7C7951-16E1-447B-ABD5-2E6960830682}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ED7C7951-16E1-447B-ABD5-2E6960830682}.Razor|Any CPU.ActiveCfg = Release|Any CPU
 		{ED7C7951-16E1-447B-ABD5-2E6960830682}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7D5E634-F98B-7949-7818-7D8614CB1D17}.Comp All|Any CPU.ActiveCfg = Release|Any CPU
+		{E7D5E634-F98B-7949-7818-7D8614CB1D17}.Comp All|Any CPU.Build.0 = Release|Any CPU
+		{E7D5E634-F98B-7949-7818-7D8614CB1D17}.CompAll|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7D5E634-F98B-7949-7818-7D8614CB1D17}.CompAll|Any CPU.Build.0 = Debug|Any CPU
+		{E7D5E634-F98B-7949-7818-7D8614CB1D17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7D5E634-F98B-7949-7818-7D8614CB1D17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7D5E634-F98B-7949-7818-7D8614CB1D17}.Razor|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7D5E634-F98B-7949-7818-7D8614CB1D17}.Razor|Any CPU.Build.0 = Debug|Any CPU
+		{E7D5E634-F98B-7949-7818-7D8614CB1D17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7D5E634-F98B-7949-7818-7D8614CB1D17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

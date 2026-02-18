@@ -1,0 +1,6 @@
+﻿@inherits RocketContentAPI.Components.RocketContentAPITokens<Simplisity.SimplisityRazor>
+@AssignDataModel(Model)
+@AddProcessDataResx(appThemeView, true)
+<!--inject-->
+
+@HtmlOf(rowData.GetXmlProperty("genxml/lang/genxml/textbox/htmltext"))
