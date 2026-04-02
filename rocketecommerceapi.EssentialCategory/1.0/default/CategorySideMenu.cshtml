@@ -42,16 +42,16 @@
             }
         }
         var productListUrl = categoryData.CategoryUrl(moduleSettings);
-<div class="@selectedcolor @toplevelclass">
-    <a href="@productListUrl" class="categoryitem" onclick="$('.simplisity_loader').show();" catid="@categoryData.CategoryId">
-        @if (categoryData.Level > 0)
-        {
-        <span class="material-icons">
-            chevron_right
-        </span>                }
-        <span>@categoryData.Name</span>
-    </a>
-</div>
+        <div class="@selectedcolor @toplevelclass">
+            <a href="@productListUrl" class="categoryitem" onclick="$('.simplisity_loader').show();" catid="@categoryData.CategoryId">
+                @if (categoryData.Level > 0)
+                {
+                <span class="material-icons">
+                    chevron_right
+                </span>                }
+                <span>@categoryData.Name</span>
+            </a>
+        </div>
 
 }
 </div>

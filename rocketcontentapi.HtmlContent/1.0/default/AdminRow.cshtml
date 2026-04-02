@@ -78,7 +78,7 @@
         <div class='w3-col m12 w3-padding'>
             @EditFlag(sessionParams)  &nbsp;@ChatGPT("richtext", "title") &nbsp;@DeepL("richtext", "richtext", sessionParams.CultureCodeEdit)
             <div class='w3-col m12'>
-                @CKEditor4(info, "genxml/lang/genxml/textbox/richtext", true)
+                @Editor(info, "genxml/lang/genxml/textbox/richtext", Model, 0, "")
             </div>
             <div class='w3-col' style='width:0px;height:600px;'></div>
         </div>
