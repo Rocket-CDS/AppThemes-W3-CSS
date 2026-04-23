@@ -43,7 +43,7 @@
 		</genxml>
 		<genxml>
 			<ctrltype><![CDATA[css]]></ctrltype>
-			<url><![CDATA[/DesktopModules/DNNrocket/API/Themes/config-w3/1.0/css/dnnrocket-theme.css]]></url>
+			<url><![CDATA[/DesktopModules/DNNrocket/API/Themes/config-w3/1.0/css/dnn-theme.css]]></url>
 			<ecofriendly>true</ecofriendly>
 		</genxml>
 	</deps>

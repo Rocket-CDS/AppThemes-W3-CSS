@@ -27,26 +27,32 @@
         {
             if (moduleData.GetSettingInt("satlayout") == 0)
             {
-                <div class="w3-row @alignment">
-                    <a href="@DetailUrl(moduleData.DetailPageTabId(), article, categoryData)" class="@paddingClass" title="@article.Name" onclick="$('.simplisity_loader').show();">
-                        <img class="w3-image @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
-                    </a>
-                    <p class="@moduleData.GetSetting("titlesize") @paddingClass">
-                        <span>@article.Name</span><br />
-                        <span class="w3-opacity">@DateOf(article.Info, article.PublishedDateXPath, sessionParams.CultureCode, "dd MMM yyy")</span>
-                    </p>
+                <div class="w3-card w3-round-large w3-border w3-white w3-margin-bottom @alignment">
+                    <div class="w3-padding">
+                        <a href="@DetailUrl(moduleData.DetailPageTabId(), article, categoryData)" class="@paddingClass" title="@article.Name" onclick="$('.simplisity_loader').show();">
+                            <img class="w3-image w3-round @(moduleData.GetSetting("opacity"))" src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+                        </a>
+                        <p class="@moduleData.GetSetting("titlesize") @paddingClass w3-margin-bottom-0">
+                            <span>@article.Name</span><br />
+                            <span class="w3-opacity">@DateOf(article.Info, article.PublishedDateXPath, sessionParams.CultureCode, "dd MMM yyy")</span>
+                        </p>
+                    </div>
                 </div>
             }
             if (moduleData.GetSettingInt("satlayout") == 1)
             {
-                <div class="w3-quarter @alignment w3-padding-small">
-                    <a href="@DetailUrl(moduleData.DetailPageTabId(), article, categoryData)" class="@paddingClass" title="@article.Name" onclick="$('.simplisity_loader').show();">
-                        <img class="w3-image @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
-                    </a>
-                    <p class="@moduleData.GetSetting("titlesize") @paddingClass">
-                        <span>@article.Name</span><br />
-                        <span class="w3-opacity">@DateOf(article.Info, article.PublishedDateXPath, sessionParams.CultureCode, "dd MMM yyy")</span>
-                    </p>
+                <div class="w3-quarter w3-padding-small">
+                    <div class="w3-card w3-round-large w3-border w3-white @alignment" style="height:100%;">
+                        <div class="w3-padding-small">
+                            <a href="@DetailUrl(moduleData.DetailPageTabId(), article, categoryData)" class="@paddingClass" title="@article.Name" onclick="$('.simplisity_loader').show();">
+                                <img class="w3-image w3-round @(moduleData.GetSetting("opacity"))" src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+                            </a>
+                            <p class="@moduleData.GetSetting("titlesize") @paddingClass w3-margin-bottom-0">
+                                <span>@article.Name</span><br />
+                                <span class="w3-opacity">@DateOf(article.Info, article.PublishedDateXPath, sessionParams.CultureCode, "dd MMM yyy")</span>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             }
         }

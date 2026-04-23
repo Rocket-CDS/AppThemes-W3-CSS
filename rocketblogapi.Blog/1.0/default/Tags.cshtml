@@ -8,22 +8,29 @@
 @{
     var displayList = new List<int>();
 }
-<div class="rocket-tags " style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
-    @foreach (var g in moduleData.GetPropertyModuleGroups(catalogSettings))
-    {
-        foreach (var p in propertyDataList.GetPropertyTagList(g.Key))
+<div class="rocket-tags w3-small" style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
+    <div class="w3-row-padding">
+        @foreach (var g in moduleData.GetPropertyModuleGroups(catalogSettings))
         {
-            if (!displayList.Contains(p.Key))
+            foreach (var p in propertyDataList.GetPropertyTagList(g.Key))
             {
-                @TagButton(p.Key, p.Value ,sessionParams)
-                displayList.Add(p.Key);
+                if (!displayList.Contains(p.Key))
+                {
+                    <span class="w3-margin-right w3-margin-bottom w3-show-inline-block">
+                        @TagButton(p.Key, p.Value, sessionParams, "w3-theme-l5","w3-theme-l3")
+                    </span>
+                    displayList.Add(p.Key);
+                }
             }
         }
-    }
-    @TagButtonClear("X", sessionParams)
+    <span class="w3-margin-top">
+        @TagButtonClear("X", sessionParams, "w3-theme-l5")
+    </span>
+
+    </div>
 </div>
 
-@TagJsApiCall(moduleData,"#rocket-blog", sessionParams)
+@TagJsApiCall(moduleData,"#rocket-blog", sessionParams, "w3-theme-l5", "w3-theme-l3", "articlelist.cshtml")
 
 <script>
     $(document).ready(function () {

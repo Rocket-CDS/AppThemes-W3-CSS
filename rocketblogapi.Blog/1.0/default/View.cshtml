@@ -5,51 +5,64 @@
 @AddProcessDataResx(appTheme, true)
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
+@{
+    var hasSidebar = moduleSettings.GetSettingBool("showcategories") || moduleSettings.GetSettingBool("showmonths") || moduleSettings.GetSettingBool("showtags") || moduleSettings.GetSettingBool("showfilters");
+    var mainColClass = hasSidebar ? "w3-col l9 m8 s12 w3-margin-bottom" : "w3-col l12 m12 s12 w3-margin-bottom";
+}
 
 
 <div id="rocketblogdisplay" style="position:relative;top:-165px;"></div>
 
-<div class="w3-row">
-    <div class="w3-col l9 m9 s12  w3-padding">
-        <div id="rocket-blog">
-            @if (articleData != null)
-            {
-                <text>
-                    [INJECT: apptheme, ArticleDetail.cshtml]
-                </text>
-            }
-            else
-            {
-                <text>
-                    [INJECT: apptheme, ArticleList.cshtml]
-                </text>
-            }
+<div class="w3-content" style="max-width:1400px;">
+    <div class="w3-row-padding">
+        <div class="@mainColClass">
+            <div id="rocket-blog" class="w3-padding-small">
+                @if (articleData != null)
+                {
+                    <text>
+                        [INJECT: apptheme, ArticleDetail.cshtml]
+                    </text>
+                }
+                else
+                {
+                    <text>
+                        [INJECT: apptheme, ArticleList.cshtml]
+                    </text>
+                }
+            </div>
         </div>
-    </div>
-    <div class="w3-col l3 m3 s12  w3-padding-small">
-        @if (moduleSettings.GetSettingBool("showcategories"))
+        @if (hasSidebar)
         {
-            <text>
-                [INJECT: apptheme, Categories.cshtml]
-            </text>
-        }
-        @if (moduleSettings.GetSettingBool("showmonths"))
-        {
-            <text>
-                [INJECT: apptheme, Months.cshtml]
-            </text>
-        }
-        @if (moduleSettings.GetSettingBool("showtags"))
-        {
-            <text>
-                [INJECT: apptheme, Tags.cshtml]
-            </text>
-        }
-        @if (moduleSettings.GetSettingBool("showfilters"))
-        {
-            <text>
-                [INJECT: apptheme, Filters.cshtml]
-            </text>
+            <div class="w3-col l3 m4 s12 w3-margin-bottom">
+                @if (moduleSettings.GetSettingBool("showcategories"))
+                {
+                    <div class="w3-margin-bottom">
+                        <div class="w3-small w3-text-grey w3-padding-small"><b>@ResourceKey("DNNrocket.categories")</b></div>
+                        [INJECT: apptheme, Categories.cshtml]
+                    </div>
+                }
+                @if (moduleSettings.GetSettingBool("showmonths"))
+                {
+                    <div class="w3-margin-bottom">
+                        <div class="w3-small w3-text-grey w3-padding-small"><b>Archive</b></div>
+                        [INJECT: apptheme, Months.cshtml]
+                    </div>
+                }
+                @if (moduleSettings.GetSettingBool("showtags"))
+                {
+                    <div class="w3-margin-bottom">
+                        <div class="w3-small w3-text-grey w3-padding-small"><b>Tags</b></div>
+                        [INJECT: apptheme, Tags.cshtml]
+                    </div>
+                }
+                @if (moduleSettings.GetSettingBool("showfilters"))
+                {
+                    <div class="w3-margin-bottom">
+                        <div class="w3-small w3-text-grey w3-padding-small"><b>Filters</b></div>
+                        [INJECT: apptheme, Filters.cshtml]
+                    </div>
+                }
+            </div>
         }
     </div>
 </div>

@@ -1,55 +1,85 @@
-# AppTheme - rocketblogapi.Blog 
+# AppTheme - rocketblogapi.Blog
 
-The is a Blog AppTheme to give functionality to create and search blog entries.  
+This AppTheme provides public blog display and admin management templates for **RocketBlogAPI** using **Razor** and **W3.CSS**.
 
+Repository:
 [https://github.com/Rocket-CDS/AppThemes-W3-CSS](https://github.com/Rocket-CDS/AppThemes-W3-CSS)
 
-## Razor Templates
+## Purpose
 
-### AdminList.cshtml
+- Keep the RocketCDS blog display flow and SEO-friendly URLs.
+- Support list/detail rendering via standard AppTheme template injection.
+- Provide category, month, tag, and property-filter navigation.
+- Style the public-facing blog with W3.CSS components (cards, spacing, typography, responsive layout).
 
-### AdminDetail.cshtml
-
-### AdminExtra.cshtml
-
-### AdminHeader.cshtml
+## Display Templates
 
 ### View.cshtml
-This is the view wrapper template and decides to display the list or detail.
+Main public wrapper with content + sidebar layout.
+Decides whether to render list or detail templates.
+
+### ListView.cshtml
+Alternate wrapper for list/detail rendering without sidebar blocks.
 
 ### ArticleList.cshtml
-This template will display the list.  The text search, list ordering and paging size is injected into this template.
-
-The JS to remove the search and filters when navigated to another page is added to this template.  
-
-Paging is dealt with in this template the categories, search and filters must persist paging reload.
-
-### ArticleDetail.cshtml
-This displays the article detail, this has little affect on the search and filters but it is important to note that the "ArticleList.cshtml" template uses a link to load this as a new page.  This is important for SEO.  
-
-If using an API call to display the detail, the SEO can be achieved by using JS to change the navigator URL.  This AppTheme uses the easy and trusted method to allow search engines to navigate the website in a traditional way.  
-
-Because the detail page is a reload and has it's own URL for SEO requirements we cannot add the filter clear functionality to the detail template. If we do the search and filter will be lost when the user goes back to the list page.
-
-### Categories.cshtml
-The categories are listed using a natural html link, this changes the URL and allows for SEO requirements.
-
-### Tags.cshtml
-The tags template displays the property tags that can be selected, these are filters.  The difference with the "Filter.cshtml" is that only 1 tag can be selected at a time.  
-
-### Filter.cshtml
-This displays a list of properties that are used as filters for the list.
-
-### Months.cshtml
-
-### ArticleSat.cshtml
+Renders article list cards and includes:
+- search/banner injection
+- ordering/page size/paging support
+- image left/right layout settings
 
 ### LayoutText.cshtml
+Renders per-article text excerpt block used by the list template.
 
-## CSS
+### ArticleDetail.cshtml
+Renders article detail with:
+- title, date, summary, rich text
+- image gallery + main image
+- tags, links, documents
+- social share section
+- reviews/comments flow
 
-## JS
+### Categories.cshtml
+Category tree navigation with selected-state highlighting.
 
-## Resx
+### Months.cshtml
+Archive-by-month list with count badges.
 
-## Dependency
+### Tags.cshtml
+Single-select style tag filtering.
+
+### Filters.cshtml
+Property group filters using checkboxes.
+
+### ArticleSat.cshtml
+Satellite article display (vertical/horizontal modes) for featured/compact placements.
+
+## Admin Templates
+
+Admin/settings templates are separate from the public display templates and can be maintained independently.
+
+## Theme Settings (Display-Relevant)
+
+Configured in `ThemeSettings.cshtml` and used by display templates:
+- layout mode
+- page size
+- alignment
+- image width/height
+- title/text/content size
+- opacity/background/padding
+- show/hide image
+- comments on/off
+- show/hide sidebar blocks (months/categories/filters/tags)
+- top/bottom padding and extra CSS class
+
+## Notes for Customization
+
+- Keep existing IDs/classes used by API callbacks and JavaScript behaviors (`#rocket-blog`, `#rocketblogdisplay`, filter/tag/month classes).
+- Keep list/detail URL behavior for SEO (detail page links are full navigable URLs).
+- Use W3.CSS utility and component classes for visual adjustments.
+- Preserve existing token helpers and template injection points.
+
+## Dependencies
+
+- RocketBlogAPI / RocketDirectoryAPI token helpers
+- DNNrocket rendering pipeline
+- W3.CSS (theme styling)
