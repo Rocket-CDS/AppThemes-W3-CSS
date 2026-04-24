@@ -1,6 +1,10 @@
 @inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
 @using DNNrocketAPI.Components;
 @using RocketDirectoryAPI.Components;
+@using System.Collections.Generic
+@using System.Globalization
+@using System.Linq
+@using System.Xml.Linq
 @AssignDataModel(Model)
 @AddProcessDataResx(appTheme, true)
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
@@ -8,29 +12,30 @@
 <!--inject-->
 @if (!String.IsNullOrEmpty(article.Name))
 {
-    <p class="@moduleData.GetSetting("titlesize") @paddingClass">
-        <span>@article.Name</span><br/>
-        <span class="w3-opacity">@DateOf(article.Info, article.PublishedDateXPath, sessionParams.CultureCode, "dd MMM yyy")</span>
-    </p>
-}
-@if (!String.IsNullOrEmpty(article.Summary))
-{
-    <p class="@moduleData.GetSetting("textsize") @paddingClass">
-        @BreakOf(article.Summary)
-    </p>
+    <h3 class="@moduleData.GetSetting("titlesize") w3-margin-top w3-margin-bottom" style="line-height:1.25;">
+        <a href="@detailUrl" onclick="$('.simplisity_loader').show();" class="w3-text-theme" style="text-decoration:none;" title="@article.Name">@article.Name</a>
+    </h3>
 }
 
-<div class="w3-row @paddingClass">
-    <a href="@DetailUrl(moduleData.DetailPageTabId(), article, categoryData)" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-action w3-border w3-round" title="@article.Name">
-        <b>@ResourceKey("Products.readmore")&nbsp;&gt;&nbsp;</b>
-    </a>
+<div class="w3-large w3-text-theme w3-margin-bottom">
+    <b>BEST PRICE</b>
 </div>
 
-@if (!moduleData.GetSettingBool("turnoffcomments"))
+@if (!String.IsNullOrEmpty(article.Summary))
 {
-    <div class="w3-row w3-hide-small">
-        <p><span class="w3-padding-large w3-right"><b>@ResourceKey("Products.comments")&nbsp;  </b> <span class="w3-tag">@article.ReviewCount</span></span></p>
+    <div class="@moduleData.GetSetting("textsize") w3-text-grey w3-margin-bottom" style="min-height:72px;flex:1;">
+        @BreakOf(article.Summary)
     </div>
 }
+else
+{
+    <div style="flex:1;"></div>
+}
+
+<div class="w3-padding-bottom" style="margin-top:auto;">
+    <a href="@detailUrl" onclick="$('.simplisity_loader').show();" class="w3-button w3-block w3-theme-action w3-border w3-round-large" title="@article.Name">
+        <b>@ResourceKey("Products.readmore")</b>
+    </a>
+</div>
 
 
