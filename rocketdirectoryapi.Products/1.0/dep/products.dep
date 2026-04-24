@@ -18,12 +18,12 @@
 		</genxml>
 		<genxml>
 			<ctrltype><![CDATA[js]]></ctrltype>
-			<url><![CDATA[{appthemefolder}/js/products.js]]></url>
+			<url><![CDATA[{appthemeshareddirectory}/js/w3shared.js]]></url>
 			<ecofriendly>true</ecofriendly>
 		</genxml>
 		<genxml>
 			<ctrltype><![CDATA[css]]></ctrltype>
-			<url><![CDATA[{appthemefolder}/css/Products.css]]></url>
+			<url><![CDATA[{appthemeshareddirectory}/css/w3shared.css]]></url>
 			<ecofriendly>true</ecofriendly>
 		</genxml>
 		<genxml>
@@ -33,12 +33,17 @@
 		</genxml>
 		<genxml>
 			<ctrltype><![CDATA[js]]></ctrltype>
-			<url><![CDATA[{appthemefolder}/js/jquery.sharrre.min.js]]></url>
+			<url><![CDATA[{appthemeshareddirectory}/js/jquery.sharrre.min.js]]></url>
 			<ecofriendly>true</ecofriendly>
 		</genxml>
 		<genxml>
 			<ctrltype><![CDATA[css]]></ctrltype>
 			<url><![CDATA[/DesktopModules/DNNrocket/css/rocket-icons-v1.0/style.css]]></url>
+			<ecofriendly>true</ecofriendly>
+		</genxml>
+		<genxml>
+			<ctrltype><![CDATA[css]]></ctrltype>
+			<url><![CDATA[/DesktopModules/DNNrocket/API/Themes/config-w3/1.0/css/dnn-theme.css]]></url>
 			<ecofriendly>true</ecofriendly>
 		</genxml>
 		<genxml>
@@ -50,6 +55,11 @@
 	<moduletemplates list="true">
 		<genxml>
 			<file><![CDATA[view.cshtml]]></file>
+			<name><![CDATA[Full View]]></name>
+			<cmd>listdetail</cmd>
+		</genxml>
+		<genxml>
+			<file><![CDATA[listview.cshtml]]></file>
 			<name><![CDATA[List View]]></name>
 			<cmd>listdetail</cmd>
 		</genxml>

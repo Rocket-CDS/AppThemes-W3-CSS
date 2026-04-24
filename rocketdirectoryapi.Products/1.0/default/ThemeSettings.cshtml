@@ -18,6 +18,11 @@
     .w3-input {
         height: 41px;
     }
+    .dnnCheckbox {
+        display: inline-block;
+        justify-content: flex-start;
+        align-items: center;
+    }
 </style>
 
 <!-- Satelite Settings -->
@@ -72,16 +77,6 @@
         </div>
     }
 }
-<!-- Month Settings -->
-@if (moduleData.DisplayTemplate == "months.cshtml")
-{
-    if (moduleData.ApiModuleRef == moduleData.ModuleRef)
-    {
-        <div class="w3-row w3-text-red w3-large">
-            @ResourceKey("Products.warningapisettings")
-        </div>
-    }
-}
 <!-- Category Settings -->
 @if (moduleData.DisplayTemplate == "categories.cshtml")
 {
@@ -98,7 +93,7 @@
     }
 }
 <!-- List Settings -->
-@if (moduleData.DisplayTemplate == "view.cshtml")
+@if (moduleData.DisplayTemplate == "view.cshtml" || moduleData.DisplayTemplate == "listview.cshtml")
 {
     <div class="w3-section">
 
@@ -177,6 +172,22 @@
             </div>
         </div>
 
+        @if (moduleData.DisplayTemplate == "view.cshtml")
+        {
+            <div class="w3-row">
+                <div class="w3-third w3-padding">
+                    @CheckBox(info, "genxml/settings/showcategories", ResourceKey("RC.showcategories").ToString(), "class='w3-check'")
+                </div>
+                <div class="w3-third w3-padding">
+                    @CheckBox(info, "genxml/settings/showfilters", ResourceKey("RC.showfilters").ToString(), "class='w3-check'")
+                </div>
+                <div class="w3-third w3-padding">
+                    @CheckBox(info, "genxml/settings/showtags", ResourceKey("RC.showtags").ToString(), "class='w3-check'")
+                </div>
+            </div>
+        }
+
+
     </div>
 }
 
@@ -198,7 +209,7 @@
 </div>
 
 
-@if (moduleData.DisplayTemplate == "tags.cshtml" || moduleData.DisplayTemplate == "filters.cshtml")
+@if (moduleData.DisplayTemplate == "tags.cshtml" || moduleData.DisplayTemplate == "filters.cshtml" || moduleData.DisplayTemplate == "view.cshtml")
 {
     <div class="w3-row  w3-padding">
         <div class="w3-row">

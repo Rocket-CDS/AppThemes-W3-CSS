@@ -65,6 +65,8 @@
     <Folder Include="rocketcontentapi.HeroHeader\1.0\dep\" />
     <Folder Include="rocketcontentapi.HtmlContent\1.0\img\" />
     <Folder Include="rocketcontentapi.HtmlContent\1.0\js\" />
+    <Folder Include="rocketdirectoryapi.Products\1.0\css\" />
+    <Folder Include="rocketdirectoryapi.Products\1.0\js\" />
     <Folder Include="rocketdirectoryapi.PropertyAgent\1.0\img\" />
     <Folder Include="rocketnewsapi.News\1.0\css\" />
     <Folder Include="rocketnewsapi.News\1.0\js\" />
