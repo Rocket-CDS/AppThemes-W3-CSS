@@ -69,6 +69,11 @@
 			<cmd>catmenu</cmd>
 		</genxml>
 		<genxml>
+			<file><![CDATA[Tags.cshtml]]></file>
+			<name><![CDATA[Tags]]></name>
+			<cmd>catmenu</cmd>
+		</genxml>
+		<genxml>
 			<file><![CDATA[Months.cshtml]]></file>
 			<name><![CDATA[Months]]></name>
 			<cmd>catmenu</cmd>
