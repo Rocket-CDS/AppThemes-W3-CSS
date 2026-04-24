@@ -8,19 +8,21 @@
 
 <div id="rocketeventsdisplay" style="position:relative;top:-165px;"></div>
 
-<div id="rocket-events">
-    @if (articleData != null)
-    {
-        <text>
-            [INJECT: apptheme, ArticleDetail.cshtml]
-        </text>
-    }
-    else
-    {
-        <text>
-            [INJECT: apptheme, ArticleList.cshtml]
-        </text>
-    }
+<div class="w3-content" style="max-width:1400px;">
+    <div id="rocket-events" class="w3-padding-small">
+        @if (articleData != null)
+        {
+            <text>
+                [INJECT: apptheme, ArticleDetail.cshtml]
+            </text>
+        }
+        else
+        {
+            <text>
+                [INJECT: apptheme, ArticleList.cshtml]
+            </text>
+        }
+    </div>
 </div>
 <div class="simplisity_loader" style="display:none;">
     <span class=" simplisity_loader_inner">

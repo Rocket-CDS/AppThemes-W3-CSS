@@ -8,22 +8,27 @@
 
 <div id="rocketproductsdisplay" style="position:relative;top:-165px;"></div>
 
-<div id="rocket-products">
-    @{
-        if (articleData != null)
-        {
-            <text>
-                [INJECT: apptheme, ArticleDetail.cshtml]
-            </text>
-        }
-        else
-        {
-            <text>
-                [INJECT: apptheme, ArticleList.cshtml]
-            </text>
-        }
-    }
+<div class="w3-content" style="max-width:1400px;">
+    <div class="w3-row-padding">
+        <div class="w3-col l12 m12 s12 w3-margin-bottom">
+            <div id="rocket-products" class="w3-padding-small">
+                @if (articleData != null)
+                {
+                    <text>
+                        [INJECT: apptheme, ArticleDetail.cshtml]
+                    </text>
+                }
+                else
+                {
+                    <text>
+                        [INJECT: apptheme, ArticleList.cshtml]
+                    </text>
+                }
+            </div>
+        </div>
+    </div>
 </div>
+
 <div class="simplisity_loader" style="display:none;">
     <span class=" simplisity_loader_inner">
     </span>

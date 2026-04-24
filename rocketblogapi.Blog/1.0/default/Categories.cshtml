@@ -6,42 +6,4 @@
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
 
-<div class="rocket-categories" style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
-
-    <div class="w3-bar-block w3-small">
-        <a href="@ListUrl(moduleData.ListPageTabId())" onclick="blog_clearFiltersCategories('w3-theme-l3');" class="w3-bar-item w3-button w3-theme-l5 w3-hover-theme rocket-categorylink">@ResourceKey("DNNrocket.all")</a>
-
-        @foreach (var catData in categoryDataList.GetCategoryTree())
-        {
-            if (!catData.Hidden && !catData.HiddenByCulture && catData.Level == 0)
-            {
-                var selectedCat = "";
-                if (catData.CategoryId == categoryData.CategoryId)
-                {
-                    selectedCat = " w3-theme-l3 ";
-                }
-
-                <a href="@ListUrl(moduleData.ListPageTabId(), catData)" onclick="blog_clearFiltersCategories('w3-theme-l3');" class="w3-bar-item w3-button w3-theme-l5 w3-hover-theme rocket-categorylink @selectedCat">@catData.Name (@catData.GetArticles().RecordCount)</a>
-
-                var l = catData.GetDirectChildren();
-                if (l.Count > 0)
-                {
-                    <div class="w3-bar-block w3-margin-left">
-                        @foreach (var child in l)
-                        {
-                            if (!child.Hidden && !child.HiddenByCulture)
-                            {
-                                selectedCat = "";
-                                if (child.CategoryId == categoryData.CategoryId)
-                                {
-                                    selectedCat = " w3-theme-l3 ";
-                                }
-                                <a href="@ListUrl(moduleData.ListPageTabId(), child)" onclick="blog_clearFiltersCategories('w3-theme-l3');" class="w3-bar-item w3-button w3-theme-l5 w3-hover-theme w3-small rocket-categorylink @selectedCat">@child.Name (@child.GetArticles().RecordCount)</a>
-                            }
-                        }
-                    </div>
-                }
-            }
-        }
-    </div>
-</div>
+[INJECT:appthemeshared,categories.cshtml]

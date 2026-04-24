@@ -10,14 +10,17 @@
     <Compile Remove="rocketcontentapi.ListDetail\**" />
     <Compile Remove="rocketcontentapi.News\**" />
     <Compile Remove="rocketdirectoryapi.Articles\**" />
+    <Compile Remove="rocketlibraryapi.ResourcesExample\**" />
     <EmbeddedResource Remove="rocketcontentapi.GraphicsBlocksWIP\**" />
     <EmbeddedResource Remove="rocketcontentapi.ListDetail\**" />
     <EmbeddedResource Remove="rocketcontentapi.News\**" />
     <EmbeddedResource Remove="rocketdirectoryapi.Articles\**" />
+    <EmbeddedResource Remove="rocketlibraryapi.ResourcesExample\**" />
     <None Remove="rocketcontentapi.GraphicsBlocksWIP\**" />
     <None Remove="rocketcontentapi.ListDetail\**" />
     <None Remove="rocketcontentapi.News\**" />
     <None Remove="rocketdirectoryapi.Articles\**" />
+    <None Remove="rocketlibraryapi.ResourcesExample\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -54,6 +57,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="rocketblogapi.Blog\1.0\css\" />
     <Folder Include="rocketblogapi.Blog\1.0\js\" />
     <Folder Include="rocketcontentapi.About\1.0\dep\" />
     <Folder Include="rocketcontentapi.ContactDetails\1.0\dep\" />
@@ -62,7 +66,8 @@
     <Folder Include="rocketcontentapi.HtmlContent\1.0\img\" />
     <Folder Include="rocketcontentapi.HtmlContent\1.0\js\" />
     <Folder Include="rocketdirectoryapi.PropertyAgent\1.0\img\" />
-    <Folder Include="rocketlibraryapi.ResourcesExample\1.0\resx\" />
+    <Folder Include="rocketnewsapi.News\1.0\css\" />
+    <Folder Include="rocketnewsapi.News\1.0\js\" />
   </ItemGroup>
 
   <ItemGroup>

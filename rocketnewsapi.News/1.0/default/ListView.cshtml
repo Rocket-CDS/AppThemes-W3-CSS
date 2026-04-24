@@ -8,21 +8,23 @@
 
 <div id="rocketnewsdisplay" style="position:relative;top:-165px;"></div>
 
-<div id="rocket-news">
-    @{
-        if (articleData != null)
-        {
-            <text>
-                [INJECT: apptheme, ArticleDetail.cshtml]
-            </text>
+<div class="w3-content" style="max-width:1400px;">
+    <div id="rocket-news" class="w3-padding-small">
+        @{
+            if (articleData != null)
+            {
+                <text>
+                    [INJECT: apptheme, ArticleDetail.cshtml]
+                </text>
+            }
+            else
+            {
+                <text>
+                    [INJECT: apptheme, ArticleList.cshtml]
+                </text>
+            }
         }
-        else
-        {
-            <text>
-                [INJECT: apptheme, ArticleList.cshtml]
-            </text>
-        }
-    }
+    </div>
 </div>
 
 <div class="simplisity_loader" style="display:none;">
@@ -31,6 +33,6 @@
 </div>
 <script>
     $(document).ready(function () {
-        news_pageLoad('w3-theme-l3');
+        w3shared_pageLoad('w3-theme-l3');
     });
 </script>

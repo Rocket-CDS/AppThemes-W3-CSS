@@ -1,4 +1,4 @@
-﻿@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
+@inherits RocketDirectoryAPI.Components.RocketDirectoryAPITokens<Simplisity.SimplisityRazor>
 @using DNNrocketAPI.Components;
 @using RocketDirectoryAPI.Components;
 @AssignDataModel(Model)
@@ -19,24 +19,28 @@
 <div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))" style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
     <div class="w3-section containerinner">
 
+        <div class="w3-panel w3-theme-l5 w3-round-large w3-padding w3-border">
         @if (!categoryData.Exists)
         {
-            <h1>@portalData.Name</h1>
+            <h1 class="w3-margin-0">@portalData.Name</h1>
         }
         else
         {
-            <h1>@categoryData.Name</h1>
+            <h1 class="w3-margin-0">@categoryData.Name</h1>
         }
+
+        </div>
 
         [INJECT:appthemedirectorydefault,SearchBanner.cshtml]
 
         @if (articleList.Count > 0)
         {
-            <div class="w3-row w3-tiny">
-                <a href="@RssUrl(portalData.PortalId,"rocketproductsapi_rss", DateTime.Now.AddMonths(-11).Year, DateTime.Now.AddMonths(-11).Month, 12,"publisheddate")" target="_blank">
-                    <span class="material-icons">
+            <div class="w3-row w3-small w3-margin-bottom">
+                <a href="@RssUrl(portalData.PortalId,"rocketproductsapi_rss", DateTime.Now.AddMonths(-11).Year, DateTime.Now.AddMonths(-11).Month, 12,"publisheddate")" target="_blank" class="w3-button w3-theme-l5 w3-text-dark-grey w3-border w3-border-light-grey w3-round-xlarge w3-hover-white">
+                    <span class="material-icons" style="vertical-align:middle;">
                         rss_feed
                     </span>
+                    <span style="vertical-align:middle;">RSS</span>
                 </a>
             </div>
 
@@ -50,25 +54,25 @@
                 var articleImage = article.GetImage(0);
                 var linkData = article.Getlink(0);
 
-                <div class="w3-section">
+                <div class="w3-card w3-white w3-round-large w3-border w3-padding w3-margin-bottom">
                     @if (moduleData.GetSettingInt("layout") == 1)
                     {
-                        <div class="w3-container">
-                            <div class="w3-twothird">
+                        <div class="w3-row-padding">
+                            <div class="w3-col m8 l8 s12">
                                 [INJECT:apptheme,layouttext.cshtml]
                             </div>
-                            <div class="w3-third">
-                                <img class="w3-image @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+                            <div class="w3-col m4 l4 s12 w3-padding-small">
+                                <img class="w3-image w3-round-large w3-border @(moduleData.GetSetting("opacity"))" src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
                             </div>
                         </div>
                     }
                     else
                     {
-                        <div class="w3-container">
-                            <div class="w3-third">
-                                <img class="w3-image @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
+                        <div class="w3-row-padding">
+                            <div class="w3-col m4 l4 s12 w3-padding-small">
+                                <img class="w3-image w3-round-large w3-border @(moduleData.GetSetting("opacity"))" src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
                             </div>
-                            <div class="w3-twothird">
+                            <div class="w3-col m8 l8 s12">
                                 [INJECT:apptheme,layouttext.cshtml]
                             </div>
                         </div>
@@ -85,7 +89,12 @@
         }
         else
         {
-            <div class="h2-headline">@ResourceKey("DNNrocket.notfound")</div>
+            <div class="w3-card w3-white w3-round-large w3-border w3-padding w3-center">
+            <div class="w3-theme-l5 w3-round-large w3-padding">
+                <div class="material-icons w3-xxlarge w3-text-theme" style="line-height:1;">article</div>
+                <div class="w3-large w3-margin-top"><b>@ResourceKey("DNNrocket.notfound")</b></div>
+            </div>
+        </div>
         }
 
     </div>

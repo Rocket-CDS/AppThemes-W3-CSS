@@ -17,13 +17,13 @@
     <div class="w3-section containerinner productsarticledetail">
 
     <div>
-            <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-action w3-border w3-round backlink">@ButtonIconText(ButtonTypes.back)</a>
+            <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-l5 w3-text-dark-grey w3-border w3-border-light-grey w3-round-xlarge w3-hover-white backlink">@ButtonIconText(ButtonTypes.back)</a>
     </div>
 
 
-    <div class="w3-container w3-margin">
+    <div class="w3-card w3-white w3-round-large w3-border w3-padding-large w3-margin-top">
         <div class="w3-center">
-            <h3>@articleData.Name</h3>
+            <h2>@articleData.Name</h2>
             <h5><span class="w3-opacity">@DateOf(articleData.Info, articleData.PublishedDateXPath,sessionParams.CultureCode, "dd MMM yyyy")</span></h5>
         </div>
 
@@ -34,25 +34,25 @@
             </div>
         }
 
-        <div class="w3-row w3-margin">
-            @BreakOf(articleData.Summary)
-        </div>
+        <div class="w3-row w3-margin-bottom w3-panel w3-light-grey w3-leftbar w3-border-theme">
+                @BreakOf(articleData.Summary)
+            </div>
 
         <div class="w3-justify">
                 <div class="w3-row">
-                    <div class="w3-col m1 l1 w3-hide-small" >
+                    <div class="w3-col m2 l2 w3-hide-small" >
                         @if (articleData.GetImages().Count > 1)
                         {
                             foreach (var i in articleData.GetImages().Take(6))
                             {
                                 <div class="" style="padding-bottom:8px;padding-right:8px;">
-                                    <img src="@ImageUrl(i.RelPath,120,120)" onMouseOver="$('#mainimage@(articleData.ArticleId)').prop('src','@ImageUrl(i.RelPath,640,400)');" alt="" style="width:100%" />
+                                    <img src="@ImageUrl(i.RelPath,120,120)" onMouseOver="$('#mainimage@(articleData.ArticleId)').prop('src','@ImageUrl(i.RelPath,640,400)');" alt="" class="w3-image w3-border w3-round" style="width:100%" />
                                 </div>
                             }
                         }
                     </div>
-                    <div class="w3-col m11 l11">
-                            <img id="mainimage@(articleData.ArticleId)" src="@ImageUrl(articleData.GetImage(0).RelPath,640,400)" alt="@articleData.GetImage(0).Alt" style="width:100%" />
+                    <div class="w3-col m10 l10 s12">
+                            <img id="mainimage@(articleData.ArticleId)" src="@ImageUrl(articleData.GetImage(0).RelPath,640,400)" alt="@articleData.GetImage(0).Alt" class="w3-image w3-round-large w3-border" style="width:100%" />
                     </div>
                 </div>
 
@@ -113,7 +113,7 @@
                         if (!doc.Hidden)
                         {
                             <a target="_blank" href="/@doc.RelPath.TrimStart('/')">
-                                <div class="w3-button w3-theme-l3 w3-block w3-left-align rocket-document">
+                                <div class="w3-button w3-theme-l5 w3-text-dark-grey w3-border w3-border-light-grey w3-round-xlarge w3-block w3-left-align rocket-document w3-margin-bottom w3-hover-white">
                                     @doc.Name
                                 </div>
                             </a>
@@ -135,7 +135,7 @@
                        <div class="w3-row">
                             <div class="w3-half">
                                 <label>@ResourceKey("DNNrocket.name")</label>
-                                @TextBox(infoempty, "genxml/textbox/name" + reviewfieldId, "  maxlength='30' class='w3-input w3-border' autocomplete='off'", userData.DisplayName, false)
+                                @TextBox(infoempty, "genxml/textbox/name" + reviewfieldId, "  maxlength='30' class='w3-input w3-border w3-round' autocomplete='off'", userData.DisplayName, false)
                             </div>
                             <div class="w3-quarter">
                                 <label>@ResourceKey("Products.rating")</label><br/>
@@ -143,12 +143,12 @@
                             </div>
                             <div class="w3-col m12">
                                 <label>@ResourceKey("Products.comment")</label>
-                                @TextArea(infoempty, "genxml/textbox/comment" + reviewfieldId, " maxlength='300' class='w3-input w3-border' autocomplete='off'", "", false)
+                                @TextArea(infoempty, "genxml/textbox/comment" + reviewfieldId, " maxlength='300' class='w3-input w3-border w3-round' autocomplete='off'", "", false)
                             </div>
                        </div>
                     </div>
                     <div id="productspostinoput" class="w3-center w3-margin-top">
-                        <div class="w3-button w3-white w3-border simplisity_confirmclick" s-confirm="@ResourceKey("Products.postcomments")?" s-cmd="remote_publicadduserreview" s-post="#productsreviewinput" s-return="#productsreviewinput" s-reload="true" s-fields='{"articleid":"@articleData.ArticleId"}'>
+                        <div class="w3-button w3-theme-l5 w3-text-dark-grey w3-border w3-border-light-grey w3-round-xlarge w3-hover-white simplisity_confirmclick" s-confirm="@ResourceKey("Products.postcomments")?" s-cmd="remote_publicadduserreview" s-post="#productsreviewinput" s-return="#productsreviewinput" s-reload="true" s-fields='{"articleid":"@articleData.ArticleId"}'>
                             <b>@ResourceKey("Products.addcomment")&nbsp;</b>
                         </div>
                     </div>
@@ -163,7 +163,7 @@
             {
 
                 <div class="w3-right w3-margin-top">
-                    <div class="w3-button w3-black" onclick="$('#productsreviews').toggle();">
+                    <div class="w3-button w3-theme-l5 w3-text-dark-grey w3-border w3-border-light-grey w3-round-xlarge w3-hover-white" onclick="$('#productsreviews').toggle();">
                         <b>@ResourceKey("Products.replies")&nbsp;</b>
                         <span class="w3-tag w3-white">@articleData.ReviewCount</span>
                     </div>
@@ -185,7 +185,7 @@
             }
 
                 <div>
-                    <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)#rocketproductsdisplay" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-action w3-border w3-round backlink">@ButtonIconText(ButtonTypes.back)</a>
+                    <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)#rocketproductsdisplay" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-l5 w3-text-dark-grey w3-border w3-border-light-grey w3-round-xlarge w3-hover-white backlink">@ButtonIconText(ButtonTypes.back)</a>
                 </div>
 
         </div>

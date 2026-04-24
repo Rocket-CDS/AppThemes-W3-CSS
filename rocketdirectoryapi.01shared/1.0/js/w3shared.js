@@ -1,4 +1,4 @@
-function news_showSelectedMonths(monthidx, date1, date2, reloadUrl, browserUrl, cssSelectedClass) {
+function w3shared_showSelectedMonths(monthidx, date1, date2, reloadUrl, browserUrl, cssSelectedClass, scrollToElement) {
     $('.simplisity_loader').show();
     simplisity_setSessionField('page', '1');
     $('#viewsearchtext').val('');
@@ -8,11 +8,8 @@ function news_showSelectedMonths(monthidx, date1, date2, reloadUrl, browserUrl, 
     simplisity_setSessionField('monthidx', monthidx);
     simplisity_setSessionField('searchdate1', date1);
     simplisity_setSessionField('searchdate2', date2);
-    // Clear tag selection
-    simplisity_setSessionField('rocketpropertyidtag', '0');
-    $('.rocket-tagbutton').removeClass('rocket-tagbuttonOn');
-
     $('.rocket-categorylink').removeClass(cssSelectedClass);
+    simplisity_setSessionField('rocketpropertyidtag', '0');
     if (browserUrl && browserUrl != '') {
         history.pushState('', "Title", browserUrl);
     }
@@ -23,12 +20,14 @@ function news_showSelectedMonths(monthidx, date1, date2, reloadUrl, browserUrl, 
     else {
         $('.rocket-tagbutton').removeClass('rocket-tagbuttonOn');
         $('.rocket-tagbuttonclear').hide();
-        var element_to_scroll_to = document.getElementById('rocketnewsdisplay');
-        element_to_scroll_to.scrollIntoView();
+        var element_to_scroll_to = document.getElementById(scrollToElement);
+        if (element_to_scroll_to) {
+            element_to_scroll_to.scrollIntoView();
+        }
         doDateSearchReload(date1, date2);
     }
 }
-function news_clearFiltersCategories(cssSelectedClass) {
+function w3shared_clearFiltersCategories(cssSelectedClass) {
     $('.simplisity_loader').show();
     // remove selecton class
     $('.rocket-monthdates').removeClass(cssSelectedClass);
@@ -48,7 +47,7 @@ function news_clearFiltersCategories(cssSelectedClass) {
     // Clear Filter checkboxes
     $('.rocket-filtercheckbox').each(function (i, obj) { simplisity_setSessionField(this.id, false); });
 }
-function news_pageLoad(cssSelectedClass) {
+function w3shared_pageLoad(cssSelectedClass) {
     $('.simplisity_loader').show();
     if (simplisity_getSessionField('searchdate1') != '' && simplisity_getSessionField('viewsearchtext') == '') {
         monthidx = simplisity_getSessionField('monthidx');
@@ -58,7 +57,7 @@ function news_pageLoad(cssSelectedClass) {
     $('.simplisity_loader').hide();
 }
 
-function news_sharrre(pageUrl, iconClass) {
+function w3shared_sharrre(pageUrl, iconClass) {
     var list = ['facebook', 'linkedin', 'twitter', 'pinterest'];
     $('#rocket-sharrre').sharrre({
         share: {

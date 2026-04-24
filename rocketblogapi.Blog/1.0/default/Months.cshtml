@@ -6,46 +6,4 @@
 @AddProcessDataResx(appTheme, true)
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketDirectoryAPI/App_LocalResources/")
 <!--inject-->
-@{
-    var monthList = RocketDirectoryAPIUtils.GetArticlesByMonth(sessionParams, systemData.SystemKey, "publisheddate");
-    var reloadUrl = "";
-    var browserUrl = ListUrl(moduleData.ListPageTabId()).ToString();
-    if (sessionParams.GetInt(RocketDirectoryAPIUtils.UrlQueryCategoryKey(portalData.PortalId, portalContent.SystemKey)) > 0)
-    {
-        reloadUrl = browserUrl;
-    }
-}
-<div class="rocket-months" style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
-
-    <div class="w3-bar-block">
-        <div class="w3-button w3-block w3-left-align w3-theme-l5 w3-hover-theme rocket-monthdates w3-padding-small" onclick="blog_showSelectedMonths('0','','','@browserUrl','@browserUrl','w3-theme-l3');">
-            <span>
-                @ResourceKey("DNNrocket.all")
-            </span>
-            <span class="w3-right">
-            </span>
-        </div>
-
-        @{
-            var monthidx = 1;
-        }
-        @foreach (var a in monthList)
-        {
-            if (a.Value.Count > 0)
-            {
-                <div class="w3-button w3-block w3-left-align w3-theme-l5 w3-hover-theme rocket-monthdates rocket-monthdates@(monthidx) w3-padding-small" monthidx="@(monthidx)" onclick="blog_showSelectedMonths('@(monthidx)','@a.Key.ToString("yyyy-MM-dd")', '@a.Key.AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd")', '@reloadUrl','@browserUrl','w3-theme-l3');">
-                    <span>
-                        @a.Key.ToString("MMMM yyyy")
-                    </span>
-                    <span class="w3-right w3-small w3-opacity">
-                        @a.Value.Count
-                    </span>
-                </div>
-            }
-            monthidx += 1;
-        }
-    </div>
-
-</div>
-
-@DateJsApiCall(moduleData, "#rocket-blog", sessionParams)
+[INJECT:appthemeshared,months.cshtml]

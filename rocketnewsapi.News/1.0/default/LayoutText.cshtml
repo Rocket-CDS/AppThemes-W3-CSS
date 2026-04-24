@@ -8,20 +8,22 @@
 <!--inject-->
 @if (!String.IsNullOrEmpty(article.Name))
 {
-    <p class="@moduleData.GetSetting("titlesize") @paddingClass">
-        <span>@article.Name</span><br/>
-        <span class="w3-opacity">@DateOf(article.Info, article.PublishedDateXPath, sessionParams.CultureCode, "dd MMM yyy")</span>
-    </p>
+    <div class="@paddingClass">
+        <p class="@moduleData.GetSetting("titlesize") w3-margin-bottom w3-text-dark-grey">
+            <span><b>@article.Name</b></span><br />
+            <span class="w3-opacity">@DateOf(article.Info, article.PublishedDateXPath, sessionParams.CultureCode, "dd MMM yyy")</span>
+        </p>
+    </div>
 }
 @if (!String.IsNullOrEmpty(article.Summary))
 {
-    <p class="@moduleData.GetSetting("textsize") @paddingClass">
+    <p class="@moduleData.GetSetting("textsize") @paddingClass w3-text-grey">
         @BreakOf(article.Summary)
     </p>
 }
 
 <div class="w3-row @paddingClass">
-    <a href="@DetailUrl(moduleData.DetailPageTabId(), article, categoryData)#rocketblogdisplay" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-action w3-border w3-round" title="@article.Name">
+    <a href="@DetailUrl(moduleData.DetailPageTabId(), article, categoryData)#rocketnewsdisplay" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-l5 w3-text-dark-grey w3-border w3-border-light-grey w3-round-xlarge w3-hover-white" title="@article.Name">
         <b>@ResourceKey("News.readmore")&nbsp;&gt;&nbsp;</b>
     </a>
 </div>
