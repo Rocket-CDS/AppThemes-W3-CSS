@@ -42,15 +42,21 @@
                 }
                 if (moduleData.GetSettingInt("satlayout") == 1)
                 {
-                    <div class="w3-col s12 m3 l2 @alignment w3-padding-small eventlistdetail">
-                            <a href="@DetailUrl(moduleData.DetailPageTabId(), article, categoryData)#rocketeventsdisplay" class="@paddingClass" title="@article.Name" onclick="$('.simplisity_loader').show();">
-                            <img class="w3-image @(moduleData.GetSetting("opacity")) " src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" />
-                        </a>
-                        <p class="@moduleData.GetSetting("titlesize") @paddingClass">
-                            <span>@article.Name</span><br />
-                            <span class="w3-opacity">@DateOf(eventDate, sessionParams.CultureCode, "dd MMM yyy")</span>
-                        </p>
+                    <div class="w3-quarter w3-padding-small" style="display:flex;flex-direction:column;">
+                    <div class="w3-card w3-round-large w3-border w3-white @alignment" style="display:flex;flex-direction:column;flex:1;min-height:320px;">
+                        <div style="overflow:hidden;border-radius:12px 12px 0 0;">
+                            <a href="@DetailUrl(moduleData.DetailPageTabId(), article, categoryData)" title="@article.Name" onclick="$('.simplisity_loader').show();">
+                                <img class="w3-image @(moduleData.GetSetting("opacity"))" src="@ImageUrl(articleImage.RelPath, moduleData.GetSettingInt("width"), moduleData.GetSettingInt("height"))" style="width:100%;height:@(moduleData.GetSettingInt("height"))px;object-fit:cover;display:block;" />
+                            </a>
+                        </div>
+                        <div class="w3-padding-small" style="flex:1;display:flex;flex-direction:column;">
+                            <p class="@moduleData.GetSetting("titlesize") w3-margin-0" style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">
+                                <span>@article.Name</span><br />
+                                <span class="w3-opacity w3-small">@DateOf(article.Info, article.PublishedDateXPath, sessionParams.CultureCode, "dd MMM yyy")</span>
+                            </p>
+                        </div>
                     </div>
+                </div>
                 }
             }
         }
