@@ -46,14 +46,14 @@
                 </div>
             </div>
 
-            <div class="w3-row-padding" style="margin-left:-8px;margin-right:-8px;display:flex;flex-wrap:wrap;align-items:stretch;">
+            <div class="w3-row" style="display:flex;flex-wrap:wrap;align-items:stretch;">
                 @foreach (var article in articleList)
                 {
                     var info = article.Info;
                     var articleImage = article.GetImage(0);
-                    var detailUrl = DetailUrl(moduleData.DetailPageTabId(), article, categoryData);
+                    var detailUrl = DetailUrl(moduleData.DetailPageTabId(), article, categoryData, new string[] { "page", sessionParams.Page.ToString() });
 
-                    <div class="w3-col l4 m6 s12 w3-margin-bottom" style="float:none;display:flex;">
+                    <div class="w3-col l4 m6 s12 w3-margin-bottom" style="float:none;display:flex;padding-left:8px;padding-right:8px;box-sizing:border-box;">
                         <div class="w3-card w3-white w3-round-large w3-border w3-hover-shadow" style="height:100%;width:100%;overflow:hidden;display:flex;flex-direction:column;">
                             <div class="w3-display-container w3-theme-l5" style="overflow:hidden;">
                                 <a href="@detailUrl" onclick="$('.simplisity_loader').show();" title="@article.Name" class="w3-display-container" style="text-decoration:none;display:block;">
