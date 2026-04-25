@@ -18,6 +18,11 @@
     .w3-input {
         height: 41px;
     }
+    .dnnCheckbox {
+        display: inline-block;
+        justify-content: flex-start;
+        align-items: center;
+    }
 </style>
 
 <!-- Satelite Settings -->
@@ -58,7 +63,7 @@
     if (moduleData.ApiModuleRef == moduleData.ModuleRef)
     {
         <div class="w3-row w3-text-red w3-large">
-            @ResourceKey("ProductsFood.warningapisettings")
+            @ResourceKey("Products.warningapisettings")
         </div>
     }
 }
@@ -68,17 +73,7 @@
     if (moduleData.ApiModuleRef == moduleData.ModuleRef)
     {
         <div class="w3-row w3-text-red w3-large">
-            @ResourceKey("ProductsFood.warningapisettings")
-        </div>
-    }
-}
-<!-- Month Settings -->
-@if (moduleData.DisplayTemplate == "months.cshtml")
-{
-    if (moduleData.ApiModuleRef == moduleData.ModuleRef)
-    {
-        <div class="w3-row w3-text-red w3-large">
-            @ResourceKey("ProductsFood.warningapisettings")
+            @ResourceKey("Products.warningapisettings")
         </div>
     }
 }
@@ -93,12 +88,12 @@
     if (moduleData.ApiModuleRef == moduleData.ModuleRef)
     {
         <div class="w3-row w3-text-red w3-large">
-            @ResourceKey("ProductsFood.warningapisettings")
+            @ResourceKey("Products.warningapisettings")
         </div>
     }
 }
 <!-- List Settings -->
-@if (moduleData.DisplayTemplate == "view.cshtml")
+@if (moduleData.DisplayTemplate == "view.cshtml" || moduleData.DisplayTemplate == "listview.cshtml")
 {
     <div class="w3-section">
 
@@ -158,11 +153,11 @@
             @RadioButtonList(info, "genxml/settings/padding", "w3-padding-small,w3-padding,w3-padding-large", "Small,Medium,Large", " class=''", "w3-padding")
         </div>
         <div class="w3-third w3-padding" style='height:80px;'>
-            <label>@ResourceKey("ProductsFood.turnoffcomments")</label><br />
+            <label>@ResourceKey("Products.turnoffcomments")</label><br />
             @CheckBox(info, "genxml/settings/turnoffcomments", "", " class='w3-check'", true)
         </div>
         <div class="w3-third w3-padding" style='height:80px;'>
-            <label>@ResourceKey("ProductsFood.showimage")</label><br />
+            <label>@ResourceKey("Products.showimage")</label><br />
             @CheckBox(info, "genxml/settings/showimage", "", " class='w3-check'", true)
         </div>
         <div class="w3-row">
@@ -176,6 +171,22 @@
                 @CheckBox(info, "genxml/settings/showpagesize", ResourceKey("RC.showpagesize").ToString(), "class='w3-check'")
             </div>
         </div>
+
+        @if (moduleData.DisplayTemplate == "view.cshtml")
+        {
+            <div class="w3-row">
+                <div class="w3-third w3-padding">
+                    @CheckBox(info, "genxml/settings/showcategories", ResourceKey("RC.showcategories").ToString(), "class='w3-check'")
+                </div>
+                <div class="w3-third w3-padding">
+                    @CheckBox(info, "genxml/settings/showfilters", ResourceKey("RC.showfilters").ToString(), "class='w3-check'")
+                </div>
+                <div class="w3-third w3-padding">
+                    @CheckBox(info, "genxml/settings/showtags", ResourceKey("RC.showtags").ToString(), "class='w3-check'")
+                </div>
+            </div>
+        }
+
 
     </div>
 }
@@ -198,7 +209,7 @@
 </div>
 
 
-@if (moduleData.DisplayTemplate == "tags.cshtml" || moduleData.DisplayTemplate == "filters.cshtml")
+@if (moduleData.DisplayTemplate == "tags.cshtml" || moduleData.DisplayTemplate == "filters.cshtml" || moduleData.DisplayTemplate == "view.cshtml")
 {
     <div class="w3-row  w3-padding">
         <div class="w3-row">

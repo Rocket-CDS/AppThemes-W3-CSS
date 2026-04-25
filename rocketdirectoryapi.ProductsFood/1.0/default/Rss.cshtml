@@ -6,7 +6,7 @@
     var rssList = (List<ArticleLimpet>)Model.GetDataObject("rsslist");
 }
 
-<rss xmlns:productsfood="http://rocket-cds.org" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+<rss xmlns:products="http://rocket-cds.org" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
 
     <channel>
         
@@ -41,7 +41,7 @@
                 var imageheightrss = catalogSettings.Info.GetXmlPropertyInt("genxml/textbox/imageheightrss");
                 <media:thumbnail width="@(imagewidthrss)" height="@(imageheightrss)" url="@(portalData.EngineUrlWithProtocol)@ImageUrl(articleData.GetImage(0).RelPath, imagewidthrss, imageheightrss)" />
             } 
-            <productsfood:publishedon><![CDATA[@articleData.Info.GetXmlPropertyDate("genxml/textbox/publisheddate").ToString("r")]]></productsfood:publishedon>
+            <products:publishedon><![CDATA[@articleData.Info.GetXmlPropertyDate("genxml/textbox/publisheddate").ToString("r")]]></products:publishedon>
         </item>
 }
 
