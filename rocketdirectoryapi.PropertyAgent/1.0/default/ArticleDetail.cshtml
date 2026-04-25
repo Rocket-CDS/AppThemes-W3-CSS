@@ -12,12 +12,13 @@
     var alignment = moduleData.GetSetting("alignment");
     var paddingClass = moduleData.GetSetting("padding");
     var backgroundcolor = moduleData.GetSetting("backgroundcolor");
+    var listRtnUrl = ListUrl(moduleData.ListPageTabId(), categoryData, new string[] { "page", sessionParams.Page.ToString() });
 }
 <div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))" style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
     <div class="w3-section containerinner productsarticledetail">
 
         <div>
-            <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-l5 w3-text-dark-grey w3-border w3-border-light-grey w3-round-xlarge w3-hover-white backlink">@ResourceKey("DNNrocket.return")</a>
+            <a href="@listRtnUrl" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-l5 w3-text-dark-grey w3-border w3-border-light-grey w3-round-xlarge w3-hover-white backlink">@ResourceKey("DNNrocket.return")</a>
         </div>
 
 
@@ -93,7 +94,7 @@
                 </div>
 
                 <div>
-                    <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)#rocketproductsdisplay" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-l5 w3-text-dark-grey w3-border w3-border-light-grey w3-round-xlarge w3-hover-white backlink">@ResourceKey("DNNrocket.return")</a>
+                    <a href="@(listRtnUrl + "#rocketproductsdisplay")" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-l5 w3-text-dark-grey w3-border w3-border-light-grey w3-round-xlarge w3-hover-white backlink">@ResourceKey("DNNrocket.return")</a>
                 </div>
 
             </div>

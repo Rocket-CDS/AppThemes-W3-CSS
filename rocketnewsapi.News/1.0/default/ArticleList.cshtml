@@ -52,6 +52,7 @@
                 var hideRow = info.GetXmlPropertyBool("genxml/checkbox/hiderow");
                 var articleImage = article.GetImage(0);
                 var linkData = article.Getlink(0);
+                var detailUrl = DetailUrl(moduleData.DetailPageTabId(), article, categoryData, new string[] { "page", sessionParams.Page.ToString() }) + "#rocketnewsdisplay";
 
                 <div class="w3-card w3-white w3-round-large w3-border w3-margin-bottom">
                     <div class="w3-container w3-padding">

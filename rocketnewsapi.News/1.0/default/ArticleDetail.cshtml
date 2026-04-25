@@ -12,12 +12,13 @@
     var alignment = moduleData.GetSetting("alignment");
     var paddingClass = moduleData.GetSetting("padding");
     var backgroundcolor = moduleData.GetSetting("backgroundcolor");
+    var listRtnUrl = ListUrl(moduleData.ListPageTabId(), categoryData, new string[] { "page", sessionParams.Page.ToString() });
 }
 <div class="containerouter @backgroundcolor @(moduleData.GetSetting("cssclass"))" style="padding-right:8px;padding-left:8px;padding-top:@(moduleData.GetSetting("toppadding"))px;padding-bottom:@(moduleData.GetSetting("bottompadding"))px;">
     <div class="w3-section containerinner newsarticledetail">
 
         <div class="w3-margin-bottom">
-            <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)#rocketnewsdisplay" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-l5 w3-text-dark-grey w3-border w3-border-light-grey w3-round-xlarge w3-hover-white backlink">@ButtonIconText(ButtonTypes.back)</a>
+            <a href="@(listRtnUrl + "#rocketnewsdisplay")" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-l5 w3-text-dark-grey w3-border w3-border-light-grey w3-round-xlarge w3-hover-white backlink">@ButtonIconText(ButtonTypes.back)</a>
         </div>
 
         <div class="w3-card w3-white w3-round-large w3-border w3-padding-large">
@@ -96,7 +97,7 @@
             <div id="rocket-sharrre" class="w3-row w3-xlarge w3-margin-bottom"></div>
 
             <div class="w3-margin-top">
-                <a href="@ListUrl(moduleData.ListPageTabId(), categoryData)#rocketnewsdisplay" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-l5 w3-text-dark-grey w3-border w3-border-light-grey w3-round-xlarge w3-hover-white backlink">@ButtonIconText(ButtonTypes.back)</a>
+                <a href="@(listRtnUrl + "#rocketnewsdisplay")" onclick="$('.simplisity_loader').show();" class="w3-button w3-theme-l5 w3-text-dark-grey w3-border w3-border-light-grey w3-round-xlarge w3-hover-white backlink">@ButtonIconText(ButtonTypes.back)</a>
             </div>
 
         </div>
