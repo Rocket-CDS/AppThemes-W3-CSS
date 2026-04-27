@@ -1,9 +1,18 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>AppThemes_W3_CSS</RootNamespace>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <RazorCompileOnBuild>false</RazorCompileOnBuild>
+    <RazorCompileOnPublish>false</RazorCompileOnPublish>
+    <EnableDefaultRazorGenerateItems>false</EnableDefaultRazorGenerateItems>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="**\*.cshtml" />
+    <RazorGenerate Include="**\*.cshtml" Exclude="bin\**;obj\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="rocketcontentapi.GraphicsBlocksWIP\**" />
@@ -48,8 +57,17 @@
     <Reference Include="RocketForms">
       <HintPath>..\..\..\bin\RocketForms.dll</HintPath>
     </Reference>
+    <Reference Include="RocketNewsAPI">
+      <HintPath>..\..\..\bin\RocketNewsAPI.dll</HintPath>
+    </Reference>
     <Reference Include="RocketPortal">
       <HintPath>..\..\..\bin\RocketPortal.dll</HintPath>
+    </Reference>
+    <Reference Include="RocketTools">
+      <HintPath>..\..\..\bin\RocketTools.dll</HintPath>
+    </Reference>
+    <Reference Include="RocketUtils">
+      <HintPath>..\..\..\bin\RocketUtils.dll</HintPath>
     </Reference>
     <Reference Include="Simplisity">
       <HintPath>..\..\..\bin\Simplisity.dll</HintPath>

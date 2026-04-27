@@ -33,7 +33,7 @@
         {
             if (a.Value.Count > 0)
             {
-                <div class="w3-button w3-block w3-left-align w3-theme-l5 w3-hover-theme rocket-monthdates rocket-monthdates@(monthidx) w3-padding-small" monthidx="@(monthidx)" onclick="w3shared_showSelectedMonths('@(monthidx)','@a.Key.ToString("yyyy-MM-dd")', '@a.Key.AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd")', '@reloadUrl','@browserUrl','w3-theme-l3','rocketblogdisplay');">
+                <div class="w3-button w3-block w3-left-align w3-theme-l5 w3-hover-theme rocket-monthdates rocket-monthdates@(monthidx) w3-padding-small" monthidx="@(monthidx)" onclick="w3shared_showSelectedMonths('@(monthidx)','@a.Key.ToString("yyyy-MM-dd")', '@a.Key.AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd")', '@reloadUrl','@browserUrl','w3-theme-l3','rocket@(appTheme.PrefixName)display');">
                     <span>
                         @a.Key.ToString("MMMM yyyy")
                     </span>
